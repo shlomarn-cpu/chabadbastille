@@ -571,10 +571,20 @@ if(!reduce&&'IntersectionObserver'in window){
 
 
 /* ---- Avis ---- */
-const qs=[...document.querySelectorAll('.quote')],ds=[...document.querySelectorAll('#dots button')];let qi=0,qt;
+let qs=[...document.querySelectorAll('.quote')],ds=[...document.querySelectorAll('#dots button')];let qi=0,qt;
 function showQ(i){qi=i;qs.forEach((q,k)=>q.classList.toggle('on',k===i));ds.forEach((d,k)=>d.setAttribute('aria-current',k===i?'true':'false'));}
-ds.forEach((d,k)=>d.onclick=()=>{showQ(k);restart();});
-function restart(){clearInterval(qt);if(!reduce)qt=setInterval(()=>showQ((qi+1)%qs.length),6500);}restart();
+function bindQ(){qs=[...document.querySelectorAll('.quote')];ds=[...document.querySelectorAll('#dots button')];ds.forEach((d,k)=>d.onclick=()=>{showQ(k);restart();});showQ(0);restart();}
+function restart(){clearInterval(qt);if(!reduce&&qs.length>1)qt=setInterval(()=>showQ((qi+1)%qs.length),6500);}
+bindQ();
+onSiteData(d=>{if(!d.avis)return;const box=document.getElementById('quotes'),dots=document.getElementById('dots');if(!box||!dots)return;
+  const L=d.avis.filter(a=>a.t);const sec=box.closest('section');if(!L.length){if(sec)sec.style.display='none';return;}
+  const draw=()=>{const en=SD.lang()==='en';box.innerHTML=L.map((a,i)=>`<figure class="quote${i===qi?' on':''}" style="margin:0"><blockquote>${SD.esc(en&&a.te?a.te:a.t)}</blockquote><figcaption class="who">${SD.esc(a.n||'')}</figcaption></figure>`).join('');
+    dots.innerHTML=L.map((a,i)=>`<button type="button" aria-label="Avis ${i+1}"${i===qi?' aria-current="true"':''}><i></i></button>`).join('');const k=qi<L.length?qi:0;bindQ();showQ(k);};
+  qi=0;draw();SD.onLang(draw);});
+onSiteData(d=>{if(!d.cells)return;const g=document.getElementById('grid');if(!g)return;
+  const draw=()=>{const en=SD.lang()==='en';g.innerHTML=d.cells.map((c,i)=>`<a class="cell" href="${SD.esc(c.u||'#')}"><span class="bgp" aria-hidden="true"><img src="${SD.esc(c.img||'')}" alt="" style="object-position:${SD.esc(c.pos||'50% 45%')}" loading="lazy"></span><span class="n">${String(i+1).padStart(2,'0')}</span><span class="tt"><span class="t">${SD.esc(en&&c.te?c.te:c.t)}</span><span class="ar2" aria-hidden="true">↗</span></span><span class="d">${SD.esc(en&&c.de?c.de:c.d)}</span></a>`).join('');};
+  draw();SD.onLang(draw);});
+onSiteData(d=>{const t=d.form&&d.form['home.accroche'];const el=document.querySelector('.hero .tag');if(t&&el&&t!==(el.dataset.fr||el.textContent)){el.dataset.fr=SD.esc(t);if(SD.lang()!=='en')el.innerHTML=SD.esc(t);}});
 
 /* ---- FAQ ---- */
 document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>{const qa=b.parentElement,open=!qa.classList.contains('open');
