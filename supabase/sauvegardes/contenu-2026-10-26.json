@@ -1,0 +1,1651 @@
+[
+ {
+  "cle": "site",
+  "data": {
+   "v": 1,
+   "ev": [
+    {
+     "c": "Cours",
+     "d": "2026-10-27",
+     "h": "15:11",
+     "s": "on",
+     "t": "Cteen New York ",
+     "img": "https://jfxebnoqulyzjaqnyoel.supabase.co/storage/v1/object/public/photos/1793016682125-93fc6443-bccb-41bf-9d03-5b81b909a09b.jpeg",
+     "url": ""
+    }
+   ],
+   "tx": {
+    "Agenda": [
+     {
+      "h": "Agenda",
+      "p": "",
+      "he": "Events",
+      "id": "s0",
+      "pe": "",
+      "img": "img/ciel.jpg",
+      "btns": []
+     },
+     {
+      "h": "Programme | régulier",
+      "p": "Les rendez-vous de chaque semaine, hors fêtes et vacances scolaires.",
+      "he": "Regular | program",
+      "id": "s2",
+      "pe": "Our weekly gatherings, except on holidays and school vacations.",
+      "img": "",
+      "btns": []
+     }
+    ],
+    "Accueil": [
+     {
+      "h": "Beth | Loubavitch | Bastille",
+      "p": "",
+      "he": "",
+      "id": "s0",
+      "pe": "",
+      "img": "img/hero.jpg",
+      "btns": [
+       {
+        "t": "Réserver un repas de Chabbat",
+        "u": "https://bethloubavitchb.kehila.io/shabbat",
+        "te": "Book a Shabbat meal"
+       },
+       {
+        "t": "Découvrir le Beth Habad",
+        "u": "qui-sommes-nous.html",
+        "te": "Discover the Beth Habad"
+       }
+      ]
+     },
+     {
+      "h": "Événements | à venir…",
+      "p": "",
+      "he": "Upcoming | events…",
+      "id": "s1",
+      "pe": "",
+      "img": "",
+      "btns": []
+     },
+     {
+      "h": "Nos | activités",
+      "p": "",
+      "he": "Our | activities",
+      "id": "s3",
+      "pe": "",
+      "img": "",
+      "btns": [
+       {
+        "t": "Voir toutes nos activités",
+        "u": "activites.html",
+        "te": "See all our activities"
+       }
+      ]
+     }
+    ],
+    "Touristes": [
+     {
+      "h": "Touristes | à Paris",
+      "p": "",
+      "he": "Visiting | Paris",
+      "id": "s0",
+      "pe": "",
+      "img": "img/paris-nuit.jpg",
+      "btns": []
+     },
+     {
+      "h": "Un Chabbat | comme à la maison",
+      "p": "Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et chaleureuse, autour de délicieux repas traiteur.",
+      "he": "A Shabbat | just like home",
+      "id": "shabbat",
+      "pe": "Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, warm atmosphere, around delicious catered meals.",
+      "img": "img/table-chabbat.jpg",
+      "btns": [
+       {
+        "t": "Réserver un repas de Chabbat",
+        "u": "https://bethloubavitchb.kehila.io/shabbat",
+        "te": "Book a Shabbat meal"
+       }
+      ]
+     },
+     {
+      "h": "Adresses utiles | autour du 11ᵉ",
+      "p": "Boulangeries, restaurants, supermarchés, synagogues et mikvés cacher pour faciliter votre séjour.",
+      "he": "Useful addresses | around the 11th",
+      "id": "adresses",
+      "pe": "Kosher bakeries, restaurants, supermarkets, synagogues and mikvaot to make your stay easier.",
+      "img": "",
+      "btns": []
+     }
+    ],
+    "Activités": [
+     {
+      "h": "Nos | activités",
+      "p": "",
+      "he": "Our | activities",
+      "id": "s0",
+      "pe": "",
+      "img": "",
+      "btns": []
+     },
+     {
+      "h": "Événements | à venir",
+      "p": "",
+      "he": "Upcoming | events",
+      "id": "evenements",
+      "pe": "",
+      "img": "",
+      "btns": []
+     },
+     {
+      "h": "Chabbat | & fêtes",
+      "p": "Profitez de délicieux repas traiteur, en plein cœur de Paris ! Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et enrichissante.",
+      "he": "Shabbat | & holidays",
+      "id": "repas",
+      "pe": "Enjoy delicious catered meals in the heart of Paris! Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, enriching atmosphere.",
+      "img": "img/ph-chabbat2.jpg",
+      "btns": []
+     },
+     {
+      "h": "Cours de Torah | hebdomadaires",
+      "p": "De plus, des conférences et ateliers sur de nombreux sujets sont fréquemment organisés.",
+      "he": "Weekly | Torah classes",
+      "id": "etude",
+      "pe": "Lectures and workshops on many topics are also held regularly.",
+      "img": "img/act-cours.jpg",
+      "btns": []
+     },
+     {
+      "h": "Talmud Torah | & Gan Israël",
+      "p": "À travers des cours, chants, activités et découvertes des traditions juives, les enfants apprennent à lire et écrire l’hébreu, dans un cadre vivant, chaleureux et inspirant.",
+      "he": "Talmud Torah | & Gan Israel",
+      "id": "enfants",
+      "pe": "Through classes, songs, activities and the discovery of Jewish traditions, children learn to read and write Hebrew in a lively, warm and inspiring setting.",
+      "img": "img/act-enfants.jpg",
+      "btns": [
+       {
+        "t": "Nous écrire sur WhatsApp",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20le%20Talmud%20Torah%20du%20mercredi%20pour%20mon%20enfant.",
+        "te": "Ask us on WhatsApp"
+       }
+      ]
+     },
+     {
+      "h": "Le cercle | féminin",
+      "p": "Des activités pour les femmes de tous âges et à chaque étape de leur vie ! Jeunes mamans, femmes actives ou retraitées, retrouvez-vous autour de soirées féminines, cours de Torah, voyages organisés et accompagnement après une naissance.",
+      "he": "The women’s | circle",
+      "id": "femmes",
+      "pe": "Activities for women of all ages and at every stage of life! Young mothers, working women or retirees, come together around women’s evenings, Torah classes, organised trips and support after a birth.",
+      "img": "img/act-femmes.jpg",
+      "btns": [
+       {
+        "t": "Se renseigner",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20les%20activit%C3%A9s%20du%20cercle%20f%C3%A9minin.",
+        "te": "Get information"
+       }
+      ]
+     },
+     {
+      "h": "",
+      "p": "Des soirées à l’approche des fêtes juives, dans une ambiance chaleureuse et conviviale.",
+      "he": "",
+      "id": "s6",
+      "pe": "Evenings ahead of the Jewish holidays, in a warm and friendly atmosphere.",
+      "img": "",
+      "btns": []
+     },
+     {
+      "h": "Bichvile’h | pour les jeunes mamans",
+      "p": "Bichvile’h accompagne les mamans dans la période post-natale et leur offre une communauté d’entraide, avec un soutien pratique et émotionnel : repas chauds, club hebdomadaire, conférences et ateliers avec des spécialistes.",
+      "he": "Bichvileh | for new mothers",
+      "id": "bichvileh",
+      "pe": "Bichvileh supports mothers after birth and offers a community of mutual help, with practical and emotional support: hot meals, weekly club, lectures and workshops with specialists.",
+      "img": "img/act-social.jpg",
+      "btns": [
+       {
+        "t": "Prévenir d’une naissance",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!",
+        "te": "Tell us about a birth"
+       }
+      ]
+     },
+     {
+      "h": "Cantine | cacher",
+      "p": "Déjeuner entre amis, rencontrer de nouvelles personnes, faire une partie de baby-foot et profiter d’un moment de détente !",
+      "he": "Kosher | canteen",
+      "id": "cantine",
+      "pe": "Lunch with friends, meet new people, play a game of table football and enjoy a relaxing break!",
+      "img": "img/ph-cantine.jpg",
+      "btns": []
+     },
+     {
+      "h": "Téfiline | & Mézouzot",
+      "p": "Écrits à l’encre sur du parchemin, comme la loi le demande, les lettres des Téfiline et Mézouzot ont tendance à s’estomper avec le temps, en raison de l’humidité, de la chaleur ou du froid. Une paire de prêt est mise à disposition pendant la vérification. Nous vous accompagnons aussi dans l’achat de téfiline et de mézouzot conformes à la Halakha.",
+      "he": "Tefillin | & Mezuzot",
+      "id": "tefiline",
+      "pe": "Written in ink on parchment as the law requires, the letters of Tefillin and Mezuzot tend to fade over time due to humidity, heat or cold. A loan pair is available during the check. We also help you purchase Tefillin and Mezuzot that comply with Halakha.",
+      "img": "img/ph-tefiline.jpg",
+      "btns": [
+       {
+        "t": "Vérification & achat · prendre rendez-vous",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%20je%20vous%20contacte%20concernant%20la%20v%C3%A9rification%20de%20mes%20T%C3%A9filines%20et%20M%C3%A9zouzot.%20J%E2%80%99aimerais%20prendre%20rendez-vous%20pour%20les%20d%C3%A9poser.%20Quand%20pourrais-je%20passer%20%3F%20Merci%20!",
+        "te": "Book a check or a purchase"
+       }
+      ]
+     },
+     {
+      "h": "Le mouvement | CTeen",
+      "p": "Garçons et filles ayant atteint l’âge de la Bar / Bat Mitsva sont invités à rejoindre le mouvement international CTeen, qui compte des branches dans le monde entier !",
+      "he": "The | CTeen",
+      "id": "cteen",
+      "pe": "Boys and girls who have reached Bar / Bat Mitzvah age are invited to join the international CTeen movement, with branches all over the world!",
+      "img": "img/ph-cteen.jpg",
+      "btns": [
+       {
+        "t": "Rejoindre le CTeen",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0A%C3%82ge%20%3A%0A%C3%89cole%20%3A%0A%0AJ'aimerais%20rejoindre%20le%20club%20CTeen%20pour%20les%20ados%20du%2011e%20arrondissement.%0A%0APourriez-vous%20m'ajouter%20au%20groupe%20WhatsApp%20d%C3%A9di%C3%A9%20%3F%0A%0AMerci%20beaucoup%20",
+        "te": "Join CTeen"
+       }
+      ]
+     },
+     {
+      "h": "Ne jamais | oublier personne",
+      "p": "Nous ne devons jamais oublier les personnes seules, isolées ou nécessiteuses.",
+      "he": "No one | forgotten",
+      "id": "social",
+      "pe": "We must never forget people who are alone, isolated or in need.",
+      "img": "img/ph-social.jpg",
+      "btns": []
+     }
+    ],
+    "Qui sommes-nous": [
+     {
+      "h": "Qui | sommes-nous ?",
+      "p": "",
+      "he": "About | us?",
+      "id": "s0",
+      "pe": "",
+      "img": "img/hero-qsn.jpg",
+      "btns": []
+     },
+     {
+      "h": "Une place | pour chacun",
+      "p": "Situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, le Beth ‘Habad Loubavitch Bastille est un lieu de rencontre, d’étude et de partage ouvert à tous.",
+      "he": "A place | for everyone",
+      "id": "s1",
+      "pe": "Located in Paris’s 11th arrondissement, in the heart of the Bastille neighborhood, the Beth Chabad Loubavitch Bastille is a place of meeting, study and sharing, open to all.",
+      "img": "",
+      "btns": []
+     },
+     {
+      "h": "Rav Levi & Beila Arnauve | Chlouhim du Rabbi de Loubavitch",
+      "p": "Fondé par le Rav Levi & Beila Arnauve, Chlouhim (émissaires) du Rabbi de Loubavitch, ce centre communautaire juif a pour vocation de transmettre les valeurs du judaïsme et de répondre aux besoins spirituels, culturels et sociaux de chacun, dans un esprit d’ouverture, de bienveillance et de transmission.",
+      "he": "Rabbi Levi & Beila Arnauve | Shluchim of the Lubavitcher Rebbe",
+      "id": "s2",
+      "pe": "Founded by Rabbi Levi & Beila Arnauve, Shluchim (emissaries) of the Lubavitcher Rebbe, this Jewish community center aims to pass on the values of Judaism and to meet everyone’s spiritual, cultural and social needs, in a spirit of openness, kindness and transmission.",
+      "img": "img/fondateurs.jpg",
+      "btns": []
+     },
+     {
+      "h": "",
+      "p": "",
+      "he": "",
+      "id": "s3",
+      "pe": "",
+      "img": "img/terre.webp",
+      "btns": []
+     },
+     {
+      "h": "Tout au long | de l’année",
+      "p": "À travers ces activités culturelles, cultuelles et sociales, le judaïsme prend vie dans une atmosphère conviviale, accessible et inspirante.",
+      "he": "All year | round",
+      "id": "s4",
+      "pe": "Through these cultural, religious and social activities, Judaism comes alive in a friendly, accessible and inspiring atmosphere.",
+      "img": "",
+      "btns": [
+       {
+        "t": "Toutes nos activités",
+        "u": "activites.html",
+        "te": "All our activities"
+       }
+      ]
+     },
+     {
+      "h": "",
+      "p": "Le Beth Habad s’inscrit dans l’élan initié par le Rabbi de Loubavitch, qui a placé l’amour de chaque Juif, l’attention portée à chacun et la responsabilité envers autrui au cœur de sa vision.",
+      "he": "",
+      "id": "s5",
+      "pe": "The Beth Chabad follows the momentum initiated by the Lubavitcher Rebbe, who placed love for every Jew, attention to each person and responsibility toward others at the heart of his vision.",
+      "img": "img/facade.jpg",
+      "btns": []
+     },
+     {
+      "h": "Une association | à but non lucratif",
+      "p": "Le Beth ‘Habad n'est pas financé par le mouvement mondial de ‘Habad, mais par des dons de particuliers. Ce sont des personnes comme vous, à titre personnel ou à travers leur entreprise, qui nous permettent de développer et d’assurer nos activités et nos actions au quotidien.",
+      "he": "A non-profit | association",
+      "id": "s6",
+      "pe": "The Beth Chabad is not funded by the worldwide Chabad movement, but by donations from individuals. People like you, personally or through their company, allow us to develop and carry out our activities and actions every day.",
+      "img": "",
+      "btns": [
+       {
+        "t": "Faire un don",
+        "u": "https://bethloubavitchb.kehila.io/don",
+        "te": "Donate"
+       },
+       {
+        "t": "Découvrir nos activités",
+        "u": "activites.html",
+        "te": "Discover our activities"
+       }
+      ]
+     }
+    ],
+    "Cycles de la vie": [
+     {
+      "h": "Cycles | de la vie",
+      "p": "",
+      "he": "Life | cycle",
+      "id": "s0",
+      "pe": "",
+      "img": "",
+      "btns": []
+     },
+     {
+      "h": "Accueillir | une nouvelle vie",
+      "p": "Brit Mila, Pidyon Haben ou première coupe de cheveux : nous vous accompagnons pour célébrer ces moments précieux dans le respect de la tradition, entourés de vos proches. Nous sommes également aux côtés des jeunes mamans après l’accouchement, en leur apportant soutien et réconfort avec des repas livrés à domicile.",
+      "he": "Welcoming | a new life",
+      "id": "naissance",
+      "pe": "Brit Milah, Pidyon Haben or first haircut: we help you celebrate these precious moments in keeping with tradition, surrounded by your loved ones. We also stand by young mothers after the birth, bringing them support and comfort with meals delivered to their home.",
+      "img": "img/cv-naissance.jpg",
+      "btns": [
+       {
+        "t": "Réserver la salle",
+        "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0",
+        "te": "Book the hall"
+       },
+       {
+        "t": "Prévenir d’une naissance",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!",
+        "te": "Tell us about a birth"
+       }
+      ]
+     },
+     {
+      "h": "Bar & Bat | Mitsva",
+      "p": "Initiation au mode de vie juif, permettant aux jeunes à cet âge charnière de prendre connaissance de leur puissant héritage. Préparation à la cérémonie, à la lecture de la Torah et au discours, dans un cadre chaleureux et motivant.",
+      "he": "Bar & Bat | Mitzvah",
+      "id": "bar-mitsva",
+      "pe": "An introduction to the Jewish way of life, allowing young people at this pivotal age to discover their powerful heritage. Preparation for the ceremony, the Torah reading and the speech, in a warm and motivating setting.",
+      "img": "img/cv-barmitsva.jpg",
+      "btns": [
+       {
+        "t": "S’inscrire au cours",
+        "u": "https://wa.me/33665011820?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0AJ'ai%20re%C3%A7u%20vos%20coordonn%C3%A9es%20de%20la%20part%20de%20%3A%0A%0AMon%20fils%20%2F%20Ma%20fille%20c%C3%A9l%C3%A9brera%20sa%20Bar-Mitsva%20%2F%20Bat-Mitsva%20le%20%3A%0A%0ANous%20aimerions%20organiser%20des%20cours%20de%20pr%C3%A9paration%20%C3%A0%20la%20Bar-Mitsva%20%2F%20Bat-Mitsva.%0A%0APourriez-vous%20nous%20donner%20davantage%20d'informations%20sur%20les%20cours%20et%20leur%20organisation%20%3F%0A%0AMerci%20beaucoup%20et%20%C3%A0%20bient%C3%B4t%20!",
+        "te": "Sign up for the course"
+       },
+       {
+        "t": "Réserver la salle",
+        "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0",
+        "te": "Book the hall"
+       }
+      ]
+     },
+     {
+      "h": "Préparation | au mariage",
+      "p": "Prenez le temps d’explorer la signification spirituelle du mariage et d’apprendre les lois de la pureté familiale et du Mikvé. Un cours en quatre leçons, rempli de conseils qui vous accompagneront bien au-delà du grand jour.",
+      "he": "Preparing | for marriage",
+      "id": "mariage",
+      "pe": "Take the time to explore the spiritual meaning of marriage and learn the laws of family purity and the Mikveh. A four-lesson course, full of advice that will stay with you well beyond the big day.",
+      "img": "img/cv-hero.jpg",
+      "btns": [
+       {
+        "t": "S’inscrire aux cours",
+        "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0AJ'ai%20re%C3%A7u%20vos%20coordonn%C3%A9es%20de%20la%20part%20de%20%3A%0A%0AJe%20me%20marie%20le%20%3A%0ASynagogue%20ou%20salle%20du%20mariage%20%3A%0ARabbin%20qui%20c%C3%A9l%C3%A9brera%20le%20mariage%20%3A%0A%0AJ'aimerais%20suivre%20des%20cours%20de%20pr%C3%A9paration%20au%20mariage%20et%20de%20puret%C3%A9%20familiale%20avec%20vous.%0A%0ACours%20souhait%C3%A9s%20%3A%20Mari%C3%A9%20%2F%20Mari%C3%A9e%20%2F%20Les%20deux%0A%0AMes%20disponibilit%C3%A9s%20%3A%0A%0AMerci%20beaucoup%20et%20%C3%A0%20bient%C3%B4t%20!",
+        "te": "Sign up for the classes"
+       }
+      ]
+     },
+     {
+      "h": "Location | de notre salle",
+      "p": "Tables, chaises et enceinte incluses · Traiteurs cacher avec Téouda uniquement",
+      "he": "Rent | our hall",
+      "id": "salle",
+      "pe": "Tables, chairs and speaker included · Kosher caterers with Teouda only",
+      "img": "img/cv-salle.jpg",
+      "btns": [
+       {
+        "t": "Réserver la salle",
+        "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0",
+        "te": "Request the hall"
+       }
+      ]
+     },
+     {
+      "h": "Récitation | du Kaddich",
+      "p": "Durant les onze mois suivant le décès d’un proche, les endeuillés récitent le « Kaddich des endeuillés ». Celui-ci est également récité chaque année, à la date anniversaire hébraïque du décès (Yahrzeit / Azkara).",
+      "he": "Reciting | the Kaddish",
+      "id": "kaddich",
+      "pe": "During the eleven months following the passing of a loved one, mourners recite the “Mourner’s Kaddish”. It is also recited every year on the Hebrew anniversary of the passing (Yahrzeit / Azkara).",
+      "img": "img/bougie.webp",
+      "btns": [
+       {
+        "t": "Prise en charge du Kaddich · 300 € / an",
+        "u": "https://bethloubavitchb.kehila.io/recitation-du-kaddich",
+        "te": "Kaddish taken in charge · €300 / year"
+       },
+       {
+        "t": "Trouver la date hébraïque",
+        "u": "#convertisseur",
+        "te": "Find the Hebrew date"
+       }
+      ]
+     },
+     {
+      "h": "Prière | du Yizkor",
+      "p": "Quatre fois par an, nous évoquons la mémoire de nos proches disparus lors de la prière du Yizkor. Prochaines dates, calculées automatiquement :",
+      "he": "The Yizkor | prayer",
+      "id": "yizkor",
+      "pe": "Four times a year, we remember our departed loved ones during the Yizkor prayer. Next dates, calculated automatically:",
+      "img": "",
+      "btns": [
+       {
+        "t": "Inscrire un nom pour le Yizkor",
+        "u": "https://bethloubavitchb.kehila.io/priere-du-yizkor",
+        "te": "Add a name for Yizkor"
+       }
+      ]
+     },
+     {
+      "h": "",
+      "p": "Calculez la date et la Paracha d’une Bar / Bat Mitsva, ou la date hébraïque d’un décès, les onze mois du Kaddich et les Azkara.",
+      "he": "",
+      "id": "convertisseur",
+      "pe": "Calculate the date and Torah portion of a Bar / Bat Mitzvah, or the Hebrew date of a passing, the eleven months of Kaddish and the Azkara.",
+      "img": "",
+      "btns": []
+     }
+    ]
+   },
+   "add": {
+    "syn": {
+     "en": "Synagogues",
+     "fr": "Synagogues",
+     "items": [
+      {
+       "a": "37 rue Popincourt, 75011",
+       "h": "Offices quotidiens",
+       "n": "Beth Loubavitch Bastille",
+       "p": "+33 1 42 52 30 41",
+       "t": "Loubavitch",
+       "v": 1,
+       "img": "img/s-bastille.jpg"
+      },
+      {
+       "a": "36 rue Basfroi, 75011",
+       "h": "",
+       "n": "Adath Israël",
+       "p": "",
+       "t": "Achkénaze",
+       "v": 1
+      },
+      {
+       "a": "21 bis rue des Tournelles, 75004",
+       "h": "",
+       "n": "Synagogue des Tournelles",
+       "p": "",
+       "t": "Consistoire",
+       "v": 1
+      },
+      {
+       "a": "15 rue N.-D.-de-Nazareth, 75003",
+       "h": "",
+       "n": "Synagogue N.-D.-de-Nazareth",
+       "p": "",
+       "t": "Consistoire",
+       "v": 1
+      },
+      {
+       "a": "84-86 rue de la Roquette, 75011",
+       "h": "",
+       "n": "Synagogue Don Isaac Abravanel",
+       "p": "",
+       "t": "Séfarade · La Roquette",
+       "v": 1
+      }
+     ]
+    },
+    "boul": {
+     "en": "Bakeries",
+     "fr": "Boulangeries",
+     "items": [
+      {
+       "a": "234 bd Voltaire, 75011",
+       "h": "Dim – jeu 7h – 20h · Ven jusqu’à 1h avant Chabbat",
+       "n": "La Délicieuse",
+       "p": "+33 1 40 24 26 26",
+       "t": "Boulangerie",
+       "v": 1,
+       "img": "img/r-delicieuse.jpg"
+      },
+      {
+       "a": "22 rue Voltaire, 75011",
+       "h": "Lun – jeu 7h30 – 19h · Ven 7h30 – 16h",
+       "n": "L’atelier Voltaire",
+       "p": "+33 9 52 82 65 41",
+       "t": "Boulangerie",
+       "v": 1,
+       "img": "img/r-atelier.jpg"
+      },
+      {
+       "a": "244 bd Voltaire, 75011",
+       "h": "Lun – jeu 8h – 20h · Ven 8h – 14h",
+       "n": "Charles Traiteur",
+       "p": "+33 1 43 73 70 00",
+       "t": "Traiteur",
+       "v": 1,
+       "img": "img/r-charles.jpg"
+      },
+      {
+       "a": "16 rue des Rosiers, 75004",
+       "h": "Lun – jeu 8h30 – 19h · Ven 8h – 14h",
+       "n": "Murciano",
+       "p": "+33 1 48 87 48 88",
+       "t": "Boulangerie",
+       "v": 1,
+       "img": "img/r-murciano.jpg"
+      }
+     ]
+    },
+    "mikve": {
+     "en": "Mikveh",
+     "fr": "Mikvé",
+     "items": [
+      {
+       "a": "176 rue du Temple, 75003",
+       "h": "Sur rendez-vous uniquement",
+       "n": "Mikvé République",
+       "p": "+33 1 42 71 89 28",
+       "t": "Mikvé · Sur RDV",
+       "v": 1
+      },
+      {
+       "a": "8 ter av. Robert-André Vivien, 94160 Saint-Mandé",
+       "h": "Sur rendez-vous · réservation en ligne sur mikvemira.fr",
+       "n": "Mikvé Mira Moyal",
+       "p": "+33 7 65 53 47 67",
+       "t": "Mikvé · Sur RDV",
+       "v": 1,
+       "w": "https://www.mikvemira.fr/",
+       "img": "img/m-mira.jpg"
+      }
+     ]
+    },
+    "resto": {
+     "en": "Restaurants",
+     "fr": "Restaurants",
+     "items": [
+      {
+       "a": "220 bd Voltaire, 75011",
+       "h": "Dim – jeu 12h – 22h · Ven 12h – 16h",
+       "n": "Mendy’s",
+       "p": "+33 7 69 10 20 77",
+       "s": "lait",
+       "t": "Pizzeria",
+       "v": 1,
+       "img": "img/r-mendys.jpg"
+      },
+      {
+       "a": "221 bd Voltaire, 75011",
+       "h": "Sur rendez-vous",
+       "n": "La Kave du Fromager",
+       "p": "+33 1 43 31 35 66",
+       "s": "lait",
+       "t": "Fromagerie · Sur RDV",
+       "v": 1,
+       "img": "img/r-kave.jpg"
+      },
+      {
+       "a": "256 bd Voltaire, 75011",
+       "h": "Lun – jeu 12h – 15h, 19h – 23h · Ven midi · Dim",
+       "n": "Chez Giulia",
+       "p": "+33 1 40 24 21 17",
+       "s": "lait",
+       "t": "Italien",
+       "v": 1,
+       "img": "img/r-giulia.jpg"
+      },
+      {
+       "a": "8 bd Magenta, 75010",
+       "h": "Lun – jeu 12h – 22h30 · Ven 12h – 14h30 · Dim",
+       "n": "Novela",
+       "p": "+33 1 42 38 20 55",
+       "s": "lait",
+       "t": "Restaurant",
+       "v": 1,
+       "img": "img/r-pizza.jpg"
+      },
+      {
+       "a": "201 bd Voltaire, 75011",
+       "h": "Lun – jeu 11h30 – 15h30, 18h30 – 22h30 · Ven midi · Dim",
+       "n": "Bozen Voltaire",
+       "p": "+33 1 84 25 26 36",
+       "s": "sushi",
+       "t": "Sushi",
+       "v": 1,
+       "img": "img/r-bozen.jpg"
+      },
+      {
+       "a": "231 bd Voltaire, 75011",
+       "h": "Lun – jeu 9h – 2h · Ven 11h30 – 15h · Dim 17h – 2h",
+       "n": "Japan Eat",
+       "p": "+33 1 43 73 02 02",
+       "s": "sushi",
+       "t": "Sushi",
+       "v": 1,
+       "img": "img/r-japaneat.jpg"
+      },
+      {
+       "a": "144 bd Voltaire, 75011",
+       "h": "Lun – jeu 11h45 – 22h45 · Ven midi · Dim",
+       "n": "SoumSoum Voltaire",
+       "p": "+33 1 71 19 58 44",
+       "s": "viande",
+       "t": "Viande",
+       "v": 1,
+       "img": "img/r-soumsoum.jpg"
+      },
+      {
+       "a": "61 rue Léon Frot, 75011",
+       "h": "Lun – jeu 11h – 20h · Ven 8h30 – 16h",
+       "n": "Chicken Délice",
+       "p": "+33 1 46 59 46 45",
+       "s": "viande",
+       "t": "Viande",
+       "v": 1,
+       "img": "img/r-chicken.jpg"
+      },
+      {
+       "a": "45 rue de Montreuil, 75011",
+       "h": "Sur rendez-vous",
+       "n": "La Min Haaretz",
+       "p": "+33 1 73 71 47 15",
+       "s": "viande",
+       "t": "Viande · Sur RDV",
+       "v": 1,
+       "img": "img/r-min.jpg"
+      },
+      {
+       "a": "92 bd de Belleville, 75020",
+       "h": "Lun – jeu 9h30 – 22h · Ven 9h – 15h45 · Dim",
+       "n": "Chez René et Gabin",
+       "p": "+33 7 63 43 06 34",
+       "s": "viande",
+       "t": "Viande",
+       "v": 1,
+       "img": "img/r-rene.jpg"
+      },
+      {
+       "a": "231 bd Voltaire, 75011",
+       "h": "",
+       "n": "Le Manhattan",
+       "p": "+33 1 43 56 03 30",
+       "s": "viande",
+       "t": "Viande",
+       "v": 1,
+       "img": "img/r-manhattan.jpg"
+      },
+      {
+       "a": "3 bis av. de Bouvines, 75011",
+       "h": "Lun – jeu midi et soir · Ven midi · Dim",
+       "n": "Chez François",
+       "p": "+33 1 43 72 13 45",
+       "s": "viande",
+       "t": "Viande",
+       "v": 1,
+       "img": "img/r-francois.jpg"
+      },
+      {
+       "a": "33 av. Philippe Auguste, 75011",
+       "h": "Lun – jeu midi et soir · Ven midi · Dim",
+       "n": "Les Garçons Bouchers",
+       "p": "+33 1 43 67 01 23",
+       "s": "viande",
+       "t": "Viande",
+       "v": 1,
+       "img": "img/r-garcons.jpg"
+      }
+     ]
+    },
+    "super": {
+     "en": "Supermarkets",
+     "fr": "Supermarchés",
+     "items": [
+      {
+       "a": "240 bd Voltaire, 75011",
+       "h": "Lun – sam 7h – 21h30 · Dim 8h30 – 13h",
+       "n": "Franprix Cacher",
+       "p": "",
+       "t": "Supermarché",
+       "v": 1,
+       "img": "img/r-franprix.jpg"
+      },
+      {
+       "a": "84 rue Petit, 75019",
+       "h": "Lun – jeu 8h – 20h · Ven 8h – 14h · Dim 8h – 18h",
+       "n": "Leader Cash",
+       "p": "",
+       "t": "Supermarché",
+       "v": 1,
+       "img": "img/r-leader.jpg"
+      }
+     ]
+    },
+    "brunch": {
+     "en": "Brunch",
+     "fr": "Brunch",
+     "items": [
+      {
+       "a": "189 rue de Charonne, 75011",
+       "h": "",
+       "n": "Bloomy Brunch",
+       "p": "+33 6 12 61 01 30",
+       "t": "Brunch",
+       "v": 1,
+       "img": "img/r-bloomy.jpg"
+      },
+      {
+       "a": "29 rue des Rosiers, 75004",
+       "h": "Lun – jeu 7h30 – 20h · Ven 7h30 – 15h",
+       "n": "Korcarz",
+       "p": "+33 1 42 72 38 22",
+       "t": "Brunch · Pâtisserie",
+       "v": 1
+      }
+     ]
+    }
+   },
+   "ann": {
+    "l": "Je réserve",
+    "u": "https://bethloubavitchb.kehila.io/",
+    "en": "Registration open for the Passover Seder",
+    "fr": "Inscriptions ouvertes pour le Séder de Pessa’h",
+    "on": 0,
+    "to": "2027-04-21",
+    "from": "2027-03-01"
+   },
+   "faq": [
+    {
+     "o": {
+      "Agenda": 4,
+      "Accueil": 0,
+      "Qui sommes-nous": 0
+     },
+     "q": "Où trouver un Beth ‘Habad Loubavitch à Paris ?",
+     "r": "Le Beth Habad Loubavitch Bastille est situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, à proximité des métros Richard-Lenoir (ligne 5) et Saint-Ambroise (ligne 9).",
+     "pg": [
+      "Accueil",
+      "Qui sommes-nous",
+      "Agenda"
+     ],
+     "qe": "Where can I find a Chabad House in Paris?",
+     "re": "The Beth Loubavitch Bastille is located in Paris’s 11th arrondissement, in the heart of the Bastille neighborhood, near the Richard-Lenoir (line 5) and Saint-Ambroise (line 9) metro stations.",
+     "th": "Le Beth Habad"
+    },
+    {
+     "o": {
+      "Agenda": 5,
+      "Accueil": 1,
+      "Touristes": 1,
+      "Qui sommes-nous": 1
+     },
+     "q": "Le centre est-il ouvert à tous ?",
+     "r": "Le Beth Habad Loubavitch Bastille est ouvert à tous. Chacun est accueilli avec bienveillance, dans une atmosphère conviviale et respectueuse.",
+     "pg": [
+      "Accueil",
+      "Qui sommes-nous",
+      "Agenda",
+      "Touristes"
+     ],
+     "qe": "Is the center open to everyone?",
+     "re": "The Beth Loubavitch Bastille is open to everyone. Everyone is welcomed with kindness, in a friendly and respectful atmosphere.",
+     "th": "Le Beth Habad"
+    },
+    {
+     "o": {
+      "Agenda": 6,
+      "Accueil": 2,
+      "Qui sommes-nous": 2
+     },
+     "q": "Faut-il être pratiquant pour venir au Beth ‘Habad Paris 11 Bastille ?",
+     "r": "Non, aucune pratique particulière n’est requise. Chacun peut venir comme il est, à son rythme, sans distinction de niveau de pratique.",
+     "pg": [
+      "Accueil",
+      "Qui sommes-nous",
+      "Agenda"
+     ],
+     "qe": "Do I need to be observant to come to the Beth Habad Paris 11 Bastille?",
+     "re": "No, no particular level of observance is required. Everyone can come as they are, at their own pace.",
+     "th": "Le Beth Habad"
+    },
+    {
+     "o": {
+      "Agenda": 7,
+      "Accueil": 3,
+      "Qui sommes-nous": 3
+     },
+     "q": "Le Beth Habad Loubavitch Bastille est-il sécurisé ?",
+     "r": "La sécurité est notre priorité. Nous travaillons en lien étroit avec les services de police, les activités nécessitent une inscription préalable et les locaux sont équipés de dispositifs de vidéoprotection.",
+     "pg": [
+      "Accueil",
+      "Qui sommes-nous",
+      "Agenda"
+     ],
+     "qe": "Is the Beth Loubavitch Bastille secure?",
+     "re": "Security is our priority. We work closely with the police, activities require prior registration and the premises are equipped with video surveillance.",
+     "th": "Le Beth Habad"
+    },
+    {
+     "o": {
+      "Agenda": 0,
+      "Activités": 0
+     },
+     "q": "Où trouver un repas de Chabbat à Paris ?",
+     "r": "Des repas de Chabbat sont organisés régulièrement au Beth Loubavitch Bastille dans une ambiance chaleureuse et conviviale.",
+     "pg": [
+      "Activités",
+      "Agenda"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Repas de Chabbat & fêtes"
+    },
+    {
+     "o": {
+      "Agenda": 1,
+      "Activités": 1
+     },
+     "q": "Comment réserver un repas de Chabbat ?",
+     "r": "La réservation est obligatoire en ligne jusqu’au mercredi matin afin de bénéficier d’un tarif réduit.",
+     "pg": [
+      "Activités",
+      "Agenda"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Repas de Chabbat & fêtes"
+    },
+    {
+     "o": {
+      "Agenda": 2,
+      "Activités": 2
+     },
+     "q": "Les repas de Chabbat sont-ils sécurisés ?",
+     "r": "Oui. Pour des raisons de sécurité, une inscription préalable est demandée, accompagnée d’une pièce d’identité. Selon les besoins, certaines vérifications complémentaires peuvent également être effectuées.",
+     "pg": [
+      "Activités",
+      "Agenda"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Repas de Chabbat & fêtes"
+    },
+    {
+     "o": {
+      "Agenda": 3,
+      "Activités": 3
+     },
+     "q": "Des repas communautaires sont-ils organisés à Paris ?",
+     "r": "Le Beth Habad Loubavitch Bastille organise tout au long de l’année des repas de Chabbat communautaires ainsi que le séder de Roch Hachana, les repas sous la Soucca, les michté de Pourim et le séder de Pessa’h.",
+     "pg": [
+      "Activités",
+      "Agenda"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Repas de Chabbat & fêtes"
+    },
+    {
+     "o": {
+      "Activités": 4
+     },
+     "q": "Des cours de Torah sont-ils proposés à Paris 11 Bastille ?",
+     "r": "Oui. Le Beth Habad Loubavitch Bastille propose des cours de Torah et de pensée juive accessibles à tous, dans une atmosphère chaleureuse et conviviale.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Cours"
+    },
+    {
+     "o": {
+      "Activités": 5
+     },
+     "q": "À qui s’adressent les cours de Torah ?",
+     "r": "Les cours sont proposés aux hommes, aux femmes ainsi qu’aux adolescents, quel que soit leur niveau de connaissances ou de pratique du judaïsme.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Cours"
+    },
+    {
+     "o": {
+      "Activités": 6
+     },
+     "q": "Des conférences sont-elles organisées à Paris 11 Bastille ?",
+     "r": "Oui. Le Beth Habad Loubavitch Bastille organise régulièrement des conférences et rencontres autour de différents thèmes liés à la Torah, à l’éducation, au Chalom Baït et à la vie juive en général.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Cours"
+    },
+    {
+     "o": {
+      "Activités": 7
+     },
+     "q": "Où trouver un Talmud Torah à Paris ?",
+     "r": "Le Beth ‘Habad Loubavitch Bastille propose le Talmud Torah tous les mercredis de 12h30 à 15h30.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Talmud Torah"
+    },
+    {
+     "o": {
+      "Activités": 8
+     },
+     "q": "Quels sont les horaires du Talmud Torah ?",
+     "r": "Le Talmud Torah a lieu les mercredis de 12h30 à 15h30. Des services complémentaires sont également proposés : accueil et ramassage scolaire dès 11h30, cantine cachère de 12h à 12h30 ainsi qu’une activité de krav maga de 15h30 à 16h30.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Talmud Torah"
+    },
+    {
+     "o": {
+      "Activités": 9
+     },
+     "q": "Pour quels âges est le Talmud Torah ?",
+     "r": "Le Talmud Torah s’adresse aux filles et aux garçons, de la petite section jusqu’au CM2.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Talmud Torah"
+    },
+    {
+     "o": {
+      "Activités": 10
+     },
+     "q": "Qu’est-ce que le Talmud Torah ?",
+     "r": "Le Talmud Torah est un programme éducatif juif destiné aux enfants de la petite section jusqu’au CM2. À travers des cours, chants, activités et découvertes des traditions juives, les enfants apprennent à lire et écrire l’hébreu, tout en découvrant les traditions juives dans un cadre vivant, convivial, chaleureux et inspirant.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Talmud Torah"
+    },
+    {
+     "o": {
+      "Activités": 11
+     },
+     "q": "Quels événements et activités sont proposés aux enfants pendant les fêtes juives ?",
+     "r": "De nombreuses activités et fêtes sont organisées pour les enfants : Pizza Party sous la Soucca, Sim’hat Torah spécial enfants, fête de Hanoucca, fête de Pourim, fabrication de Matsot avant Pessa’h, lecture des Dix Commandements à Chavouot, et bien d’autres moments festifs.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Talmud Torah"
+    },
+    {
+     "o": {
+      "Activités": 12
+     },
+     "q": "Y a-t-il un Gan Israël dans le 11ᵉ arrondissement de Paris ?",
+     "r": "Oui. Le Beth ‘Habad Loubavitch Bastille propose un Gan Israël dans le 11ᵉ arrondissement, offrant aux enfants des vacances riches en activités, découvertes et moments inoubliables, leur permettant de découvrir et de vivre le judaïsme de manière joyeuse et interactive.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Gan Israël"
+    },
+    {
+     "o": {
+      "Activités": 13
+     },
+     "q": "À quelles périodes a lieu le Gan Israël ?",
+     "r": "Le Gan Israël est généralement organisé pendant les vacances scolaires de fin d’année (par C-OL) ainsi que durant l’été (par UPPC). Les dates exactes peuvent varier selon les périodes ; il est recommandé de se renseigner auprès du centre.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Gan Israël"
+    },
+    {
+     "o": {
+      "Activités": 14
+     },
+     "q": "À quels âges s’adresse le Gan Israël ?",
+     "r": "Le Gan Israël accueille les enfants de la petite section jusqu’au CM2, avec une équipe d’encadrement attentive et bienveillante, afin d’offrir à chaque enfant une expérience chaleureuse et inoubliable.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Gan Israël"
+    },
+    {
+     "o": {
+      "Activités": 15
+     },
+     "q": "Quels événements sont organisés pour les femmes durant l’année ?",
+     "r": "Des soirées féminines sont organisées cinq fois par an, notamment à l’approche des fêtes juives, dans une ambiance chaleureuse et conviviale.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Femmes"
+    },
+    {
+     "o": {
+      "Activités": 16
+     },
+     "q": "Vie juive et activités pour femmes à Paris ?",
+     "r": "Le Beth ‘Habad Loubavitch Bastille propose des activités dédiées aux femmes, dans une atmosphère chaleureuse et conviviale : des soirées féminines avant les fêtes et des cours de pensée juive.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Femmes"
+    },
+    {
+     "o": {
+      "Activités": 17
+     },
+     "q": "Des activités sont-elles proposées pour les femmes du 3ᵉ âge ?",
+     "r": "Oui. Le Beth Habad Loubavitch Bastille propose des activités dédiées aux femmes du 3ᵉ âge et à la retraite active, dans une atmosphère chaleureuse et conviviale. Un rendez-vous hebdomadaire le lundi matin autour de la sagesse féminine, comprenant oulpan, ateliers artistiques et moments de partage.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Femmes"
+    },
+    {
+     "o": {
+      "Activités": 18,
+      "Cycles de la vie": 2
+     },
+     "q": "Une aide est-elle proposée après la naissance ?",
+     "r": "Oui. Des colis de brunch sont livrés à domicile après l’accouchement afin d’apporter soutien et attention aux jeunes mamans. N’hésitez pas à nous contacter afin de nous informer de la naissance.",
+     "pg": [
+      "Activités",
+      "Cycles de la vie"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Bichvile’h"
+    },
+    {
+     "o": {
+      "Activités": 19
+     },
+     "q": "Qu’est-ce que le club « Maman et moi » ?",
+     "r": "Le club « Maman et moi » est un moment de rencontre et de partage destiné aux jeunes mamans, avec notamment une séance de pilates animée par une professeure spécialisée en post-partum. Un service de garde pour les bébés est également proposé sur place.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Bichvile’h"
+    },
+    {
+     "o": {
+      "Activités": 20
+     },
+     "q": "Y a-t-il un accompagnement pour les femmes après un accouchement ?",
+     "r": "Oui. Le programme Bichvile’h propose un accompagnement et un soutien post-partum dans une atmosphère bienveillante et attentive, afin d’apporter aide, soutien et attention aux femmes après un accouchement.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Bichvile’h"
+    },
+    {
+     "o": {
+      "Activités": 21
+     },
+     "q": "Peut-on faire vérifier ses téfilines et mezouzot au Beth Habad Loubavitch Bastille ?",
+     "r": "Le Beth Habad Bastille propose un service de vérification des téfilines et des mezouzot, afin de s’assurer de leur conformité et de leur bon état.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Téfiline & Mézouzot"
+    },
+    {
+     "o": {
+      "Activités": 22
+     },
+     "q": "Quand faut-il faire vérifier les téfilines et les mezouzot ?",
+     "r": "Il est recommandé de faire vérifier les téfilines et les mezouzot environ tous les 3 à 4 ans minimum, afin de s’assurer qu’ils soient toujours en bon état et conformes à la Halakha.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Téfiline & Mézouzot"
+    },
+    {
+     "o": {
+      "Activités": 23
+     },
+     "q": "Où acheter des téfilines et mezouzot à Paris 11 Bastille ?",
+     "r": "Le Beth Habad Loubavitch Bastille vous accompagne dans l’achat de téfilines et de mezouzot conformes aux règles de la halakha.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "Téfiline & Mézouzot"
+    },
+    {
+     "o": {
+      "Activités": 24
+     },
+     "q": "Activités pour adolescents à Paris 11 Bastille ?",
+     "r": "Un CTeen Club est proposé pour les adolescents, garçons et filles, avec des activités adaptées à leur âge, alliant convivialité, échanges et découverte du judaïsme.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "CTeen"
+    },
+    {
+     "o": {
+      "Activités": 25
+     },
+     "q": "Qu’est-ce que le CTeen ?",
+     "r": "Le CTeen est un programme international destiné aux adolescents juifs, proposant des activités, événements, sorties et actions solidaires dans une atmosphère dynamique et conviviale.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "CTeen"
+    },
+    {
+     "o": {
+      "Activités": 26
+     },
+     "q": "Que propose le CTeen ?",
+     "r": "Le programme propose notamment des soirées, voyages, Chabbats, activités sociales, bénévolat et moments de partage, permettant aux adolescents de vivre le judaïsme de manière joyeuse et interactive.",
+     "pg": [
+      "Activités"
+     ],
+     "qe": "",
+     "re": "",
+     "th": "CTeen"
+    },
+    {
+     "o": {
+      "Cycles de la vie": 0
+     },
+     "q": "Des cours de préparation au mariage sont-ils proposés ?",
+     "r": "Oui. Le Beth Habad Loubavitch Bastille propose des cours et accompagnements de préparation au mariage. Ces rencontres permettent d’aborder les bases de la vie juive, les valeurs du couple ainsi que les aspects pratiques et spirituels du mariage.",
+     "pg": [
+      "Cycles de la vie"
+     ],
+     "qe": "",
+     "re": "",
+     "th": ""
+    },
+    {
+     "o": {
+      "Cycles de la vie": 1
+     },
+     "q": "Comment se déroulent les préparations à la Bar Mitsva et à la Bat Mitsva ?",
+     "r": "Les préparations sont adaptées à chaque enfant, dans un cadre chaleureux et bienveillant, avec un apprentissage progressif des prières, des traditions et des valeurs du judaïsme, faisant de ce moment une expérience enrichissante, vivante et marquante.",
+     "pg": [
+      "Cycles de la vie"
+     ],
+     "qe": "",
+     "re": "",
+     "th": ""
+    },
+    {
+     "o": {
+      "Touristes": 0
+     },
+     "q": "Faut-il réserver pour le repas de Chabbat ?",
+     "r": "Oui, les réservations sont obligatoires et se font en ligne, le plus tôt possible afin que nous puissions bien nous préparer.",
+     "pg": [
+      "Touristes"
+     ],
+     "qe": "Do I need to book the Shabbat meal?",
+     "re": "Yes, booking is required and must be made online, as early as possible so we can prepare properly.",
+     "th": ""
+    },
+    {
+     "o": {
+      "Touristes": 2
+     },
+     "q": "Faut-il être pratiquant pour venir ?",
+     "r": "Non, aucune pratique particulière n’est requise. Chacun peut venir comme il est, à son rythme.",
+     "pg": [
+      "Touristes"
+     ],
+     "qe": "Do I need to be observant to come?",
+     "re": "No particular level of observance is required. Everyone can come as they are.",
+     "th": ""
+    },
+    {
+     "o": {
+      "Touristes": 3
+     },
+     "q": "Le Beth Habad est-il sécurisé ?",
+     "r": "La sécurité est notre priorité. Nous travaillons en lien étroit avec les services de police, les activités nécessitent une inscription préalable et les locaux sont équipés de vidéoprotection.",
+     "pg": [
+      "Touristes"
+     ],
+     "qe": "Is the Beth Chabad secure?",
+     "re": "Security is our priority. We work closely with the police, activities require prior registration and the premises are under video surveillance.",
+     "th": ""
+    }
+   ],
+   "pop": [
+    {
+     "b": "En savoir plus",
+     "l": "",
+     "t": "Nouveau pop-up",
+     "x": "",
+     "id": "p1793026341406",
+     "on": 0,
+     "te": "",
+     "to": "",
+     "xe": "",
+     "fmt": "c",
+     "img": "",
+     "freq": "Une fois par visiteur",
+     "from": "",
+     "delay": "Après 3 secondes",
+     "pages": "Toutes les pages"
+    }
+   ],
+   "sec": {
+    "Accueil|FAQ": {
+     "on": 1,
+     "msg": ""
+    },
+    "Accueil|Avis": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|CTeen": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Social": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Gan Israël": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Bichvile’h": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Yizkor": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Kaddich": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Mariage": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Cantine cacher": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Cours & Étude": {
+     "on": 1,
+     "msg": ""
+    },
+    "Touristes|Adresses utiles": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Cercle féminin": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Naissance": {
+     "on": 1,
+     "msg": ""
+    },
+    "Touristes|Repas de Chabbat": {
+     "on": 1,
+     "msg": ""
+    },
+    "Accueil|Événements à venir": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Téfiline & Mézouzot": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Bar & Bat Mitsva": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Enfants · Talmud Torah": {
+     "on": 1,
+     "msg": ""
+    },
+    "Touristes|Chabbat pour les groupes": {
+     "on": 1,
+     "msg": ""
+    },
+    "Activités|Repas de Chabbat & fêtes": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Location de la salle": {
+     "on": 1,
+     "msg": ""
+    },
+    "Cycles de la vie|Convertisseur de date": {
+     "on": 1,
+     "msg": ""
+    }
+   },
+   "vac": 0,
+   "avis": [
+    {
+     "n": "Léa & Benjamin",
+     "t": "« Même en voyage, nous nous sommes sentis comme à la maison. C’était notre plus beau Chabbat. »",
+     "te": "“Even while traveling, we felt right at home. It was our most beautiful Shabbat.”"
+    },
+    {
+     "n": "Jonathan",
+     "t": "« Je suis arrivé une première fois sans connaître personne, et tout de suite je me suis senti à l’aise. Aujourd’hui, le Beth Habad fait vraiment partie de ma vie. »",
+     "te": "“I came the first time without knowing anyone, and I immediately felt at ease. Today, the Beth Habad is truly part of my life.”"
+    },
+    {
+     "n": "Myriam",
+     "t": "« Entre les cours, les fêtes, les soirées et les actions pour la communauté, il y a toujours quelque chose de beau à vivre ensemble. On sent beaucoup de sincérité et de bienveillance. »",
+     "te": "“Between the classes, the holidays, the evenings and the community initiatives, there is always something beautiful to share. You can feel so much sincerity and kindness.”"
+    },
+    {
+     "n": "David & Sophie",
+     "t": "« Nos enfants adorent venir aux activités du Beth Habad ! Ils reviennent toujours heureux, ils apprennent plein de choses et se sont fait de vrais copains. »",
+     "te": "“Our children love coming to the Beth Habad activities! They always come back happy, they learn so much and they have made real friends.”"
+    },
+    {
+     "n": "Kevin & Laura",
+     "t": "« On a découvert le Beth Habad pendant nos vacances et on a adoré. Des gens du monde entier, une ambiance chaleureuse et un repas de Chabbat copieux comme à la maison. »",
+     "te": "“We discovered the Beth Habad on vacation and loved it. People from all over the world, a warm atmosphere and a generous Shabbat meal, just like at home.”"
+    }
+   ],
+   "form": {
+    "ann.l": "Je réserve",
+    "ann.u": "https://bethloubavitchb.kehila.io/",
+    "ann.en": "Registration open for the Passover Seder",
+    "ann.fr": "Inscriptions ouvertes pour le Séder de Pessa’h",
+    "ann.on": 0,
+    "ann.to": "2027-04-21",
+    "home.b1": "Réserver un repas de Chabbat",
+    "home.b2": "Découvrir le Beth Habad",
+    "home.u1": "https://bethloubavitchb.kehila.io/shabbat",
+    "home.u2": "qui-sommes-nous.html",
+    "info.ny": "",
+    "info.tt": "Mercredi 11h30 – 16h30",
+    "info.wa": "+33 1 42 52 30 41",
+    "link.bm": "",
+    "link.tt": "",
+    "ann.from": "2027-03-01",
+    "home.img": "img/hero.jpg",
+    "info.tel": "+33 1 42 52 30 41",
+    "link.don": "",
+    "info.mail": "levi.arnauve@loubavitch.fr",
+    "home.titre": "Beth | Loubavitch | Bastille",
+    "info.cantH": "11h30 – 14h00",
+    "info.ganEd": "2027-07-05",
+    "info.ganEf": "2027-07-23",
+    "info.ganHd": "2026-12-21",
+    "info.ganHf": "2026-12-25",
+    "info.insta": "https://www.instagram.com/beth_loubavitch_bastille",
+    "info.minha": "15 min avant l’allumage, arrondi à 5 min",
+    "link.cteen": "",
+    "link.salle": "",
+    "info.metro1": "Richard-Lenoir · ligne 5",
+    "info.metro2": "Saint-Ambroise · ligne 9",
+    "link.yizkor": "",
+    "chiffre.pays": "100+",
+    "info.adresse": "37 rue Popincourt, 75011 Paris",
+    "info.kaddich": "300 € / an",
+    "info.mariage": "150 €",
+    "info.mezouza": "7 €",
+    "info.salleM2": "200 m²",
+    "link.kaddich": "",
+    "link.mariage": "",
+    "home.accroche": "Rencontre • Partage • Transmission",
+    "info.chaharit": "9h45",
+    "info.tefiline": "65 €",
+    "chiffre.villes": "1 000+",
+    "info.cantJours": "Lundi – Jeudi, hors vacances scolaires",
+    "info.resaJusqu": "Mercredi matin",
+    "info.sallePers": "100",
+    "link.naissance": "",
+    "info.salleTarif": "500 €",
+    "chiffre.delegues": "7 136+",
+    "chiffre.continents": "5"
+   },
+   "prog": [
+    [
+     1,
+     "10:30",
+     "Sagesse féminine",
+     "Cercle féminin",
+     1,
+     "Women’s wisdom club"
+    ],
+    [
+     1,
+     "11:30",
+     "Cantine cacher",
+     "Cantine",
+     1,
+     "Kosher canteen"
+    ],
+    [
+     1,
+     "19:00",
+     "Krav Maga (femmes)",
+     "Cercle féminin",
+     1,
+     "Krav Maga (women)"
+    ],
+    [
+     1,
+     "20:30",
+     "Cours d’hébreu (femmes)",
+     "Cours & Étude",
+     1,
+     "Hebrew class (women)"
+    ],
+    [
+     2,
+     "11:00",
+     "Club maman & moi",
+     "Bichvile’h",
+     1,
+     "Mom & me club"
+    ],
+    [
+     2,
+     "11:30",
+     "Cantine cacher",
+     "Cantine",
+     1,
+     "Kosher canteen"
+    ],
+    [
+     2,
+     "19:30",
+     "Cours de Paracha (hommes)",
+     "Cours & Étude",
+     1,
+     "Parasha class (men)"
+    ],
+    [
+     3,
+     "11:30",
+     "Talmud Torah",
+     "Enfants",
+     1,
+     "Talmud Torah"
+    ],
+    [
+     3,
+     "11:30",
+     "Cantine cacher",
+     "Cantine",
+     1,
+     "Kosher canteen"
+    ],
+    [
+     3,
+     "20:15",
+     "Cours femmes",
+     "Cours & Étude",
+     1,
+     "Women’s class"
+    ],
+    [
+     4,
+     "11:30",
+     "Cantine cacher",
+     "Cantine",
+     1,
+     "Kosher canteen"
+    ],
+    [
+     4,
+     "13:00",
+     "Cours de Paracha (hommes)",
+     "Cours & Étude",
+     1,
+     "Parasha class (men)"
+    ]
+   ],
+   "cells": [
+    {
+     "d": "Un moment de partage, de tradition et de convivialité.",
+     "t": "Repas de Chabbat & fêtes",
+     "u": "activites.html#repas",
+     "de": "A moment of sharing, tradition and togetherness.",
+     "te": "Shabbat meals & holidays",
+     "img": "img/ph-chabbat.jpg",
+     "pos": "50% 45%"
+    },
+    {
+     "d": "Faire du midi un moment de pause, de partage et de bonne humeur autour de repas cacher de qualité.",
+     "t": "Cantine cacher",
+     "u": "activites.html#cantine",
+     "de": "A lunchtime break of sharing and good spirits, around quality kosher meals.",
+     "te": "Kosher canteen",
+     "img": "img/ph-cantine.jpg",
+     "pos": "50% 45%"
+    },
+    {
+     "d": "Maillon précieux de la chaîne des générations.",
+     "t": "Talmud Torah",
+     "u": "activites.html#enfants",
+     "de": "A precious link in the chain of generations.",
+     "te": "Talmud Torah",
+     "img": "img/act-talmud.jpg",
+     "pos": "50% 45%"
+    },
+    {
+     "d": "Un service de contrôle rigoureux pour garantir leur conformité et leur validité.",
+     "t": "Téfiline & Mézouzot",
+     "u": "activites.html#tefiline",
+     "de": "A rigorous checking service to ensure they are valid and kosher.",
+     "te": "Tefillin & Mezuzot",
+     "img": "img/ph-tefiline.jpg",
+     "pos": "50% 45%"
+    },
+    {
+     "d": "Une étude pour tous les niveaux, une source d’inspiration pour chacun/e.",
+     "t": "Étude de Torah",
+     "u": "activites.html#etude",
+     "de": "Study for every level, a source of inspiration for everyone.",
+     "te": "Torah study",
+     "img": "img/act-cours.jpg",
+     "pos": "50% 45%"
+    },
+    {
+     "d": "Restaurants cacher, synagogues et mikvés autour du 11ᵉ arrondissement.",
+     "t": "Touristes à Paris",
+     "u": "touristes.html",
+     "de": "Kosher restaurants, synagogues and mikvaot around the 11th arrondissement.",
+     "te": "Tourists in Paris",
+     "img": "img/menorah.jpg",
+     "pos": "45% 50%"
+    }
+   ],
+   "repas": [
+    {
+     "n": "Repas de Chabbat",
+     "o": 1,
+     "u": "https://bethloubavitchb.kehila.io/shabbat"
+    },
+    {
+     "n": "Séder de Roch Hachana",
+     "o": 0,
+     "u": ""
+    },
+    {
+     "n": "Repas sous la Soucca",
+     "o": 0,
+     "u": ""
+    },
+    {
+     "n": "Michté de Pourim",
+     "o": 0,
+     "u": ""
+    },
+    {
+     "n": "Séder de Pessa’h",
+     "o": 0,
+     "u": ""
+    }
+   ]
+  },
+  "updated_at": "2026-10-26T15:10:31.857+00:00"
+ }
+]
