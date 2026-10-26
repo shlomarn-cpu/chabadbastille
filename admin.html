@@ -464,12 +464,9 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
     </section>
 
     <section class="panel" data-panel="users" hidden>
-      <div class="card"><div class="ch"><div><h2>Utilisateurs</h2><p>Admin : tout · Éditeur : contenus uniquement</p></div><button class="btn btn-terre btn-sm">+ Inviter</button></div>
-        <div class="rows">
-          <div class="row"><span class="th" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">BA</span><div><div class="t">Beila Arnauve</div><div class="d">beila@… · dernière connexion aujourd’hui</div></div><div class="ac"><span class="tag on">Admin</span></div></div>
-          <div class="row"><span class="th" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">LA</span><div><div class="t">Rav Levi Arnauve</div><div class="d">levi.arnauve@loubavitch.fr</div></div><div class="ac"><span class="tag on">Admin</span></div></div>
-          <div class="row"><span class="th" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">CP</span><div><div class="t">Chlomo · Pazelle Design</div><div class="d">Éditeur</div></div><div class="ac"><span class="tag off">Éditeur</span></div></div>
-        </div></div>
+      <div class="card"><div class="ch"><div><h2>Utilisateurs</h2><p>Les personnes qui peuvent se connecter à cet espace</p></div><a class="btn btn-terre btn-sm" href="https://supabase.com/dashboard/project/jfxebnoqulyzjaqnyoel/auth/users" target="_blank" rel="noopener">+ Inviter</a></div>
+        <div class="rows"><div class="row" style="grid-template-columns:auto minmax(0,1fr)"><span class="th" id="uIni" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">A</span><div><div class="t" id="uMail">Vous</div><div class="d">Connecté · accès complet</div></div></div></div>
+        <div class="cb"><p class="muted" style="margin:0;line-height:1.6">Chaque personne invitée a accès à tout l’espace admin. Pour ajouter quelqu’un : cliquez sur « + Inviter », puis <b>Add user → Send invitation</b> et saisissez son e-mail. Elle reçoit un lien pour choisir son mot de passe. Pour retirer un accès : même page, menu « … » de la personne → <b>Delete user</b>.</p></div></div>
     </section>
 
     </div>
@@ -546,7 +543,7 @@ const sbH=(tok)=>({'apikey':SB.key,'Content-Type':'application/json',...(tok?{'A
 async function sbAuth(q,body){const r=await fetch(SB.url+'/auth/v1/'+q,{method:'POST',headers:sbH(),body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error_description||j.msg||j.message||('Erreur '+r.status));return j;}
 function setSes(j){SES={at:j.access_token,rt:j.refresh_token,exp:Date.now()+((j.expires_in||3600)-60)*1000,email:(j.user&&j.user.email)||(SES&&SES.email)||''};try{localStorage.setItem(SKEY,JSON.stringify(SES))}catch(e){}}
 async function token(){if(!SES)throw new Error('Non connecté');if(Date.now()>SES.exp){setSes(await sbAuth('token?grant_type=refresh_token',{refresh_token:SES.rt}));}return SES.at;}
-function showApp(){$('#login').hidden=true;$('#app').hidden=false;const em=SES.email||'';$('#whoName').textContent=em;$('#whoIni').textContent=(em[0]||'A').toUpperCase();loadData();}
+function showApp(){$('#login').hidden=true;$('#app').hidden=false;const em=SES.email||'';$('#whoName').textContent=em;$('#whoIni').textContent=(em[0]||'A').toUpperCase();$('#uMail').textContent=em||'Vous';$('#uIni').textContent=(em[0]||'A').toUpperCase();loadData();}
 const lMsg=t=>$('#lMsg').textContent=t;
 $('#lform').onsubmit=async e=>{e.preventDefault();lMsg('Connexion…');$('#lBtn').disabled=true;
   try{setSes(await sbAuth('token?grant_type=password',{email:$('#lEmail').value.trim(),password:$('#lPass').value}));lMsg('');showApp();}
