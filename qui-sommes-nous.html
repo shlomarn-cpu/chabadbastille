@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="img/mark-terre.svg">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.ddw{position:relative;display:flex;align-items:center}
+.ddw>a{display:inline-flex;align-items:center;gap:6px}
+.ddw>a i.x{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.ddt{background:none;border:0;padding:8px 4px;margin-left:2px;display:inline-flex;align-items:center;color:inherit;cursor:pointer}
+.ddt i{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.ddt:hover{color:var(--terre)}
+.ddw.open .ddt i{transform:translateY(1px) rotate(225deg)}
+.ddm{position:absolute;top:100%;left:-22px;padding-top:18px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .25s,visibility .25s;z-index:40}
+.ddw.open .ddm{opacity:1;visibility:visible;transform:none}
+@media (hover:hover) and (pointer:fine){.ddw:hover .ddm{opacity:1;visibility:visible;transform:none}.ddw:hover .ddt i{transform:translateY(1px) rotate(225deg)}}
+
+.ddm div{min-width:270px;background:#fff;border-top:2px solid var(--terre);box-shadow:0 18px 40px rgba(0,0,0,.08);padding:8px 0}
+nav.menu .ddm a{display:flex;justify-content:space-between;gap:20px;padding:13px 22px;font-size:14px;font-weight:600;letter-spacing:.04em;color:#000;transition:background .2s,color .2s}
+nav.menu .ddm a::after{content:"→";position:static;height:auto;background:none;transform:none;color:var(--terre);transition:transform .25s}
+nav.menu .ddm a:hover{background:var(--creme);color:var(--terre)}nav.menu .ddm a:hover::after{transform:translateX(4px)}
+.mmenu nav .mrow{display:flex;align-items:stretch;border-bottom:1px solid #d9dbde}
+.mmenu nav .mrow>a{flex:1;border-bottom:0}.mmenu nav .mrow>a::after{content:none}
+.mtg{flex:none;width:52px;background:none;border:0;border-left:1px solid #eceef0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--terre)}
+.mtg i{position:relative;width:16px;height:16px}.mtg i::before,.mtg i::after{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:currentColor;transition:transform .3s}.mtg i::after{transform:rotate(90deg)}
+.mtg[aria-expanded="true"] i::after{transform:rotate(0)}
+.mmenu nav .msub[hidden]{display:none}
+.mmenu nav .msub{display:flex;flex-direction:column;border-bottom:1px solid #d9dbde;padding:4px 0 12px 18px}
+.mmenu nav .msub a{padding:10px 0;border:0;font-size:16px;font-weight:600;text-transform:none;color:var(--ardoise)}
+.mmenu nav .msub a::after{content:"→"}
+.tfaq{background:#EDEEF0}
+.tfaq .in{padding-block:clamp(50px,6vw,90px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:clamp(24px,4vw,60px)}
+.tfaq .tk{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--terre)}
+.tfaq .th2{font-size:clamp(30px,3.6vw,54px);line-height:1.04;text-transform:uppercase;margin:12px 0 0}.tfaq .th2 span{font-weight:200;display:block}.tfaq .th2 b{font-weight:900;display:block}
+.fqh{margin:34px 0 0;padding-bottom:10px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terre)}.fqh:first-child{margin-top:0}
+.fqg .qa button{padding:20px 0;font-size:clamp(16px,1.25vw,20px)}.fqg .qa .ans p{font-size:clamp(15px,1.1vw,18px);line-height:1.55}
+@media (max-width:1100px){.tfaq .in{grid-template-columns:1fr}}
+</style>
+<title>Qui sommes-nous · Beth Loubavitch Bastille</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap">
+<style>
+/* Maquette du client : blanc, noir, or chaud, terre cuite, crème. Aucun arrondi. Grille calée sur 1920 px. */
+:root{
+  --noir:#000;--blanc:#fff;--or:#C8A05A;--terre:#B4552F;--creme:#F7F3EC;--nuit:#12263A;--ardoise:#5A6672;
+  --gris:#EEEFF1;--gris-faq:#EDEEF0;--gris-pied:#7E8994;
+  --f:"Nunito Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:max(16px,8.5vw);
+  color-scheme:light;
+}
+*{box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{background:var(--blanc);color:var(--noir);font-family:var(--f);font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--terre);outline-offset:3px}
+.pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 32px;font-size:clamp(13px,.9vw,17px);font-weight:600;letter-spacing:.02em;text-transform:uppercase;border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;white-space:nowrap}
+.btn-or{background:var(--or);color:var(--noir)}
+.btn-or:hover{background:#B88F49}
+.lg .btn-ig{display:inline-flex;margin-top:10px}.btn-ig{gap:10px;margin-top:12px;color:#fff;border:0;background:linear-gradient(60deg,#F58529 0%,#DD2A7B 45%,#8134AF 75%,#515BD4 100%);transition:filter .3s,transform .25s}.btn-ig:hover{filter:brightness(1.12);transform:translateY(-2px);color:#fff}.btn-ig svg{flex:none}.btn-ig svg rect{rx:5px}
+.btn-terre{background:var(--terre);color:var(--blanc)}
+.btn-terre:hover{background:#9C4826}
+.btn-contour-or{border-color:var(--or);color:var(--blanc)}
+.btn-contour-or:hover{background:var(--or);color:var(--noir)}
+.btn-contour-terre{border-color:var(--terre);color:var(--terre);background:transparent}
+.btn-contour-terre:hover{background:var(--terre);color:var(--blanc)}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--blanc)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--blanc)}
+.hd{min-height:clamp(84px,8.8vw,169px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:clamp(12px,1.4vw,26px);color:var(--terre);white-space:nowrap}
+.brand img{height:clamp(46px,4.2vw,80px);width:auto}
+.brand .b1{font-size:clamp(13px,.95vw,18px);font-weight:700;letter-spacing:.3em}
+.brand .b2{font-size:clamp(10px,.75vw,14px);font-weight:600;letter-spacing:.32em;margin-top:6px}
+nav.menu{display:flex;gap:clamp(16px,1.8vw,40px);white-space:nowrap;font-size:clamp(13px,.95vw,19px);font-weight:600;text-transform:uppercase}
+nav.menu a{position:relative;padding:6px 0}
+nav.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--terre);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav.menu a:hover::after{transform:scaleX(1)}
+.hd-r{display:flex;align-items:center;gap:clamp(16px,2vw,38px);white-space:nowrap}
+.hd-r .btn{min-height:clamp(44px,3.4vw,65px);padding:0 clamp(18px,1.7vw,32px)}
+.lang{display:flex;align-items:center;gap:6px;font-size:clamp(13px,1vw,19px);font-weight:600;line-height:1;color:var(--ardoise)}
+.lang span{display:inline-block;line-height:1;transform:none}
+.lang button{background:none;border:0;padding:4px 2px;line-height:1;font-size:inherit;font-weight:inherit;color:var(--ardoise)}
+.lang button[aria-pressed="true"]{color:var(--or)}
+.burger{display:none;width:48px;height:48px;background:none;border:1px solid var(--noir);align-items:center;justify-content:center}
+.burger span{display:block;width:20px;height:2px;background:var(--noir);box-shadow:0 -6px 0 var(--noir),0 6px 0 var(--noir)}
+
+.mmenu{position:fixed;inset:0;z-index:40;background:var(--blanc);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + 20px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 28px);overflow-y:auto}
+.mmenu .mtop{display:flex;justify-content:space-between;align-items:center;min-height:64px}
+.mmenu .close{width:44px;height:44px;border:1px solid var(--noir);background:none;font-size:22px;line-height:1}
+.mmenu nav{display:flex;flex-direction:column;margin-top:28px;border-top:1px solid var(--noir)}
+.mmenu nav a{padding:20px 0;border-bottom:1px solid #d9dbde;font-size:22px;font-weight:800;text-transform:uppercase;display:flex;justify-content:space-between}
+.mmenu nav a::after{content:"→";color:var(--terre);font-weight:400}
+.mmenu .mbtns{margin-top:auto;padding-top:32px;display:grid;gap:12px}
+.mmenu .mbtns .btn{width:100%}
+body.noscroll{overflow:hidden}
+.mmenu[hidden]{display:none}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;background:var(--noir);color:var(--blanc);height:max(520px,calc(100vw * 1074 / 1920));overflow:hidden}
+.hero-media{position:absolute;top:1.2%;left:32.7%;width:79.8%;aspect-ratio:1665/1211}
+.hero-media img.bg{width:100%;height:100%;display:block}
+.flame{position:absolute;width:3.604%;height:8.258%;transform-origin:50% 92%;pointer-events:none;will-change:transform,opacity;mix-blend-mode:screen}
+@supports (mix-blend-mode:plus-lighter){.flame{mix-blend-mode:plus-lighter}}
+.flame img{width:100%;height:100%;display:block}
+.glow{position:absolute;width:6%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,170,70,.22),rgba(255,120,30,.08) 60%,rgba(255,100,0,0));mix-blend-mode:screen;pointer-events:none;will-change:opacity}
+.hero-txt{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;max-width:46%}
+.hero h1{font-size:clamp(44px,5.6vw,108px);font-weight:900;line-height:1.08;text-transform:uppercase;letter-spacing:-.005em}
+.tag{margin-top:clamp(20px,2.6vw,50px);font-size:clamp(13px,1.1vw,21px);font-weight:700;letter-spacing:.12em;color:var(--or);text-transform:uppercase}
+.hero-cta{margin-top:clamp(28px,3.4vw,62px);display:flex;flex-direction:column;align-items:flex-start;gap:clamp(14px,2vw,40px)}
+.hero-cta .btn{min-width:clamp(260px,19.5vw,375px);min-height:clamp(54px,3.8vw,73px)}
+
+/* ---------- Section titles ---------- */
+.titre{text-align:center;font-size:clamp(38px,6vw,115px);line-height:1;text-transform:uppercase;letter-spacing:-.01em}
+.titre b{font-weight:900}.titre span{font-weight:200}
+
+/* ---------- Événements ---------- */
+.events{padding-block:clamp(70px,5.4vw,104px) clamp(70px,7vw,140px)}
+.ev-top{display:flex;justify-content:flex-end;gap:10px;margin:clamp(40px,4.4vw,84px) 0 18px}
+.arrow{width:52px;height:52px;border:1px solid var(--noir);background:var(--blanc);font-size:20px;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s}
+.arrow:hover{background:var(--terre);color:var(--blanc);border-color:var(--terre)}
+.rail{display:flex;gap:clamp(14px,1.25vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:max(16px,5.1vw);padding-right:max(16px,5.1vw);scroll-padding-left:max(16px,5.1vw);cursor:grab;user-select:none}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.card{flex:0 0 clamp(270px,25.8vw,496px);scroll-snap-align:start;background:var(--gris);text-align:center;padding:clamp(40px,3.8vw,73px) clamp(24px,2.4vw,46px) clamp(36px,2.1vw,40px);display:flex;flex-direction:column;align-items:center;transition:background .35s}
+.card .ph{width:64%;aspect-ratio:317/335;overflow:hidden;background:#dfe1e4}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none}
+.card h3{margin-top:clamp(28px,2.6vw,50px);font-size:clamp(24px,2.1vw,40px);font-weight:800;color:var(--or);text-transform:uppercase;transition:color .35s}
+.card p{margin:12px 0 0;font-size:clamp(15px,1.1vw,21px);line-height:1.3;color:var(--ardoise);max-width:340px;transition:color .35s}
+.card .btn{margin-top:clamp(20px,1.5vw,28px);min-height:clamp(46px,2.8vw,53px);padding:0 clamp(28px,2.2vw,42px);font-size:clamp(15px,1.2vw,23px);background:var(--or);color:var(--blanc)}
+.card:hover,.card:focus-within{background:var(--terre)}
+.card:hover h3,.card:hover p,.card:focus-within h3,.card:focus-within p{color:var(--blanc)}
+.card:hover .ph img{transform:scale(1.04)}
+
+/* ---------- Chabbat ---------- */
+.chabbat{background:var(--creme);padding-block:clamp(70px,5.2vw,100px)}
+.ch-in{display:grid;grid-template-columns:minmax(0,auto) minmax(0,auto);justify-content:space-between;gap:clamp(60px,9vw,220px);align-items:center;max-width:1500px;margin:0 auto}
+.ch-l .k1{font-size:clamp(46px,6vw,115px);font-weight:200;line-height:1;text-transform:uppercase}
+.ch-l .k2{font-size:clamp(46px,6vw,115px);font-weight:900;line-height:1.05;text-transform:uppercase;white-space:nowrap}
+.ch-l .dates{margin-top:clamp(24px,2.6vw,50px);font-size:clamp(15px,1.45vw,28px);font-weight:700;letter-spacing:.1em;color:var(--or);text-transform:uppercase;line-height:1.6}
+.ch-l .btns{margin-top:clamp(28px,2.4vw,46px);display:flex;flex-wrap:wrap;gap:clamp(14px,1.5vw,28px)}
+.ch-l .btns .btn{min-height:clamp(54px,3.8vw,73px)}
+.ch-r{display:flex;flex-direction:column;align-items:center;gap:clamp(24px,2.5vw,48px)}
+.ch-r .lab{font-size:clamp(15px,1.35vw,26px);font-weight:700;letter-spacing:.1em;color:var(--terre);text-transform:uppercase;text-align:center}
+.odo{display:flex;justify-content:center;font-size:clamp(64px,5.9vw,113px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums;margin-top:10px}
+.odo .col{display:inline-block;height:1em;overflow:hidden}
+.odo .strip{display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.2,.8,.25,1)}
+.odo .strip span{height:1em;display:block}
+.odo .sep{display:inline-block;padding:0 .02em;transform:translateY(-.04em)}
+
+/* ---------- Je cherche ---------- */
+.cherche{background:var(--blanc);padding-block:clamp(80px,6vw,116px) clamp(60px,6vw,110px)}
+.cherche .titre{color:var(--terre)}
+.grid{max-width:1500px;margin:clamp(50px,6vw,116px) auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E3E5E8}
+.cell{position:relative;overflow:hidden;background:var(--blanc);min-height:clamp(280px,21vw,400px);padding:clamp(30px,2.8vw,54px) clamp(26px,2.6vw,50px);display:flex;flex-direction:column;gap:14px;color:var(--noir)}
+.cell .bgp{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.cell .bgp::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.25) 70%,rgba(0,0,0,.15))}
+.cell .bgp img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cell .n{position:relative;font-size:clamp(13px,.9vw,16px);font-weight:700;letter-spacing:.12em;color:var(--or);margin-bottom:auto;transition:color .4s}
+.cell .tt{position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-top:clamp(40px,4vw,80px)}
+.cell .t{font-size:clamp(24px,2.1vw,40px);font-weight:900;text-transform:uppercase;line-height:1.08;transition:color .4s}
+.cell .ar2{flex:none;font-size:clamp(22px,1.6vw,30px);font-weight:700;color:var(--terre);transition:transform .45s cubic-bezier(.2,.7,.2,1),color .4s}
+.cell .d{position:relative;font-size:clamp(15px,1.1vw,20px);line-height:1.5;color:#5F6872;max-width:420px;transition:color .4s}
+.cell:hover .bgp,.cell:focus-visible .bgp{opacity:1}
+.cell:hover .bgp img,.cell:focus-visible .bgp img{transform:scale(1)}
+.cell:hover .t,.cell:hover .d,.cell:hover .n,.cell:hover .ar2,.cell:focus-visible .t,.cell:focus-visible .d,.cell:focus-visible .n,.cell:focus-visible .ar2{color:var(--blanc)}
+.cell:hover .ar2,.cell:focus-visible .ar2{transform:translate(4px,-4px);color:var(--or)}
+
+.more{display:flex;justify-content:center;margin-top:clamp(36px,3.6vw,64px)}
+.more .btn{min-height:clamp(54px,3.8vw,70px)}
+
+/* ---------- Avis ---------- */
+.avis{padding-block:clamp(40px,4vw,80px) clamp(80px,7vw,140px);text-align:center}
+.quotes{display:grid;max-width:1240px;margin:0 auto}
+.quote{grid-area:1/1;transition:opacity .7s,transform .7s;opacity:0;transform:translateY(10px);pointer-events:none}
+.quote.on{opacity:1;transform:none;pointer-events:auto}
+.quote blockquote{margin:0;font-size:clamp(26px,2.95vw,57px);font-weight:600;line-height:1.22}
+.quote .who{margin-top:clamp(20px,2vw,38px);font-size:clamp(22px,2.1vw,40px);font-weight:700;color:var(--terre);text-transform:uppercase}
+.dots{display:flex;justify-content:center;gap:12px;margin-top:clamp(36px,3.6vw,70px)}
+.dots button{width:20px;height:20px;border:0;background:none;display:flex;align-items:center;justify-content:center;padding:0}
+.dots button i{display:block;width:14px;height:14px;background:var(--or);transition:background .3s,border-color .3s}
+.dots button[aria-current="true"] i{background:transparent;border:1.5px solid var(--terre)}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--gris-faq);padding-block:clamp(50px,3.5vw,68px)}
+.faq-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:40px;align-items:center}
+.faq .big{font-size:clamp(110px,15.5vw,300px);font-weight:900;color:var(--terre);line-height:.9;letter-spacing:-.02em}
+.qa{border-bottom:1px solid var(--nuit)}
+.qa:first-child{border-top:1px solid var(--nuit)}
+.qa button{width:100%;background:none;border:0;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:clamp(22px,2.4vw,46px) 0;font-size:clamp(17px,1.42vw,27px);font-weight:700;color:var(--noir)}
+.qa button i{flex:none;width:18px;height:18px;position:relative}
+.qa button i::before,.qa button i::after{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:var(--terre);transition:transform .3s}
+.qa button i::after{transform:rotate(90deg)}
+.qa.open button i::after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{margin:0;padding:0 0 clamp(22px,2vw,38px);font-size:clamp(16px,1.42vw,27px);font-weight:300;line-height:1.3;color:var(--ardoise)}
+
+/* ---------- Footer ---------- */
+footer{background:var(--noir);color:var(--blanc);padding-block:clamp(70px,7.8vw,150px) 40px}
+.ft{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;max-width:1500px;margin:0 auto}
+.ft .lg{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.ft .lg img{width:clamp(150px,10.5vw,200px)}
+.ft .lg p{margin:0;color:var(--gris-pied);font-size:clamp(16px,1.15vw,22px);line-height:1.8}
+.ft h4{margin:0 0 14px;font-size:clamp(17px,1.2vw,23px);font-weight:600;text-transform:uppercase}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:clamp(16px,1.15vw,22px);color:var(--gris-pied)}
+.ft ul a:hover{color:var(--blanc)}
+.ft .btn{margin-top:22px;min-height:42px;padding:0 22px;font-size:13px}
+.fb{max-width:1670px;margin:clamp(60px,6vw,110px) auto 0;padding-top:28px;border-top:1px solid #3a3f44;color:var(--gris-pied);font-size:clamp(14px,1.15vw,22px);font-weight:700}
+
+
+.legal{display:flex;flex-wrap:wrap;gap:8px 24px;font-weight:400}
+.legal a,.legal button{color:var(--gris-pied);background:none;border:0;padding:0;font:inherit;font-size:.85em}
+.legal a:hover,.legal button:hover{color:var(--blanc)}
+.fb{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 30px}
+.wa{position:fixed;z-index:25;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;background:var(--noir);color:var(--blanc);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.wa:hover{background:var(--terre)}
+.cookie{position:fixed;z-index:35;left:0;right:0;bottom:0;background:var(--blanc);border-top:1px solid var(--noir);padding:20px max(var(--gut),env(safe-area-inset-left,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 40px}
+.cookie p{margin:0;max-width:720px;font-size:15px;line-height:1.5;color:var(--noir)}
+.cookie .cb{display:flex;gap:12px}
+.cookie .btn{min-height:46px;padding:0 24px}
+.btn-contour-noir{border-color:var(--noir);color:var(--noir);background:transparent}
+.btn-contour-noir:hover{background:var(--noir);color:var(--blanc)}
+.cookie[hidden],.wa[hidden]{display:none}
+@media (max-width:760px){.wa{display:flex}.cookie .cb{width:100%}.cookie .btn{flex:1}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1360px){
+  nav.menu{display:none}.burger{display:flex}
+}
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ch-in{grid-template-columns:1fr}.ch-r{flex-direction:row;justify-content:space-around;flex-wrap:wrap}
+  .faq-in{grid-template-columns:1fr}
+  .ft{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hd-r .btn{display:none}
+  .hd{gap:10px}.brand{gap:10px}.brand img{height:40px}.brand .b1{font-size:11px;letter-spacing:.18em}.brand .b2{font-size:9px;letter-spacing:.2em}.hd-r{gap:10px}.lang{font-size:13px}.burger{width:44px;height:44px}
+  .hero{height:auto;display:flex;flex-direction:column}
+  .hero-media{position:relative;top:0;left:0;width:150%;margin-left:-29.5%;margin-bottom:-6vw}
+  .hero-media::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:48%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 45%,#000 100%);pointer-events:none;z-index:3}
+  .hero-media::before{content:"";position:absolute;left:0;right:0;top:0;height:14%;background:linear-gradient(to top,rgba(0,0,0,0),rgba(0,0,0,.6));pointer-events:none;z-index:3}
+  .hero-txt{padding-block:0 44px;z-index:4}
+  .hero h1{font-size:40px;line-height:1.05}
+  .tag{margin-top:16px;font-size:12px;letter-spacing:.1em}
+  .hero-cta{margin-top:26px;gap:12px}
+  .hero-cta .btn{min-height:52px}
+  .events{padding-block:56px 60px}
+  .titre{font-size:34px}
+  .chabbat{padding-block:52px}
+  .ch-in{gap:30px}
+  .odo{font-size:clamp(44px,13vw,56px)}
+  .ch-l .k1,.ch-l .k2{font-size:40px}
+  .ch-l .dates{font-size:13px;margin-top:18px}
+  .ch-l .btns{margin-top:24px;gap:10px}
+  .ch-r{flex-direction:row!important;justify-content:space-between!important;gap:12px;margin-top:8px;padding-top:28px;border-top:1px solid #E2D9CB}
+  .ch-r .lab{font-size:12px}
+  .odo{font-size:52px}
+  .cherche{padding-block:60px 40px}
+  .grid{margin-top:32px;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .cell{aspect-ratio:1;min-height:0;padding:18px 16px;gap:8px}
+  .cell .tt{margin-top:auto;flex-direction:column;align-items:flex-start;gap:10px}
+  .cell .t{font-size:17px;line-height:1.15;order:1}
+  .cell .ar2{order:2;font-size:20px}
+  .cell .n{margin-bottom:0}
+  .cell .d{display:none}
+  .quote blockquote{font-size:22px}
+  .quote .who{font-size:18px;margin-top:16px}
+  .dots{margin-top:28px}
+  .faq .big{font-size:84px}
+  .qa button{font-size:16px;padding:20px 0}
+  .qa .ans p{font-size:15px}
+  .ft ul a[href^="mailto"]{font-size:13px}
+  .hero-txt{max-width:none;padding-block:34px 48px}
+  .hero-cta .btn{width:100%}
+  .ev-top{display:none}
+  .events .titre{margin-bottom:32px}
+  .card{flex-basis:78vw}
+  .avis{padding-block:20px 70px}
+  .hero-media{margin-top:8px}
+  .ch-l .btns{flex-direction:column}.ch-l .btns .btn{width:100%}
+  .ft{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:'lg ct' 'nt ls';gap:36px 20px}.ft>div:nth-child(1){grid-area:lg}.ft>div:nth-child(2){grid-area:nt}.ft>div:nth-child(3){grid-area:ls}.ft>div:nth-child(4){grid-area:ct}.ft .lg{align-items:flex-start;gap:14px}.ft .lg p{font-size:14px;line-height:1.6}.ft .btn{margin-top:16px;min-height:40px;padding:0 16px;font-size:12px}.ft ul{font-size:15px;gap:8px}.ft h4{font-size:15px}.ft .lg img{width:120px}.fb{font-size:13px;margin-top:44px}footer{padding-block:56px 32px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+
+/* ---------- Qui sommes-nous ---------- */
+nav.menu a.on{color:var(--terre)}nav.menu a.on::after{transform:scaleX(1)}
+.k{font-size:clamp(12px,.9vw,14px);font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--terre)}
+.pgh{padding-block:clamp(36px,4.8vw,80px) clamp(34px,4.4vw,70px)}
+.crumb{font-size:clamp(11px,.9vw,14px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ardoise)}.crumb b{color:var(--terre)}
+.pgh h1{margin-top:clamp(16px,2vw,30px);font-size:clamp(40px,8.2vw,130px);line-height:.98;text-transform:uppercase}
+.pgh h1 span{display:block;font-weight:200}.pgh h1 b{display:block;font-weight:900}
+.pgh .tg{margin-top:clamp(18px,2.4vw,36px);font-size:clamp(12px,1.35vw,21px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.banner{position:relative;height:clamp(300px,43vw,700px);overflow:hidden}
+.banner img{width:100%;height:112%;object-fit:cover;object-position:50% 62%;display:block;will-change:transform}
+.banner .cap{position:absolute;left:max(var(--gut),env(safe-area-inset-left,0px));bottom:0;background:var(--blanc);padding:14px 22px 0 0;font-size:clamp(10px,.85vw,13px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ardoise)}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(26px,7.6vw,120px);padding-block:clamp(56px,8.3vw,130px)}
+.h2{margin-top:clamp(12px,1.4vw,22px);font-size:clamp(32px,4vw,62px);line-height:1.04;text-transform:uppercase}.h2 span{display:block;font-weight:200}.h2 b{display:block;font-weight:900}
+.intro p{font-size:clamp(16px,1.45vw,22px);line-height:1.6;font-weight:300;color:#2b2f33}.intro p+p{margin-top:24px}
+.intro p.lead{font-size:clamp(19px,1.8vw,28px);line-height:1.45;font-weight:600;color:var(--noir)}
+.fd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,100px);align-items:stretch;padding-bottom:clamp(56px,7.6vw,120px)}
+.fd .im{background:var(--gris);min-height:300px}
+.fd .tx{display:flex;flex-direction:column;justify-content:center;padding-block:0}
+.fd .tx.pad{padding-left:0!important;padding-right:0!important}
+.fd h2{margin-top:clamp(12px,1.4vw,22px);font-size:clamp(30px,3.9vw,60px);line-height:1.05;font-weight:900;text-transform:uppercase}
+.fd h2 span{display:block;margin-top:14px;font-size:clamp(17px,2vw,30px);font-weight:200;letter-spacing:.06em;color:var(--ardoise)}
+.fd p{margin-top:clamp(20px,2.4vw,36px);font-size:clamp(16px,1.35vw,21px);line-height:1.6;font-weight:300;color:#2b2f33;max-width:580px}
+.num{background:var(--noir);color:var(--blanc);padding-block:clamp(56px,6.6vw,104px)}
+.num .k{color:var(--or)}
+.num h3{margin-top:18px;font-size:clamp(21px,2.35vw,36px);font-weight:300;line-height:1.3;max-width:920px}.num h3 b{font-weight:800}
+.ng{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(32px,4.4vw,66px);border-top:1px solid #2a2f35}
+.ng>div{padding:clamp(22px,2.6vw,40px) 24px 0 clamp(16px,2.2vw,34px);border-left:1px solid #2a2f35}.ng>div:first-child{border-left:0;padding-left:0}
+.ng .v{white-space:nowrap;font-size:clamp(38px,5.2vw,82px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.ng .v sup{font-size:.5em;color:var(--or);vertical-align:top;position:relative;top:.12em}
+.ng .l{margin-top:14px;font-size:clamp(11px,1.05vw,16px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+.off{padding-block:clamp(60px,9vw,140px)}
+.off .titre b{color:var(--terre)}
+.off .sub{text-align:center;margin-top:clamp(12px,1.6vw,24px);font-size:clamp(15px,1.35vw,21px);font-weight:300;color:var(--ardoise)}
+.og{max-width:1500px;margin:clamp(34px,5.4vw,84px) auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E3E5E8}
+.oc{position:relative;overflow:hidden;background:var(--blanc);min-height:clamp(150px,13vw,210px);padding:clamp(22px,2.4vw,38px) clamp(20px,2.6vw,42px);display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.oc .bgp{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.oc .bgp::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.3) 75%)}
+.oc .bgp img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.oc .n{position:relative;font-size:clamp(12px,.9vw,14px);font-weight:700;letter-spacing:.14em;color:var(--or)}
+.oc .t{position:relative;font-size:clamp(17px,1.45vw,23px);font-weight:600;line-height:1.35;color:#1b1e21;max-width:340px;padding-right:44px;transition:color .4s}
+a.oc{color:inherit;text-decoration:none}.allact{display:flex;justify-content:center;margin-top:clamp(26px,3vw,44px)}
+.oc .ar3{position:absolute;right:clamp(20px,2.6vw,42px);bottom:clamp(22px,2.4vw,38px);font-size:22px;font-weight:700;color:var(--terre);transition:transform .45s cubic-bezier(.2,.7,.2,1),color .4s}
+.oc:hover .bgp{opacity:1}.oc:hover .bgp img{transform:scale(1)}
+.oc:hover .t{color:#fff}.oc:hover .ar3{color:var(--or);transform:translate(4px,-4px)}
+.off .close{text-align:center;max-width:820px;margin:clamp(34px,4vw,62px) auto 0;font-size:clamp(16px,1.5vw,23px);line-height:1.55;font-weight:300;color:#2b2f33}
+.eng{background:var(--creme);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:stretch}
+.eng-ph{margin:0;position:relative;min-height:clamp(420px,46vw,720px);overflow:hidden}
+.eng-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.eng-tx{padding:clamp(56px,7vw,120px) clamp(24px,6vw,110px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.eng-tx .mk{height:clamp(40px,3.6vw,56px);width:auto}
+.eng .k{margin-top:24px}
+.eng blockquote{margin:22px 0 0;font-size:clamp(22px,2.3vw,36px);line-height:1.3;font-weight:600}
+.eng p{margin:26px 0 0;max-width:620px;font-size:clamp(15px,1.2vw,19px);line-height:1.65;font-weight:300;color:var(--ardoise)}
+.ctc{position:relative;margin-top:34px}
+.ctc-m{position:absolute;left:0;top:calc(100% + 10px);z-index:5;width:min(340px,82vw);background:#fff;border-top:2px solid var(--terre);box-shadow:0 18px 40px rgba(0,0,0,.1);animation:ctcIn .25s ease}
+.ctc-m[hidden]{display:none}
+@keyframes ctcIn{from{opacity:0;transform:translateY(6px)}}
+.ctc-m a{display:flex;align-items:center;gap:14px;padding:16px 18px;border-bottom:1px solid #EEE9E1;transition:background .2s}
+.ctc-m a:last-child{border-bottom:0}
+.ctc-m a:hover{background:var(--creme)}
+.ctc-m svg{flex:none;color:var(--terre)}
+.ctc-m span{flex:1;min-width:0;display:flex;flex-direction:column}
+.ctc-m b{font-size:15px;font-weight:800}.ctc-m em{font-style:normal;font-size:13px;color:var(--ardoise);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ctc-m i{font-style:normal;color:var(--terre);transition:transform .2s}.ctc-m a:hover i{transform:translateX(4px)}
+@media (max-width:900px){.eng{grid-template-columns:minmax(0,1fr)}.eng-ph{min-height:0;aspect-ratio:4/3}.eng-tx{padding:44px var(--gut) 60px}}
+.asso{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,7vw,110px);align-items:center;padding-block:clamp(56px,7.6vw,120px)}
+.asso .h2{font-size:clamp(30px,3.2vw,48px);margin-top:0}
+.asso p{font-size:clamp(16px,1.35vw,21px);line-height:1.6;font-weight:300;color:#2b2f33}
+.asso .btns{margin-top:32px;display:flex;flex-wrap:wrap;gap:16px}.asso .btn{min-height:58px}
+.rv{opacity:1}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+@media (max-width:1100px){.og{grid-template-columns:repeat(2,minmax(0,1fr))}.ng{grid-template-columns:repeat(2,minmax(0,1fr))}.ng>div:nth-child(3){border-left:0;padding-left:0}.ng>div:nth-child(n+3){border-top:1px solid #2a2f35;margin-top:0}.ng>div{padding-bottom:26px}}
+@media (max-width:760px){.intro,.fd,.asso{grid-template-columns:1fr}.fd .im{min-height:0;aspect-ratio:4/3}.og{grid-template-columns:repeat(2,minmax(0,1fr))}.oc{min-height:150px;padding:18px 16px}.oc .t{font-size:15px;padding-right:30px}.oc .ar3{right:16px;bottom:18px;font-size:18px}.asso .btns{flex-direction:column}.asso .btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}}
+.phero{position:relative;height:clamp(460px,52vw,820px);overflow:hidden;background:#000;color:#fff;display:flex;align-items:flex-end}
+.phero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 0%;transform:scale(1.06);transform-origin:50% 0;will-change:transform}
+@media (max-width:1100px){.phero img{object-position:42% 0%}}
+.phero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,.1) 75%,rgba(0,0,0,.3) 100%)}
+.phero-in{position:relative;z-index:2;width:100%;padding-block:0 clamp(40px,5vw,84px)}
+.phero .crumb{color:rgba(255,255,255,.75)}.phero .crumb b{color:var(--or)}
+.phero h1{margin-top:clamp(14px,1.8vw,26px);font-size:clamp(34px,8vw,128px);line-height:.98;text-transform:uppercase}
+.phero h1 span{display:block;font-weight:200}.phero h1 b{display:block;font-weight:900}
+.phero .tg{margin-top:clamp(16px,2vw,32px);font-size:clamp(12px,1.35vw,21px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.fd .im{padding:0!important;position:relative;overflow:hidden}
+.fd .im img{display:block;width:100%;height:100%;min-height:300px;object-fit:cover;object-position:45% 30%}
+.cerfa{display:flex;align-items:center;gap:12px;margin-top:26px;font-size:clamp(15px,1.2vw,18px);font-weight:700;color:var(--noir)}
+.cerfa i{flex:none;width:26px;height:26px;border:1.5px solid var(--or);color:var(--or);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:14px}
+.num{position:relative;overflow:hidden}.num>.pad{position:relative;z-index:1}.num::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000 40%,rgba(0,0,0,.35) 75%,rgba(0,0,0,0));pointer-events:none}
+.globe{position:absolute;right:3%;top:50%;width:clamp(340px,36vw,560px);height:auto;transform:translateY(-50%);opacity:.32;pointer-events:none;filter:saturate(.8);animation:float 30s ease-in-out infinite}
+
+@keyframes float{0%,100%{transform:translateY(-50%) rotate(0deg)}50%{transform:translateY(-52%) rotate(6deg)}}
+@media (max-width:760px){.globe{right:-45%;width:520px;opacity:.18}}
+@media (prefers-reduced-motion:reduce){.globe{animation:none}}
+</style>
+
+<script>
+(function(){
+try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}
+var h=location.hash&&location.hash.length>1?location.hash.slice(1):'';
+var tgt=function(){try{return h?document.getElementById(decodeURIComponent(h)):null;}catch(e){return null;}};
+var go=function(){var t=tgt();if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo(0,Math.max(0,y));}else{window.scrollTo(0,0);}};
+var run=function(){go();};
+run();document.addEventListener('DOMContentLoaded',run);
+addEventListener('load',function(){run();setTimeout(run,150);setTimeout(run,600);});
+addEventListener('pageshow',function(e){if(e.persisted)run();});
+var stop=function(){removeEventListener('wheel',stop);removeEventListener('touchstart',stop);removeEventListener('keydown',stop);go=function(){};};
+addEventListener('wheel',stop,{passive:true});addEventListener('touchstart',stop,{passive:true});addEventListener('keydown',stop);
+})();
+</script>
+</head>
+<body>
+<header>
+  <div class="hd pad">
+    <a class="brand" href="index.html" aria-label="Beth Loubavitch Paris 11 Bastille">
+      <img src="img/mark-terre.svg" alt="">
+      <div><div class="b1">BETH LOUBAVITCH</div><div class="b2">PARIS 11 · BASTILLE</div></div>
+    </a>
+    <style>nav.menu .ddm a.ev{color:var(--terre);font-weight:800;border-bottom:1px solid #ECE7DE;margin-bottom:6px;padding-bottom:15px;justify-content:flex-start;align-items:center}nav.menu .ddm a.ev::after{margin-left:auto}a.ev::before{content:"";width:7px;height:7px;flex:0 0 7px;background:var(--terre);margin-right:12px;animation:evp 1.8s ease-in-out infinite}@keyframes evp{50%{opacity:.25}}.mmenu nav .msub a.ev{color:var(--terre);font-weight:800;border-bottom:1px solid #ECE7DE;margin-bottom:4px;display:flex;align-items:center}.mmenu nav .msub a.ev::after{margin-left:auto}@media (prefers-reduced-motion:reduce){a.ev::before{animation:none}}</style>
+    <nav class="menu" aria-label="Menu principal">
+      <a href="qui-sommes-nous.html" data-en="About us" class="on" aria-current="page">Qui sommes-nous</a>
+      <div class="ddw"><a href="activites.html" data-en="Activities">Activités</a><button type="button" class="ddt" aria-expanded="false" aria-label="Activités : sous-menu"><i></i></button><div class="ddm"><div><a class="ev" href="activites.html#evenements" data-en="Upcoming events">Événements à venir</a><a href="activites.html#repas" data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</a><a href="activites.html#etude" data-en="Classes &amp; Study">Cours &amp; Étude</a><a href="activites.html#enfants" data-en="Children">Enfants</a><a href="activites.html#femmes" data-en="Women’s circle">Cercle féminin</a><a href="activites.html#bichvileh" data-en="Bichvileh">Bichvile’h</a><a href="activites.html#cantine" data-en="Kosher canteen">Cantine cacher</a><a href="activites.html#tefiline" data-en="Tefillin &amp; Mezuzot">Téfiline &amp; Mézouzot</a><a href="activites.html#cteen" data-en="CTeen">CTeen</a><a href="activites.html#social" data-en="Social">Social</a></div></div></div>
+      <a href="agenda.html" data-en="Events">Agenda</a>
+      <div class="ddw"><a href="cycles.html" data-en="Life cycle">Cycles de la vie</a><button type="button" class="ddt" aria-expanded="false" aria-label="Cycles de la vie : sous-menu"><i></i></button><div class="ddm"><div><a href="cycles.html#naissance" data-en="Birth">Naissance</a><a href="cycles.html#bar-mitsva" data-en="Bar &amp; Bat Mitzvah">Bar &amp; Bat Mitsva</a><a href="cycles.html#mariage" data-en="Wedding">Mariage</a><a href="cycles.html#kaddich" data-en="Kaddish">Kaddich</a><a href="cycles.html#yizkor" data-en="Yizkor">Yizkor</a><a href="cycles.html#salle" data-en="Hall rental">Location de la salle</a><a href="cycles.html#convertisseur" data-en="Date converter">Convertisseur de date</a></div></div></div>
+      <div class="ddw"><a href="touristes.html" data-en="Visitors">Touristes</a><button type="button" class="ddt" aria-expanded="false" aria-label="Touristes : sous-menu"><i></i></button><div class="ddm"><div><a href="touristes.html#manger" data-en="Eat kosher">Manger cacher</a><a href="touristes.html#synagogues" data-en="Synagogues">Synagogues</a><a href="touristes.html#mikve" data-en="Mikveh">Mikvé</a><a href="touristes.html#shabbat" data-en="Shabbat meals">Repas de Chabbat</a><a href="touristes.html#offices" data-en="Shabbat services">Offices de Chabbat</a></div></div></div>
+    </nav>
+    <div class="hd-r">
+      <a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a>
+      <div class="lang" role="group" aria-label="Langue">
+        <button type="button" id="lang-fr" aria-pressed="true">FR</button><span>/</span><button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <button class="burger" type="button" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu pad" id="mmenu" hidden>
+  <div class="mtop"><a class="brand" href="index.html"><img src="img/mark-terre.svg" alt="" style="height:40px"><div><div class="b1" style="font-size:11px;letter-spacing:.18em">BETH LOUBAVITCH</div><div class="b2" style="font-size:9px;letter-spacing:.2em">PARIS 11 · BASTILLE</div></div></a><button class="close" type="button" id="mclose" aria-label="Fermer le menu">✕</button></div>
+  <nav aria-label="Menu mobile">
+    <a href="qui-sommes-nous.html" data-en="About us">Qui sommes-nous</a>
+    <div class="mrow"><a href="activites.html" data-en="Activities">Activités</a><button type="button" class="mtg" aria-expanded="false" aria-label="Activités : sous-menu"><i></i></button></div>
+    <div class="msub" hidden><a class="ev" href="activites.html#evenements" data-en="Upcoming events">Événements à venir</a><a href="activites.html#repas" data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</a><a href="activites.html#etude" data-en="Classes &amp; Study">Cours &amp; Étude</a><a href="activites.html#enfants" data-en="Children">Enfants</a><a href="activites.html#femmes" data-en="Women’s circle">Cercle féminin</a><a href="activites.html#bichvileh" data-en="Bichvileh">Bichvile’h</a><a href="activites.html#cantine" data-en="Kosher canteen">Cantine cacher</a><a href="activites.html#tefiline" data-en="Tefillin &amp; Mezuzot">Téfiline &amp; Mézouzot</a><a href="activites.html#cteen" data-en="CTeen">CTeen</a><a href="activites.html#social" data-en="Social">Social</a></div>
+    <a href="agenda.html" data-en="Events">Agenda</a>
+    <div class="mrow"><a href="cycles.html" data-en="Life cycle">Cycles de la vie</a><button type="button" class="mtg" aria-expanded="false" aria-label="Cycles de la vie : sous-menu"><i></i></button></div>
+    <div class="msub" hidden><a href="cycles.html#naissance" data-en="Birth">Naissance</a><a href="cycles.html#bar-mitsva" data-en="Bar &amp; Bat Mitzvah">Bar &amp; Bat Mitsva</a><a href="cycles.html#mariage" data-en="Wedding">Mariage</a><a href="cycles.html#kaddich" data-en="Kaddish">Kaddich</a><a href="cycles.html#yizkor" data-en="Yizkor">Yizkor</a><a href="cycles.html#salle" data-en="Hall rental">Location de la salle</a><a href="cycles.html#convertisseur" data-en="Date converter">Convertisseur de date</a></div>
+    <div class="mrow"><a href="touristes.html" data-en="Visitors">Touristes</a><button type="button" class="mtg" aria-expanded="false" aria-label="Touristes : sous-menu"><i></i></button></div>
+    <div class="msub" hidden><a href="touristes.html#manger" data-en="Eat kosher">Manger cacher</a><a href="touristes.html#synagogues" data-en="Synagogues">Synagogues</a><a href="touristes.html#mikve" data-en="Mikveh">Mikvé</a><a href="touristes.html#shabbat" data-en="Shabbat meals">Repas de Chabbat</a><a href="touristes.html#offices" data-en="Shabbat services">Offices de Chabbat</a></div>
+  </nav>
+  <div class="mbtns">
+    <a class="btn btn-or" href="https://bethloubavitchb.kehila.io/shabbat" target="_blank" rel="noopener" data-en="Book a Shabbat meal">Réserver un repas de Chabbat</a>
+    <a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a>
+  </div>
+</div>
+
+<main id="top">
+  <section class="phero">
+    <img id="par" src="img/hero-qsn.jpg" alt="La ménorah de Hanoucca devant la colonne de Juillet, place de la Bastille">
+    <div class="phero-in pad">
+      <h1><span data-en="About">Qui</span><b data-en="us?">sommes-nous ?</b></h1>
+    </div>
+  </section>
+
+  <section class="intro pad">
+    <div class="rv"><div class="k" data-en="About">À propos</div><h2 class="h2"><span data-en="A place">Une place</span><b data-en="for everyone">pour chacun</b></h2></div>
+    <div class="rv"><p class="lead" data-en="Located in Paris’s 11th arrondissement, in the heart of the Bastille neighborhood, the Beth Chabad Loubavitch Bastille is a place of meeting, study and sharing, open to all.">Situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, le Beth ‘Habad Loubavitch Bastille est un lieu de rencontre, d’étude et de partage ouvert à tous.</p>
+    <p data-en="Men and women, children, students, families, professionals and visitors passing through find a warm and authentic setting to discover, deepen and fully live Judaism.">Hommes et femmes, enfants, étudiants, familles, professionnels ou visiteurs de passage y trouvent un cadre chaleureux et authentique pour découvrir, approfondir et vivre pleinement le judaïsme.</p></div>
+  </section>
+
+  <section class="fd pad">
+    <div class="im"><img src="img/fondateurs.jpg" alt="Rav Levi et Beila Arnauve, place de la Bastille"></div>
+    <div class="tx pad rv"><div class="k" data-en="The founders">Les fondateurs</div>
+      <h2><span style="display:block;margin:0;font-size:inherit;font-weight:900;letter-spacing:0;color:inherit" data-en="Rabbi Levi &amp; Beila Arnauve">Rav Levi &amp; Beila Arnauve</span><span data-en="Shluchim of the Lubavitcher Rebbe">Chlouhim du Rabbi de Loubavitch</span></h2>
+      <p data-en="Founded by Rabbi Levi &amp; Beila Arnauve, Shluchim (emissaries) of the Lubavitcher Rebbe, this Jewish community center aims to pass on the values of Judaism and to meet everyone’s spiritual, cultural and social needs, in a spirit of openness, kindness and transmission.">Fondé par le Rav Levi &amp; Beila Arnauve, Chlouhim (émissaires) du Rabbi de Loubavitch, ce centre communautaire juif a pour vocation de transmettre les valeurs du judaïsme et de répondre aux besoins spirituels, culturels et sociaux de chacun, dans un esprit d’ouverture, de bienveillance et de transmission.</p></div>
+  </section>
+
+  <section class="num"><img class="globe" src="img/terre.webp" alt="" aria-hidden="true"><div class="pad">
+    <div class="k" data-en="A worldwide network">Un réseau mondial</div>
+    <h3 data-en="The Beth Chabad Loubavitch Bastille is one of the <b>Rebbe’s emissaries present around the world.</b>">Le Beth ‘Habad Loubavitch Bastille s’inscrit parmi les <b>délégués du Rabbi présents dans le monde entier.</b></h3>
+    <div class="ng" id="ng">
+      <div><div class="v"><span class="cnt" data-to="7136">7 136</span><sup>+</sup></div><div class="l" data-en="Emissaries of the Rebbe">Délégués du Rabbi</div></div>
+      <div><div class="v"><span class="cnt" data-to="5">5</span></div><div class="l" data-en="Continents">Continents</div></div>
+      <div><div class="v"><span class="cnt" data-to="100">100</span><sup>+</sup></div><div class="l" data-en="Countries">Pays</div></div>
+      <div><div class="v"><span class="cnt" data-to="1000">1 000</span><sup>+</sup></div><div class="l" data-en="Cities">Villes</div></div>
+    </div></div></section>
+
+  <section class="off pad">
+    <h2 class="titre"><span data-en="All year">Tout au long</span> <b data-en="round">de l’année</b></h2>
+    <div class="sub" data-en="What we offer everyone">Ce que nous proposons à chacun</div>
+    <div class="og"><a class="oc" href="activites.html#repas"><span class="bgp" aria-hidden="true"><img src="img/ph-chabbat.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">01</span><span class="t" data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#repas"><span class="bgp" aria-hidden="true"><img src="img/act-fetes.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">02</span><span class="t" data-en="Jewish holiday celebrations">Célébrations des fêtes juives</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="agenda.html"><span class="bgp" aria-hidden="true"><img src="img/ph-offices.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">03</span><span class="t" data-en="Services and prayers">Offices et prières</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#etude"><span class="bgp" aria-hidden="true"><img src="img/act-cours.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">04</span><span class="t" data-en="Torah and Jewish thought classes">Cours de Torah et de pensée juive</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#enfants"><span class="bgp" aria-hidden="true"><img src="img/act-enfants.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">05</span><span class="t" data-en="Talmud Torah, Gan Israel and children's activities">Talmud Torah, Gan Israël et activités pour enfants</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#cteen"><span class="bgp" aria-hidden="true"><img src="img/act-ados.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">06</span><span class="t" data-en="Activities for teens and students">Activités pour adolescents et étudiants</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#femmes"><span class="bgp" aria-hidden="true"><img src="img/act-femmes.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">07</span><span class="t" data-en="Evenings and programs for women">Soirées et programmes dédiés aux femmes</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="cycles.html#bar-mitsva"><span class="bgp" aria-hidden="true"><img src="img/act-mariage-houppa.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">08</span><span class="t" data-en="Wedding, Bar Mitzvah &amp; Bat Mitzvah preparation">Préparation au mariage, Bar Mitsva &amp; Bat Mitsva</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#tefiline"><span class="bgp" aria-hidden="true"><img src="img/ph-tefiline.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">09</span><span class="t" data-en="Checking and purchase of tefillin and mezuzot">Vérification et acquisition de téfilines et mezouzot</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#cantine"><span class="bgp" aria-hidden="true"><img src="img/ph-cantine.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">10</span><span class="t" data-en="Kosher canteen">Cantine cacher</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#social"><span class="bgp" aria-hidden="true"><img src="img/ph-social.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">11</span><span class="t" data-en="Social support for families in need">Aide sociale aux familles en difficulté</span><span class="ar3" aria-hidden="true">↗</span></a><a class="oc" href="activites.html#bichvileh"><span class="bgp" aria-hidden="true"><img src="img/act-social.jpg" alt="" loading="lazy" style="object-position:50% 45%"></span><span class="n">12</span><span class="t" data-en="Postnatal support for mothers">Accompagnement et soutien aux mamans en période postnatale</span><span class="ar3" aria-hidden="true">↗</span></a></div>
+    <p class="close rv" data-en="Through these cultural, religious and social activities, Judaism comes alive in a friendly, accessible and inspiring atmosphere.">À travers ces activités culturelles, cultuelles et sociales, le judaïsme prend vie dans une atmosphère conviviale, accessible et inspirante.</p>
+    <div class="allact rv"><a class="btn btn-contour-noir" href="activites.html" data-en="All our activities">Toutes nos activités</a></div>
+  </section>
+
+  <section class="eng">
+    <figure class="eng-ph"><img src="img/facade.jpg" alt="La façade du Beth Loubavitch Bastille, 37 rue Popincourt"></figure>
+    <div class="eng-tx rv">
+      <img class="mk" src="img/mark-terre.svg" alt="">
+      <div class="k" data-en="Our commitment">Notre engagement</div>
+      <blockquote data-en="“We welcome everyone with kindness and without judgment, to bring to life an authentic, vibrant Judaism that is accessible to all.”">« Nous accueillons chacun avec bienveillance et sans jugement, afin de faire vivre un judaïsme authentique, vivant et accessible à tous. »</blockquote>
+      <p data-en="The Beth Chabad follows the momentum initiated by the Lubavitcher Rebbe, who placed love for every Jew, attention to each person and responsibility toward others at the heart of his vision.">Le Beth Habad s’inscrit dans l’élan initié par le Rabbi de Loubavitch, qui a placé l’amour de chaque Juif, l’attention portée à chacun et la responsabilité envers autrui au cœur de sa vision.</p>
+      <div class="ctc">
+        <button type="button" class="btn btn-terre" id="ctcBtn" aria-expanded="false" aria-controls="ctcMenu" data-en="Contact us">Nous contacter</button>
+        <div class="ctc-m" id="ctcMenu" hidden>
+          <a href="https://wa.me/33142523041?text=Bonjour%2C%20je%20souhaiterais%20avoir%20des%20renseignements%20sur%20le%20Beth%20Loubavitch%20Bastille." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span><b data-en="WhatsApp">WhatsApp</b><em data-en="Send us a message">Nous envoyer un message</em></span><i>→</i></a>
+          <a href="mailto:levi.arnauve@loubavitch.fr?subject=Demande%20de%20renseignements%20%E2%80%94%20Beth%20Loubavitch%20Bastille"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span><b data-en="E-mail">E-mail</b><em>levi.arnauve@loubavitch.fr</em></span><i>→</i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="asso pad">
+    <h2 class="h2 rv"><span data-en="A non-profit">Une association</span><b data-en="association">à but non lucratif</b></h2>
+    <div class="rv"><p data-en="The Beth Chabad is not funded by the worldwide Chabad movement, but by donations from individuals. People like you, personally or through their company, allow us to develop and carry out our activities and actions every day.">Le Beth ‘Habad n'est pas financé par le mouvement mondial de ‘Habad, mais par des dons de particuliers. Ce sont des personnes comme vous, à titre personnel ou à travers leur entreprise, qui nous permettent de développer et d’assurer nos activités et nos actions au quotidien.</p>
+    <div class="cerfa"><i>✓</i><span data-en="Instant CERFA tax receipt">Reçu CERFA instantané</span></div>
+    <div class="btns"><a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a><a class="btn btn-contour-terre" href="activites.html" data-en="Discover our activities">Découvrir nos activités</a></div></div>
+  </section>
+  <section class="tfaq" id="faq-page"><div class="pad in">
+    <div><div class="tk" data-en="Questions">Questions</div><h2 class="th2"><span data-en="Frequently asked">Questions</span><b data-en="questions">fréquentes</b></h2></div>
+    <div class="fqs">
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Où trouver un Beth ‘Habad Loubavitch à Paris ?</span><i></i></button><div class="ans"><div><p>Le Beth Habad Loubavitch Bastille est situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, à proximité des métros Richard-Lenoir (ligne 5) et Saint-Ambroise (ligne 9).</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Le centre est-il ouvert à tous ?</span><i></i></button><div class="ans"><div><p>Le Beth Habad Loubavitch Bastille est ouvert à tous. Chacun est accueilli avec bienveillance, dans une atmosphère conviviale et respectueuse.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Faut-il être pratiquant pour venir au Beth ‘Habad Paris 11 Bastille ?</span><i></i></button><div class="ans"><div><p>Non, aucune pratique particulière n’est requise. Chacun peut venir comme il est, à son rythme, sans distinction de niveau de pratique.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Le Beth Habad Loubavitch Bastille est-il sécurisé ?</span><i></i></button><div class="ans"><div><p>La sécurité est notre priorité. Nous travaillons en lien étroit avec les services de police, les activités nécessitent une inscription préalable et les locaux sont équipés de dispositifs de vidéoprotection.</p></div></div></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="pad">
+    <div class="ft">
+      <div class="lg"><img src="img/logo-blanc.svg" alt="Beth Loubavitch Paris 11 · Bastille"><p>Rav Levi &amp; Beila Arnauve</p><a class="btn btn-ig" href="https://www.instagram.com/beth_loubavitch_bastille" target="_blank" rel="noopener" aria-label="S’abonner sur Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><span data-en="Follow us">S’abonner</span></a></div>
+      <div><h4 data-en="Find us">Nous trouver</h4><ul><li><a href="https://www.google.com/maps/search/?api=1&amp;query=37+rue+Popincourt+75011+Paris" target="_blank" rel="noopener">37 rue Popincourt<br>75011 Paris</a></li><li>Métro Richard-Lenoir · ligne 5</li><li>Métro Saint-Ambroise · ligne 9</li></ul></div>
+      <div><h4 style="color:var(--or)" data-en="The site">Le site</h4><ul><li><a href="qui-sommes-nous.html" data-en="About us">Qui sommes-nous</a></li><li><a href="activites.html" data-en="Activities">Activités</a></li><li><a href="agenda.html" data-en="Events">Agenda</a></li><li><a href="cycles.html" data-en="Life cycle">Cycles de la vie</a></li><li><a href="cycles.html#salle" data-en="Hall rental">Location de la salle</a></li><li><a href="#" data-en="Gallery">Galerie</a></li></ul></div>
+      <div><h4 style="color:var(--terre)">Contact</h4><ul><li><a href="tel:+33142523041">+33 1 42 52 30 41</a></li><li><a href="https://wa.me/33142523041" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:levi.arnauve@loubavitch.fr" style="word-break:break-all">levi.arnauve@loubavitch.fr</a></li><li><a href="https://www.instagram.com/beth_loubavitch_bastille" target="_blank" rel="noopener">Instagram</a></li></ul><a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a></div>
+    </div>
+    <div class="fb"><span data-en="© 2026 Beth Loubavitch Bastille — Non-profit association">© 2026 Beth Loubavitch Bastille — Association à but non lucratif</span><nav class="legal" aria-label="Informations légales"><a href="#" data-en="Legal notice">Mentions légales</a><a href="#" data-en="Privacy policy">Politique de confidentialité</a><button type="button" id="cookieOpen" data-en="Cookies">Cookies</button><a href="admin.html">Admin</a></nav></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/33142523041" target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .4-.1.6l-.4.5c-.1.1-.1.3 0 .5.5.9 1.3 1.7 2.2 2.2.2.1.4.1.5 0l.5-.5c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5v.4c0 .4-.2.8-.6 1-.6.3-1.4.4-2.3.1-2.3-.8-4.1-2.6-4.9-4.9-.3-.9-.2-1.7.3-2.4z" fill="currentColor"/></svg>
+</a>
+
+<div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-en="We use cookies to measure site traffic. You can accept or decline.">Nous utilisons des cookies pour mesurer la fréquentation du site. Vous pouvez les accepter ou les refuser.</p>
+  <div class="cb"><button type="button" class="btn btn-contour-noir" id="cookieNo" data-en="Decline">Refuser</button><button type="button" class="btn btn-or" id="cookieYes" data-en="Accept">Accepter</button></div>
+</div>
+<div hidden>
+</div>
+
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ---- Apparition douce ---- */
+const rvs=[...document.querySelectorAll('.rv')];
+if('IntersectionObserver' in window&&!reduce){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});rvs.forEach(r=>io.observe(r));}else rvs.forEach(r=>r.classList.add('in'));
+setTimeout(()=>rvs.forEach(r=>r.classList.add('in')),4000);
+/* ---- Chiffres qui défilent ---- */
+const fmt=n=>n.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g,' ');
+const cnts=[...document.querySelectorAll('.cnt')];
+function run(){cnts.forEach(c=>{const to=+c.dataset.to,t0=performance.now(),d=1400;function f(t){const p=Math.min(1,(t-t0)/d),e=1-Math.pow(1-p,3);c.textContent=fmt(Math.round(to*e));if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);});}
+if(!reduce&&'IntersectionObserver' in window){let seen=false;const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!seen){seen=true;run();}else if(!e.isIntersecting)seen=false;}),{threshold:.4});io2.observe(document.getElementById('ng'));}
+/* ---- Léger parallaxe photo ---- */
+const par=document.getElementById('par');
+if(!reduce){let tk=false;addEventListener('scroll',()=>{if(tk)return;tk=true;requestAnimationFrame(()=>{const y=scrollY;par.style.transform=`translateY(${Math.min(120,y*0.25)}px) scale(1.06)`;tk=false;});},{passive:true});}
+/* ---- Menu mobile ---- */
+const mm=document.getElementById('mmenu'),bg=document.getElementById('burger');
+function menu(open){mm.hidden=!open;bg.setAttribute('aria-expanded',open);document.body.classList.toggle('noscroll',open);if(open)document.getElementById('mclose').focus();else bg.focus();}
+bg.onclick=()=>menu(true);document.getElementById('mclose').onclick=()=>menu(false);
+mm.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!mm.hidden)menu(false);});
+
+/* ---- Cookies ---- */
+const ck=document.getElementById('cookie');
+function ckGet(){try{return localStorage.getItem('bl-cookies')}catch(e){return null}}
+function ckSet(v){try{localStorage.setItem('bl-cookies',v)}catch(e){}ck.hidden=true;}
+if(!ckGet())ck.hidden=false;
+document.getElementById('cookieYes').onclick=()=>ckSet('ok');
+document.getElementById('cookieNo').onclick=()=>ckSet('no');
+document.getElementById('cookieOpen').onclick=()=>{ck.hidden=false;};
+
+/* ---- FR / EN ---- */
+const nodes=[...document.querySelectorAll('[data-en]')];nodes.forEach(n=>n.dataset.fr=n.innerHTML);
+function setLang(l){document.documentElement.lang=l;nodes.forEach(n=>n.innerHTML=l==='en'?n.dataset.en:n.dataset.fr);
+  document.getElementById('lang-fr').setAttribute('aria-pressed',l==='fr');document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');}
+document.getElementById('lang-fr').onclick=()=>setLang('fr');document.getElementById('lang-en').onclick=()=>setLang('en');
+})();
+</script>
+
+<script>
+(function(){
+document.querySelectorAll('.ddw').forEach(w=>{const b=w.querySelector('.ddt');if(!b)return;b.addEventListener('click',e=>{e.stopPropagation();const o=!w.classList.contains('open');document.querySelectorAll('.ddw.open').forEach(x=>{x.classList.remove('open');x.querySelector('.ddt').setAttribute('aria-expanded','false');});if(o){w.classList.add('open');b.setAttribute('aria-expanded','true');}});});
+document.addEventListener('click',e=>{if(!e.target.closest('.ddw'))document.querySelectorAll('.ddw.open').forEach(x=>{x.classList.remove('open');x.querySelector('.ddt').setAttribute('aria-expanded','false');});});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.ddw.open').forEach(x=>{x.classList.remove('open');x.querySelector('.ddt').setAttribute('aria-expanded','false');});});
+document.querySelectorAll('.ddm a').forEach(a=>a.addEventListener('click',()=>{const w=a.closest('.ddw');w.classList.remove('open');w.querySelector('.ddt').setAttribute('aria-expanded','false');}));
+document.querySelectorAll('.mtg').forEach(b=>b.addEventListener('click',()=>{const s=b.parentElement.nextElementSibling,o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o);s.hidden=!o;}));
+})();
+</script>
+<script>
+document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>{const qa=b.parentElement,open=!qa.classList.contains('open');qa.parentElement.querySelectorAll(':scope>.qa').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false');});if(open){qa.classList.add('open');b.setAttribute('aria-expanded','true');}});
+</script>
+<script>
+(function(){function al(){var ig=document.querySelector('footer .lg .btn-ig'),dn=document.querySelector('footer .ft .btn-terre[data-en="Donate"]');if(!ig||!dn)return;ig.style.marginTop='10px';
+var d=dn.getBoundingClientRect().top-ig.getBoundingClientRect().top;if(d>0&&d<220)ig.style.marginTop=(10+d)+'px';}
+addEventListener('load',al);addEventListener('resize',al);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(al);})();
+</script>
+<script>
+(function(){var b=document.getElementById('ctcBtn'),m=document.getElementById('ctcMenu');if(!b)return;
+b.addEventListener('click',function(e){e.stopPropagation();var o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',o);});
+document.addEventListener('click',function(e){if(!m.hidden&&!e.target.closest('.ctc')){m.hidden=true;b.setAttribute('aria-expanded','false');}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){m.hidden=true;b.setAttribute('aria-expanded','false');b.focus();}});})();
+</script>
+</body>
+</html>

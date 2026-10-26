@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="img/mark-terre.svg">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* ---------- Agenda ---------- */
+.ahero{position:relative;height:clamp(300px,25vw,380px);background:#000;color:#fff;overflow:hidden;display:flex;align-items:flex-end}
+.ahero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.45) 45%,rgba(0,0,0,.15) 80%)}
+.ahero .in{position:relative;z-index:2;width:100%;padding-block:0 clamp(32px,4vw,60px)}
+.ahero .crumb{color:rgba(255,255,255,.75)}.ahero .crumb a:hover{color:#fff}.ahero .crumb b{color:var(--or)}
+.ahero h1{margin-top:clamp(10px,1.2vw,18px);font-size:clamp(52px,7.6vw,112px);line-height:.95;font-weight:900;text-transform:uppercase}
+.ahero .tg{margin-top:clamp(12px,1.4vw,20px);font-size:clamp(11px,1.15vw,17px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.wbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:clamp(36px,5.5vw,80px) clamp(24px,2.8vw,40px)}
+.wbar button{flex:none;width:48px;height:48px;border:1px solid #D6D9DD;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;color:#000;transition:border-color .2s,background .2s,color .2s}
+.wbar button:hover{background:var(--terre);border-color:var(--terre);color:#fff}
+.wbar .c{text-align:center;min-width:0}
+.wbar .t{font-size:clamp(19px,2.1vw,30px);font-weight:300;letter-spacing:.02em}.wbar .t b{font-weight:800}
+.wbar .h{margin-top:6px;font-size:clamp(10px,.9vw,13px);font-weight:600;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.wbar .now{margin-top:10px;background:none;border:0;padding:0 0 2px;width:auto;height:auto;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terre);border-bottom:1.5px solid var(--terre)}
+.wbar .now:hover{background:none;color:#000;border-color:#000}
+.days{border-top:1px solid #000;padding-bottom:clamp(60px,8vw,120px);transition:opacity .25s}
+.days.fade{opacity:0}
+.dr{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;padding:26px 0;border-bottom:1px solid #E3E5E8}
+.dd .w{font-size:20px;font-weight:800}.dd .he{margin-top:4px;font-size:13px;color:var(--ardoise)}
+.dr.sh .dd .w,.dr.yt .dd .w{color:var(--terre)}
+.dr.today{outline:2px solid var(--terre);outline-offset:-2px;margin-inline:-24px;padding-inline:24px;background:#FBF7F1;border-bottom-color:transparent}
+.items{display:flex;flex-direction:column;gap:12px}
+.it{display:grid;grid-template-columns:80px minmax(0,1fr) auto;gap:20px;align-items:baseline}
+.it .tm{font-size:17px;font-weight:700;color:var(--ardoise);font-variant-numeric:tabular-nums}
+.it .nm{font-size:19px;font-weight:600}
+.it.fete .nm{color:var(--terre)}
+.it.cal .nm{color:#8a6a2a}
+.it .lk{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terre)}
+.it .lk:hover{color:#000}
+.empty{font-size:17px;color:#B3B9BF}
+.prog{background:var(--creme);padding-block:clamp(48px,5.6vw,80px) clamp(54px,6.2vw,90px)}
+.prog .hd2{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.prog h2{font-size:clamp(28px,3vw,44px);line-height:1.05;text-transform:uppercase}.prog h2 span{font-weight:200}.prog h2 b{font-weight:900;color:var(--terre)}
+.prog .hd2 p{margin:0;font-size:15px;color:var(--ardoise);max-width:380px;line-height:1.5}
+.pg{margin-top:40px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #000}
+.pc{padding:24px 24px 0 0}.pc+.pc{padding-left:24px;border-left:1px solid #E2DACB}
+.pc .d{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terre)}
+.pc .r{margin-top:16px;display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;font-size:16px;line-height:1.35}
+.pc .r b{font-weight:700;color:var(--ardoise);font-variant-numeric:tabular-nums}
+@media (max-width:760px){
+  .ahero{height:330px}
+  .ahero::after{background:linear-gradient(to top,#000 0%,#000 46%,rgba(0,0,0,.6) 62%,rgba(0,0,0,0) 82%)}
+  .ahero .in{padding-block:0 30px}
+  .dr{grid-template-columns:1fr;gap:10px;padding:20px 0}.dr.today{margin-inline:-12px;padding-inline:12px}.dd{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.dd .w{font-size:17px}.dd .he{margin-top:0;font-size:12px}
+  .it{grid-template-columns:56px minmax(0,1fr) auto;gap:12px}.it .tm{font-size:14px}.it .nm{font-size:15px}.it .lk{font-size:10px}
+  .wbar button{width:40px;height:40px}
+  .prog .hd2{flex-direction:column;align-items:flex-start;gap:10px}
+  .pg{grid-template-columns:1fr 1fr;margin-top:24px}.pc{padding:18px 12px 18px 0}.pc+.pc{padding-left:0;border-left:0}.pc:nth-child(even){padding-left:14px;border-left:1px solid #E2DACB}.pc:nth-child(n+3){border-top:1px solid #E2DACB}.pc .r{grid-template-columns:48px minmax(0,1fr);font-size:13px;margin-top:10px}
+}
+
+.ahero .sky{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ahero .twk{position:absolute;inset:0;width:100%;height:100%}
+.moonwrap{position:absolute;right:12%;top:50%;width:clamp(260px,22vw,360px);aspect-ratio:1;transform:translateY(-55%);animation:moonIn 2.4s cubic-bezier(.2,.7,.2,1) both}
+.moon{width:100%;height:100%;display:block;animation:moonDrift 26s ease-in-out infinite alternate;will-change:transform,filter}
+@keyframes moonIn{from{opacity:0;transform:translateY(-45%) scale(.92)}to{opacity:1;transform:translateY(-55%) scale(1)}}
+@keyframes moonDrift{0%{transform:scale(1) rotate(0deg);filter:brightness(1)}50%{filter:brightness(1.08)}100%{transform:scale(1.07) rotate(5deg) translate(-2%,1.5%);filter:brightness(1)}}
+.it.chab .nm,.it.chab .tm{color:var(--or);font-weight:700}
+.it.act .nm{color:var(--terre)}
+.it.fete .nm{color:#000;font-weight:800}
+.it.cal .nm{color:var(--ardoise)}
+@media (max-width:760px){.moonwrap{right:-50px;top:-40px;width:230px;transform:none;animation:moonInM 2.4s cubic-bezier(.2,.7,.2,1) both}@keyframes moonInM{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}}
+@media (prefers-reduced-motion:reduce){.moonwrap,.moon{animation:none}}
+
+/* ---------- Touristes ---------- */
+.thero{position:relative;height:clamp(380px,36vw,560px);background:#000;color:#fff;overflow:hidden;display:flex;align-items:flex-end}
+.thero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 35%}
+.thero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#000 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.1) 85%),linear-gradient(90deg,rgba(0,0,0,.6),rgba(0,0,0,0) 55%)}
+.thero .in{position:relative;z-index:2;width:100%;padding-block:0 clamp(34px,4.4vw,64px)}
+.thero .crumb{color:rgba(255,255,255,.75)}.thero .crumb b{color:var(--or)}
+.thero h1{margin-top:clamp(10px,1.2vw,18px);font-size:clamp(44px,7vw,108px);line-height:.96;font-weight:900;text-transform:uppercase}
+.thero .tg{margin-top:clamp(12px,1.4vw,20px);font-size:clamp(11px,1.15vw,17px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.tk{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--terre)}
+.th2{font-size:clamp(30px,3.6vw,54px);line-height:1.04;text-transform:uppercase;margin:12px 0 0}.th2 span{font-weight:200;display:block}.th2 b{font-weight:900;display:block}
+.duo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:1px;background:#E3E5E8;border:1px solid #E3E5E8;margin-top:clamp(40px,6vw,90px)}
+.duo>div{background:#fff;padding:clamp(28px,3.6vw,54px)}
+.duo .chb{background:var(--creme)}
+.duo p{margin:20px 0 0;font-size:clamp(15px,1.2vw,17px);line-height:1.6;color:#2b2f33;font-weight:300;max-width:540px}
+.tms{display:flex;gap:clamp(30px,4vw,56px);margin-top:28px}
+.tms .l{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ardoise)}
+.tms .v{margin-top:6px;font-size:clamp(38px,3.6vw,54px);font-weight:900;color:var(--or);line-height:1;font-variant-numeric:tabular-nums}
+.tms .s{margin-top:6px;font-size:13px;color:var(--ardoise)}
+.duo .btn{margin-top:30px}
+.sm{margin-top:14px;font-size:13px;color:var(--ardoise)}
+.ad{margin-top:20px;font-size:clamp(21px,1.9vw,27px);font-weight:800;line-height:1.25}
+.ln2{margin-top:22px;display:grid;gap:12px;font-size:15px}
+.ln2 div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #E3E5E8;padding-bottom:12px}
+.ln2 span{color:var(--ardoise)}.ln2 b{font-weight:700;text-align:right}
+.bl2{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.bl2 .btn{margin-top:0}
+.btn.btn-ln{border:1px solid #000;color:#000;background:#fff}.btn.btn-ln:hover{background:#000;color:#fff}
+.adrs{padding-block:clamp(60px,8vw,120px) clamp(56px,7.6vw,110px)}
+.adrs .hd{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.adrs .hd p{margin:0;max-width:440px;font-size:16px;line-height:1.55;color:var(--ardoise)}
+.tabs{margin-top:clamp(28px,3.2vw,46px);display:flex;border-bottom:1px solid #000;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;background:none;border:0;padding:16px 22px;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ardoise);border-bottom:3px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
+.tabs button:hover{color:#000}.tabs button[aria-selected="true"]{color:#000;border-bottom-color:var(--terre)}
+.subs{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.subs button{height:38px;padding:0 16px;border:1px solid #E3E5E8;background:#fff;font-size:14px;font-weight:600}
+.subs button[aria-pressed="true"]{background:#000;color:#fff;border-color:#000}
+.cg{margin-top:34px;border-top:1px solid #000;transition:opacity .25s}
+.cg.fade{opacity:0}
+.cd{display:grid;grid-template-columns:56px 200px minmax(0,1.3fr) minmax(0,1fr) 190px;gap:clamp(18px,2.4vw,40px);align-items:center;padding:22px 0;border-bottom:1px solid #E3E5E8;transition:background .3s,padding .3s}
+.cd:hover{background:var(--creme);padding-inline:20px}
+.cd .no{font-size:13px;font-weight:700;letter-spacing:.16em;color:var(--or)}
+.cd .pi{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--creme);display:flex;align-items:center;justify-content:center}
+.cd .pi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.cd:hover .pi img{transform:scale(1.06)}
+.cd .pi .ini{font-size:56px;font-weight:200;color:var(--or)}
+.cd .ty{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--terre)}
+.cd .nm{margin-top:6px;font-size:clamp(22px,2vw,30px);line-height:1.05;font-weight:900;text-transform:uppercase;transition:color .3s}
+.cd:hover .nm{color:var(--terre)}
+.cd .ad2{display:inline-block;margin-top:10px;font-size:15px;border-bottom:1px solid #C9CDD2}.cd .ad2:hover{border-color:#000}
+.cd .hr2{font-size:14px;line-height:1.55;color:var(--ardoise)}.cd .hr2 b{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#000;margin-bottom:4px}
+.cd .ft2{display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-size:14px;font-weight:700;text-align:right}
+.cd .ft2 .go{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px;border:1px solid #000;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s}
+.cd .ft2 .go:hover{background:var(--terre);border-color:var(--terre);color:#fff}
+.mc{margin-top:34px;font-size:15px;color:var(--ardoise)}.mc a{color:var(--terre);border-bottom:1.5px solid var(--terre)}
+.tfaq{background:#EDEEF0}
+.tfaq .in{padding-block:clamp(50px,6vw,90px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:clamp(24px,4vw,60px)}
+@media (max-width:1100px){.cd{grid-template-columns:44px 160px minmax(0,1fr) 170px}.cd .hr2{display:none}.duo{grid-template-columns:1fr}.tfaq .in{grid-template-columns:1fr}}
+@media (max-width:760px){.cd{grid-template-columns:104px minmax(0,1fr);gap:16px;padding:18px 0;align-items:start}.cd:hover{padding-inline:0;background:none}.cd .no{display:none}.cd .pi{aspect-ratio:1}.cd .nm{font-size:20px;margin-top:4px}.cd .ad2{font-size:14px;margin-top:8px}.cd .hr2{display:block;grid-column:1/-1;font-size:13px}.cd .hr2 b{display:none}.cd .ft2{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}.cd .ft2 .go{height:40px}.adrs .hd{flex-direction:column;align-items:flex-start;gap:12px}.tabs button{padding:12px 12px;font-size:12px}.bl2{flex-direction:column}.bl2 .btn,.duo .btn{width:100%}.tms .v{font-size:38px}}
+
+.shb{position:relative;background:#000;color:#fff;overflow:hidden;margin-top:0}
+.shb>img{position:absolute;top:0;right:0;height:100%;width:62%;object-fit:cover;object-position:35% 88%}
+.shb::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000 38%,rgba(0,0,0,.75) 52%,rgba(0,0,0,.15) 78%,rgba(0,0,0,.05)),linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0) 30%)}
+.shb .in{position:relative;z-index:2;padding-block:clamp(60px,7vw,110px);max-width:none}
+.shb .in>*{max-width:560px}
+.shb .th2{color:#fff}
+.shb p{margin:20px 0 0;font-size:clamp(15px,1.2vw,17px);line-height:1.6;color:#d4d8dc;font-weight:300}
+.shb .tms .l{color:#aab2ba}.shb .tms .s{color:#aab2ba}
+.ofc{margin-top:30px;border-top:1px solid #2a2f35}
+.ofc>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid #2a2f35}
+.ofc .od{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#aab2ba;padding-top:3px}
+.ofc .ot b{display:block;font-size:20px;font-weight:800;color:var(--or)}.ofc .ot span{display:block;margin-top:2px;font-size:15px;color:#fff}
+.shb .btn{margin-top:30px}.shb .sm{color:#aab2ba}
+.rep{background:#fff;padding-block:clamp(44px,5vw,76px)}
+.rep .tk{margin-bottom:clamp(18px,2vw,28px)}
+.rp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid #000;border-bottom:1px solid #000}
+.rp a{position:relative;display:flex;flex-direction:column;gap:10px;padding:clamp(22px,2.4vw,34px) clamp(16px,1.6vw,24px) clamp(24px,2.6vw,36px);border-left:1px solid #E3E5E8;transition:background .25s}
+.rp a:first-child{border-left:0}
+.rp a:hover{background:var(--creme)}
+.rp .n{font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--or)}
+.rp .w{font-size:clamp(19px,1.75vw,26px);line-height:1.08;font-weight:900;text-transform:uppercase}
+.rp .w span{display:block;font-weight:200}
+.rp .d{font-size:14px;line-height:1.45;color:var(--ardoise)}
+.rp .ar{margin-top:auto;padding-top:10px;font-size:22px;color:var(--terre);transition:transform .25s}
+.rp a:hover .ar{transform:translateX(6px)}
+#adresses,#shabbat,#offices{scroll-margin-top:90px}
+.shb .in>.bts{max-width:none}.shb .bts{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.shb .bts .btn{margin-top:0}
+@media (max-width:1100px){.rp{grid-template-columns:repeat(3,minmax(0,1fr))}.rp a:nth-child(4){border-left:0}.rp a:nth-child(n+4){border-top:1px solid #E3E5E8}}
+@media (max-width:760px){.rp{grid-template-columns:1fr}.rp a{flex-direction:row;align-items:center;gap:16px;padding:18px 4px;border-left:0;border-top:1px solid #E3E5E8}.rp a:first-child{border-top:0}.rp .d{display:none}.rp .w{font-size:20px;flex:1}.rp .w span{display:inline;margin-left:.28em}.rp .n{width:22px}.rp .ar{margin:0;padding:0}.shb .bts{flex-direction:column}.shb .bts .btn{width:100%}}
+.find{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) auto;gap:clamp(20px,4vw,60px);align-items:center;padding-block:clamp(36px,4vw,56px);border-bottom:1px solid #E3E5E8}
+.find .ad{margin-top:8px;font-size:clamp(19px,1.6vw,24px)}
+.find .ln2{margin-top:0}.find .bl2{margin-top:0}
+@media (max-width:1100px){.find{grid-template-columns:1fr}}
+@media (max-width:760px){
+ .shb>img{position:relative;width:100%;height:260px;display:block;object-position:30% 80%}
+ .shb::after{background:linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 120px,#000 260px)}
+ .shb .in{padding-block:0 50px;margin-top:-40px}
+ .ofc>div{grid-template-columns:1fr;gap:4px}
+ .shb .btn{width:100%}
+}
+.ddw{position:relative;display:flex;align-items:center}
+.ddw>a{display:inline-flex;align-items:center;gap:6px}
+.ddw>a i.x{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.ddt{background:none;border:0;padding:8px 4px;margin-left:2px;display:inline-flex;align-items:center;color:inherit;cursor:pointer}
+.ddt i{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.ddt:hover{color:var(--terre)}
+.ddw.open .ddt i{transform:translateY(1px) rotate(225deg)}
+.ddm{position:absolute;top:100%;left:-22px;padding-top:18px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .25s,visibility .25s;z-index:40}
+.ddw.open .ddm{opacity:1;visibility:visible;transform:none}
+@media (hover:hover) and (pointer:fine){.ddw:hover .ddm{opacity:1;visibility:visible;transform:none}.ddw:hover .ddt i{transform:translateY(1px) rotate(225deg)}}
+
+.ddm div{min-width:270px;background:#fff;border-top:2px solid var(--terre);box-shadow:0 18px 40px rgba(0,0,0,.08);padding:8px 0}
+nav.menu .ddm a{display:flex;justify-content:space-between;gap:20px;padding:13px 22px;font-size:14px;font-weight:600;letter-spacing:.04em;color:#000;transition:background .2s,color .2s}
+nav.menu .ddm a::after{content:"→";position:static;height:auto;background:none;transform:none;color:var(--terre);transition:transform .25s}
+nav.menu .ddm a:hover{background:var(--creme);color:var(--terre)}nav.menu .ddm a:hover::after{transform:translateX(4px)}
+.mmenu nav .mrow{display:flex;align-items:stretch;border-bottom:1px solid #d9dbde}
+.mmenu nav .mrow>a{flex:1;border-bottom:0}.mmenu nav .mrow>a::after{content:none}
+.mtg{flex:none;width:52px;background:none;border:0;border-left:1px solid #eceef0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--terre)}
+.mtg i{position:relative;width:16px;height:16px}.mtg i::before,.mtg i::after{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:currentColor;transition:transform .3s}.mtg i::after{transform:rotate(90deg)}
+.mtg[aria-expanded="true"] i::after{transform:rotate(0)}
+.mmenu nav .msub[hidden]{display:none}
+.mmenu nav .msub{display:flex;flex-direction:column;border-bottom:1px solid #d9dbde;padding:4px 0 12px 18px}
+.mmenu nav .msub a{padding:10px 0;border:0;font-size:16px;font-weight:600;text-transform:none;color:var(--ardoise)}
+.mmenu nav .msub a::after{content:"→"}
+/* ---------- Cycles de la vie ---------- */
+.cvh{padding-top:clamp(40px,5vw,80px);padding-bottom:clamp(50px,6vw,96px)}
+.cvt{margin:clamp(18px,2vw,30px) 0 0;font-size:clamp(52px,8.4vw,150px);line-height:.92;text-transform:uppercase;letter-spacing:-.01em}
+.cvt span{display:block;font-weight:200}.cvt b{display:block;font-weight:900}
+.cvt span,.cvt b{opacity:0;transform:translateY(40px);animation:cvUp 1s cubic-bezier(.2,.7,.2,1) forwards}.cvt b{animation-delay:.15s}
+.cvtg{margin-top:clamp(16px,1.8vw,26px);font-size:clamp(12px,1.15vw,17px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase;opacity:0;animation:cvUp 1s .3s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes cvUp{to{opacity:1;transform:none}}
+.fil{position:relative;margin-top:clamp(50px,6vw,96px);display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.fil .fl{position:absolute;left:0;right:0;top:7px;height:1px;background:#000;transform:scaleX(0);transform-origin:left;animation:cvLine 1.6s .5s cubic-bezier(.6,.05,.3,1) forwards}
+@keyframes cvLine{to{transform:scaleX(1)}}
+.fil a{position:relative;display:flex;flex-direction:column;gap:6px;padding-right:16px;opacity:0;animation:cvUp .8s cubic-bezier(.2,.7,.2,1) forwards}
+.fil a:nth-of-type(1){animation-delay:.7s}.fil a:nth-of-type(2){animation-delay:.95s}.fil a:nth-of-type(3){animation-delay:1.2s}.fil a:nth-of-type(4){animation-delay:1.45s}.fil a:nth-of-type(5){animation-delay:1.7s}
+.fil .dot{width:15px;height:15px;background:#fff;border:1.5px solid #000;margin-bottom:18px;transition:background .3s,border-color .3s,transform .3s}
+.fil em{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--or)}
+.fil b{font-size:clamp(15px,1.3vw,20px);font-weight:800;text-transform:uppercase;transition:color .3s}
+.fil a:hover .dot,.fil a.on .dot{background:var(--terre);border-color:var(--terre);transform:rotate(45deg)}
+.fil a:hover b,.fil a.on b{color:var(--terre)}
+.no{font-size:clamp(70px,8vw,130px);font-weight:200;line-height:.8;color:var(--or);letter-spacing:-.02em;margin-bottom:clamp(14px,1.6vw,24px)}
+.st{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:clamp(36px,7vw,120px);align-items:center;padding-block:clamp(56px,7vw,110px);scroll-margin-top:80px}
+.st.rev .ph{order:2}
+.st+.st{border-top:1px solid #E3E5E8}
+.ph{margin:0;position:relative;aspect-ratio:5/4;overflow:hidden;background:var(--creme)}
+.ph img{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;transform:scale(1.12);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.ph.rv{opacity:1;transform:none;clip-path:inset(0 0 100% 0);transition:clip-path 1.2s cubic-bezier(.6,.05,.3,1)}
+.ph.rv.vu{clip-path:inset(0 0 0 0)}.ph.rv.vu img{transform:scale(1)}
+.tx p,.kl p{margin:22px 0 0;font-size:clamp(15px,1.2vw,18px);line-height:1.65;color:var(--ardoise);max-width:560px}
+.val{margin-top:10px;font-size:13px;font-style:italic;color:#9AA2AA}
+.chips{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{padding:8px 14px;border:1px solid #D6D9DD;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.bts{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.sm{margin-top:14px;font-size:13px;line-height:1.5;color:var(--ardoise);max-width:560px}
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.vu{opacity:1;transform:none}
+.kad{background:var(--creme);scroll-margin-top:80px}
+.kad .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,6vw,110px);padding-block:clamp(64px,8vw,130px)}
+.kad blockquote{margin:28px 0 0;font-size:clamp(21px,2vw,30px);line-height:1.35;font-weight:300;color:#000;max-width:560px;padding-left:22px;border-left:2px solid var(--or)}
+.qq{display:grid;gap:28px}
+.qq h3{margin:0;font-size:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--terre)}
+.qq p{margin:10px 0 0;font-size:16px;line-height:1.65;color:#2b3036}
+.kt{margin-top:40px}
+.kt .qa{border-color:#000}
+.kt .qa button{padding:22px 0;font-size:clamp(15px,1.15vw,18px)}
+.kt .qa .ans .kx p{padding:0;margin:0 0 12px;font-size:16px;line-height:1.7;color:#2b3036}.kx em{color:var(--terre);font-style:normal}.kt .qa .ans .kx p:last-child{margin-bottom:28px}
+.yz{padding-block:clamp(64px,8vw,130px);scroll-margin-top:80px}
+.yh{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.yh p{margin:0;max-width:460px;font-size:16px;line-height:1.6;color:var(--ardoise)}
+.yg{margin-top:clamp(36px,4vw,60px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #000}
+.yg>div{position:relative;padding:26px 24px 6px;border-left:1px solid #E3E5E8}
+.yg>div:first-child{border-left:0;padding-left:0}
+.yg .n{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.yg .d{margin-top:16px;font-size:clamp(26px,2.4vw,38px);font-weight:900;line-height:1;color:var(--or)}
+.yg .w{margin-top:8px;font-size:14px;color:var(--ardoise)}.yg .h{margin-top:2px;font-size:14px;font-weight:700;color:#000}
+.yg .nx{position:absolute;top:-1px;left:0;right:24px;height:3px;background:var(--terre)}.yg>div:not(:first-child) .nx{left:24px}
+.yg .nx::after{content:attr(data-l);position:absolute;right:0;top:10px;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--terre)}
+.adw{padding-block:clamp(10px,2vw,30px) clamp(56px,7vw,110px);scroll-margin-top:80px}
+.sal{position:relative;background:#000;color:#fff;overflow:hidden;min-height:clamp(380px,34vw,500px);display:flex;align-items:center}
+.sal>img{position:absolute;top:0;right:0;width:50%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1);-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+.sal:hover>img{transform:scale(1.04)}
+.sal::after{content:none}
+.sal .in{position:relative;z-index:2;padding:clamp(40px,4.4vw,70px);padding-right:calc(50% + 24px)}
+.sal .th2{color:#fff}
+.kp{display:flex;gap:clamp(30px,4vw,64px);margin-top:30px}
+.kp b{display:block;font-size:clamp(34px,3.2vw,50px);font-weight:900;line-height:1}.kp span{display:block;margin-top:8px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--or)}
+.sal p{margin:24px 0 28px;font-size:15px;color:#c3c8cd;max-width:480px}
+.khd{display:flex;align-items:flex-end;gap:clamp(28px,3.4vw,56px)}.kht{flex:1;min-width:0}
+.cdl{display:flex;justify-content:center;flex:none;padding-bottom:14px}
+.cdl .cb{position:relative;width:clamp(120px,11vw,170px);margin-top:clamp(64px,6vw,90px)}
+.cdl .cb>img{display:block;width:100%;height:auto;position:relative;z-index:1}
+.cdl .sh{position:absolute;z-index:0;left:-28%;right:-28%;bottom:-7%;height:16%;background:radial-gradient(closest-side,rgba(60,38,15,.55),rgba(60,38,15,.22) 55%,rgba(70,45,20,0));filter:blur(4px);border-radius:50%!important;animation:cdSh 3.1s ease-in-out infinite}
+@keyframes cdSh{0%,100%{transform:scaleX(1);opacity:1}35%{transform:scaleX(1.04) translateX(1%);opacity:.9}70%{transform:scaleX(.97) translateX(-1.5%);opacity:.96}}
+.cdl .gl{position:absolute;z-index:0;left:48.4%;top:-2%;width:190%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,196,110,.38),rgba(255,180,90,.12) 45%,rgba(255,170,80,0) 72%);border-radius:50%!important;pointer-events:none;animation:cdGl 2.3s ease-in-out infinite}
+@keyframes cdGl{0%,100%{opacity:.85;transform:translate(-50%,-50%) scale(1)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}55%{opacity:.75;transform:translate(-50%,-50%) scale(.97)}80%{opacity:.95}}
+.cdl .tp{position:absolute;z-index:2;left:48.4%;top:5%;width:70%;height:9%;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,226,140,.55),rgba(255,226,140,0));border-radius:50%!important;mix-blend-mode:screen;animation:cdGl2 2.3s ease-in-out infinite;pointer-events:none}
+@keyframes cdGl2{0%,100%{opacity:.8}30%{opacity:1}55%{opacity:.6}}
+.cdl .fl{position:absolute;z-index:3;left:48.6%;bottom:91.5%;width:15%;aspect-ratio:1/2.8;transform-origin:50% 100%;translate:-50% 0;animation:cdF1 1.7s ease-in-out infinite,cdF2 .23s steps(2) infinite}
+.cdl .fl i{position:absolute;border-radius:50% 50% 50% 50% / 62% 62% 38% 38%!important}
+.cdl .fl .o{inset:0;background:radial-gradient(ellipse 60% 78% at 50% 78%,rgba(255,255,250,1) 0 22%,rgba(255,236,170,.98) 38%,rgba(255,178,70,.9) 60%,rgba(255,120,30,.55) 78%,rgba(255,110,20,0) 92%);filter:blur(1.2px)}
+.cdl .fl .c{left:26%;right:26%;top:34%;bottom:6%;background:radial-gradient(ellipse at 50% 70%,#fff 0 40%,rgba(255,250,230,.9) 60%,rgba(255,240,200,0) 100%);filter:blur(1.5px)}
+.cdl .fl .b{left:24%;right:24%;bottom:-2%;height:20%;background:radial-gradient(closest-side,rgba(90,130,255,.55),rgba(90,130,255,0));filter:blur(1.5px);border-radius:50%!important}
+@keyframes cdF1{0%,100%{transform:scale(1,1) skewX(0)}18%{transform:scale(.96,1.05) skewX(2deg)}36%{transform:scale(1.03,.95) skewX(-1.5deg)}52%{transform:scale(.97,1.08) skewX(3deg)}70%{transform:scale(1.02,.97) skewX(-2.5deg)}86%{transform:scale(.98,1.03) skewX(1deg)}}
+@keyframes cdF2{0%{opacity:1}50%{opacity:.93}}
+@media (max-width:760px){.khd{gap:22px}.cdl .cb{width:96px;margin-top:52px}}
+@media (prefers-reduced-motion:reduce){.cdl .fl,.cdl .sh,.cdl .gl,.cdl .tp{animation:none}}
+.cvs{padding-block:0 clamp(64px,8vw,120px);scroll-margin-top:80px}
+.conv{background:var(--creme);border-top:2px solid var(--terre);padding:clamp(28px,3.4vw,52px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(24px,4vw,64px);scroll-margin-top:100px}
+.conv .ch h3{margin:12px 0 0;font-size:clamp(22px,2vw,30px);line-height:1.15;font-weight:900;text-transform:uppercase}
+.conv .ch p{margin:14px 0 0;font-size:15px;line-height:1.6;color:var(--ardoise)}
+.cf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:end}.cf .btn{grid-column:1/-1;justify-self:start;min-width:220px}.cf[hidden]{display:none}#cfkd .btn{grid-column:auto}
+.ctab{display:flex;margin-top:24px;border-bottom:1px solid #000}.ctab button{background:none;border:0;padding:12px 0;margin-right:26px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ardoise);border-bottom:3px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}.ctab button[aria-selected=true]{color:#000;border-bottom-color:var(--terre)}
+.csrc{grid-column:1/-1;font-size:12px;color:#8A939C}
+.lk2{display:inline-block;margin-top:22px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--terre);border-bottom:1.5px solid var(--terre);padding-bottom:3px}.lk2:hover{color:#000;border-color:#000}
+.cr .bk+.bk{margin-top:26px}.cr .big2{margin-top:8px;font-size:clamp(20px,1.8vw,26px);font-weight:900}
+.fd-fix{}
+.cvf{display:flex;flex-direction:column;gap:8px}.cvf>span{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.cvf input[type=date]{height:56px;padding:0 14px;border:1px solid #000;background:#fff;font:inherit;font-size:16px;color:#000;width:100%}
+.cvf input[type=date]:focus{outline:2px solid var(--terre);outline-offset:-2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid #000;min-height:56px;background:#fff}
+.seg label{position:relative;display:flex;cursor:pointer}.seg label+label{border-left:1px solid #000}
+.seg input{position:absolute;opacity:0;inset:0}
+.seg b{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 10px;font-size:13px;font-weight:700;line-height:1.2;transition:background .25s,color .25s}
+.seg input:checked+b{background:#000;color:#fff}.seg input:focus-visible+b{outline:2px solid var(--terre);outline-offset:-4px}
+.cr{grid-column:1/-1;border-top:1px solid #E3E5E8;padding-top:clamp(22px,2.4vw,34px);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(24px,4vw,64px);animation:cvUp .6s cubic-bezier(.2,.7,.2,1)}
+.cr .l{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ardoise)}
+.cr .hd2{margin-top:10px;font-size:clamp(30px,3vw,46px);font-weight:900;line-height:1;color:var(--or)}
+.cr .he{margin-top:10px;font-size:20px;direction:rtl;text-align:left;unicode-bidi:plaintext}
+.cr .nt{margin-top:12px;font-size:13px;color:var(--ardoise);line-height:1.5}
+.cr ul{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid #000}
+.cr li{display:grid;grid-template-columns:110px minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid #E3E5E8}
+.cr li .y{font-size:13px;font-weight:800;color:var(--terre)}.cr li .g{font-size:18px;font-weight:800}.cr li .h{font-size:14px;color:var(--ardoise)}
+.cr .er{grid-column:1/-1;color:var(--terre);font-weight:700}
+@media (max-width:1100px){.conv{grid-template-columns:1fr}.cr{grid-template-columns:1fr}}
+@media (max-width:760px){.conv{margin-inline:calc(var(--gut)*-1);padding:28px var(--gut)}.cf{grid-template-columns:1fr}.cf .btn,#cfkd .btn{grid-column:1/-1;width:100%;justify-self:stretch}.seg{height:auto}.seg b{padding:14px 8px}.cr li{grid-template-columns:52px minmax(0,1fr);gap:4px 12px}.cr li .h{grid-column:2}.cr li .g{font-size:16px}}
+@media (max-width:1100px){.st,.kad .in{grid-template-columns:1fr}.st.rev .ph{order:0}.yg{grid-template-columns:repeat(2,minmax(0,1fr))}.yg>div:nth-child(3){border-left:0;padding-left:0}.yg>div:nth-child(3) .nx{left:0}.yg>div:nth-child(n+3){border-top:1px solid #E3E5E8}}
+@media (max-width:760px){
+ .fil{grid-template-columns:1fr;margin-top:40px}
+ .fil .fl{left:7px;right:auto;top:8px;bottom:8px;width:1px;height:auto;transform:scaleY(0);transform-origin:top;animation-name:cvLineV}
+ @keyframes cvLineV{to{transform:scaleY(1)}}
+ .fil a{flex-direction:row;align-items:center;gap:14px;padding:12px 0}
+ .fil .dot{margin:0;flex:none}
+ .fil em{width:24px}
+ .fil b{font-size:17px}
+ .no{font-size:64px}
+ .st{gap:26px;padding-block:44px}
+ .ph{margin-inline:calc(var(--gut)*-1);aspect-ratio:4/3}
+ .bts{flex-direction:column}.bts .btn{width:100%;white-space:normal;text-align:center;padding-block:12px}
+ .yh{flex-direction:column;align-items:flex-start;gap:14px}
+ .yg{grid-template-columns:1fr}.yg>div,.yg>div:nth-child(3){border-left:0;padding:20px 0 18px;border-top:1px solid #E3E5E8}.yg>div:first-child{border-top:0}.yg .nx,.yg>div:not(:first-child) .nx{left:0;right:0}
+ .yg .d{font-size:30px}
+ .sal{display:block;min-height:0}.sal>img{position:relative;width:100%;height:220px;display:block;-webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent);mask-image:linear-gradient(to bottom,#000 70%,transparent)}
+ .sal::after{content:none}
+ .sal .in{margin-top:0;padding:18px 22px 34px}
+ .kp{gap:26px}.sal .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){.cvt span,.cvt b,.cvtg,.fil a,.fil .fl{animation:none;opacity:1;transform:none}.rv,.ph.rv{opacity:1;transform:none;clip-path:none;transition:none}.ph img{transform:none}}
+.aev{padding-block:clamp(10px,2vw,30px) clamp(56px,7vw,110px);scroll-margin-top:80px}
+.aev-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:clamp(24px,2.8vw,40px)}
+.aev-ar{display:flex;gap:10px}
+.aar{width:48px;height:48px;border:1px solid #000;background:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s}
+.aar:hover{background:var(--terre);border-color:var(--terre);color:#fff}
+.arail{display:flex;gap:clamp(14px,1.25vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:max(var(--gut),5.1vw);padding-right:max(var(--gut),5.1vw);scroll-padding-left:max(var(--gut),5.1vw);cursor:grab;user-select:none}
+.arail::-webkit-scrollbar{display:none}.arail.drag{cursor:grabbing;scroll-snap-type:none}
+.acard{flex:0 0 clamp(260px,23vw,400px);scroll-snap-align:start;background:#EDEEF0;text-align:center;padding:clamp(32px,3vw,54px) clamp(22px,2vw,36px) clamp(30px,2vw,38px);display:flex;flex-direction:column;align-items:center;transition:background .35s}
+.acard .ph3{width:64%;aspect-ratio:317/335;overflow:hidden;background:#dfe1e4}
+.acard .ph3 img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none}
+.acard h3{margin:clamp(22px,2vw,36px) 0 0;font-size:clamp(20px,1.7vw,30px);font-weight:800;color:var(--or);text-transform:uppercase;transition:color .35s}
+.acard p{margin:10px 0 0;font-size:clamp(14px,1vw,17px);line-height:1.4;color:var(--ardoise);max-width:320px;transition:color .35s}
+.acard .btn{margin-top:auto;min-height:46px;background:var(--or);color:#fff}
+.acard p+.btn{margin-top:20px}
+.acard:hover,.acard:focus-within{background:var(--terre)}.acard:hover h3,.acard:hover p,.acard:focus-within h3,.acard:focus-within p{color:#fff}.acard:hover .ph3 img{transform:scale(1.04)}
+@media (max-width:760px){.aev-ar{display:none}.acard{flex-basis:78vw}}
+/* ---------- Activités ---------- */
+.ix{margin-top:clamp(46px,5.4vw,84px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid #000}
+.ix a{display:flex;flex-direction:column;gap:10px;padding:22px 20px 26px;border-bottom:1px solid #E3E5E8;border-left:1px solid #E3E5E8;position:relative;opacity:0;animation:cvUp .8s cubic-bezier(.2,.7,.2,1) forwards;transition:background .25s}
+.ix a:nth-child(3n+1){border-left:0;padding-left:0}
+.ix a:nth-child(1){animation-delay:.5s}.ix a:nth-child(2){animation-delay:.58s}.ix a:nth-child(3){animation-delay:.66s}.ix a:nth-child(4){animation-delay:.74s}.ix a:nth-child(5){animation-delay:.82s}.ix a:nth-child(6){animation-delay:.9s}.ix a:nth-child(7){animation-delay:.98s}.ix a:nth-child(8){animation-delay:1.06s}.ix a:nth-child(9){animation-delay:1.14s}
+.ix em{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--or)}
+.ix b{font-size:clamp(16px,1.35vw,20px);font-weight:800;text-transform:uppercase;line-height:1.15;padding-right:26px;transition:color .25s}
+.ix i{position:absolute;right:20px;bottom:24px;font-style:normal;color:var(--terre);transition:transform .25s}
+.ix a:hover b{color:var(--terre)}.ix a:hover i{transform:translateX(5px)}
+.tt{margin-top:28px;max-width:560px}
+.tt .dy{margin-top:22px;padding-bottom:10px;border-bottom:1px solid #000;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terre)}
+.tt .dy:first-child{margin-top:0}
+.tt .tr{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:13px 0;border-bottom:1px solid #E3E5E8;font-size:15px}
+.tt .tr span{color:#2b3036}.tt .tr span b{font-weight:800;color:#000}.tt .tr em{font-style:normal}
+.tt .tr strong{flex:none;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.kad .tt .tr{border-bottom-color:#E2DACB}
+.ph2{margin:0;aspect-ratio:16/10;overflow:hidden}.ph2 img{width:100%;height:100%;object-fit:cover;display:block}
+.sub3{margin-top:26px;border-top:1px solid #000}
+.sub3 a{position:relative;display:block;padding:18px 40px 18px 0;border-bottom:1px solid #E2DACB}
+.sub3 b{display:block;font-size:17px;font-weight:800}.sub3 span{display:block;margin-top:4px;font-size:14px;color:var(--ardoise)}
+.sub3 i{position:absolute;right:4px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--terre);transition:transform .25s}
+.sub3 a:hover b{color:var(--terre)}.sub3 a:hover i{transform:translate(5px,-50%)}
+.fm{padding-block:0 clamp(56px,7vw,110px)}
+.fg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #000}
+.fc{padding:24px 24px 6px;border-left:1px solid #E3E5E8}.fc:first-child{border-left:0;padding-left:0}
+.fc .k{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--or)}
+.fc h3{margin:12px 0 0;font-size:clamp(18px,1.5vw,22px);font-weight:900;text-transform:uppercase;line-height:1.15}
+.fc p{margin:12px 0 0;font-size:14px;line-height:1.6;color:var(--ardoise)}
+.tt.sm2{margin-top:10px}.tt.sm2 .tr{font-size:14px;padding:10px 0}.tt.sm2 .tr strong{font-size:15px}
+.kp.lt b{color:#000}.kp.lt span{color:var(--terre)}
+#cantine .kp b{white-space:nowrap;font-size:clamp(24px,2.3vw,36px)}
+.sal .mn{margin-top:22px;font-size:14px;color:var(--or);margin-bottom:0}
+.sx{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid #000;padding-top:22px}
+.sx h3{margin:0;font-size:14px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--terre)}.sx p{margin:10px 0 0;font-size:15px}
+.ml{margin-top:26px;border-top:1px solid #000;max-width:560px}
+.ml a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #E3E5E8}
+.ml b{font-size:16px;font-weight:800}.ml span{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--terre);transition:transform .25s}
+.ml a:hover b{color:var(--terre)}.ml a:hover span{transform:translateX(4px)}.ml span::after{content:" →"}
+.ml .off2{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid #E3E5E8;opacity:.38;cursor:default}.ml .off2 b{font-size:16px;font-weight:800}.ml .off2 span{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ardoise)}
+.dy2{margin-top:26px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terre)}.dy2+.chips{margin-top:12px}
+.fg2{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}.fg2 .fc{padding-right:40px}
+.fc .lk2{margin-top:16px;font-size:12px}
+@media (max-width:1100px){.ix{grid-template-columns:repeat(2,minmax(0,1fr))}.ix a:nth-child(3n+1){border-left:1px solid #E3E5E8;padding-left:20px}.ix a:nth-child(2n+1){border-left:0;padding-left:0}.fg{grid-template-columns:1fr 1fr}.fc:nth-child(3){border-left:0;padding-left:0}.fc:nth-child(n+3){border-top:1px solid #E3E5E8}}
+@media (max-width:760px){.ix{grid-template-columns:1fr}.ix a,.ix a:nth-child(3n+1),.ix a:nth-child(2n+1){border-left:0;padding:16px 0;flex-direction:row;align-items:baseline;gap:14px}.ix em{width:24px}.ix i{right:0;bottom:auto;top:16px}.fg{grid-template-columns:1fr}.fc,.fc:nth-child(3){border-left:0;padding:22px 0 8px;border-top:1px solid #E3E5E8}.fc:first-child{border-top:0}.sx{grid-template-columns:1fr}.tt .tr{font-size:14px}}
+.fqg .qa.xtra{display:none}.fqg.all .qa.xtra{display:block}
+.fqm{display:inline-block;margin:14px 0 6px;background:none;border:0;padding:0 0 3px;font:inherit;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--terre);border-bottom:1.5px solid var(--terre);cursor:pointer}.fqm:hover{color:#000;border-color:#000}
+.fqh{margin:34px 0 0;padding-bottom:10px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--terre)}.fqh:first-child{margin-top:0}
+.fqg .qa button{padding:20px 0;font-size:clamp(16px,1.25vw,20px)}.fqg .qa .ans p{font-size:clamp(15px,1.1vw,18px);line-height:1.55}
+@media (max-width:1100px){.tfaq .in{grid-template-columns:1fr}}
+</style>
+<title>Activités · Beth Loubavitch Bastille</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap">
+<style>
+/* Maquette du client : blanc, noir, or chaud, terre cuite, crème. Aucun arrondi. Grille calée sur 1920 px. */
+:root{
+  --noir:#000;--blanc:#fff;--or:#C8A05A;--terre:#B4552F;--creme:#F7F3EC;--nuit:#12263A;--ardoise:#5A6672;
+  --gris:#EEEFF1;--gris-faq:#EDEEF0;--gris-pied:#7E8994;
+  --f:"Nunito Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:max(16px,8.5vw);
+  color-scheme:light;
+}
+*{box-sizing:border-box;border-radius:0!important}
+html{scroll-behavior:smooth}
+body{background:var(--blanc);color:var(--noir);font-family:var(--f);font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--terre);outline-offset:3px}
+.pad{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 32px;font-size:clamp(13px,.9vw,17px);font-weight:600;letter-spacing:.02em;text-transform:uppercase;border:1px solid transparent;transition:background .25s,color .25s,border-color .25s;white-space:nowrap}
+.btn-or{background:var(--or);color:var(--noir)}
+.btn-or:hover{background:#B88F49}
+.lg .btn-ig{display:inline-flex;margin-top:10px}.btn-ig{gap:10px;margin-top:12px;color:#fff;border:0;background:linear-gradient(60deg,#F58529 0%,#DD2A7B 45%,#8134AF 75%,#515BD4 100%);transition:filter .3s,transform .25s}.btn-ig:hover{filter:brightness(1.12);transform:translateY(-2px);color:#fff}.btn-ig svg{flex:none}.btn-ig svg rect{rx:5px}
+.btn-terre{background:var(--terre);color:var(--blanc)}
+.btn-terre:hover{background:#9C4826}
+.btn-contour-or{border-color:var(--or);color:var(--blanc)}
+.btn-contour-or:hover{background:var(--or);color:var(--noir)}
+.btn-contour-terre{border-color:var(--terre);color:var(--terre);background:transparent}
+.btn-contour-terre:hover{background:var(--terre);color:var(--blanc)}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--blanc)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--blanc)}
+.hd{min-height:clamp(84px,8.8vw,169px);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:clamp(12px,1.4vw,26px);color:var(--terre);white-space:nowrap}
+.brand img{height:clamp(46px,4.2vw,80px);width:auto}
+.brand .b1{font-size:clamp(13px,.95vw,18px);font-weight:700;letter-spacing:.3em}
+.brand .b2{font-size:clamp(10px,.75vw,14px);font-weight:600;letter-spacing:.32em;margin-top:6px}
+nav.menu{display:flex;gap:clamp(16px,1.8vw,40px);white-space:nowrap;font-size:clamp(13px,.95vw,19px);font-weight:600;text-transform:uppercase}
+nav.menu a{position:relative;padding:6px 0}
+nav.menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--terre);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav.menu a:hover::after{transform:scaleX(1)}
+.hd-r{display:flex;align-items:center;gap:clamp(16px,2vw,38px);white-space:nowrap}
+.hd-r .btn{min-height:clamp(44px,3.4vw,65px);padding:0 clamp(18px,1.7vw,32px)}
+.lang{display:flex;align-items:center;gap:6px;font-size:clamp(13px,1vw,19px);font-weight:600;line-height:1;color:var(--ardoise)}
+.lang span{display:inline-block;line-height:1;transform:none}
+.lang button{background:none;border:0;padding:4px 2px;line-height:1;font-size:inherit;font-weight:inherit;color:var(--ardoise)}
+.lang button[aria-pressed="true"]{color:var(--or)}
+.burger{display:none;width:48px;height:48px;background:none;border:1px solid var(--noir);align-items:center;justify-content:center}
+.burger span{display:block;width:20px;height:2px;background:var(--noir);box-shadow:0 -6px 0 var(--noir),0 6px 0 var(--noir)}
+
+.mmenu{position:fixed;inset:0;z-index:40;background:var(--blanc);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + 20px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 28px);overflow-y:auto}
+.mmenu .mtop{display:flex;justify-content:space-between;align-items:center;min-height:64px}
+.mmenu .close{width:44px;height:44px;border:1px solid var(--noir);background:none;font-size:22px;line-height:1}
+.mmenu nav{display:flex;flex-direction:column;margin-top:28px;border-top:1px solid var(--noir)}
+.mmenu nav a{padding:20px 0;border-bottom:1px solid #d9dbde;font-size:22px;font-weight:800;text-transform:uppercase;display:flex;justify-content:space-between}
+.mmenu nav a::after{content:"→";color:var(--terre);font-weight:400}
+.mmenu .mbtns{margin-top:auto;padding-top:32px;display:grid;gap:12px}
+.mmenu .mbtns .btn{width:100%}
+body.noscroll{overflow:hidden}
+.mmenu[hidden]{display:none}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;background:var(--noir);color:var(--blanc);height:max(520px,calc(100vw * 1074 / 1920));overflow:hidden}
+.hero-media{position:absolute;top:1.2%;left:32.7%;width:79.8%;aspect-ratio:1665/1211}
+.hero-media img.bg{width:100%;height:100%;display:block}
+.flame{position:absolute;width:3.604%;height:8.258%;transform-origin:50% 92%;pointer-events:none;will-change:transform,opacity;mix-blend-mode:screen}
+@supports (mix-blend-mode:plus-lighter){.flame{mix-blend-mode:plus-lighter}}
+.flame img{width:100%;height:100%;display:block}
+.glow{position:absolute;width:6%;aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,170,70,.22),rgba(255,120,30,.08) 60%,rgba(255,100,0,0));mix-blend-mode:screen;pointer-events:none;will-change:opacity}
+.hero-txt{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;max-width:46%}
+.hero h1{font-size:clamp(44px,5.6vw,108px);font-weight:900;line-height:1.08;text-transform:uppercase;letter-spacing:-.005em}
+.tag{margin-top:clamp(20px,2.6vw,50px);font-size:clamp(13px,1.1vw,21px);font-weight:700;letter-spacing:.12em;color:var(--or);text-transform:uppercase}
+.hero-cta{margin-top:clamp(28px,3.4vw,62px);display:flex;flex-direction:column;align-items:flex-start;gap:clamp(14px,2vw,40px)}
+.hero-cta .btn{min-width:clamp(260px,19.5vw,375px);min-height:clamp(54px,3.8vw,73px)}
+
+/* ---------- Section titles ---------- */
+.titre{text-align:center;font-size:clamp(38px,6vw,115px);line-height:1;text-transform:uppercase;letter-spacing:-.01em}
+.titre b{font-weight:900}.titre span{font-weight:200}
+
+/* ---------- Événements ---------- */
+.events{padding-block:clamp(70px,5.4vw,104px) clamp(70px,7vw,140px)}
+.ev-top{display:flex;justify-content:flex-end;gap:10px;margin:clamp(40px,4.4vw,84px) 0 18px}
+.arrow{width:52px;height:52px;border:1px solid var(--noir);background:var(--blanc);font-size:20px;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s}
+.arrow:hover{background:var(--terre);color:var(--blanc);border-color:var(--terre)}
+.rail{display:flex;gap:clamp(14px,1.25vw,24px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:max(16px,5.1vw);padding-right:max(16px,5.1vw);scroll-padding-left:max(16px,5.1vw);cursor:grab;user-select:none}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.card{flex:0 0 clamp(270px,25.8vw,496px);scroll-snap-align:start;background:var(--gris);text-align:center;padding:clamp(40px,3.8vw,73px) clamp(24px,2.4vw,46px) clamp(36px,2.1vw,40px);display:flex;flex-direction:column;align-items:center;transition:background .35s}
+.card .ph{width:64%;aspect-ratio:317/335;overflow:hidden;background:#dfe1e4}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1);-webkit-user-drag:none}
+.card h3{margin-top:clamp(28px,2.6vw,50px);font-size:clamp(24px,2.1vw,40px);font-weight:800;color:var(--or);text-transform:uppercase;transition:color .35s}
+.card p{margin:12px 0 0;font-size:clamp(15px,1.1vw,21px);line-height:1.3;color:var(--ardoise);max-width:340px;transition:color .35s}
+.card .btn{margin-top:clamp(20px,1.5vw,28px);min-height:clamp(46px,2.8vw,53px);padding:0 clamp(28px,2.2vw,42px);font-size:clamp(15px,1.2vw,23px);background:var(--or);color:var(--blanc)}
+.card:hover,.card:focus-within{background:var(--terre)}
+.card:hover h3,.card:hover p,.card:focus-within h3,.card:focus-within p{color:var(--blanc)}
+.card:hover .ph img{transform:scale(1.04)}
+
+/* ---------- Chabbat ---------- */
+.chabbat{background:var(--creme);padding-block:clamp(70px,5.2vw,100px)}
+.ch-in{display:grid;grid-template-columns:minmax(0,auto) minmax(0,auto);justify-content:space-between;gap:clamp(60px,9vw,220px);align-items:center;max-width:1500px;margin:0 auto}
+.ch-l .k1{font-size:clamp(46px,6vw,115px);font-weight:200;line-height:1;text-transform:uppercase}
+.ch-l .k2{font-size:clamp(46px,6vw,115px);font-weight:900;line-height:1.05;text-transform:uppercase;white-space:nowrap}
+.ch-l .dates{margin-top:clamp(24px,2.6vw,50px);font-size:clamp(15px,1.45vw,28px);font-weight:700;letter-spacing:.1em;color:var(--or);text-transform:uppercase;line-height:1.6}
+.ch-l .btns{margin-top:clamp(28px,2.4vw,46px);display:flex;flex-wrap:wrap;gap:clamp(14px,1.5vw,28px)}
+.ch-l .btns .btn{min-height:clamp(54px,3.8vw,73px)}
+.ch-r{display:flex;flex-direction:column;align-items:center;gap:clamp(24px,2.5vw,48px)}
+.ch-r .lab{font-size:clamp(15px,1.35vw,26px);font-weight:700;letter-spacing:.1em;color:var(--terre);text-transform:uppercase;text-align:center}
+.odo{display:flex;justify-content:center;font-size:clamp(64px,5.9vw,113px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums;margin-top:10px}
+.odo .col{display:inline-block;height:1em;overflow:hidden}
+.odo .strip{display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.2,.8,.25,1)}
+.odo .strip span{height:1em;display:block}
+.odo .sep{display:inline-block;padding:0 .02em;transform:translateY(-.04em)}
+
+/* ---------- Je cherche ---------- */
+.cherche{background:var(--blanc);padding-block:clamp(80px,6vw,116px) clamp(60px,6vw,110px)}
+.cherche .titre{color:var(--terre)}
+.grid{max-width:1500px;margin:clamp(50px,6vw,116px) auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E3E5E8}
+.cell{position:relative;overflow:hidden;background:var(--blanc);min-height:clamp(280px,21vw,400px);padding:clamp(30px,2.8vw,54px) clamp(26px,2.6vw,50px);display:flex;flex-direction:column;gap:14px;color:var(--noir)}
+.cell .bgp{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.cell .bgp::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.25) 70%,rgba(0,0,0,.15))}
+.cell .bgp img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.cell .n{position:relative;font-size:clamp(13px,.9vw,16px);font-weight:700;letter-spacing:.12em;color:var(--or);margin-bottom:auto;transition:color .4s}
+.cell .tt{position:relative;display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-top:clamp(40px,4vw,80px)}
+.cell .t{font-size:clamp(24px,2.1vw,40px);font-weight:900;text-transform:uppercase;line-height:1.08;transition:color .4s}
+.cell .ar2{flex:none;font-size:clamp(22px,1.6vw,30px);font-weight:700;color:var(--terre);transition:transform .45s cubic-bezier(.2,.7,.2,1),color .4s}
+.cell .d{position:relative;font-size:clamp(15px,1.1vw,20px);line-height:1.5;color:#5F6872;max-width:420px;transition:color .4s}
+.cell:hover .bgp,.cell:focus-visible .bgp{opacity:1}
+.cell:hover .bgp img,.cell:focus-visible .bgp img{transform:scale(1)}
+.cell:hover .t,.cell:hover .d,.cell:hover .n,.cell:hover .ar2,.cell:focus-visible .t,.cell:focus-visible .d,.cell:focus-visible .n,.cell:focus-visible .ar2{color:var(--blanc)}
+.cell:hover .ar2,.cell:focus-visible .ar2{transform:translate(4px,-4px);color:var(--or)}
+
+.more{display:flex;justify-content:center;margin-top:clamp(36px,3.6vw,64px)}
+.more .btn{min-height:clamp(54px,3.8vw,70px)}
+
+/* ---------- Avis ---------- */
+.avis{padding-block:clamp(40px,4vw,80px) clamp(80px,7vw,140px);text-align:center}
+.quotes{display:grid;max-width:1240px;margin:0 auto}
+.quote{grid-area:1/1;transition:opacity .7s,transform .7s;opacity:0;transform:translateY(10px);pointer-events:none}
+.quote.on{opacity:1;transform:none;pointer-events:auto}
+.quote blockquote{margin:0;font-size:clamp(26px,2.95vw,57px);font-weight:600;line-height:1.22}
+.quote .who{margin-top:clamp(20px,2vw,38px);font-size:clamp(22px,2.1vw,40px);font-weight:700;color:var(--terre);text-transform:uppercase}
+.dots{display:flex;justify-content:center;gap:12px;margin-top:clamp(36px,3.6vw,70px)}
+.dots button{width:20px;height:20px;border:0;background:none;display:flex;align-items:center;justify-content:center;padding:0}
+.dots button i{display:block;width:14px;height:14px;background:var(--or);transition:background .3s,border-color .3s}
+.dots button[aria-current="true"] i{background:transparent;border:1.5px solid var(--terre)}
+
+/* ---------- FAQ ---------- */
+.faq{background:var(--gris-faq);padding-block:clamp(50px,3.5vw,68px)}
+.faq-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:40px;align-items:center}
+.faq .big{font-size:clamp(110px,15.5vw,300px);font-weight:900;color:var(--terre);line-height:.9;letter-spacing:-.02em}
+.qa{border-bottom:1px solid var(--nuit)}
+.qa:first-child{border-top:1px solid var(--nuit)}
+.qa button{width:100%;background:none;border:0;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:clamp(22px,2.4vw,46px) 0;font-size:clamp(17px,1.42vw,27px);font-weight:700;color:var(--noir)}
+.qa button i{flex:none;width:18px;height:18px;position:relative}
+.qa button i::before,.qa button i::after{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:var(--terre);transition:transform .3s}
+.qa button i::after{transform:rotate(90deg)}
+.qa.open button i::after{transform:rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{margin:0;padding:0 0 clamp(22px,2vw,38px);font-size:clamp(16px,1.42vw,27px);font-weight:300;line-height:1.3;color:var(--ardoise)}
+
+/* ---------- Footer ---------- */
+footer{background:var(--noir);color:var(--blanc);padding-block:clamp(70px,7.8vw,150px) 40px}
+.ft{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;max-width:1500px;margin:0 auto}
+.ft .lg{display:flex;flex-direction:column;align-items:flex-start;gap:22px}
+.ft .lg img{width:clamp(150px,10.5vw,200px)}
+.ft .lg p{margin:0;color:var(--gris-pied);font-size:clamp(16px,1.15vw,22px);line-height:1.8}
+.ft h4{margin:0 0 14px;font-size:clamp(17px,1.2vw,23px);font-weight:600;text-transform:uppercase}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:clamp(16px,1.15vw,22px);color:var(--gris-pied)}
+.ft ul a:hover{color:var(--blanc)}
+.ft .btn{margin-top:22px;min-height:42px;padding:0 22px;font-size:13px}
+.fb{max-width:1670px;margin:clamp(60px,6vw,110px) auto 0;padding-top:28px;border-top:1px solid #3a3f44;color:var(--gris-pied);font-size:clamp(14px,1.15vw,22px);font-weight:700}
+
+
+.legal{display:flex;flex-wrap:wrap;gap:8px 24px;font-weight:400}
+.legal a,.legal button{color:var(--gris-pied);background:none;border:0;padding:0;font:inherit;font-size:.85em}
+.legal a:hover,.legal button:hover{color:var(--blanc)}
+.fb{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 30px}
+.wa{position:fixed;z-index:25;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;background:var(--noir);color:var(--blanc);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.wa:hover{background:var(--terre)}
+.cookie{position:fixed;z-index:35;left:0;right:0;bottom:0;background:var(--blanc);border-top:1px solid var(--noir);padding:20px max(var(--gut),env(safe-area-inset-left,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 40px}
+.cookie p{margin:0;max-width:720px;font-size:15px;line-height:1.5;color:var(--noir)}
+.cookie .cb{display:flex;gap:12px}
+.cookie .btn{min-height:46px;padding:0 24px}
+.btn-contour-noir{border-color:var(--noir);color:var(--noir);background:transparent}
+.btn-contour-noir:hover{background:var(--noir);color:var(--blanc)}
+.cookie[hidden],.wa[hidden]{display:none}
+@media (max-width:760px){.wa{display:flex}.cookie .cb{width:100%}.cookie .btn{flex:1}}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1360px){
+  nav.menu{display:none}.burger{display:flex}
+}
+@media (max-width:1100px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ch-in{grid-template-columns:1fr}.ch-r{flex-direction:row;justify-content:space-around;flex-wrap:wrap}
+  .faq-in{grid-template-columns:1fr}
+  .ft{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .hd-r .btn{display:none}
+  .hd{gap:10px}.brand{gap:10px}.brand img{height:40px}.brand .b1{font-size:11px;letter-spacing:.18em}.brand .b2{font-size:9px;letter-spacing:.2em}.hd-r{gap:10px}.lang{font-size:13px}.burger{width:44px;height:44px}
+  .hero{height:auto;display:flex;flex-direction:column}
+  .hero-media{position:relative;top:0;left:0;width:150%;margin-left:-29.5%;margin-bottom:-6vw}
+  .hero-media::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:48%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 45%,#000 100%);pointer-events:none;z-index:3}
+  .hero-media::before{content:"";position:absolute;left:0;right:0;top:0;height:14%;background:linear-gradient(to top,rgba(0,0,0,0),rgba(0,0,0,.6));pointer-events:none;z-index:3}
+  .hero-txt{padding-block:0 44px;z-index:4}
+  .hero h1{font-size:40px;line-height:1.05}
+  .tag{margin-top:16px;font-size:12px;letter-spacing:.1em}
+  .hero-cta{margin-top:26px;gap:12px}
+  .hero-cta .btn{min-height:52px}
+  .events{padding-block:56px 60px}
+  .titre{font-size:34px}
+  .chabbat{padding-block:52px}
+  .ch-in{gap:30px}
+  .odo{font-size:clamp(44px,13vw,56px)}
+  .ch-l .k1,.ch-l .k2{font-size:40px}
+  .ch-l .dates{font-size:13px;margin-top:18px}
+  .ch-l .btns{margin-top:24px;gap:10px}
+  .ch-r{flex-direction:row!important;justify-content:space-between!important;gap:12px;margin-top:8px;padding-top:28px;border-top:1px solid #E2D9CB}
+  .ch-r .lab{font-size:12px}
+  .odo{font-size:52px}
+  .cherche{padding-block:60px 40px}
+  .grid{margin-top:32px;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .cell{aspect-ratio:1;min-height:0;padding:18px 16px;gap:8px}
+  .cell .tt{margin-top:auto;flex-direction:column;align-items:flex-start;gap:10px}
+  .cell .t{font-size:17px;line-height:1.15;order:1}
+  .cell .ar2{order:2;font-size:20px}
+  .cell .n{margin-bottom:0}
+  .cell .d{display:none}
+  .quote blockquote{font-size:22px}
+  .quote .who{font-size:18px;margin-top:16px}
+  .dots{margin-top:28px}
+  .faq .big{font-size:84px}
+  .qa button{font-size:16px;padding:20px 0}
+  .qa .ans p{font-size:15px}
+  .ft ul a[href^="mailto"]{font-size:13px}
+  .hero-txt{max-width:none;padding-block:34px 48px}
+  .hero-cta .btn{width:100%}
+  .ev-top{display:none}
+  .events .titre{margin-bottom:32px}
+  .card{flex-basis:78vw}
+  .avis{padding-block:20px 70px}
+  .hero-media{margin-top:8px}
+  .ch-l .btns{flex-direction:column}.ch-l .btns .btn{width:100%}
+  .ft{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:'lg ct' 'nt ls';gap:36px 20px}.ft>div:nth-child(1){grid-area:lg}.ft>div:nth-child(2){grid-area:nt}.ft>div:nth-child(3){grid-area:ls}.ft>div:nth-child(4){grid-area:ct}.ft .lg{align-items:flex-start;gap:14px}.ft .lg p{font-size:14px;line-height:1.6}.ft .btn{margin-top:16px;min-height:40px;padding:0 16px;font-size:12px}.ft ul{font-size:15px;gap:8px}.ft h4{font-size:15px}.ft .lg img{width:120px}.fb{font-size:13px;margin-top:44px}footer{padding-block:56px 32px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;scroll-behavior:auto!important}
+}
+
+/* ---------- Qui sommes-nous ---------- */
+nav.menu a.on{color:var(--terre)}nav.menu a.on::after{transform:scaleX(1)}
+.k{font-size:clamp(12px,.9vw,14px);font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--terre)}
+.pgh{padding-block:clamp(36px,4.8vw,80px) clamp(34px,4.4vw,70px)}
+.crumb{font-size:clamp(11px,.9vw,14px);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ardoise)}.crumb b{color:var(--terre)}
+.pgh h1{margin-top:clamp(16px,2vw,30px);font-size:clamp(40px,8.2vw,130px);line-height:.98;text-transform:uppercase}
+.pgh h1 span{display:block;font-weight:200}.pgh h1 b{display:block;font-weight:900}
+.pgh .tg{margin-top:clamp(18px,2.4vw,36px);font-size:clamp(12px,1.35vw,21px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.banner{position:relative;height:clamp(300px,43vw,700px);overflow:hidden}
+.banner img{width:100%;height:112%;object-fit:cover;object-position:50% 62%;display:block;will-change:transform}
+.banner .cap{position:absolute;left:max(var(--gut),env(safe-area-inset-left,0px));bottom:0;background:var(--blanc);padding:14px 22px 0 0;font-size:clamp(10px,.85vw,13px);font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--ardoise)}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(26px,7.6vw,120px);padding-block:clamp(56px,8.3vw,130px)}
+.h2{margin-top:clamp(12px,1.4vw,22px);font-size:clamp(32px,4vw,62px);line-height:1.04;text-transform:uppercase}.h2 span{display:block;font-weight:200}.h2 b{display:block;font-weight:900}
+.intro p{font-size:clamp(16px,1.45vw,22px);line-height:1.6;font-weight:300;color:#2b2f33}.intro p+p{margin-top:24px}
+.intro p.lead{font-size:clamp(19px,1.8vw,28px);line-height:1.45;font-weight:600;color:var(--noir)}
+.fd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,100px);align-items:stretch;padding-bottom:clamp(56px,7.6vw,120px)}
+.fd .im{background:var(--gris);min-height:300px}
+.fd .tx{display:flex;flex-direction:column;justify-content:center;padding-block:0}
+.fd .tx.pad{padding-left:0!important;padding-right:0!important}
+.fd h2{margin-top:clamp(12px,1.4vw,22px);font-size:clamp(30px,3.9vw,60px);line-height:1.05;font-weight:900;text-transform:uppercase}
+.fd h2 span{display:block;margin-top:14px;font-size:clamp(17px,2vw,30px);font-weight:200;letter-spacing:.06em;color:var(--ardoise)}
+.fd p{margin-top:clamp(20px,2.4vw,36px);font-size:clamp(16px,1.35vw,21px);line-height:1.6;font-weight:300;color:#2b2f33;max-width:580px}
+.num{background:var(--noir);color:var(--blanc);padding-block:clamp(56px,6.6vw,104px)}
+.num .k{color:var(--or)}
+.num h3{margin-top:18px;font-size:clamp(21px,2.35vw,36px);font-weight:300;line-height:1.3;max-width:920px}.num h3 b{font-weight:800}
+.ng{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(32px,4.4vw,66px);border-top:1px solid #2a2f35}
+.ng>div{padding:clamp(22px,2.6vw,40px) 24px 0 clamp(16px,2.2vw,34px);border-left:1px solid #2a2f35}.ng>div:first-child{border-left:0;padding-left:0}
+.ng .v{white-space:nowrap;font-size:clamp(38px,5.2vw,82px);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.ng .v sup{font-size:.5em;color:var(--or);vertical-align:top;position:relative;top:.12em}
+.ng .l{margin-top:14px;font-size:clamp(11px,1.05vw,16px);font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or)}
+.off{padding-block:clamp(60px,9vw,140px)}
+.off .titre b{color:var(--terre)}
+.off .sub{text-align:center;margin-top:clamp(12px,1.6vw,24px);font-size:clamp(15px,1.35vw,21px);font-weight:300;color:var(--ardoise)}
+.og{max-width:1500px;margin:clamp(34px,5.4vw,84px) auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#E3E5E8}
+.oc{position:relative;overflow:hidden;background:var(--blanc);min-height:clamp(150px,13vw,210px);padding:clamp(22px,2.4vw,38px) clamp(20px,2.6vw,42px);display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.oc .bgp{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.oc .bgp::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.3) 75%)}
+.oc .bgp img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.oc .n{position:relative;font-size:clamp(12px,.9vw,14px);font-weight:700;letter-spacing:.14em;color:var(--or)}
+.oc .t{position:relative;font-size:clamp(17px,1.45vw,23px);font-weight:600;line-height:1.35;color:#1b1e21;max-width:340px;padding-right:36px;transition:color .4s}
+.oc .ar3{position:absolute;right:clamp(20px,2.6vw,42px);bottom:clamp(22px,2.4vw,38px);font-size:22px;font-weight:700;color:var(--terre);transition:transform .45s cubic-bezier(.2,.7,.2,1),color .4s}
+.oc:hover .bgp{opacity:1}.oc:hover .bgp img{transform:scale(1)}
+.oc:hover .t{color:#fff}.oc:hover .ar3{color:var(--or);transform:translate(4px,-4px)}
+.off .close{text-align:center;max-width:820px;margin:clamp(34px,4vw,62px) auto 0;font-size:clamp(16px,1.5vw,23px);line-height:1.55;font-weight:300;color:#2b2f33}
+.eng{background:var(--creme);text-align:center;padding-block:clamp(60px,9vw,140px)}
+.eng img{height:clamp(48px,4.8vw,72px);width:auto}
+.eng .k{margin-top:28px}
+.eng blockquote{margin:28px auto 0;max-width:1080px;font-size:clamp(24px,3.1vw,46px);line-height:1.28;font-weight:600}
+.eng p{margin:34px auto 0;max-width:780px;font-size:clamp(16px,1.45vw,22px);line-height:1.6;font-weight:300;color:var(--ardoise)}
+.asso{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,7vw,110px);align-items:center;padding-block:clamp(56px,7.6vw,120px)}
+.asso .h2{font-size:clamp(30px,3.2vw,48px);margin-top:0}
+.asso p{font-size:clamp(16px,1.35vw,21px);line-height:1.6;font-weight:300;color:#2b2f33}
+.asso .btns{margin-top:32px;display:flex;flex-wrap:wrap;gap:16px}.asso .btn{min-height:58px}
+.rv{opacity:1}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.vu{opacity:1;transform:none}
+@media (max-width:1100px){.og{grid-template-columns:repeat(2,minmax(0,1fr))}.ng{grid-template-columns:repeat(2,minmax(0,1fr))}.ng>div:nth-child(3){border-left:0;padding-left:0}.ng>div:nth-child(n+3){border-top:1px solid #2a2f35;margin-top:0}.ng>div{padding-bottom:26px}}
+@media (max-width:760px){.intro,.fd,.asso{grid-template-columns:1fr}.fd .im{min-height:0;aspect-ratio:4/3}.og{grid-template-columns:repeat(2,minmax(0,1fr))}.oc{min-height:150px;padding:18px 16px}.oc .t{font-size:15px;padding-right:0}.oc .ar3{right:16px;bottom:18px;font-size:18px}.asso .btns{flex-direction:column}.asso .btn{width:100%}}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}}
+.phero{position:relative;height:clamp(460px,52vw,820px);overflow:hidden;background:#000;color:#fff;display:flex;align-items:flex-end}
+.phero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 45%;transform:scale(1.06);will-change:transform}
+.phero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,.1) 75%,rgba(0,0,0,.3) 100%)}
+.phero-in{position:relative;z-index:2;width:100%;padding-block:0 clamp(40px,5vw,84px)}
+.phero .crumb{color:rgba(255,255,255,.75)}.phero .crumb b{color:var(--or)}
+.phero h1{margin-top:clamp(14px,1.8vw,26px);font-size:clamp(34px,8vw,128px);line-height:.98;text-transform:uppercase}
+.phero h1 span{display:block;font-weight:200}.phero h1 b{display:block;font-weight:900}
+.phero .tg{margin-top:clamp(16px,2vw,32px);font-size:clamp(12px,1.35vw,21px);font-weight:700;letter-spacing:.14em;color:var(--or);text-transform:uppercase}
+.fd .im{padding:0!important;position:relative;overflow:hidden}
+.fd .im img{display:block;width:100%;height:100%;min-height:300px;object-fit:cover;object-position:45% 30%}
+.cerfa{display:flex;align-items:center;gap:12px;margin-top:26px;font-size:clamp(15px,1.2vw,18px);font-weight:700;color:var(--noir)}
+.cerfa i{flex:none;width:26px;height:26px;border:1.5px solid var(--or);color:var(--or);display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-size:14px}
+.num{position:relative;overflow:hidden}.num>.pad{position:relative;z-index:1}.num::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000 40%,rgba(0,0,0,.35) 75%,rgba(0,0,0,0));pointer-events:none}
+.globe{position:absolute;right:3%;top:50%;width:clamp(340px,36vw,560px);height:auto;transform:translateY(-50%);opacity:.32;pointer-events:none;filter:saturate(.8);animation:float 30s ease-in-out infinite}
+
+@keyframes float{0%,100%{transform:translateY(-50%) rotate(0deg)}50%{transform:translateY(-52%) rotate(6deg)}}
+@media (max-width:760px){.globe{right:-45%;width:520px;opacity:.18}}
+@media (prefers-reduced-motion:reduce){.globe{animation:none}}
+</style>
+
+<script>
+(function(){
+try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}
+var h=location.hash&&location.hash.length>1?location.hash.slice(1):'';
+var tgt=function(){try{return h?document.getElementById(decodeURIComponent(h)):null;}catch(e){return null;}};
+var go=function(){var t=tgt();if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-90;window.scrollTo(0,Math.max(0,y));}else{window.scrollTo(0,0);}};
+var run=function(){go();};
+run();document.addEventListener('DOMContentLoaded',run);
+addEventListener('load',function(){run();setTimeout(run,150);setTimeout(run,600);});
+addEventListener('pageshow',function(e){if(e.persisted)run();});
+var stop=function(){removeEventListener('wheel',stop);removeEventListener('touchstart',stop);removeEventListener('keydown',stop);go=function(){};};
+addEventListener('wheel',stop,{passive:true});addEventListener('touchstart',stop,{passive:true});addEventListener('keydown',stop);
+})();
+</script>
+</head>
+<body>
+<header>
+  <div class="hd pad">
+    <a class="brand" href="index.html" aria-label="Beth Loubavitch Paris 11 Bastille">
+      <img src="img/mark-terre.svg" alt="">
+      <div><div class="b1">BETH LOUBAVITCH</div><div class="b2">PARIS 11 · BASTILLE</div></div>
+    </a>
+    <style>nav.menu .ddm a.ev{color:var(--terre);font-weight:800;border-bottom:1px solid #ECE7DE;margin-bottom:6px;padding-bottom:15px;justify-content:flex-start;align-items:center}nav.menu .ddm a.ev::after{margin-left:auto}a.ev::before{content:"";width:7px;height:7px;flex:0 0 7px;background:var(--terre);margin-right:12px;animation:evp 1.8s ease-in-out infinite}@keyframes evp{50%{opacity:.25}}.mmenu nav .msub a.ev{color:var(--terre);font-weight:800;border-bottom:1px solid #ECE7DE;margin-bottom:4px;display:flex;align-items:center}.mmenu nav .msub a.ev::after{margin-left:auto}@media (prefers-reduced-motion:reduce){a.ev::before{animation:none}}</style>
+    <nav class="menu" aria-label="Menu principal" id="mainnav">
+      <a href="qui-sommes-nous.html" data-en="About us">Qui sommes-nous</a>
+      <div class="ddw"><a href="activites.html" data-en="Activities">Activités</a><button type="button" class="ddt" aria-expanded="false" aria-label="Activités : sous-menu"><i></i></button><div class="ddm"><div><a class="ev" href="activites.html#evenements" data-en="Upcoming events">Événements à venir</a><a href="activites.html#repas" data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</a><a href="activites.html#etude" data-en="Classes &amp; Study">Cours &amp; Étude</a><a href="activites.html#enfants" data-en="Children">Enfants</a><a href="activites.html#femmes" data-en="Women’s circle">Cercle féminin</a><a href="activites.html#bichvileh" data-en="Bichvileh">Bichvile’h</a><a href="activites.html#cantine" data-en="Kosher canteen">Cantine cacher</a><a href="activites.html#tefiline" data-en="Tefillin &amp; Mezuzot">Téfiline &amp; Mézouzot</a><a href="activites.html#cteen" data-en="CTeen">CTeen</a><a href="activites.html#social" data-en="Social">Social</a></div></div></div>
+      <a href="agenda.html" data-en="Events">Agenda</a>
+      <div class="ddw"><a href="cycles.html" data-en="Life cycle">Cycles de la vie</a><button type="button" class="ddt" aria-expanded="false" aria-label="Cycles de la vie : sous-menu"><i></i></button><div class="ddm"><div><a href="cycles.html#naissance" data-en="Birth">Naissance</a><a href="cycles.html#bar-mitsva" data-en="Bar &amp; Bat Mitzvah">Bar &amp; Bat Mitsva</a><a href="cycles.html#mariage" data-en="Wedding">Mariage</a><a href="cycles.html#kaddich" data-en="Kaddish">Kaddich</a><a href="cycles.html#yizkor" data-en="Yizkor">Yizkor</a><a href="cycles.html#salle" data-en="Hall rental">Location de la salle</a><a href="cycles.html#convertisseur" data-en="Date converter">Convertisseur de date</a></div></div></div>
+      <div class="ddw"><a href="touristes.html" data-en="Visitors">Touristes</a><button type="button" class="ddt" aria-expanded="false" aria-label="Touristes : sous-menu"><i></i></button><div class="ddm"><div><a href="touristes.html#manger" data-en="Eat kosher">Manger cacher</a><a href="touristes.html#synagogues" data-en="Synagogues">Synagogues</a><a href="touristes.html#mikve" data-en="Mikveh">Mikvé</a><a href="touristes.html#shabbat" data-en="Shabbat meals">Repas de Chabbat</a><a href="touristes.html#offices" data-en="Shabbat services">Offices de Chabbat</a></div></div></div>
+    </nav>
+    <div class="hd-r">
+      <a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a>
+      <div class="lang" role="group" aria-label="Langue">
+        <button type="button" id="lang-fr" aria-pressed="true">FR</button><span>/</span><button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+      <button class="burger" type="button" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu pad" id="mmenu" hidden>
+  <div class="mtop"><a class="brand" href="index.html"><img src="img/mark-terre.svg" alt="" style="height:40px"><div><div class="b1" style="font-size:11px;letter-spacing:.18em">BETH LOUBAVITCH</div><div class="b2" style="font-size:9px;letter-spacing:.2em">PARIS 11 · BASTILLE</div></div></a><button class="close" type="button" id="mclose" aria-label="Fermer le menu">✕</button></div>
+  <nav aria-label="Menu mobile">
+    <a href="qui-sommes-nous.html" data-en="About us">Qui sommes-nous</a>
+    <div class="mrow"><a href="activites.html" data-en="Activities">Activités</a><button type="button" class="mtg" aria-expanded="false" aria-label="Activités : sous-menu"><i></i></button></div>
+    <div class="msub" hidden><a class="ev" href="activites.html#evenements" data-en="Upcoming events">Événements à venir</a><a href="activites.html#repas" data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</a><a href="activites.html#etude" data-en="Classes &amp; Study">Cours &amp; Étude</a><a href="activites.html#enfants" data-en="Children">Enfants</a><a href="activites.html#femmes" data-en="Women’s circle">Cercle féminin</a><a href="activites.html#bichvileh" data-en="Bichvileh">Bichvile’h</a><a href="activites.html#cantine" data-en="Kosher canteen">Cantine cacher</a><a href="activites.html#tefiline" data-en="Tefillin &amp; Mezuzot">Téfiline &amp; Mézouzot</a><a href="activites.html#cteen" data-en="CTeen">CTeen</a><a href="activites.html#social" data-en="Social">Social</a></div>
+    <a href="agenda.html" data-en="Events">Agenda</a>
+    <div class="mrow"><a href="cycles.html" data-en="Life cycle">Cycles de la vie</a><button type="button" class="mtg" aria-expanded="false" aria-label="Cycles de la vie : sous-menu"><i></i></button></div>
+    <div class="msub" hidden><a href="cycles.html#naissance" data-en="Birth">Naissance</a><a href="cycles.html#bar-mitsva" data-en="Bar &amp; Bat Mitzvah">Bar &amp; Bat Mitsva</a><a href="cycles.html#mariage" data-en="Wedding">Mariage</a><a href="cycles.html#kaddich" data-en="Kaddish">Kaddich</a><a href="cycles.html#yizkor" data-en="Yizkor">Yizkor</a><a href="cycles.html#salle" data-en="Hall rental">Location de la salle</a><a href="cycles.html#convertisseur" data-en="Date converter">Convertisseur de date</a></div>
+    <div class="mrow"><a href="touristes.html" data-en="Visitors">Touristes</a><button type="button" class="mtg" aria-expanded="false" aria-label="Touristes : sous-menu"><i></i></button></div>
+    <div class="msub" hidden><a href="touristes.html#manger" data-en="Eat kosher">Manger cacher</a><a href="touristes.html#synagogues" data-en="Synagogues">Synagogues</a><a href="touristes.html#mikve" data-en="Mikveh">Mikvé</a><a href="touristes.html#shabbat" data-en="Shabbat meals">Repas de Chabbat</a><a href="touristes.html#offices" data-en="Shabbat services">Offices de Chabbat</a></div>
+  </nav>
+  <div class="mbtns">
+    <a class="btn btn-or" href="https://bethloubavitchb.kehila.io/shabbat" target="_blank" rel="noopener" data-en="Book a Shabbat meal">Réserver un repas de Chabbat</a>
+    <a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a>
+  </div>
+</div>
+
+<main id="top">
+  <section class="cvh pad">
+    <h1 class="cvt"><span data-en="Our">Nos</span><b data-en="activities">activités</b></h1>
+    <div class="cvtg" data-en="All year long, for everyone">Toute l’année, pour chacun</div>
+    <nav class="ix" aria-label="Activités">
+      <a href="#repas"><em>01</em><b data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</b><i>→</i></a>
+      <a href="#etude"><em>02</em><b data-en="Classes &amp; Study">Cours &amp; Étude</b><i>→</i></a>
+      <a href="#enfants"><em>03</em><b data-en="Children">Enfants</b><i>→</i></a>
+      <a href="#femmes"><em>04</em><b data-en="Women’s circle">Cercle féminin</b><i>→</i></a>
+      <a href="#bichvileh"><em>05</em><b>Bichvile’h</b><i>→</i></a>
+      <a href="#cantine"><em>06</em><b data-en="Kosher canteen">Cantine cacher</b><i>→</i></a>
+      <a href="#tefiline"><em>07</em><b data-en="Tefillin &amp; Mezuzot">Téfiline &amp; Mézouzot</b><i>→</i></a>
+      <a href="#cteen"><em>08</em><b>CTeen</b><i>→</i></a>
+      <a href="#social"><em>09</em><b data-en="Social">Social</b><i>→</i></a>
+    </nav>
+  </section>
+
+  <section class="aev" id="evenements" aria-labelledby="t-aev">
+    <div class="pad aev-hd"><div><div class="tk" data-en="Diary">À ne pas manquer</div><h2 class="th2" id="t-aev"><span data-en="Upcoming">Événements</span><b data-en="events">à venir</b></h2></div>
+      <div class="aev-ar"><button class="aar" type="button" id="aprev" aria-label="Événements précédents">←</button><button class="aar" type="button" id="anext" aria-label="Événements suivants">→</button></div></div>
+    <div class="arail" id="arail"></div>
+  </section>
+
+  <section class="st pad" id="repas">
+    <figure class="ph rv"><img src="img/ph-chabbat2.jpg" alt="Table de Chabbat au Beth Loubavitch"></figure>
+    <div class="tx rv">
+      <div class="no">01</div>
+      <div class="tk" data-en="Community meals">Repas communautaires</div>
+      <h2 class="th2"><span data-en="Shabbat">Chabbat</span><b data-en="&amp; holidays">&amp; fêtes</b></h2>
+      <p data-en="Enjoy delicious catered meals in the heart of Paris! Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, enriching atmosphere.">Profitez de délicieux repas traiteur, en plein cœur de Paris ! Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et enrichissante.</p>
+      <div class="ml">
+        <a href="https://bethloubavitchb.kehila.io/shabbat" target="_blank" rel="noopener"><b data-en="Shabbat meals">Repas de Chabbat</b><span data-en="Book">Réserver</span></a>
+        <div class="off2" data-kehila="roch-hachana" aria-disabled="true"><b data-en="Rosh Hashana Seder">Séder de Roch Hachana</b><span data-en="Closed">Fermé</span></div>
+        <div class="off2" data-kehila="souccot" aria-disabled="true"><b data-en="Meals in the Sukkah">Repas sous la Soucca</b><span data-en="Closed">Fermé</span></div>
+        <div class="off2" data-kehila="pourim" aria-disabled="true"><b data-en="Purim Mishteh">Michté de Pourim</b><span data-en="Closed">Fermé</span></div>
+        <div class="off2" data-kehila="pessah" aria-disabled="true"><b data-en="Passover Seder">Séder de Pessa’h</b><span data-en="Closed">Fermé</span></div>
+      </div>
+      <div class="sm" data-en="Booking required online, as early as possible · Please let us know about any food allergy.">Réservation obligatoire en ligne, le plus tôt possible · Merci de prévenir en cas d’allergie alimentaire.</div>
+    </div>
+  </section>
+
+  <section class="kad" id="etude">
+    <div class="pad in">
+      <div class="kl rv">
+        <div class="no">02</div>
+        <div class="tk" data-en="Classes &amp; Study">Cours &amp; Étude</div>
+        <h2 class="th2"><span data-en="Weekly">Cours de Torah</span><b data-en="Torah classes">hebdomadaires</b></h2>
+        <div class="tt">
+          <div class="dy" data-en="Men">Hommes</div>
+          <div class="tr"><span><b data-en="Tuesday">Mardi</b> · <em data-en="The weekly Parasha, through the text">La Paracha de la semaine, à travers le texte</em></span><strong>19h30</strong></div>
+          <div class="tr"><span><b data-en="Thursday">Jeudi</b> · <em data-en="The weekly Parasha, through the text">La Paracha de la semaine, à travers le texte</em></span><strong>13h00</strong></div>
+          <div class="dy" data-en="Women">Femmes</div>
+          <div class="tr"><span><b data-en="Monday">Lundi</b> · <em data-en="Jewish thought based on the weekly Parasha">Pensée juive basée sur la Paracha de la semaine</em></span><strong>11h30 – 12h30</strong></div>
+          <div class="tr"><span><b data-en="Monday">Lundi</b> · <em data-en="Learning to read &amp; write Hebrew">Apprentissage de la lecture &amp; de l’écriture de l’hébreu</em></span><strong>20h30 – 21h30</strong></div>
+          <div class="tr"><span><b data-en="Wednesday">Mercredi</b> · <em data-en="Jewish thought">Pensée juive</em></span><strong>20h15 – 21h15</strong></div>
+        </div>
+        <p data-en="Lectures and workshops on many topics are also held regularly.">De plus, des conférences et ateliers sur de nombreux sujets sont fréquemment organisés.</p>
+      </div>
+      <div class="kr rv">
+        <figure class="ph2"><img src="img/act-cours.jpg" alt="Cours de Torah"></figure>
+        <div class="sub3">
+          <a href="#" target="_blank" rel="noopener"><b data-en="Tanya classes">Cours de Tanya</b><span data-en="Recorded classes on YouTube">Les cours enregistrés, en vidéo sur YouTube</span><i>→</i></a>
+          <a href="cycles.html#bar-mitsva"><b data-en="Bar / Bat Mitzvah preparation">Préparation Bar / Bat Mitsva</b><span data-en="The ceremony, the Torah reading and the speech">La cérémonie, la lecture de la Torah et le discours</span><i>→</i></a>
+          <a href="cycles.html#mariage"><b data-en="Marriage preparation">Préparation au mariage</b><span data-en="A four-lesson course for engaged couples">Un cours en quatre leçons pour les futurs mariés</span><i>→</i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="st rev pad" id="enfants">
+    <figure class="ph rv"><img src="img/act-enfants.jpg" alt="Les enfants du Talmud Torah et du Gan Israël"></figure>
+    <div class="tx rv">
+      <div class="no">03</div>
+      <div class="tk" data-en="Children">Enfants</div>
+      <h2 class="th2"><span data-en="Talmud Torah">Talmud Torah</span><b data-en="&amp; Gan Israel">&amp; Gan Israël</b></h2>
+      <p data-en="Through classes, songs, activities and the discovery of Jewish traditions, children learn to read and write Hebrew in a lively, warm and inspiring setting.">À travers des cours, chants, activités et découvertes des traditions juives, les enfants apprennent à lire et écrire l’hébreu, dans un cadre vivant, chaleureux et inspirant.</p>
+      <div class="tt">
+        <div class="dy" data-en="Talmud Torah · every Wednesday · nursery to 5th grade">Talmud Torah · le mercredi · de la petite section au CM2</div>
+        <div class="tr"><span><em data-en="Welcome &amp; school pick-up">Accueil &amp; ramassage scolaire</em></span><strong>11h30</strong></div>
+        <div class="tr"><span><em data-en="Kosher canteen">Cantine cachère</em></span><strong>12h00 – 12h30</strong></div>
+        <div class="tr"><span><em>Talmud Torah</em></span><strong>12h30 – 15h30</strong></div>
+        <div class="tr"><span><em>Krav Maga</em></span><strong>15h30 – 16h30</strong></div>
+        <div class="dy" data-en="Gan Israel · nursery to 5th grade">Gan Israël · de la petite section au CM2</div>
+        <div class="tr" data-gan="hiver"><span><em data-en="End-of-year holidays">Vacances de fin d’année</em></span><strong data-en="21 – 25 Dec 2026">21 – 25 déc. 2026</strong></div>
+        <div class="tr" data-gan="ete"><span><em data-en="Summer holidays">Vacances d’été</em></span><strong data-en="5 – 23 Jul 2027">5 – 23 juil. 2027</strong></div>
+      </div>
+      <div class="dy2" data-en="Holidays &amp; activities">Fêtes &amp; activités</div>
+      <ul class="chips"><li data-en="Rosh Hashana workshop">Atelier de Roch Hachana</li><li data-en="Pizza party in the Sukkah">Pizza party sous la Soucca</li><li data-en="Simchat Torah for kids">Sim’hat Torah spécial enfants</li><li data-en="Hanukkah party">Fête de Hanoucca</li><li data-en="Tu Bishvat workshop">Atelier de Tou Bichvat</li><li data-en="Purim party">Fête de Pourim</li><li>Matsa Bakery</li><li>Lag Baomer</li></ul>
+      <div class="bts"><a class="btn btn-terre" href="https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20le%20Talmud%20Torah%20du%20mercredi%20pour%20mon%20enfant." target="_blank" rel="noopener" data-en="Ask us on WhatsApp">Nous écrire sur WhatsApp</a></div>
+    </div>
+  </section>
+
+  <section class="st pad" id="femmes">
+    <figure class="ph rv"><img src="img/act-femmes.jpg" alt="Soirée féminine au Beth Loubavitch"></figure>
+    <div class="tx rv">
+      <div class="no">04</div>
+      <div class="tk" data-en="Women">Femmes</div>
+      <h2 class="th2"><span data-en="The women’s">Le cercle</span><b data-en="circle">féminin</b></h2>
+      <p data-en="Activities for women of all ages and at every stage of life! Young mothers, working women or retirees, come together around women’s evenings, Torah classes, organised trips and support after a birth.">Des activités pour les femmes de tous âges et à chaque étape de leur vie ! Jeunes mamans, femmes actives ou retraitées, retrouvez-vous autour de soirées féminines, cours de Torah, voyages organisés et accompagnement après une naissance.</p>
+      <ul class="chips"><li data-en="Feminine Wisdom">Sagesse féminine</li><li data-en="Torah classes">Cours de Torah</li><li data-en="Women’s evenings">Soirées féminines</li><li>Krav Maga</li></ul>
+      <div class="bts"><a class="btn btn-terre" href="https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20les%20activit%C3%A9s%20du%20cercle%20f%C3%A9minin." target="_blank" rel="noopener" data-en="Get information">Se renseigner</a></div>
+    </div>
+  </section>
+  <section class="pad fm">
+    <div class="fg fg2 rv">
+      <div class="fc"><div class="k" data-en="Weekly">Chaque semaine</div><h3 data-en="Classes &amp; activities">Cours &amp; activités</h3>
+        <div class="tt sm2"><div class="dy" data-en="Monday morning · Feminine Wisdom">Lundi matin · Sagesse féminine</div><div class="tr"><span>Oulpan</span><strong>10h30 – 11h30</strong></div><div class="tr"><span data-en="Torah class">Cours de Torah</span><strong>11h30 – 12h30</strong></div><div class="tr"><span data-en="Art workshop">Atelier artistique</span><strong>12h30 – 14h00</strong></div>
+        <div class="dy" data-en="Monday evening">Lundi soir</div><div class="tr"><span>Krav Maga</span><strong>19h00 – 20h00</strong></div><div class="tr"><span data-en="Learning to read Hebrew">Apprentissage de la lecture</span><strong>20h30 – 21h30</strong></div><div class="dy" data-en="Wednesday evening">Mercredi soir</div><div class="tr"><span data-en="Jewish thought">Pensée juive</span><strong>20h15 – 21h15</strong></div></div></div>
+      <div class="fc"><div class="k" data-en="Five evenings a year">Cinq rencontres par an</div><h3 data-en="Women’s evenings">Soirées féminines</h3><p data-en="Evenings ahead of the Jewish holidays, in a warm and friendly atmosphere.">Des soirées à l’approche des fêtes juives, dans une ambiance chaleureuse et conviviale.</p><a class="lk2" href="https://wa.me/33142523041" target="_blank" rel="noopener" data-en="Get in touch to stay informed →">Prendre contact pour rester informée →</a></div>
+    </div>
+  </section>
+
+  <section class="st rev pad" id="bichvileh">
+    <figure class="ph rv"><img src="img/act-social.jpg" alt="Colis Bichvile’h pour les jeunes mamans"></figure>
+    <div class="tx rv">
+      <div class="no">05</div>
+      <div class="tk" data-en="After a birth">Après une naissance</div>
+      <h2 class="th2"><span data-en="Bichvileh">Bichvile’h</span><b data-en="for new mothers">pour les jeunes mamans</b></h2>
+      <p data-en="Bichvileh supports mothers after birth and offers a community of mutual help, with practical and emotional support: hot meals, weekly club, lectures and workshops with specialists.">Bichvile’h accompagne les mamans dans la période post-natale et leur offre une communauté d’entraide, avec un soutien pratique et émotionnel : repas chauds, club hebdomadaire, conférences et ateliers avec des spécialistes.</p>
+      <p data-en="Have you just given birth, or do you know a friend who has? Bichvileh delivers a brunch to her home to help her recover gently.">Vous venez d’accoucher, ou une amie vient d’avoir un bébé ? Bichvile’h lui fait livrer un brunch à domicile pour l’aider à récupérer en douceur.</p>
+      <div class="tt">
+        <div class="dy" data-en="Mom &amp; me club">Club maman &amp; moi</div>
+        <div class="tr"><span><b data-en="Tuesday">Mardi</b> · <em data-en="Post-partum Pilates, a few words of Torah, babysitter on site">Pilates post-partum, quelques mots de Torah, baby-sitter sur place</em></span><strong>11h00 – 12h30</strong></div>
+      </div>
+      <ul class="chips"><li data-en="Brunch delivered at home">Brunch livré à domicile</li><li data-en="Hot meals">Repas chauds</li><li data-en="Lectures &amp; workshops">Conférences &amp; ateliers</li></ul>
+      <div class="bts"><a class="btn btn-terre" href="https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!" target="_blank" rel="noopener" data-en="Tell us about a birth">Prévenir d’une naissance</a></div>
+    </div>
+  </section>
+
+  <section class="pad adw" id="cantine">
+    <div class="sal rv">
+      <img src="img/ph-cantine.jpg" alt="La cantine cacher du Beth Loubavitch">
+      <div class="in">
+        <div class="tk" style="color:var(--or)" data-en="06 · Kosher Café">06 · Kosher Café</div>
+        <h2 class="th2"><span data-en="Kosher">Cantine</span><b data-en="canteen">cacher</b></h2>
+        <p data-en="Lunch with friends, meet new people, play a game of table football and enjoy a relaxing break!">Déjeuner entre amis, rencontrer de nouvelles personnes, faire une partie de baby-foot et profiter d’un moment de détente !</p>
+        <div class="kp"><div><b data-en="Mon – Thu">Lun – Jeu</b><span data-en="Outside school holidays">Hors vacances scolaires</span></div><div><b>11h30 – 14h</b><span data-en="Lunch">Déjeuner</span></div></div>
+        <p class="mn" data-en="Menu: sandwiches, sushi, dishes of the day and more…">Menu : sandwichs, sushi, plats du jour et autres…</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st rev pad" id="tefiline">
+    <figure class="ph rv"><img src="img/ph-tefiline.jpg" alt="Vérification de téfiline"></figure>
+    <div class="tx rv">
+      <div class="no">07</div>
+      <div class="tk" data-en="Checking &amp; purchase">Vérification &amp; achat</div>
+      <h2 class="th2"><span data-en="Tefillin">Téfiline</span><b data-en="&amp; Mezuzot">&amp; Mézouzot</b></h2>
+      <p data-en="Written in ink on parchment as the law requires, the letters of Tefillin and Mezuzot tend to fade over time due to humidity, heat or cold. A loan pair is available during the check. We also help you purchase Tefillin and Mezuzot that comply with Halakha.">Écrits à l’encre sur du parchemin, comme la loi le demande, les lettres des Téfiline et Mézouzot ont tendance à s’estomper avec le temps, en raison de l’humidité, de la chaleur ou du froid. Une paire de prêt est mise à disposition pendant la vérification. Nous vous accompagnons aussi dans l’achat de téfiline et de mézouzot conformes à la Halakha.</p>
+      <div class="kp lt"><div><b>7 €</b><span data-en="Mezuzah">Mézouza</span></div><div><b>25 €</b><span data-en="Tefillin">Téfiline</span></div></div>
+      <div class="bts"><a class="btn btn-terre" href="https://wa.me/33142523041?text=Bonjour%2C%20je%20vous%20contacte%20concernant%20la%20v%C3%A9rification%20de%20mes%20T%C3%A9filines%20et%20M%C3%A9zouzot.%20J%E2%80%99aimerais%20prendre%20rendez-vous%20pour%20les%20d%C3%A9poser.%20Quand%20pourrais-je%20passer%20%3F%20Merci%20!" target="_blank" rel="noopener" data-en="Book a check or a purchase">Vérification &amp; achat · prendre rendez-vous</a></div>
+    </div>
+  </section>
+
+  <section class="st pad" id="cteen">
+    <figure class="ph rv"><img src="img/ph-cteen.jpg" alt="Les adolescents du CTeen"></figure>
+    <div class="tx rv">
+      <div class="no">08</div>
+      <div class="tk" data-en="Teens">Adolescents</div>
+      <h2 class="th2"><span data-en="The">Le mouvement</span><b>CTeen</b></h2>
+      <p data-en="Boys and girls who have reached Bar / Bat Mitzvah age are invited to join the international CTeen movement, with branches all over the world!">Garçons et filles ayant atteint l’âge de la Bar / Bat Mitsva sont invités à rejoindre le mouvement international CTeen, qui compte des branches dans le monde entier !</p>
+      <ul class="chips"><li data-en="Monthly meetings">Réunions mensuelles</li><li data-en="Full Shabbat">Chabbat plein</li><li data-en="Organised trips">Voyages organisés</li><li data-en="International Shabbaton in New York">Shabbaton international à New York</li></ul>
+      <div class="bts"><a class="btn btn-terre" href="https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0A%C3%82ge%20%3A%0A%C3%89cole%20%3A%0A%0AJ'aimerais%20rejoindre%20le%20club%20CTeen%20pour%20les%20ados%20du%2011e%20arrondissement.%0A%0APourriez-vous%20m'ajouter%20au%20groupe%20WhatsApp%20d%C3%A9di%C3%A9%20%3F%0A%0AMerci%20beaucoup%20" target="_blank" rel="noopener" data-en="Join CTeen">Rejoindre le CTeen</a></div>
+    </div>
+  </section>
+
+  <section class="st rev pad" id="social">
+    <figure class="ph rv"><img src="img/ph-social.jpg" alt="Action sociale"></figure>
+    <div class="tx rv">
+      <div class="no">09</div>
+      <div class="tk" data-en="Social">Social</div>
+      <h2 class="th2"><span data-en="No one">Ne jamais</span><b data-en="forgotten">oublier personne</b></h2>
+      <p data-en="We must never forget people who are alone, isolated or in need.">Nous ne devons jamais oublier les personnes seules, isolées ou nécessiteuses.</p>
+      <div class="sx">
+        <div><h3 data-en="Isolated people">Personnes isolées</h3><p data-en="Visits, hot meals, physical and moral support, to restore dignity to vulnerable people and include them in community life.">Visites, repas chauds, soutien physique et moral, pour rendre la dignité aux personnes fragiles et les inclure dans la vie communautaire.</p></div>
+        <div><h3 data-en="Hospitalised people">Personnes hospitalisées</h3><p data-en="Hospital visits and kosher meal deliveries all year round, and especially during the holidays: Shofar, Lulav, Megillah.">Visites dans les hôpitaux et livraison de repas cachers, toute l’année et tout particulièrement pendant les fêtes : Chofar, Loulav, Méguila.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="tfaq" id="faq-page"><div class="pad in">
+    <div><div class="tk" data-en="Questions">Questions</div><h2 class="th2"><span data-en="Frequently asked">Questions</span><b data-en="questions">fréquentes</b></h2></div>
+    <div class="fqs">
+      <div class="fqh">Repas de Chabbat & fêtes</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Où trouver un repas de Chabbat à Paris ?</span><i></i></button><div class="ans"><div><p>Des repas de Chabbat sont organisés régulièrement au Beth Loubavitch Bastille dans une ambiance chaleureuse et conviviale.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Comment réserver un repas de Chabbat ?</span><i></i></button><div class="ans"><div><p>La réservation est obligatoire en ligne jusqu’au mercredi matin afin de bénéficier d’un tarif réduit.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Les repas de Chabbat sont-ils sécurisés ?</span><i></i></button><div class="ans"><div><p>Oui. Pour des raisons de sécurité, une inscription préalable est demandée, accompagnée d’une pièce d’identité. Selon les besoins, certaines vérifications complémentaires peuvent également être effectuées.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Des repas communautaires sont-ils organisés à Paris ?</span><i></i></button><div class="ans"><div><p>Le Beth Habad Loubavitch Bastille organise tout au long de l’année des repas de Chabbat communautaires ainsi que le séder de Roch Hachana, les repas sous la Soucca, les michté de Pourim et le séder de Pessa’h.</p></div></div></div>
+      </div>
+      <div class="fqh">Cours</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Des cours de Torah sont-ils proposés à Paris 11 Bastille ?</span><i></i></button><div class="ans"><div><p>Oui. Le Beth Habad Loubavitch Bastille propose des cours de Torah et de pensée juive accessibles à tous, dans une atmosphère chaleureuse et conviviale.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>À qui s’adressent les cours de Torah ?</span><i></i></button><div class="ans"><div><p>Les cours sont proposés aux hommes, aux femmes ainsi qu’aux adolescents, quel que soit leur niveau de connaissances ou de pratique du judaïsme.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Des conférences sont-elles organisées à Paris 11 Bastille ?</span><i></i></button><div class="ans"><div><p>Oui. Le Beth Habad Loubavitch Bastille organise régulièrement des conférences et rencontres autour de différents thèmes liés à la Torah, à l’éducation, au Chalom Baït et à la vie juive en général.</p></div></div></div>
+      </div>
+      <div class="fqh">Talmud Torah</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Où trouver un Talmud Torah à Paris ?</span><i></i></button><div class="ans"><div><p>Le Beth ‘Habad Loubavitch Bastille propose le Talmud Torah tous les mercredis de 12h30 à 15h30.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Quels sont les horaires du Talmud Torah ?</span><i></i></button><div class="ans"><div><p>Le Talmud Torah a lieu les mercredis de 12h30 à 15h30. Des services complémentaires sont également proposés : accueil et ramassage scolaire dès 11h30, cantine cachère de 12h à 12h30 ainsi qu’une activité de krav maga de 15h30 à 16h30.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Pour quels âges est le Talmud Torah ?</span><i></i></button><div class="ans"><div><p>Le Talmud Torah s’adresse aux filles et aux garçons, de la petite section jusqu’au CM2.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Qu’est-ce que le Talmud Torah ?</span><i></i></button><div class="ans"><div><p>Le Talmud Torah est un programme éducatif juif destiné aux enfants de la petite section jusqu’au CM2. À travers des cours, chants, activités et découvertes des traditions juives, les enfants apprennent à lire et écrire l’hébreu, tout en découvrant les traditions juives dans un cadre vivant, convivial, chaleureux et inspirant.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Quels événements et activités sont proposés aux enfants pendant les fêtes juives ?</span><i></i></button><div class="ans"><div><p>De nombreuses activités et fêtes sont organisées pour les enfants : Pizza Party sous la Soucca, Sim’hat Torah spécial enfants, fête de Hanoucca, fête de Pourim, fabrication de Matsot avant Pessa’h, lecture des Dix Commandements à Chavouot, et bien d’autres moments festifs.</p></div></div></div>
+      </div>
+      <div class="fqh">Gan Israël</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Y a-t-il un Gan Israël dans le 11ᵉ arrondissement de Paris ?</span><i></i></button><div class="ans"><div><p>Oui. Le Beth ‘Habad Loubavitch Bastille propose un Gan Israël dans le 11ᵉ arrondissement, offrant aux enfants des vacances riches en activités, découvertes et moments inoubliables, leur permettant de découvrir et de vivre le judaïsme de manière joyeuse et interactive.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>À quelles périodes a lieu le Gan Israël ?</span><i></i></button><div class="ans"><div><p>Le Gan Israël est généralement organisé pendant les vacances scolaires de fin d’année (par C-OL) ainsi que durant l’été (par UPPC). Les dates exactes peuvent varier selon les périodes ; il est recommandé de se renseigner auprès du centre.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>À quels âges s’adresse le Gan Israël ?</span><i></i></button><div class="ans"><div><p>Le Gan Israël accueille les enfants de la petite section jusqu’au CM2, avec une équipe d’encadrement attentive et bienveillante, afin d’offrir à chaque enfant une expérience chaleureuse et inoubliable.</p></div></div></div>
+      </div>
+      <div class="fqh">Femmes</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Quels événements sont organisés pour les femmes durant l’année ?</span><i></i></button><div class="ans"><div><p>Des soirées féminines sont organisées cinq fois par an, notamment à l’approche des fêtes juives, dans une ambiance chaleureuse et conviviale.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Vie juive et activités pour femmes à Paris ?</span><i></i></button><div class="ans"><div><p>Le Beth ‘Habad Loubavitch Bastille propose des activités dédiées aux femmes, dans une atmosphère chaleureuse et conviviale : des soirées féminines avant les fêtes et des cours de pensée juive.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Des activités sont-elles proposées pour les femmes du 3ᵉ âge ?</span><i></i></button><div class="ans"><div><p>Oui. Le Beth Habad Loubavitch Bastille propose des activités dédiées aux femmes du 3ᵉ âge et à la retraite active, dans une atmosphère chaleureuse et conviviale. Un rendez-vous hebdomadaire le lundi matin autour de la sagesse féminine, comprenant oulpan, ateliers artistiques et moments de partage.</p></div></div></div>
+      </div>
+      <div class="fqh">Bichvile’h</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Une aide est-elle proposée après la naissance ?</span><i></i></button><div class="ans"><div><p>Oui. Des colis de brunch sont livrés à domicile après l’accouchement afin d’apporter soutien et attention aux jeunes mamans. N’hésitez pas à nous contacter afin de nous informer de la naissance.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Qu’est-ce que le club « Maman et moi » ?</span><i></i></button><div class="ans"><div><p>Le club « Maman et moi » est un moment de rencontre et de partage destiné aux jeunes mamans, avec notamment une séance de pilates animée par une professeure spécialisée en post-partum. Un service de garde pour les bébés est également proposé sur place.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Y a-t-il un accompagnement pour les femmes après un accouchement ?</span><i></i></button><div class="ans"><div><p>Oui. Le programme Bichvile’h propose un accompagnement et un soutien post-partum dans une atmosphère bienveillante et attentive, afin d’apporter aide, soutien et attention aux femmes après un accouchement.</p></div></div></div>
+      </div>
+      <div class="fqh">Téfiline & Mézouzot</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Peut-on faire vérifier ses téfilines et mezouzot au Beth Habad Loubavitch Bastille ?</span><i></i></button><div class="ans"><div><p>Le Beth Habad Bastille propose un service de vérification des téfilines et des mezouzot, afin de s’assurer de leur conformité et de leur bon état.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Quand faut-il faire vérifier les téfilines et les mezouzot ?</span><i></i></button><div class="ans"><div><p>Il est recommandé de faire vérifier les téfilines et les mezouzot environ tous les 3 à 4 ans minimum, afin de s’assurer qu’ils soient toujours en bon état et conformes à la Halakha.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Où acheter des téfilines et mezouzot à Paris 11 Bastille ?</span><i></i></button><div class="ans"><div><p>Le Beth Habad Loubavitch Bastille vous accompagne dans l’achat de téfilines et de mezouzot conformes aux règles de la halakha.</p></div></div></div>
+      </div>
+      <div class="fqh">CTeen</div>
+      <div class="fqg">
+        <div class="qa"><button type="button" aria-expanded="false"><span>Activités pour adolescents à Paris 11 Bastille ?</span><i></i></button><div class="ans"><div><p>Un CTeen Club est proposé pour les adolescents, garçons et filles, avec des activités adaptées à leur âge, alliant convivialité, échanges et découverte du judaïsme.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Qu’est-ce que le CTeen ?</span><i></i></button><div class="ans"><div><p>Le CTeen est un programme international destiné aux adolescents juifs, proposant des activités, événements, sorties et actions solidaires dans une atmosphère dynamique et conviviale.</p></div></div></div>
+        <div class="qa"><button type="button" aria-expanded="false"><span>Que propose le CTeen ?</span><i></i></button><div class="ans"><div><p>Le programme propose notamment des soirées, voyages, Chabbats, activités sociales, bénévolat et moments de partage, permettant aux adolescents de vivre le judaïsme de manière joyeuse et interactive.</p></div></div></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer>
+  <div class="pad">
+    <div class="ft">
+      <div class="lg"><img src="img/logo-blanc.svg" alt="Beth Loubavitch Paris 11 · Bastille"><p>Rav Levi &amp; Beila Arnauve</p><a class="btn btn-ig" href="https://www.instagram.com/beth_loubavitch_bastille" target="_blank" rel="noopener" aria-label="S’abonner sur Instagram"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg><span data-en="Follow us">S’abonner</span></a></div>
+      <div><h4 data-en="Find us">Nous trouver</h4><ul><li><a href="https://www.google.com/maps/search/?api=1&amp;query=37+rue+Popincourt+75011+Paris" target="_blank" rel="noopener">37 rue Popincourt<br>75011 Paris</a></li><li>Métro Richard-Lenoir · ligne 5</li><li>Métro Saint-Ambroise · ligne 9</li></ul></div>
+      <div><h4 style="color:var(--or)" data-en="The site">Le site</h4><ul><li><a href="qui-sommes-nous.html" data-en="About us">Qui sommes-nous</a></li><li><a href="activites.html" data-en="Activities">Activités</a></li><li><a href="agenda.html" data-en="Events">Agenda</a></li><li><a href="cycles.html" data-en="Life cycle">Cycles de la vie</a></li><li><a href="cycles.html#salle" data-en="Hall rental">Location de la salle</a></li><li><a href="#" data-en="Gallery">Galerie</a></li></ul></div>
+      <div><h4 style="color:var(--terre)">Contact</h4><ul><li><a href="tel:+33142523041">+33 1 42 52 30 41</a></li><li><a href="https://wa.me/33142523041" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:levi.arnauve@loubavitch.fr" style="word-break:break-all">levi.arnauve@loubavitch.fr</a></li><li><a href="https://www.instagram.com/beth_loubavitch_bastille" target="_blank" rel="noopener">Instagram</a></li></ul><a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a></div>
+    </div>
+    <div class="fb"><span data-en="© 2026 Beth Loubavitch Bastille — Non-profit association">© 2026 Beth Loubavitch Bastille — Association à but non lucratif</span><nav class="legal" aria-label="Informations légales"><a href="#" data-en="Legal notice">Mentions légales</a><a href="#" data-en="Privacy policy">Politique de confidentialité</a><button type="button" id="cookieOpen" data-en="Cookies">Cookies</button><a href="admin.html">Admin</a></nav></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/33142523041" target="_blank" rel="noopener" aria-label="Nous écrire sur WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9.2 8.6c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .4-.1.6l-.4.5c-.1.1-.1.3 0 .5.5.9 1.3 1.7 2.2 2.2.2.1.4.1.5 0l.5-.5c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5v.4c0 .4-.2.8-.6 1-.6.3-1.4.4-2.3.1-2.3-.8-4.1-2.6-4.9-4.9-.3-.9-.2-1.7.3-2.4z" fill="currentColor"/></svg>
+</a>
+
+<div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p data-en="We use cookies to measure site traffic. You can accept or decline.">Nous utilisons des cookies pour mesurer la fréquentation du site. Vous pouvez les accepter ou les refuser.</p>
+  <div class="cb"><button type="button" class="btn btn-contour-noir" id="cookieNo" data-en="Decline">Refuser</button><button type="button" class="btn btn-or" id="cookieYes" data-en="Accept">Accepter</button></div>
+</div>
+<div hidden>
+</div>
+
+
+<script src="js/hebcal-6.11.1.min.js"></script>
+<script>
+(function(){
+let lang='fr';
+document.querySelector('#mainnav a[href="activites.html"]').classList.add('on');
+/* ---- Menu mobile ---- */
+const mm=document.getElementById('mmenu'),bg=document.getElementById('burger');
+function menu(open){mm.hidden=!open;bg.setAttribute('aria-expanded',open);document.body.classList.toggle('noscroll',open);if(open)document.getElementById('mclose').focus();else bg.focus();}
+bg.onclick=()=>menu(true);document.getElementById('mclose').onclick=()=>menu(false);
+mm.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!mm.hidden)menu(false);});
+
+/* ---- Cookies ---- */
+const ck=document.getElementById('cookie');
+function ckGet(){try{return localStorage.getItem('bl-cookies')}catch(e){return null}}
+function ckSet(v){try{localStorage.setItem('bl-cookies',v)}catch(e){}ck.hidden=true;}
+if(!ckGet())ck.hidden=false;
+document.getElementById('cookieYes').onclick=()=>ckSet('ok');
+document.getElementById('cookieNo').onclick=()=>ckSet('no');
+document.getElementById('cookieOpen').onclick=()=>{ck.hidden=false;};
+
+
+/* ---- Apparitions au défilement ---- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;(t._rv||[t]).forEach(x=>x.classList.add('vu'));io.unobserve(t);}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>{if(el.classList.contains('ph')){const w=el.parentElement;w._rv=(w._rv||[]).concat(el);io.observe(w);}else io.observe(el);});
+/* ---- Léger parallaxe des photos ---- */
+const phs=[...document.querySelectorAll('.ph img')];let tick=false;
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{phs.forEach(im=>{const r=im.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const k=(r.top+r.height/2-innerHeight/2)/innerHeight;im.style.translate='0 '+(k*-5).toFixed(2)+'%';});tick=false;});},{passive:true});
+/* ---- Événements à venir (mêmes données que l’accueil, gérées depuis l’admin) ---- */
+const EVENTS=[
+  {img:'img/enfant.jpg',titre:'Gan Israel',sous:'Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !',en_titre:'Gan Israel',en_sous:'A program full of activities, outings, games and discoveries, in a warm and joyful atmosphere!',btn:'Réserver',en_btn:'Book',lien:'#'},
+  {img:'img/rav.jpg',titre:'Gan Israel',sous:'Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !',en_titre:'Gan Israel',en_sous:'A program full of activities, outings, games and discoveries, in a warm and joyful atmosphere!',btn:'Réserver',en_btn:'Book',lien:'#'},
+  {img:'img/graffiti.jpg',titre:'Gan Israel',sous:'Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !',en_titre:'Gan Israel',en_sous:'A program full of activities, outings, games and discoveries, in a warm and joyful atmosphere!',btn:'Réserver',en_btn:'Book',lien:'#'},
+  {img:'img/foule.jpg',titre:'Gan Israel',sous:'Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !',en_titre:'Gan Israel',en_sous:'A program full of activities, outings, games and discoveries, in a warm and joyful atmosphere!',btn:'Réserver',en_btn:'Book',lien:'#'},
+  {img:'img/menorah.jpg',titre:'Gan Israel',sous:'Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !',en_titre:'Gan Israel',en_sous:'A program full of activities, outings, games and discoveries, in a warm and joyful atmosphere!',btn:'Réserver',en_btn:'Book',lien:'#'}
+];
+const arail=document.getElementById('arail');
+function renderAEv(){arail.innerHTML=EVENTS.map(e=>`<article class="acard"><div class="ph3"><img src="${e.img}" alt="" draggable="false"></div><h3>${lang==='en'?e.en_titre:e.titre}</h3><p>${lang==='en'?e.en_sous:e.sous}</p><a class="btn" href="${e.lien}" target="_blank" rel="noopener">${lang==='en'?e.en_btn:e.btn}</a></article>`).join('');}
+renderAEv();
+const astep=()=>{const c=arail.querySelector('.acard');return c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(arail).gap):400};
+document.getElementById('anext').onclick=()=>arail.scrollBy({left:astep(),behavior:'smooth'});
+document.getElementById('aprev').onclick=()=>arail.scrollBy({left:-astep(),behavior:'smooth'});
+{let down=false,sx=0,sl=0,moved=false;
+arail.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=arail.scrollLeft;});
+window.addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;arail.classList.add('drag');}arail.scrollLeft=sl-dx;});
+window.addEventListener('pointerup',()=>{if(!down)return;down=false;arail.classList.remove('drag');});
+arail.addEventListener('click',e=>{if(moved){e.preventDefault();moved=false;}},true);}
+/* ---- FAQ ---- */
+document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>{const qa=b.parentElement,open=!qa.classList.contains('open');
+  document.querySelectorAll('.qa').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false');});
+  if(open){qa.classList.add('open');b.setAttribute('aria-expanded','true');}});
+
+/* ---- FR / EN ---- */
+const nodes=[...document.querySelectorAll('[data-en]')];nodes.forEach(n=>n.dataset.fr=n.innerHTML);
+function setLang(l){lang=l;document.documentElement.lang=l;nodes.forEach(n=>n.innerHTML=l==='en'?n.dataset.en:n.dataset.fr);
+  document.getElementById('lang-fr').setAttribute('aria-pressed',l==='fr');if(typeof renderAEv==='function')renderAEv();document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');}
+document.getElementById('lang-fr').onclick=()=>setLang('fr');document.getElementById('lang-en').onclick=()=>setLang('en');
+})();
+</script>
+
+<script>
+(function(){
+document.querySelectorAll('.ddw').forEach(w=>{const b=w.querySelector('.ddt');if(!b)return;b.addEventListener('click',e=>{e.stopPropagation();const o=!w.classList.contains('open');document.querySelectorAll('.ddw.open').forEach(x=>{x.classList.remove('open');x.querySelector('.ddt').setAttribute('aria-expanded','false');});if(o){w.classList.add('open');b.setAttribute('aria-expanded','true');}});});
+document.addEventListener('click',e=>{if(!e.target.closest('.ddw'))document.querySelectorAll('.ddw.open').forEach(x=>{x.classList.remove('open');x.querySelector('.ddt').setAttribute('aria-expanded','false');});});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.ddw.open').forEach(x=>{x.classList.remove('open');x.querySelector('.ddt').setAttribute('aria-expanded','false');});});
+document.querySelectorAll('.ddm a').forEach(a=>a.addEventListener('click',()=>{const w=a.closest('.ddw');w.classList.remove('open');w.querySelector('.ddt').setAttribute('aria-expanded','false');}));
+document.querySelectorAll('.mtg').forEach(b=>b.addEventListener('click',()=>{const s=b.parentElement.nextElementSibling,o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o);s.hidden=!o;}));
+})();
+</script>
+<script>
+document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>{const qa=b.parentElement,open=!qa.classList.contains('open');qa.parentElement.querySelectorAll(':scope>.qa').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false');});if(open){qa.classList.add('open');b.setAttribute('aria-expanded','true');}});
+</script>
+<script>
+document.querySelectorAll('.fqg').forEach(g=>{const q=g.querySelectorAll(':scope>.qa');if(q.length<2)return;q.forEach((x,i)=>{if(i>0)x.classList.add('xtra');});
+const b=document.createElement('button');b.type='button';b.className='fqm';const n=q.length-1;
+const lab=()=>{const fr=document.documentElement.lang!=='en';b.textContent=g.classList.contains('all')?(fr?'Voir moins':'See less'):(fr?`Voir plus (${n})`:`See more (${n})`);};
+lab();b.onclick=()=>{g.classList.toggle('all');if(!g.classList.contains('all'))g.querySelectorAll('.qa.xtra.open').forEach(x=>{x.classList.remove('open');x.querySelector('button').setAttribute('aria-expanded','false');});lab();};
+g.after(b);document.querySelectorAll('#lang-fr,#lang-en').forEach(l=>l.addEventListener('click',()=>setTimeout(lab,0)));});
+</script>
+<script>
+(function(){function al(){var ig=document.querySelector('footer .lg .btn-ig'),dn=document.querySelector('footer .ft .btn-terre[data-en="Donate"]');if(!ig||!dn)return;ig.style.marginTop='10px';
+var d=dn.getBoundingClientRect().top-ig.getBoundingClientRect().top;if(d>0&&d<220)ig.style.marginTop=(10+d)+'px';}
+addEventListener('load',al);addEventListener('resize',al);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(al);})();
+</script>
+</body>
+</html>

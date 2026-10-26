@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/svg+xml" href="img/mark-terre.svg">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin · Beth Loubavitch Bastille</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap">
+<style>
+:root{--noir:#111214;--blanc:#fff;--or:#C8A05A;--terre:#B4552F;--creme:#F7F3EC;--ardoise:#6B747D;--ligne:#ECECE8;--ligne2:#DEDED9;--fond:#FAFAF8;--ok:#3E7C55;--f:"Nunito Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:light}
+*{box-sizing:border-box;border-radius:0!important;min-width:0}
+html,body{margin:0;overflow-x:hidden}
+body{font-family:var(--f);background:var(--fond);color:var(--noir);font-size:14.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+img{max-width:100%}
+.app{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+/* ---- Sidebar ---- */
+.sb{background:#fff;border-right:1px solid var(--ligne);padding:28px 0 22px;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:12px;padding:0 26px 28px}
+.brand img{height:34px;width:auto}
+.brand b{display:block;font-size:10.5px;letter-spacing:.24em;font-weight:800;color:var(--terre)}
+.brand span{display:block;margin-top:3px;font-size:9.5px;letter-spacing:.24em;color:var(--ardoise);font-weight:700}
+.nav{padding:0 14px;display:flex;flex-direction:column;flex:1}
+.nav .g{padding:22px 12px 8px;font-size:9.5px;letter-spacing:.26em;font-weight:800;color:#A3A9AF;text-transform:uppercase}
+.nav button{position:relative;display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:9px 12px;text-align:left;color:#3C4248;font-size:14px;font-weight:600;cursor:pointer;transition:color .2s,background .2s}
+.nav button i{display:none}
+.nav button:hover{color:var(--terre)}
+.nav button[aria-current="page"]{color:var(--noir);font-weight:800;background:var(--fond)}
+.nav button[aria-current="page"]::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:2px;background:var(--terre)}
+.nav .bd{margin-left:auto;min-width:20px;height:20px;padding:0 6px;display:inline-flex;align-items:center;justify-content:center;background:var(--creme);color:var(--terre);font-size:11px;font-weight:800}
+.sb .ft{margin:18px 26px 0;padding-top:18px;border-top:1px solid var(--ligne);font-size:12.5px;line-height:1.5;color:var(--ardoise)}
+.sb .ft a{display:inline-block;margin-top:8px;color:var(--terre);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+/* ---- Main ---- */
+.main{min-width:0}
+.top{position:sticky;top:0;z-index:5;background:rgba(250,250,248,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--ligne);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px clamp(18px,3.4vw,48px)}
+.top h1{margin:0;font-size:clamp(18px,1.6vw,22px);font-weight:300;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top .r{display:flex;align-items:center;gap:12px;flex:none}
+.who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ardoise)}
+.who b{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--noir);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em}
+.burger{display:none;background:none;border:1px solid var(--ligne2);width:38px;height:38px;cursor:pointer;flex:none}
+.wrap{padding:clamp(20px,3.4vw,48px);max-width:1180px}
+/* ---- Buttons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 18px;border:1px solid transparent;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s,border-color .2s;white-space:nowrap;max-width:100%}
+.btn-terre{background:var(--terre);color:#fff}.btn-terre:hover{background:#9a4527}
+.btn-ln{background:transparent;border-color:var(--ligne2);color:var(--noir)}.btn-ln:hover{border-color:var(--noir)}
+.btn-sm{min-height:32px;padding:0 12px;font-size:10.5px}
+.btn-gh{background:none;border:0;color:var(--ardoise);padding:0 6px;min-height:32px;font-size:10.5px}.btn-gh:hover{color:var(--terre)}
+/* ---- Cards ---- */
+.card{background:#fff;border:1px solid var(--ligne)}
+.card+.card{margin-top:24px}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px 20px;padding:22px 26px 18px;border-bottom:1px solid var(--ligne)}
+.ch>div:first-child{flex:1 1 260px}
+.ch h2{margin:0;font-size:16px;font-weight:800;letter-spacing:.005em}
+.ch p{margin:4px 0 0;font-size:13px;color:var(--ardoise)}
+.cb{padding:24px 26px}
+.k{font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--terre)}
+.muted{color:var(--ardoise)}
+/* ---- Stats ---- */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#fff;border:1px solid var(--ligne);margin-bottom:24px}
+.st{padding:22px 24px;border-left:1px solid var(--ligne)}
+.st:first-child{border-left:0}
+.st .k{color:var(--ardoise)}
+.st .v{margin-top:12px;font-size:clamp(28px,2.6vw,38px);font-weight:300;line-height:1;letter-spacing:-.01em;white-space:nowrap}
+.st .s{margin-top:8px;font-size:12.5px;color:var(--ardoise)}
+.st.warn .k{color:var(--terre)}.st.warn .v{color:var(--terre)}
+.grid2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;align-items:start}
+.grid2 .card+.card{margin-top:0}
+/* ---- Rows ---- */
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 26px;border-bottom:1px solid var(--ligne)}
+.row:last-child{border-bottom:0}
+.row .th{width:56px;height:42px;background:var(--creme) center/cover no-repeat}
+.row .t{font-weight:700;overflow:hidden;text-overflow:ellipsis}
+.row .d{margin-top:2px;font-size:12.5px;color:var(--ardoise);overflow:hidden;text-overflow:ellipsis}
+.row .ac{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:6px 10px}
+#todo .row{grid-template-columns:minmax(0,1fr) auto}
+.tag{display:inline-block;padding:3px 7px;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.tag.on{color:var(--ok);background:#EEF5F0}.tag.off{color:var(--ardoise);background:#F2F3F3}.tag.miss{color:var(--terre);background:#FBF0EB}
+/* ---- Toggle ---- */
+.tg{position:relative;display:inline-flex;align-items:center;gap:9px;cursor:pointer;user-select:none;flex:none}
+.tg input{position:absolute;left:0;top:0;opacity:0;width:1px;height:1px;margin:0}
+.tg .sw{width:34px;height:18px;background:#D9DCDF;position:relative;transition:background .2s;flex:none;border-radius:999px!important}
+.tg .sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;background:#fff;transition:transform .2s;border-radius:50%!important;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.tg input:checked+.sw{background:var(--ok)}
+.tg input:checked+.sw::after{transform:translateX(16px)}
+.tg input:focus-visible+.sw{outline:2px solid var(--terre);outline-offset:2px}
+.tg .lb{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ardoise);min-width:56px}
+.tg input:checked~.lb{color:var(--noir)}
+/* ---- Forms ---- */
+.form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 22px}
+.fd{display:flex;flex-direction:column;gap:7px;min-width:0}
+.fd.full{grid-column:1/-1}
+.fd>span{font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#3C4248}
+.fd>span em{font-style:normal;color:#A3A9AF;letter-spacing:.14em;margin-left:4px}
+.fd input,.fd select,.fd textarea{width:100%;min-height:44px;padding:10px 12px;border:0;border-bottom:1px solid var(--ligne2);background:var(--fond);font-size:14.5px;transition:border-color .2s,background .2s}
+.fd textarea{min-height:92px;resize:vertical;line-height:1.55}
+.fd input:focus,.fd select:focus,.fd textarea:focus{outline:0;border-bottom-color:var(--terre);background:#fff}
+.lang2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px 22px}
+.drop{grid-column:1/-1;border:1px dashed var(--ligne2);padding:18px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:border-color .2s,background .2s;min-width:0}
+.drop:hover{border-color:var(--terre);background:#FDFAF7}
+.drop .pv{width:84px;height:62px;background:var(--creme) center/cover no-repeat;flex:none}
+.drop>div{min-width:0}.drop b{display:block;font-weight:700;font-size:14px}.drop span{font-size:12.5px;color:var(--ardoise)}
+.fa{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--ligne)}
+.bl{display:flex;flex-direction:column;gap:10px}.bl .br{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px}.bl input{width:100%;min-height:42px;padding:8px 12px;border:0;border-bottom:1px solid var(--ligne2);background:var(--fond)}
+@media (max-width:700px){.bl .br{grid-template-columns:minmax(0,1fr)}}
+.chk{display:flex;flex-wrap:wrap;gap:8px}.chk label{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--ligne2);font-size:13px;cursor:pointer;user-select:none}.chk input{accent-color:var(--terre);margin:0}.chk label:has(input:checked){border-color:var(--terre);background:#FDFAF7}
+.row.hid .t,.row.hid .d{color:#A3A9AF}
+/* ---- Tables ---- */
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;table-layout:fixed}
+.tbl th{text-align:left;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--ardoise);padding:14px 12px;border-bottom:1px solid var(--ligne)}
+.tbl th:first-child,.tbl td:first-child{padding-left:26px}.tbl th:last-child,.tbl td:last-child{padding-right:26px}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--ligne);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl input,.tbl select{width:100%;min-height:38px;padding:6px 10px;border:0;border-bottom:1px solid var(--ligne2);background:var(--fond)}
+.tbl input:focus,.tbl select:focus{outline:0;border-bottom-color:var(--terre);background:#fff}
+#progT td:nth-child(1){width:auto}
+.tbl.prog col.c1{width:16%}.tbl.prog col.c2{width:13%}.tbl.prog col.c3{width:auto}.tbl.prog col.c4{width:20%}.tbl.prog col.c5{width:130px}.tbl.prog col.c6{width:56px}
+.tbl.rep col.c1{width:30%}.tbl.rep col.c2{width:auto}.tbl.rep col.c3{width:150px}
+/* ---- Tabs ---- */
+.tabs{display:flex;border-bottom:1px solid var(--ligne2);margin-bottom:24px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;background:none;border:0;padding:12px 0;margin-right:26px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ardoise);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--noir);border-bottom-color:var(--terre)}
+/* ---- Sections ---- */
+.sec{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:center;padding:14px 26px;border-bottom:1px solid var(--ligne)}
+.sec:last-child{border-bottom:0}
+.sec .t{font-weight:700}.sec .d{font-size:12.5px;color:var(--ardoise);margin-top:2px}
+.sec .msg{grid-column:1/-1;display:none}
+.sec.closed .msg{display:block}
+.sec.closed .t{color:var(--ardoise)}
+.sec .msg input{width:100%;min-height:40px;padding:8px 12px;border:0;border-bottom:1px solid var(--ligne2);background:var(--fond)}
+.pg{margin:0;font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
+#secList>.cb{padding:22px 26px 8px}
+/* ---- Bandeau ---- */
+.annp{margin-top:12px;background:var(--terre);color:#fff;padding:12px 18px;font-weight:700;font-size:13.5px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;align-items:center;text-align:center}
+.annp a{border-bottom:1px solid #fff}
+/* ---- Pop-up ---- */
+.pe{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:32px;align-items:start}
+.pvw{position:sticky;top:96px}
+.pvs{margin-top:12px;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url(img/hero.jpg) center/cover;padding:26px 18px;display:flex;align-items:center;justify-content:center;min-height:400px}
+.pvs.b{align-items:flex-end;justify-content:flex-end}
+.pop{position:relative;background:#fff;width:100%;max-width:320px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.pvs.b .pop{max-width:230px}.pvs.b .pim{display:none}
+.pop .px{position:absolute;top:10px;right:10px;width:28px;height:28px;background:rgba(255,255,255,.92);border:0;cursor:pointer;font-size:12px;z-index:2}
+.pim{aspect-ratio:16/10;background:var(--creme) center/cover no-repeat}
+.pbd{padding:18px 20px 20px}.pk{font-size:9.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--or)}
+.pbd h3{margin:8px 0 0;font-size:19px;line-height:1.2;font-weight:900;text-transform:uppercase;overflow-wrap:anywhere}
+.pbd p{margin:8px 0 16px;font-size:13.5px;line-height:1.5;color:var(--ardoise);overflow-wrap:anywhere}
+.pbd .btn{width:100%;white-space:normal;text-align:center;padding:10px 14px}
+.full-pop{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;animation:fi .3s}
+.full-pop .pop{max-width:440px;animation:pu .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes fi{from{opacity:0}}@keyframes pu{from{opacity:0;transform:translateY(20px) scale(.97)}}
+/* ---- Toast ---- */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--noir);color:#fff;padding:12px 20px;font-weight:700;font-size:13px;z-index:70;transition:opacity .3s,transform .3s;pointer-events:none;display:flex;gap:10px;align-items:center;max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast i{font-style:normal;color:#7fd39b}
+/* ---- Modal ---- */
+.md{position:fixed;inset:0;background:rgba(17,18,20,.45);z-index:40;display:flex;align-items:flex-start;justify-content:center;padding:48px 16px;overflow:auto}
+.md[hidden]{display:none}
+.md .box{background:#fff;width:min(720px,100%)}
+.md .ch .x{background:none;border:0;font-size:18px;cursor:pointer;color:var(--ardoise);flex:none}
+/* ---- Login ---- */
+.login{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.login .lf{background:#000 url(img/hero.jpg) center/cover;position:relative}
+.login .lf::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.15))}
+.login .lf div{position:absolute;left:52px;right:52px;bottom:52px;z-index:2;color:#fff}
+.login .lf h2{margin:14px 0 0;font-size:clamp(30px,3.4vw,46px);line-height:1.02;font-weight:900;text-transform:uppercase}
+.login .lf h2 span{display:block;font-weight:200}
+.login .rf{display:flex;align-items:center;justify-content:center;padding:32px;background:#fff}
+.login form{width:min(360px,100%);display:flex;flex-direction:column;gap:18px}
+.login h1{margin:6px 0 4px;font-size:24px;font-weight:300}
+.login h1 b{font-weight:900}
+.login[hidden],.app[hidden]{display:none}
+.panel[hidden]{display:none}
+/* iOS : champs date / heure sans débordement */
+input[type=date],input[type=time],input[type=datetime-local]{-webkit-appearance:none;appearance:none;display:block;min-width:0;max-width:100%;width:100%;line-height:1.3}
+input[type=date]::-webkit-date-and-time-value,input[type=time]::-webkit-date-and-time-value{text-align:left;margin:0}
+input[type=date]::-webkit-calendar-picker-indicator{opacity:.55;cursor:pointer}
+input,select,textarea{max-width:100%}
+select{-webkit-appearance:none;appearance:none;padding-right:34px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23111214' stroke-width='1.4'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 12px center!important;text-overflow:ellipsis}
+.md .box,.md .cb,.md form{max-width:100%;overflow:hidden}
+/* ---- Responsive ---- */
+@media (max-width:1180px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.st:nth-child(3){border-left:0}.st:nth-child(n+3){border-top:1px solid var(--ligne)}.grid2{grid-template-columns:minmax(0,1fr)}.pe{grid-template-columns:minmax(0,1fr)}.pvw{position:static}}
+@media (max-width:900px){
+ .app{grid-template-columns:minmax(0,1fr)}
+ .sb{position:fixed;inset:0 auto 0 0;width:272px;z-index:30;transform:translateX(-100%);transition:transform .3s}
+ .sb.open{transform:none;box-shadow:0 0 0 100vmax rgba(17,18,20,.35)}
+ .burger{display:inline-flex;align-items:center;justify-content:center}
+ .who span{display:none}
+}
+@media (max-width:700px){
+ .form,.lang2{grid-template-columns:minmax(0,1fr)}
+ .ch,.cb{padding-left:18px;padding-right:18px}
+ .row{grid-template-columns:44px minmax(0,1fr);padding:14px 18px;gap:12px}
+ .row .th{width:44px;height:36px}
+ .row .ac{grid-column:1/-1;justify-content:flex-start}
+ #todo .row{grid-template-columns:minmax(0,1fr) auto}#todo .row .ac{grid-column:auto}
+ .sec{padding:14px 18px}
+ #secList>.cb{padding:20px 18px 6px}
+ .stats{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.st{padding:16px 18px}
+ /* tables en cartes */
+ .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+ .tbl thead,.tbl colgroup{display:none}
+ .tbl tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 12px;padding:16px 18px;border-bottom:1px solid var(--ligne)}
+ .tbl td,.tbl td:first-child,.tbl td:last-child{padding:0;border:0}
+ .tbl.prog td:nth-child(3){grid-column:1/-1;order:-1}
+ .tbl.prog tr{position:relative;padding-right:54px}
+ .tbl.prog td:nth-child(4){grid-column:1/-1}
+ .tbl.prog td:nth-child(5){display:flex;align-items:center}
+ .tbl.prog td:nth-child(6){position:absolute;top:18px;right:12px;width:auto}
+ .tbl.rep tr{grid-template-columns:minmax(0,1fr) auto}
+ .tbl.rep td:nth-child(2){grid-column:1/-1;order:3}
+ .top{padding:14px 18px}.wrap{padding:18px}
+ .md{padding:16px 10px}.md .ch,.md .cb{padding-left:16px;padding-right:16px}
+ .login{grid-template-columns:minmax(0,1fr)}.login .lf{display:none}
+ .drop{flex-wrap:wrap}
+ .tabs{flex-wrap:wrap;overflow:visible;gap:0 20px}.tabs button{margin-right:0}
+ .btn{white-space:normal;text-align:center}
+}
+@media (max-width:380px){.stats{grid-template-columns:minmax(0,1fr)}.st{border-left:0!important;border-top:1px solid var(--ligne)}.st:first-child{border-top:0}}
+</style>
+</head>
+<body>
+
+<!-- ============ CONNEXION ============ -->
+<section class="login" id="login">
+  <div class="lf"><div><div class="k" style="color:var(--or)">Espace administrateur</div><h2><span>Beth Loubavitch</span>Bastille</h2></div></div>
+  <div class="rf">
+    <form id="lform">
+      <img src="img/mark-terre.svg" alt="" style="height:40px;align-self:flex-start">
+      <h1>Espace <b>admin</b></h1>
+      <label class="fd"><span>E-mail</span><input type="email" value="beila@bethloubavitch.fr" autocomplete="username"></label>
+      <label class="fd"><span>Mot de passe</span><input type="password" value="demo" autocomplete="current-password"></label>
+      <button class="btn btn-terre" type="submit">Se connecter</button>
+      <p class="muted" style="font-size:13px;margin:0">Maquette : cliquez simplement sur « Se connecter ».</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ APPLICATION ============ -->
+<div class="app" id="app" hidden>
+  <aside class="sb" id="sb">
+    <div class="brand"><img src="img/mark-terre.svg" alt=""><div><b>ADMIN</b><span>BETH LOUBAVITCH</span></div></div>
+    <nav class="nav" id="nav">
+      <button data-p="dash" aria-current="page"><i>◧</i>Tableau de bord</button>
+      <div class="g">Contenus</div>
+      <button data-p="events"><i>◆</i>Événements à venir</button>
+      <button data-p="prog"><i>◷</i>Programme régulier</button>
+      <button data-p="repas"><i>✦</i>Repas &amp; fêtes<span class="bd" id="bdRepas">4</span></button>
+      <button data-p="sections"><i>◐</i>Sections du site</button>
+      <button data-p="popup"><i>▣</i>Pop-up</button>
+      <button data-p="annonce"><i>▬</i>Bandeau d’annonce</button>
+      <div class="g">Informations</div>
+      <button data-p="infos"><i>ⓘ</i>Infos importantes</button>
+      <button data-p="adresses"><i>⌖</i>Adresses touristes</button>
+      <button data-p="faq"><i>?</i>Questions fréquentes</button>
+      <button data-p="home"><i>⌂</i>Page d’accueil</button>
+      <button data-p="textes"><i>✎</i>Textes &amp; photos</button>
+      <div class="g">Compte</div>
+      <button data-p="users"><i>☺</i>Utilisateurs</button>
+    </nav>
+    <div class="ft">Modifications en ligne immédiatement après « Publier ».<br><a href="index.html" target="_blank">Voir le site ↗</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <div style="display:flex;align-items:center;gap:14px"><button class="burger" id="burger" aria-label="Menu">☰</button><h1 id="ptitle">Tableau de bord</h1></div>
+      <div class="r"><div class="who"><span>Beila Arnauve · Admin</span><b>BA</b></div></div>
+    </header>
+
+    <div class="wrap">
+
+    <!-- ===== TABLEAU DE BORD ===== -->
+    <section class="panel" data-panel="dash">
+      <div class="stats">
+        <div class="st"><div class="k">Événements</div><div class="v" id="sEv">3</div><div class="s">publiés à venir</div></div>
+        <div class="st"><div class="k">Sections</div><div class="v" id="sSec">—</div><div class="s">ouvertes sur le site</div></div>
+        <div class="st warn"><div class="k">À compléter</div><div class="v" id="sMiss">—</div><div class="s">liens Kehila manquants</div></div>
+        <div class="st"><div class="k">Prochain Chabbat</div><div class="v" style="font-size:26px">18h27</div><div class="s">Allumage · calcul automatique</div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><div class="ch"><div><h2>Prochains événements</h2><p>Affichés sur l’accueil et dans l’agenda</p></div><button class="btn btn-terre btn-sm" data-go="events" data-new="1">+ Ajouter</button></div><div class="rows" id="dashEv"></div></div>
+        <div class="card"><div class="ch"><div><h2>À faire</h2><p>Éléments à compléter</p></div></div><div class="rows" id="todo"></div></div>
+      </div>
+    </section>
+
+    <!-- ===== ÉVÉNEMENTS ===== -->
+    <section class="panel" data-panel="events" hidden>
+      <div class="card"><div class="ch"><div><h2>Événements à venir</h2><p>Carrousel de l’accueil + agenda. Un événement passé disparaît automatiquement.</p></div><button class="btn btn-terre" id="newEv">+ Nouvel événement</button></div>
+        <div class="rows" id="evList"></div></div>
+    </section>
+
+    <!-- ===== PROGRAMME ===== -->
+    <section class="panel" data-panel="prog" hidden>
+      <div class="card"><div class="ch"><div><h2>Programme régulier</h2><p>Les rendez-vous de chaque semaine. Chaque nom renvoie vers la page Activités.</p></div><label class="tg"><input type="checkbox" id="vac"><span class="sw"></span><span class="lb">Vacances</span></label></div>
+        <div id="vacMsg" class="cb" style="display:none;background:#FBEDE7;color:var(--terre);font-weight:700">Mode vacances activé : tout le programme est suspendu sur le site.</div>
+        <table class="tbl prog"><colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"><col class="c6"></colgroup><thead><tr><th>Jour</th><th>Heure</th><th>Activité</th><th>Mène vers</th><th>Visible</th><th></th></tr></thead><tbody id="progT"></tbody></table>
+        <div class="cb"><button class="btn btn-ln btn-sm" id="addProg">+ Ajouter une ligne</button></div></div>
+    </section>
+
+    <!-- ===== REPAS & FÊTES ===== -->
+    <section class="panel" data-panel="repas" hidden>
+      <div class="card"><div class="ch"><div><h2>Repas &amp; fêtes</h2><p>Fermé = affiché en filigrane avec la mention « Fermé », non cliquable.</p></div></div>
+        <table class="tbl rep"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><thead><tr><th>Repas</th><th>Lien d’inscription Kehila</th><th>État</th></tr></thead><tbody id="repasT"></tbody></table></div>
+    </section>
+
+    <!-- ===== SECTIONS ===== -->
+    <section class="panel" data-panel="sections" hidden>
+      <div class="card"><div class="ch"><div><h2>Ouvrir / fermer des sections</h2><p>Une section fermée disparaît du site, du menu et du sous-menu. Un message peut la remplacer.</p></div></div>
+        <div id="secList"></div></div>
+    </section>
+
+    <!-- ===== POP-UP ===== -->
+    <section class="panel" data-panel="popup" hidden>
+      <div class="card"><div class="ch"><div><h2>Pop-up</h2><p>Fenêtre qui s’ouvre sur le site avec une image et un lien. Un seul pop-up actif à la fois.</p></div><button class="btn btn-terre" id="newPop">+ Nouveau pop-up</button></div>
+        <div class="rows" id="popList"></div></div>
+      <div class="card" id="popEdit"><div class="ch"><div><h2 id="popET">Modifier le pop-up</h2><p>Les changements s’affichent dans l’aperçu à droite</p></div><button class="btn btn-gh" id="popDel">Supprimer</button></div>
+        <div class="cb"><div class="pe">
+          <div class="form">
+            <div class="lang2 fd full"><label class="fd"><span>Titre <em>FR</em></span><input id="pT" value="Séder de Pessa’h 5787"></label><label class="fd"><span>Titre <em>EN</em></span><input id="pTe" value="Passover Seder 5787"></label></div>
+            <div class="lang2 fd full"><label class="fd"><span>Texte <em>FR</em></span><textarea id="pX">Vivez le Séder au Beth Loubavitch Bastille, dans une ambiance chaleureuse. Places limitées.</textarea></label><label class="fd"><span>Texte <em>EN</em></span><textarea id="pXe">Celebrate the Seder at Beth Loubavitch Bastille in a warm atmosphere. Limited seats.</textarea></label></div>
+            <label class="fd"><span>Texte du bouton</span><input id="pB" value="Je réserve ma place"></label>
+            <label class="fd"><span>Lien du bouton</span><input id="pL" value="https://bethloubavitchb.kehila.io/"></label>
+            <label class="drop"><input type="file" accept="image/*" hidden data-img id="pImg"><span class="pv" id="pPv" style="background-image:url(img/ph-chabbat.jpg)"></span><div><b>Image du pop-up</b><span>Glissez une image ou cliquez · facultative</span></div></label>
+            <label class="fd"><span>Afficher à partir du</span><input type="date" value="2027-03-01"></label>
+            <label class="fd"><span>Jusqu’au</span><input type="date" value="2027-04-21"></label>
+            <label class="fd"><span>Pages</span><select id="pPg"><option>Toutes les pages</option><option>Accueil uniquement</option><option>Activités</option><option>Agenda</option><option>Touristes</option></select></label>
+            <label class="fd"><span>Fréquence</span><select><option>Une fois par visiteur</option><option>Une fois par jour</option><option>À chaque visite</option></select></label>
+            <label class="fd"><span>Apparition</span><select><option>Après 3 secondes</option><option>Immédiatement</option><option>Après 10 secondes</option></select></label>
+            <label class="fd"><span>Format</span><select id="pFm"><option value="c">Centré, avec image</option><option value="b">Petit, en bas à droite</option></select></label>
+          </div>
+          <div class="pvw"><div class="k">Aperçu</div><div class="pvs" id="pvs"><div class="pop" id="pop"><button class="px" aria-label="Fermer">✕</button><div class="pim" id="pim"></div><div class="pbd"><div class="pk">Beth Loubavitch Bastille</div><h3 id="vT"></h3><p id="vX"></p><a class="btn btn-terre" id="vB" href="#"></a></div></div></div>
+          <button class="btn btn-ln btn-sm" id="pTest" style="margin-top:12px">Tester en plein écran</button></div>
+        </div>
+        <div class="fa"><label class="tg"><input type="checkbox" id="pOn" checked><span class="sw"></span><span class="lb">Actif</span></label><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+    </section>
+
+    <!-- ===== ANNONCE ===== -->
+    <section class="panel" data-panel="annonce" hidden>
+      <div class="card"><div class="ch"><div><h2>Bandeau d’annonce</h2><p>Message affiché tout en haut de toutes les pages.</p></div><label class="tg"><input type="checkbox" id="annOn" checked><span class="sw"></span><span class="lb" id="annLb">Affiché</span></label></div>
+        <div class="cb"><div class="form">
+          <label class="fd"><span>Message <em>FR</em></span><input id="annFr" value="Inscriptions ouvertes pour le Séder de Pessa’h"></label>
+          <label class="fd"><span>Message <em>EN</em></span><input id="annEn" value="Registration open for the Passover Seder"></label>
+          <label class="fd"><span>Texte du lien</span><input id="annL" value="Je réserve"></label>
+          <label class="fd"><span>Lien</span><input value="https://bethloubavitchb.kehila.io/"></label>
+          <label class="fd"><span>Afficher à partir du</span><input type="date" value="2027-03-01"></label>
+          <label class="fd"><span>Jusqu’au</span><input type="date" value="2027-04-21"></label>
+        </div>
+        <div class="k" style="margin-top:24px">Aperçu</div>
+        <div class="annp" id="annP"><span id="annPt"></span><a href="#" id="annPl"></a></div>
+        <div class="fa"><span class="muted">Le bandeau disparaît seul après la date de fin.</span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+    </section>
+
+    <!-- ===== INFOS ===== -->
+    <section class="panel" data-panel="infos" hidden>
+      <div class="tabs" role="tablist" id="infoTabs"><button aria-selected="true" data-t="i1">Coordonnées</button><button aria-selected="false" data-t="i2">Horaires</button><button aria-selected="false" data-t="i3">Dates</button><button aria-selected="false" data-t="i4">Tarifs</button><button aria-selected="false" data-t="i5">Liens</button><button aria-selected="false" data-t="i6">Chiffres</button></div>
+      <div class="card" data-tp="i1"><div class="ch"><div><h2>Coordonnées</h2><p>Pied de page, page Touristes, FAQ</p></div></div><div class="cb"><div class="form">
+        <label class="fd full"><span>Adresse</span><input value="37 rue Popincourt, 75011 Paris"></label>
+        <label class="fd"><span>Métro 1</span><input value="Richard-Lenoir · ligne 5"></label>
+        <label class="fd"><span>Métro 2</span><input value="Saint-Ambroise · ligne 9"></label>
+        <label class="fd"><span>Téléphone</span><input value="+33 1 42 52 30 41"></label>
+        <label class="fd"><span>WhatsApp</span><input value="+33 1 42 52 30 41"></label>
+        <label class="fd"><span>E-mail</span><input value="levi.arnauve@loubavitch.fr"></label>
+        <label class="fd"><span>Instagram</span><input value="https://www.instagram.com/beth_loubavitch_bastille"></label>
+      </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card" data-tp="i2" hidden><div class="ch"><div><h2>Horaires</h2><p>Les horaires de Chabbat sont calculés automatiquement</p></div></div><div class="cb"><div class="form">
+        <label class="fd"><span>Cha’harit · Chabbat matin</span><input value="10h00"></label>
+        <label class="fd"><span>Min’ha &amp; Arvit · vendredi</span><select><option>15 min avant l’allumage, arrondi à 5 min</option><option>À l’heure de l’allumage</option><option>10 min avant l’allumage</option></select></label>
+        <label class="fd"><span>Cantine · jours</span><input value="Lundi – Jeudi, hors vacances scolaires"></label>
+        <label class="fd"><span>Cantine · horaires</span><input value="11h30 – 14h00"></label>
+        <label class="fd"><span>Talmud Torah</span><input value="Mercredi 11h30 – 16h30"></label>
+        <label class="fd"><span>Réservation Chabbat · tarif réduit jusqu’au</span><input value="Mercredi matin"></label>
+      </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card" data-tp="i3" hidden><div class="ch"><div><h2>Dates à mettre à jour</h2><p>Gan Israël et voyages</p></div></div><div class="cb"><div class="form">
+        <label class="fd"><span>Gan Israël hiver · début</span><input type="date" value="2026-12-21"></label>
+        <label class="fd"><span>Gan Israël hiver · fin</span><input type="date" value="2026-12-25"></label>
+        <label class="fd"><span>Gan Israël été · début</span><input type="date" value="2027-07-05"></label>
+        <label class="fd"><span>Gan Israël été · fin</span><input type="date" value="2027-07-23"></label>
+        <label class="fd full"><span>Voyage à New York</span><input placeholder="Dates et description…"></label>
+      </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card" data-tp="i4" hidden><div class="ch"><div><h2>Tarifs</h2></div></div><div class="cb"><div class="form">
+        <label class="fd"><span>Salle · surface</span><input value="200 m²"></label>
+        <label class="fd"><span>Salle · personnes</span><input value="100"></label>
+        <label class="fd"><span>Salle · tarif</span><input value="500 €"></label>
+        <label class="fd"><span>Prise en charge du Kaddich</span><input value="300 € / an"></label>
+        <label class="fd"><span>Vérification Mézouza</span><input value="7 €"></label>
+        <label class="fd"><span>Vérification Téfiline</span><input value="25 €"></label>
+        <label class="fd"><span>Préparation au mariage · don suggéré</span><input value="150 €"></label>
+      </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card" data-tp="i5" hidden><div class="ch"><div><h2>Liens</h2><p>Boutons du site</p></div></div><div class="cb"><div class="form">
+        <label class="fd full"><span>Faire un don</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Inscription Talmud Torah</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Inscription Bar / Bat Mitsva</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Préparation au mariage</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Prise en charge du Kaddich</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Inscrire un nom pour le Yizkor</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Demander la salle</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Bichvile’h · prévenir d’une naissance</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Rejoindre le CTeen</span><input placeholder="https://…"></label>
+      </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card" data-tp="i6" hidden><div class="ch"><div><h2>Chiffres clés</h2><p>Bandeau « Un réseau mondial » · Qui sommes-nous</p></div></div><div class="cb"><div class="form"><label class="fd"><span>Délégués du Rabbi</span><input value="7 136+"></label><label class="fd"><span>Continents</span><input value="5"></label><label class="fd"><span>Pays</span><input value="100+"></label><label class="fd"><span>Villes</span><input value="1 000+"></label></div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+    </section>
+
+    <!-- ===== ADRESSES ===== -->
+    <section class="panel" data-panel="adresses" hidden>
+      <div class="tabs" id="adTabs"></div>
+      <div class="card"><div class="ch"><div><h2 id="adTitle">Restaurants</h2><p>Page Touristes · une photo par adresse</p></div><button class="btn btn-terre btn-sm" id="addAd">+ Ajouter une adresse</button></div><div class="rows" id="adList"></div></div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="panel" data-panel="faq" hidden>
+      <div class="card"><div class="ch"><div><h2>Questions fréquentes</h2><p>Choisissez sur quelles pages chaque question apparaît</p></div><button class="btn btn-terre btn-sm" id="addFaq">+ Ajouter</button></div><div class="rows" id="faqList"></div></div>
+    </section>
+
+    <!-- ===== TEXTES ===== -->
+    <section class="panel" data-panel="textes" hidden>
+      <div class="card"><div class="ch"><div><h2>Textes &amp; photos</h2><p>Toutes les sections de toutes les pages</p></div></div>
+        <div class="cb"><div class="form">
+          <label class="fd"><span>Page</span><select id="txPage"></select></label>
+          <label class="fd"><span>Section</span><select id="txSec"></select></label>
+        </div></div></div>
+      <div class="card"><div class="ch"><div><h2 id="txTitle">Section</h2><p id="txSub"></p></div></div>
+        <div class="cb"><form class="form" id="txForm" onsubmit="return false">
+          <label class="fd"><span>Titre <em>FR</em></span><input name="h"></label>
+          <label class="fd"><span>Titre <em>EN</em></span><input name="he"></label>
+          <label class="fd"><span>Texte <em>FR</em></span><textarea name="p" rows="6"></textarea></label>
+          <label class="fd"><span>Texte <em>EN</em></span><textarea name="pe" rows="6"></textarea></label>
+          <label class="drop" id="txDrop"><input type="file" accept="image/*" hidden data-img><span class="pv" id="txPv"></span><div><b>Photo de la section</b><span>Glissez une image ici ou cliquez pour remplacer · JPG / PNG / WebP</span></div></label>
+          <div class="fd full" id="txBtnsW"><span>Boutons</span><div id="txBtns" class="bl"></div></div>
+        </form>
+        <div class="fa"><a class="btn btn-ln btn-sm" id="txView" href="index.html" target="_blank">Voir sur le site ↗</a><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+    </section>
+
+    <section class="panel" data-panel="home" hidden>
+      <div class="card"><div class="ch"><div><h2>Bandeau principal</h2><p>Haut de la page d’accueil · les flammes de la hanoukia restent animées</p></div></div>
+        <div class="cb"><div class="form">
+          <label class="fd"><span>Titre <em>FR</em></span><input value="Beth Loubavitch Bastille"></label>
+          <label class="fd"><span>Accroche <em>FR</em></span><input value="Rencontre • Partage • Transmission"></label>
+          <label class="fd"><span>Bouton 1</span><input value="Réserver un repas de Chabbat"></label>
+          <label class="fd"><span>Lien bouton 1</span><input value="https://bethloubavitchb.kehila.io/shabbat"></label>
+          <label class="fd"><span>Bouton 2</span><input value="Découvrir le Beth Habad"></label>
+          <label class="fd"><span>Lien bouton 2</span><input value="qui-sommes-nous.html"></label>
+          <label class="drop"><input type="file" accept="image/*" hidden data-img><span class="pv" style="background-image:url(img/hero.jpg)"></span><div><b>Photo du bandeau</b><span>Glissez une image ou cliquez pour remplacer</span></div></label>
+        </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card"><div class="ch"><div><h2>Carreaux « Nos activités »</h2><p>Les 6 carreaux de l’accueil · photo affichée au survol</p></div></div><div class="rows" id="cellList"></div></div>
+      <div class="card"><div class="ch"><div><h2>Avis</h2><p>Témoignages qui défilent sur l’accueil</p></div><button class="btn btn-terre btn-sm" id="addAvis">+ Ajouter</button></div><div class="rows" id="avisList"></div></div>
+    </section>
+
+    <section class="panel" data-panel="users" hidden>
+      <div class="card"><div class="ch"><div><h2>Utilisateurs</h2><p>Admin : tout · Éditeur : contenus uniquement</p></div><button class="btn btn-terre btn-sm">+ Inviter</button></div>
+        <div class="rows">
+          <div class="row"><span class="th" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">BA</span><div><div class="t">Beila Arnauve</div><div class="d">beila@… · dernière connexion aujourd’hui</div></div><div class="ac"><span class="tag on">Admin</span></div></div>
+          <div class="row"><span class="th" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">LA</span><div><div class="t">Rav Levi Arnauve</div><div class="d">levi.arnauve@loubavitch.fr</div></div><div class="ac"><span class="tag on">Admin</span></div></div>
+          <div class="row"><span class="th" style="background:var(--creme);display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--terre)">CP</span><div><div class="t">Chlomo · Pazelle Design</div><div class="d">Éditeur</div></div><div class="ac"><span class="tag off">Éditeur</span></div></div>
+        </div></div>
+    </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODALE ÉVÉNEMENT ===== -->
+<div class="md" id="evModal" hidden>
+  <div class="box">
+    <div class="ch"><div><h2 id="evMT">Nouvel événement</h2><p>Les champs EN sont facultatifs</p></div><button class="x" data-close aria-label="Fermer">✕</button></div>
+    <div class="cb"><form class="form" id="evForm">
+      <label class="fd"><span>Titre <em>FR</em></span><input name="t" required></label>
+      <label class="fd"><span>Titre <em>EN</em></span><input name="en"></label>
+      <label class="fd"><span>Date</span><input type="date" name="d" required></label>
+      <label class="fd"><span>Heure</span><input type="time" name="h"></label>
+      <label class="fd full"><span>Description <em>FR</em></span><textarea name="desc"></textarea></label>
+      <label class="fd full"><span>Lien d’inscription Kehila</span><input name="url" placeholder="https://bethloubavitchb.kehila.io/…"></label>
+      <label class="fd"><span>Catégorie</span><select name="c"><option>Fêtes</option><option>Enfants</option><option>Femmes</option><option>Cours</option><option>CTeen</option></select></label>
+      <label class="fd"><span>Statut</span><select name="s"><option value="on">Publié</option><option value="off">Brouillon (masqué)</option></select></label>
+      <label class="drop"><input type="file" accept="image/*" hidden data-img><span class="pv"></span><div><b>Image de l’événement</b><span>Glissez une image ou cliquez · format carré conseillé</span></div></label>
+    </form>
+    <div class="fa"><button class="btn btn-gh" data-close>Annuler</button><button class="btn btn-terre" id="evSave">Enregistrer</button></div></div>
+  </div>
+</div>
+
+<div class="md" id="adModal" hidden>
+  <div class="box">
+    <div class="ch"><div><h2 id="adMT">Modifier l’adresse</h2><p>Page Touristes</p></div><button class="x" data-closead aria-label="Fermer">✕</button></div>
+    <div class="cb"><form class="form" id="adForm" onsubmit="return false">
+      <label class="fd full"><span>Nom</span><input name="n" required></label>
+      <label class="fd"><span>Catégorie</span><select name="k"></select></label>
+      <label class="fd" id="adSubF"><span>Type de cuisine</span><select name="s"><option value="lait">Lait</option><option value="viande">Viande</option><option value="sushi">Sushi</option></select></label>
+      <label class="fd"><span>Étiquette</span><input name="t" placeholder="ex. Pizzeria, Sur RDV…"></label>
+      <label class="fd"><span>Téléphone</span><input name="p" placeholder="+33 …"></label>
+      <label class="fd full"><span>Adresse</span><input name="a" placeholder="Rue, code postal"></label>
+      <label class="fd full"><span>Horaires</span><input name="h" placeholder="Lun – jeu 12h – 22h · Ven 12h – 15h"></label>
+      <label class="fd full"><span>Site internet <em>facultatif</em></span><input name="w" placeholder="https://…"></label>
+      <label class="drop"><input type="file" accept="image/*" hidden data-img><span class="pv" id="adPv"></span><div><b>Photo</b><span>Glissez une image ou cliquez pour remplacer</span></div></label>
+    </form>
+    <div class="fa"><button class="btn btn-gh" id="adDel">Supprimer l’adresse</button><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-ln" data-closead>Annuler</button><button class="btn btn-terre" id="adSave">Enregistrer</button></div></div></div>
+  </div>
+</div>
+<div class="md" id="fqModal" hidden>
+  <div class="box">
+    <div class="ch"><div><h2 id="fqMT">Modifier la question</h2><p>Les champs EN sont facultatifs</p></div><button class="x" data-closefq aria-label="Fermer">✕</button></div>
+    <div class="cb"><form class="form" id="fqForm" onsubmit="return false">
+      <label class="fd full"><span>Question <em>FR</em></span><input name="q" required></label>
+      <label class="fd full"><span>Question <em>EN</em></span><input name="qe"></label>
+      <label class="fd full"><span>Réponse <em>FR</em></span><textarea name="r"></textarea></label>
+      <label class="fd full"><span>Réponse <em>EN</em></span><textarea name="re"></textarea></label>
+      <div class="fd full"><span>Pages où elle apparaît</span><div class="chk" id="fqPages"></div></div>
+    </form>
+    <div class="fa"><button class="btn btn-gh" id="fqDel">Supprimer la question</button><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-ln" data-closefq>Annuler</button><button class="btn btn-terre" id="fqSave">Enregistrer</button></div></div></div>
+  </div>
+</div>
+<div class="md" id="gModal" hidden>
+  <div class="box">
+    <div class="ch"><div><h2 id="gMT">Modifier</h2><p id="gMS"></p></div><button class="x" data-closeg aria-label="Fermer">✕</button></div>
+    <div class="cb"><form class="form" id="gForm" onsubmit="return false"></form>
+    <div class="fa"><button class="btn btn-gh" id="gDel">Supprimer</button><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-ln" data-closeg>Annuler</button><button class="btn btn-terre" id="gSave">Enregistrer</button></div></div></div>
+  </div>
+</div>
+<div class="toast" id="toast"><i>✓</i><span>Modifications publiées</span></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const toast=(m='Modifications publiées')=>{const t=$('#toast');t.querySelector('span').textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2200);};
+/* login */
+$('#lform').onsubmit=e=>{e.preventDefault();$('#login').hidden=true;$('#app').hidden=false;};
+/* navigation */
+const titles={dash:'Tableau de bord',events:'Événements à venir',prog:'Programme régulier',repas:'Repas & fêtes',sections:'Sections du site',annonce:'Bandeau d’annonce',popup:'Pop-up',infos:'Infos importantes',adresses:'Adresses touristes',faq:'Questions fréquentes',home:'Page d’accueil',textes:'Textes & photos',users:'Utilisateurs'};
+function go(p){$$('#nav button').forEach(b=>b.toggleAttribute('aria-current',b.dataset.p===p));$$('#nav button[aria-current]').forEach(b=>b.setAttribute('aria-current','page'));$$('.panel').forEach(x=>x.hidden=x.dataset.panel!==p);$('#ptitle').textContent=titles[p];$('#sb').classList.remove('open');scrollTo(0,0);}
+$$('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.p));
+$('#burger').onclick=()=>$('#sb').classList.toggle('open');
+document.addEventListener('click',e=>{const s=e.target.closest('[data-save]');if(s)toast();const g=e.target.closest('[data-go]');if(g){go(g.dataset.go);if(g.dataset.new)openEv();}});
+const tg=(on,cb,lbOn='Ouvert',lbOff='Fermé')=>{const l=document.createElement('label');l.className='tg';l.innerHTML=`<input type="checkbox" ${on?'checked':''}><span class="sw"></span><span class="lb">${on?lbOn:lbOff}</span>`;const i=l.querySelector('input');i.onchange=()=>{l.querySelector('.lb').textContent=i.checked?lbOn:lbOff;cb(i.checked);};return l;};
+const fd=d=>new Date(d+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+/* ---- événements ---- */
+let EV=[
+ {t:'Hanoucca à la Bastille',d:'2026-12-06',h:'17:00',c:'Fêtes',s:'on',img:'img/hero.jpg',url:'https://bethloubavitchb.kehila.io/'},
+ {t:'Soirée Hanoucca femmes',d:'2026-12-09',h:'20:15',c:'Femmes',s:'on',img:'img/act-femmes.jpg',url:''},
+ {t:'Gan Israël · vacances d’hiver',d:'2026-12-21',h:'09:00',c:'Enfants',s:'on',img:'img/act-enfants.jpg',url:'https://bethloubavitchb.kehila.io/'},
+ {t:'Tou Bichvat · atelier enfants',d:'2027-02-14',h:'15:00',c:'Enfants',s:'off',img:'img/act-talmud.jpg',url:''}
+];
+let editI=-1;
+function evRow(e,i,mini){const r=document.createElement('div');r.className='row';
+  r.innerHTML=`<span class="th" style="background-image:url(${e.img||''})"></span><div><div class="t">${e.t}</div><div class="d">${fd(e.d)}${e.h?' · '+e.h.replace(':','h'):''} · ${e.c}</div></div><div class="ac">${!e.url?'<span class="tag miss">Lien manquant</span>':''}${mini?'':''}</div>`;
+  const ac=r.querySelector('.ac');
+  if(!mini){ac.appendChild(tg(e.s==='on',v=>{e.s=v?'on':'off';renderAll();toast(v?'Événement publié':'Événement masqué');},'Publié','Masqué'));
+    const ed=document.createElement('button');ed.className='btn btn-ln btn-sm';ed.textContent='Modifier';ed.onclick=()=>openEv(i);ac.appendChild(ed);
+    const du=document.createElement('button');du.className='btn btn-gh';du.textContent='Dupliquer';du.onclick=()=>{EV.splice(i+1,0,{...e,t:e.t+' (copie)',s:'off'});renderAll();toast('Événement dupliqué');};ac.appendChild(du);
+    const de=document.createElement('button');de.className='btn btn-gh';de.textContent='Supprimer';de.onclick=()=>{EV.splice(i,1);renderAll();toast('Événement supprimé');};ac.appendChild(de);}
+  else ac.insertAdjacentHTML('beforeend',`<span class="tag ${e.s==='on'?'on':'off'}">${e.s==='on'?'Publié':'Masqué'}</span>`);
+  return r;}
+function openEv(i=-1){editI=i;const f=$('#evForm');f.reset();$('#evMT').textContent=i<0?'Nouvel événement':'Modifier l’événement';const pv=f.querySelector('.pv');pv.style.backgroundImage='';
+  if(i>=0){const e=EV[i];f.t.value=e.t;f.d.value=e.d;f.h.value=e.h||'';f.url.value=e.url||'';f.c.value=e.c;f.s.value=e.s;pv.style.backgroundImage=`url(${e.img})`;}
+  $('#evModal').hidden=false;}
+$('#newEv').onclick=()=>openEv();
+$$('[data-close]').forEach(b=>b.onclick=()=>$('#evModal').hidden=true);
+$('#evSave').onclick=()=>{const f=$('#evForm');if(!f.t.value||!f.d.value){f.reportValidity();return;}
+  const pv=f.querySelector('.pv').style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,'');
+  const e={t:f.t.value,d:f.d.value,h:f.h.value,url:f.url.value,c:f.c.value,s:f.s.value,img:pv||'img/menorah.jpg'};
+  if(editI<0)EV.push(e);else EV[editI]=e;EV.sort((a,b)=>a.d.localeCompare(b.d));$('#evModal').hidden=true;renderAll();toast(editI<0?'Événement ajouté':'Événement enregistré');};
+$$('[data-img]').forEach(inp=>inp.onchange=()=>{const f=inp.files[0];if(!f)return;const u=URL.createObjectURL(f);inp.parentElement.querySelector('.pv').style.backgroundImage=`url(${u})`;});
+
+/* ---- programme ---- */
+const JR=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi'];
+const DEST=['Cercle féminin','Bichvile’h','Cours & Étude','Enfants','Cantine','CTeen','Social'];
+let PR=[
+ [1,'10:30','Sagesse féminine','Cercle féminin',1],[1,'19:00','Krav Maga (femmes)','Cercle féminin',1],[1,'20:30','Cours d’hébreu (femmes)','Cours & Étude',1],
+ [2,'11:00','Club maman & moi','Bichvile’h',1],[2,'19:30','Cours de Paracha (hommes)','Cours & Étude',1],
+ [3,'11:30','Talmud Torah','Enfants',1],[3,'20:15','Cours femmes','Cours & Étude',1],
+ [4,'13:00','Cours de Paracha (hommes)','Cours & Étude',1],[1,'11:30','Cantine cacher (lun – jeu)','Cantine',1]];
+function renderProg(){const tb=$('#progT');tb.innerHTML='';PR.forEach((r,i)=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td><select>${JR.map((j,k)=>`<option ${k===r[0]?'selected':''}>${j}</option>`).join('')}</select></td><td><input class="t" value="${r[1].replace(':','h')}" inputmode="numeric" aria-label="Heure"></td><td><input value="${r[2]}"></td><td><select>${DEST.map(d=>`<option ${d===r[3]?'selected':''}>${d}</option>`).join('')}</select></td><td></td><td><button class="btn btn-gh" title="Supprimer">✕</button></td>`;
+  tr.children[4].appendChild(tg(!!r[4],v=>{r[4]=v?1:0;toast(v?'Ligne affichée':'Ligne masquée');},'Oui','Non'));
+  tr.querySelector('.btn-gh').onclick=()=>{PR.splice(i,1);renderProg();toast('Ligne supprimée');};tb.appendChild(tr);});}
+$('#addProg').onclick=()=>{PR.push([1,'10:00','Nouvelle activité','Cours & Étude',1]);renderProg();};
+$('#vac').onchange=e=>{$('#vacMsg').style.display=e.target.checked?'block':'none';toast(e.target.checked?'Programme suspendu':'Programme rétabli');};
+
+/* ---- repas ---- */
+let RP=[{n:'Repas de Chabbat',u:'https://bethloubavitchb.kehila.io/shabbat',o:1},{n:'Séder de Roch Hachana',u:'',o:0},{n:'Repas sous la Soucca',u:'',o:0},{n:'Michté de Pourim',u:'',o:0},{n:'Séder de Pessa’h',u:'',o:0}];
+function renderRepas(){const tb=$('#repasT');tb.innerHTML='';RP.forEach(r=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td><b>${r.n}</b></td><td><input value="${r.u}" placeholder="Coller le lien Kehila…"></td><td></td>`;
+  tr.querySelector('input').oninput=e=>{r.u=e.target.value;renderStats();};
+  tr.children[2].appendChild(tg(!!r.o,v=>{if(v&&!r.u){toast('Ajoutez d’abord le lien Kehila');renderRepas();return;}r.o=v?1:0;renderStats();toast(v?r.n+' ouvert':r.n+' fermé');}));tb.appendChild(tr);});}
+
+/* ---- sections ---- */
+const SEC=[
+ ['Accueil',[['Événements à venir','Carrousel',1],['Avis','Témoignages',1],['FAQ','Questions fréquentes',1]]],
+ ['Activités',[['Repas de Chabbat & fêtes','01',1],['Cours & Étude','02',1],['Enfants · Talmud Torah','03',1],['Gan Israël','03 · vacances',1],['Cercle féminin','04',1],['Bichvile’h','05 · jeunes mamans',1],['Cantine cacher','06',1],['Téfiline & Mézouzot','07',1],['CTeen','08',1],['Social','09',1]]],
+ ['Cycles de la vie',[['Naissance','01',1],['Bar & Bat Mitsva','02',1],['Mariage','03',1],['Location de la salle','Encadré',1],['Kaddich','04',1],['Yizkor','05',1],['Convertisseur de date','Bas de page',1]]],
+ ['Touristes',[['Repas de Chabbat','Bandeau noir',1],['Chabbat pour les groupes','Lien',1],['Adresses utiles','Restaurants, synagogues…',1]]]];
+function renderSec(){const box=$('#secList');box.innerHTML='';SEC.forEach(([pg,items])=>{const h=document.createElement('div');h.className='cb';h.style.paddingBottom='0';h.innerHTML=`<div class="pg">${pg}</div>`;box.appendChild(h);
+  items.forEach(it=>{const d=document.createElement('div');d.className='sec'+(it[2]?'':' closed');d.innerHTML=`<div><div class="t">${it[0]}</div><div class="d">${it[1]}</div></div><div></div><div class="msg"><input placeholder="Message affiché à la place (facultatif) · ex. « Inscriptions bientôt ouvertes »"></div>`;
+    d.children[1].appendChild(tg(!!it[2],v=>{it[2]=v?1:0;d.classList.toggle('closed',!v);renderStats();toast(v?it[0]+' ouvert sur le site':it[0]+' fermé sur le site');}));box.appendChild(d);});});}
+
+/* ---- annonce ---- */
+const ann=()=>{$('#annPt').textContent=$('#annFr').value;$('#annPl').textContent=$('#annL').value+' →';$('#annP').style.opacity=$('#annOn').checked?1:.35;$('#annLb').textContent=$('#annOn').checked?'Affiché':'Masqué';};
+['#annFr','#annL','#annOn'].forEach(s=>$(s).addEventListener('input',ann));$('#annOn').addEventListener('change',()=>{ann();toast($('#annOn').checked?'Bandeau affiché':'Bandeau masqué');});
+
+/* ---- infos tabs ---- */
+$$('#infoTabs button').forEach(b=>b.onclick=()=>{$$('#infoTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-tp]').forEach(c=>c.hidden=c.dataset.tp!==b.dataset.t);});
+
+/* ---- adresses ---- */
+const ADD={"boul": {"fr": "Boulangeries", "en": "Bakeries", "items": [{"n": "La Délicieuse", "t": "Boulangerie", "a": "234 bd Voltaire, 75011", "h": "Dim – jeu 7h – 20h · Ven jusqu’à 1h avant Chabbat", "p": "+33 1 40 24 26 26", "img": "img/r-delicieuse.jpg"}, {"n": "L’atelier Voltaire", "t": "Boulangerie", "a": "22 rue Voltaire, 75011", "h": "Lun – jeu 7h30 – 19h · Ven 7h30 – 16h", "p": "+33 9 52 82 65 41", "img": "img/r-atelier.jpg"}, {"n": "Charles Traiteur", "t": "Traiteur", "a": "244 bd Voltaire, 75011", "h": "Lun – jeu 8h – 20h · Ven 8h – 14h", "p": "+33 1 43 73 70 00", "img": "img/r-charles.jpg"}, {"n": "Murciano", "t": "Boulangerie", "a": "16 rue des Rosiers, 75004", "h": "Lun – jeu 8h30 – 19h · Ven 8h – 14h", "p": "+33 1 48 87 48 88", "img": "img/r-murciano.jpg"}]}, "brunch": {"fr": "Brunch", "en": "Brunch", "items": [{"n": "Bloomy Brunch", "t": "Brunch", "a": "189 rue de Charonne, 75011", "h": "", "p": "+33 6 12 61 01 30", "img": "img/r-bloomy.jpg"}, {"n": "Korcarz", "t": "Brunch · Pâtisserie", "a": "29 rue des Rosiers, 75004", "h": "Lun – jeu 7h30 – 20h · Ven 7h30 – 15h", "p": "+33 1 42 72 38 22"}]}, "resto": {"fr": "Restaurants", "en": "Restaurants", "subs": {"lait": {"fr": "Lait", "en": "Dairy"}, "viande": {"fr": "Viande", "en": "Meat"}, "sushi": {"fr": "Sushi", "en": "Sushi"}}, "items": [{"s": "lait", "n": "Mendy’s", "t": "Pizzeria", "a": "220 bd Voltaire, 75011", "h": "Dim – jeu 12h – 22h · Ven 12h – 16h", "p": "+33 7 69 10 20 77", "img": "img/r-mendys.jpg"}, {"s": "lait", "n": "La Kave du Fromager", "t": "Fromagerie · Sur RDV", "a": "221 bd Voltaire, 75011", "h": "Sur rendez-vous", "p": "+33 1 43 31 35 66", "img": "img/r-kave.jpg"}, {"s": "lait", "n": "Chez Giulia", "t": "Italien", "a": "256 bd Voltaire, 75011", "h": "Lun – jeu 12h – 15h, 19h – 23h · Ven midi · Dim", "p": "+33 1 40 24 21 17", "img": "img/r-giulia.jpg"}, {"s": "lait", "n": "Novela", "t": "Restaurant", "a": "8 bd Magenta, 75010", "h": "Lun – jeu 12h – 22h30 · Ven 12h – 14h30 · Dim", "p": "+33 1 42 38 20 55", "img": "img/r-pizza.jpg"}, {"s": "sushi", "n": "Bozen Voltaire", "t": "Sushi", "a": "201 bd Voltaire, 75011", "h": "Lun – jeu 11h30 – 15h30, 18h30 – 22h30 · Ven midi · Dim", "p": "+33 1 84 25 26 36", "img": "img/r-bozen.jpg"}, {"s": "sushi", "n": "Japan Eat", "t": "Sushi", "a": "231 bd Voltaire, 75011", "h": "Lun – jeu 9h – 2h · Ven 11h30 – 15h · Dim 17h – 2h", "p": "+33 1 43 73 02 02", "img": "img/r-japaneat.jpg"}, {"s": "viande", "n": "SoumSoum Voltaire", "t": "Viande", "a": "144 bd Voltaire, 75011", "h": "Lun – jeu 11h45 – 22h45 · Ven midi · Dim", "p": "+33 1 71 19 58 44", "img": "img/r-soumsoum.jpg"}, {"s": "viande", "n": "Chicken Délice", "t": "Viande", "a": "61 rue Léon Frot, 75011", "h": "Lun – jeu 11h – 20h · Ven 8h30 – 16h", "p": "+33 1 46 59 46 45", "img": "img/r-chicken.jpg"}, {"s": "viande", "n": "La Min Haaretz", "t": "Viande · Sur RDV", "a": "45 rue de Montreuil, 75011", "h": "Sur rendez-vous", "p": "+33 1 73 71 47 15", "img": "img/r-min.jpg"}, {"s": "viande", "n": "Chez René et Gabin", "t": "Viande", "a": "92 bd de Belleville, 75020", "h": "Lun – jeu 9h30 – 22h · Ven 9h – 15h45 · Dim", "p": "+33 7 63 43 06 34", "img": "img/r-rene.jpg"}, {"s": "viande", "n": "Le Manhattan", "t": "Viande", "a": "231 bd Voltaire, 75011", "h": "", "p": "+33 1 43 56 03 30", "img": "img/r-manhattan.jpg"}, {"s": "viande", "n": "Chez François", "t": "Viande", "a": "3 bis av. de Bouvines, 75011", "h": "Lun – jeu midi et soir · Ven midi · Dim", "p": "+33 1 43 72 13 45", "img": "img/r-francois.jpg"}, {"s": "viande", "n": "Les Garçons Bouchers", "t": "Viande", "a": "33 av. Philippe Auguste, 75011", "h": "Lun – jeu midi et soir · Ven midi · Dim", "p": "+33 1 43 67 01 23", "img": "img/r-garcons.jpg"}]}, "super": {"fr": "Supermarchés", "en": "Supermarkets", "items": [{"n": "Franprix Cacher", "t": "Supermarché", "a": "240 bd Voltaire, 75011", "h": "Lun – sam 7h – 21h30 · Dim 8h30 – 13h", "p": "", "img": "img/r-franprix.jpg"}, {"n": "Leader Cash", "t": "Supermarché", "a": "84 rue Petit, 75019", "h": "Lun – jeu 8h – 20h · Ven 8h – 14h · Dim 8h – 18h", "p": "", "img": "img/r-leader.jpg"}]}, "syn": {"fr": "Synagogues", "en": "Synagogues", "items": [{"n": "Beth Loubavitch Bastille", "t": "Loubavitch", "a": "37 rue Popincourt, 75011", "h": "Offices quotidiens", "p": "+33 1 42 52 30 41", "img": "img/s-bastille.jpg"}, {"n": "Adath Israël", "t": "Achkénaze", "a": "36 rue Basfroi, 75011", "h": "", "p": ""}, {"n": "Synagogue des Tournelles", "t": "Consistoire", "a": "21 bis rue des Tournelles, 75004", "h": "", "p": ""}, {"n": "Synagogue N.-D.-de-Nazareth", "t": "Consistoire", "a": "15 rue N.-D.-de-Nazareth, 75003", "h": "", "p": ""}, {"n": "Synagogue Don Isaac Abravanel", "t": "Séfarade · La Roquette", "a": "84-86 rue de la Roquette, 75011", "h": "", "p": ""}]}, "mikve": {"fr": "Mikvé", "en": "Mikveh", "items": [{"n": "Mikvé République", "t": "Mikvé · Sur RDV", "a": "176 rue du Temple, 75003", "h": "Sur rendez-vous uniquement", "p": "+33 1 42 71 89 28"}, {"n": "Mikvé Mira Moyal", "t": "Mikvé · Sur RDV", "a": "8 ter av. Robert-André Vivien, 94160 Saint-Mandé", "h": "Sur rendez-vous · réservation en ligne sur mikvemira.fr", "p": "+33 7 65 53 47 67", "img": "img/m-mira.jpg", "w": "https://www.mikvemira.fr/"}]}};
+const KN={boul:'Boulangeries',brunch:'Brunch',resto:'Restaurants',super:'Supermarchés',syn:'Synagogues',mikve:'Mikvé'};
+const SUBN={lait:'Lait',viande:'Viande',sushi:'Sushi'};
+Object.values(ADD).forEach(c=>c.items.forEach(it=>{if(it.v===undefined)it.v=1;}));
+let adK='resto',adI=-1;
+function renderAd(){$('#adTabs').innerHTML=Object.keys(ADD).map(k=>`<button aria-selected="${k===adK}" data-k="${k}">${KN[k]} <span class="muted" style="font-weight:600">${ADD[k].items.length}</span></button>`).join('');
+  $$('#adTabs button').forEach(b=>b.onclick=()=>{adK=b.dataset.k;renderAd();});$('#adTitle').textContent=KN[adK];
+  const l=$('#adList');l.innerHTML='';ADD[adK].items.forEach((a,i)=>{const r=document.createElement('div');r.className='row'+(a.v?'':' hid');
+   r.innerHTML=`<span class="th" style="background-image:url(${a.img||''})"></span><div><div class="t">${a.n}</div><div class="d">${a.s&&!(a.t||'').includes(SUBN[a.s])?SUBN[a.s]+' · ':''}${a.t||''}${a.a?' · '+a.a:''}${a.img?'':' · <span style="color:var(--terre)">photo manquante</span>'}</div></div><div class="ac"></div>`;
+   const ac=r.querySelector('.ac');ac.appendChild(tg(!!a.v,v=>{a.v=v?1:0;r.classList.toggle('hid',!v);toast(v?a.n+' affiché':a.n+' masqué');},'Visible','Masquée'));
+   const e=document.createElement('button');e.className='btn btn-ln btn-sm';e.textContent='Modifier';e.onclick=()=>openAd(i);ac.appendChild(e);l.appendChild(r);});}
+const adF=$('#adForm');adF.k.innerHTML=Object.keys(ADD).map(k=>`<option value="${k}">${KN[k]}</option>`).join('');
+const adSub=()=>{$('#adSubF').style.display=adF.k.value==='resto'?'':'none';};adF.k.onchange=adSub;
+function openAd(i){adI=i;adF.reset();const a=i>=0?ADD[adK].items[i]:{n:'',t:'',a:'',h:'',p:'',w:'',img:'',s:'lait'};
+  $('#adMT').textContent=i>=0?'Modifier l’adresse':'Nouvelle adresse';$('#adDel').style.visibility=i>=0?'visible':'hidden';
+  adF.n.value=a.n;adF.k.value=adK;adF.s.value=a.s||'lait';adF.t.value=a.t||'';adF.a.value=a.a||'';adF.h.value=a.h||'';adF.p.value=a.p||'';adF.w.value=a.w||'';
+  $('#adPv').style.backgroundImage=a.img?`url(${a.img})`:'';adSub();$('#adModal').hidden=false;setTimeout(()=>adF.n.focus(),50);}
+$('#addAd').onclick=()=>openAd(-1);
+$$('[data-closead]').forEach(b=>b.onclick=()=>$('#adModal').hidden=true);
+$('#adSave').onclick=()=>{if(!adF.n.value.trim()){adF.reportValidity();return;}
+  const img=$('#adPv').style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,'');
+  const old=adI>=0?ADD[adK].items[adI]:{v:1};
+  const a={...old,n:adF.n.value.trim(),t:adF.t.value.trim(),a:adF.a.value.trim(),h:adF.h.value.trim(),p:adF.p.value.trim(),w:adF.w.value.trim(),img:img||''};
+  if(adF.k.value==='resto')a.s=adF.s.value;else delete a.s;
+  if(adI>=0&&adF.k.value===adK)ADD[adK].items[adI]=a;else{if(adI>=0)ADD[adK].items.splice(adI,1);ADD[adF.k.value].items.push(a);adK=adF.k.value;}
+  $('#adModal').hidden=true;renderAd();toast(adI>=0?'Adresse enregistrée':'Adresse ajoutée');};
+$('#adDel').onclick=()=>{if(adI<0)return;const n=ADD[adK].items[adI].n;ADD[adK].items.splice(adI,1);$('#adModal').hidden=true;renderAd();toast(n+' supprimé');};
+
+/* ---- faq ---- */
+const PAGES=['Accueil','Qui sommes-nous','Activités','Agenda','Cycles de la vie','Touristes'];
+let FQ=[
+ {q:'Où trouver un Beth ‘Habad Loubavitch à Paris ?',r:'Le Beth Habad Loubavitch Bastille est situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, à proximité des métros Richard-Lenoir (ligne 5) et Saint-Ambroise (ligne 9).',pg:['Accueil','Qui sommes-nous','Agenda']},
+ {q:'Comment réserver un repas de Chabbat ?',r:'La réservation est obligatoire en ligne jusqu’au mercredi matin afin de bénéficier d’un tarif réduit.',pg:['Activités','Agenda','Touristes']},
+ {q:'Quels sont les horaires du Talmud Torah ?',r:'Le Talmud Torah a lieu les mercredis de 12h30 à 15h30, avec accueil et ramassage scolaire dès 11h30, cantine cachère de 12h à 12h30 et krav maga de 15h30 à 16h30.',pg:['Activités']},
+ {q:'À quelles périodes a lieu le Gan Israël ?',r:'Le Gan Israël est généralement organisé pendant les vacances scolaires de fin d’année ainsi que durant l’été.',pg:['Activités']},
+ {q:'Une aide est-elle proposée après la naissance ?',r:'Oui. Des colis de brunch sont livrés à domicile après l’accouchement afin d’apporter soutien et attention aux jeunes mamans.',pg:['Activités','Cycles de la vie']},
+ {q:'Quand faut-il faire vérifier les téfilines et les mezouzot ?',r:'Il est recommandé de les faire vérifier environ tous les 3 à 4 ans minimum.',pg:['Activités']}];
+let fqI=-1;const fqF=$('#fqForm');
+$('#fqPages').innerHTML=PAGES.map(x=>`<label><input type="checkbox" value="${x}">${x}</label>`).join('');
+function renderFaq(){const l=$('#faqList');l.innerHTML='';FQ.forEach((q,i)=>{const r=document.createElement('div');r.className='row';r.style.gridTemplateColumns='auto minmax(0,1fr) auto';
+  r.innerHTML=`<div style="display:flex;flex-direction:column;gap:2px"><button class="btn btn-gh" data-up title="Monter" ${i?'':'disabled'} style="min-height:20px;padding:0 4px">▲</button><button class="btn btn-gh" data-dn title="Descendre" ${i<FQ.length-1?'':'disabled'} style="min-height:20px;padding:0 4px">▼</button></div><div><div class="t">${q.q}</div><div class="d">${q.pg.join(' · ')||'<span style="color:var(--terre)">Aucune page</span>'}</div></div><div class="ac"><button class="btn btn-ln btn-sm">Modifier</button></div>`;
+  r.querySelector('[data-up]').onclick=()=>{[FQ[i-1],FQ[i]]=[FQ[i],FQ[i-1]];renderFaq();};
+  r.querySelector('[data-dn]').onclick=()=>{[FQ[i+1],FQ[i]]=[FQ[i],FQ[i+1]];renderFaq();};
+  r.querySelector('.ac .btn').onclick=()=>openFq(i);l.appendChild(r);});}
+function openFq(i){fqI=i;fqF.reset();const q=i>=0?FQ[i]:{q:'',r:'',pg:[]};$('#fqMT').textContent=i>=0?'Modifier la question':'Nouvelle question';$('#fqDel').style.visibility=i>=0?'visible':'hidden';
+  fqF.q.value=q.q;fqF.r.value=q.r;fqF.qe.value=q.qe||'';fqF.re.value=q.re||'';$$('#fqPages input').forEach(c=>c.checked=q.pg.includes(c.value));$('#fqModal').hidden=false;}
+$('#addFaq').onclick=()=>openFq(-1);
+$$('[data-closefq]').forEach(b=>b.onclick=()=>$('#fqModal').hidden=true);
+$('#fqSave').onclick=()=>{if(!fqF.q.value.trim()){fqF.reportValidity();return;}const q={q:fqF.q.value.trim(),qe:fqF.qe.value,r:fqF.r.value,re:fqF.re.value,pg:$$('#fqPages input:checked').map(c=>c.value)};
+  if(fqI>=0)FQ[fqI]=q;else FQ.push(q);$('#fqModal').hidden=true;renderFaq();toast(fqI>=0?'Question enregistrée':'Question ajoutée');};
+$('#fqDel').onclick=()=>{if(fqI<0)return;FQ.splice(fqI,1);$('#fqModal').hidden=true;renderFaq();toast('Question supprimée');};
+
+/* ---- stats & dashboard ---- */
+function renderStats(){const pub=EV.filter(e=>e.s==='on');$('#sEv').textContent=pub.length;
+  let o=0,t=0;SEC.forEach(([,it])=>it.forEach(x=>{t++;o+=x[2];}));$('#sSec').textContent=o+' / '+t;
+  const miss=RP.filter(r=>!r.u).length+EV.filter(e=>!e.url).length;$('#sMiss').textContent=miss;$('#bdRepas').textContent=RP.filter(r=>!r.u).length||'';$('#bdRepas').style.display=RP.filter(r=>!r.u).length?'':'none';
+  const td=$('#todo');td.innerHTML='';
+  RP.filter(r=>!r.u).forEach(r=>td.insertAdjacentHTML('beforeend',`<div class="row"><div><div class="t">${r.n}</div><div class="d">Lien Kehila manquant · affiché « Fermé »</div></div><div class="ac"><button class="btn btn-ln btn-sm" data-go="repas">Compléter</button></div></div>`));
+  EV.filter(e=>!e.url).forEach(e=>td.insertAdjacentHTML('beforeend',`<div class="row"><div><div class="t">${e.t}</div><div class="d">Événement sans lien d’inscription</div></div><div class="ac"><button class="btn btn-ln btn-sm" data-go="events">Compléter</button></div></div>`));
+  td.insertAdjacentHTML('beforeend',`<div class="row"><div><div class="t">Voyage à New York</div><div class="d">Texte à valider · section fermée</div></div><div class="ac"><button class="btn btn-ln btn-sm" data-go="infos">Compléter</button></div></div>`);}
+function renderAll(){const l=$('#evList');l.innerHTML='';EV.forEach((e,i)=>l.appendChild(evRow(e,i)));const d=$('#dashEv');d.innerHTML='';EV.filter(e=>e.s==='on').slice(0,3).forEach((e,i)=>d.appendChild(evRow(e,i,true)));renderStats();}
+
+/* ---- pop-up ---- */
+let POP=[{t:'Séder de Pessa’h 5787',per:'1 mars → 21 avril 2027 · Toutes les pages',on:1},{t:'Hanoucca à la Bastille',per:'1 → 6 décembre 2026 · Accueil',on:0}];
+function renderPop(){const l=$('#popList');l.innerHTML='';POP.forEach((p,i)=>{const r=document.createElement('div');r.className='row';r.innerHTML=`<span class="th" style="background-image:url(${i?'img/hero.jpg':'img/ph-chabbat.jpg'})"></span><div><div class="t">${p.t}</div><div class="d">${p.per}</div></div><div class="ac"></div>`;
+  const ac=r.querySelector('.ac');ac.appendChild(tg(!!p.on,v=>{POP.forEach(x=>x.on=0);p.on=v?1:0;renderPop();toast(v?'Pop-up activé (les autres sont désactivés)':'Pop-up désactivé');},'Actif','Inactif'));
+  const e=document.createElement('button');e.className='btn btn-ln btn-sm';e.textContent='Modifier';e.onclick=()=>{$('#pT').value=p.t;pv();$('#popEdit').scrollIntoView({behavior:'smooth'});};ac.appendChild(e);
+  const d=document.createElement('button');d.className='btn btn-gh';d.textContent='Supprimer';d.onclick=()=>{POP.splice(i,1);renderPop();toast('Pop-up supprimé');};ac.appendChild(d);l.appendChild(r);});}
+function pv(){$('#vT').textContent=$('#pT').value;$('#vX').textContent=$('#pX').value;$('#vB').textContent=$('#pB').value||'En savoir plus';$('#pim').style.backgroundImage=$('#pPv').style.backgroundImage;$('#pvs').classList.toggle('b',$('#pFm').value==='b');$('#pop').style.opacity=$('#pOn').checked?1:.45;}
+['#pT','#pX','#pB','#pFm','#pOn','#pImg'].forEach(s=>{$(s).addEventListener('input',()=>setTimeout(pv,30));$(s).addEventListener('change',()=>setTimeout(pv,30));});
+$('#newPop').onclick=()=>{POP.unshift({t:'Nouveau pop-up',per:'Dates à définir · Toutes les pages',on:0});renderPop();$('#pT').value='Nouveau pop-up';$('#pX').value='';$('#pB').value='';$('#pL').value='';pv();$('#popEdit').scrollIntoView({behavior:'smooth'});};
+$('#popDel').onclick=()=>{POP.shift();renderPop();toast('Pop-up supprimé');};
+$('#pTest').onclick=()=>{const o=document.createElement('div');o.className='full-pop';o.innerHTML=$('#pop').outerHTML.replace('id="pop"','');o.querySelector('.pop').style.opacity=1;o.onclick=e=>{if(e.target===o||e.target.closest('.px'))o.remove();};document.body.appendChild(o);};
+renderPop();pv();
+
+/* ---- Textes & photos (toutes les pages) ---- */
+const TX={"Accueil": [{"id": "s0", "h": "Beth Loubavitch Bastille", "he": "", "p": "", "pe": "", "img": "img/hero.jpg", "btns": [{"t": "Réserver un repas de Chabbat", "u": "https://bethloubavitchb.kehila.io/shabbat"}, {"t": "Découvrir le Beth Habad", "u": "qui-sommes-nous.html"}]}, {"id": "s1", "h": "Événements à venir…", "he": "Upcoming events…", "p": "Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !\n\nUn programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !", "pe": "\n\n", "img": "img/enfant.jpg", "btns": [{"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}]}, {"id": "s3", "h": "Nos activités", "he": "Our activities", "p": "", "pe": "", "img": "img/ph-chabbat.jpg", "btns": [{"t": "Voir toutes nos activités", "u": "activites.html"}]}], "Qui sommes-nous": [{"id": "s0", "h": "Qui sommes-nous ?", "he": "About us?", "p": "", "pe": "", "img": "img/hero-qsn.jpg", "btns": []}, {"id": "s1", "h": "Une place pour chacun", "he": "A place for everyone", "p": "Situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, le Beth ‘Habad Loubavitch Bastille est un lieu de rencontre, d’étude et de partage ouvert à tous.\n\nHommes et femmes, enfants, étudiants, familles, professionnels ou visiteurs de passage y trouvent un cadre chaleureux et authentique pour découvrir, approfondir et vivre pleinement le judaïsme.", "pe": "Located in Paris’s 11th arrondissement, in the heart of the Bastille neighborhood, the Beth Chabad Loubavitch Bastille is a place of meeting, study and sharing, open to all.\n\nMen and women, children, students, families, professionals and visitors passing through find a warm and authentic setting to discover, deepen and fully live Judaism.", "img": "", "btns": []}, {"id": "s2", "h": "Rav Levi & Beila Arnauve Chlouhim du Rabbi de Loubavitch", "he": "Rabbi Levi & Beila Arnauve Shluchim of the Lubavitcher Rebbe", "p": "Fondé par le Rav Levi & Beila Arnauve, Chlouhim (émissaires) du Rabbi de Loubavitch, ce centre communautaire juif a pour vocation de transmettre les valeurs du judaïsme et de répondre aux besoins spirituels, culturels et sociaux de chacun, dans un esprit d’ouverture, de bienveillance et de transmission.", "pe": "Founded by Rabbi Levi & Beila Arnauve, Shluchim (emissaries) of the Lubavitcher Rebbe, this Jewish community center aims to pass on the values of Judaism and to meet everyone’s spiritual, cultural and social needs, in a spirit of openness, kindness and transmission.", "img": "img/fondateurs.jpg", "btns": []}, {"id": "s4", "h": "Tout au long de l’année", "he": "All year round", "p": "À travers ces activités culturelles, cultuelles et sociales, le judaïsme prend vie dans une atmosphère conviviale, accessible et inspirante.", "pe": "Through these cultural, religious and social activities, Judaism comes alive in a friendly, accessible and inspiring atmosphere.", "img": "img/ph-chabbat.jpg", "btns": []}, {"id": "engagement", "h": "Notre engagement", "he": "Our commitment", "p": "« Nous accueillons chacun avec bienveillance et sans jugement, afin de faire vivre un judaïsme authentique, vivant et accessible à tous. »\n\nLe Beth Habad s’inscrit dans l’élan initié par le Rabbi de Loubavitch, qui a placé l’amour de chaque Juif, l’attention portée à chacun et la responsabilité envers autrui au cœur de sa vision.", "pe": "", "img": "img/facade.jpg", "btns": [{"t": "Nous contacter", "u": "WhatsApp / e-mail"}]}, {"id": "s6", "h": "Une association à but non lucratif", "he": "A non-profit association", "p": "Le Beth ‘Habad n'est pas financé par le mouvement mondial de ‘Habad, mais par des dons de particuliers. Ce sont des personnes comme vous, à titre personnel ou à travers leur entreprise, qui nous permettent de développer et d’assurer nos activités et nos actions au quotidien.", "pe": "The Beth Chabad is not funded by the worldwide Chabad movement, but by donations from individuals. People like you, personally or through their company, allow us to develop and carry out our activities and actions every day.", "img": "", "btns": [{"t": "Faire un don", "u": "https://bethloubavitchb.kehila.io/don"}, {"t": "Découvrir nos activités", "u": "activites.html"}]}], "Activités": [{"id": "s0", "h": "Nos activités", "he": "Our activities", "p": "", "pe": "", "img": "", "btns": []}, {"id": "evenements", "h": "Événements à venir", "he": "Upcoming events", "p": "Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !\n\nUn programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !", "pe": "\n\n", "img": "img/enfant.jpg", "btns": [{"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}]}, {"id": "repas", "h": "Chabbat & fêtes", "he": "Shabbat & holidays", "p": "Profitez de délicieux repas traiteur, en plein cœur de Paris ! Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et enrichissante.", "pe": "Enjoy delicious catered meals in the heart of Paris! Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, enriching atmosphere.", "img": "img/ph-chabbat2.jpg", "btns": []}, {"id": "etude", "h": "Cours de Torah hebdomadaires", "he": "Weekly Torah classes", "p": "De plus, des conférences et ateliers sur de nombreux sujets sont fréquemment organisés.", "pe": "Lectures and workshops on many topics are also held regularly.", "img": "img/act-cours.jpg", "btns": []}, {"id": "enfants", "h": "Talmud Torah & Gan Israël", "he": "Talmud Torah & Gan Israel", "p": "À travers des cours, chants, activités et découvertes des traditions juives, les enfants apprennent à lire et écrire l’hébreu, dans un cadre vivant, chaleureux et inspirant.", "pe": "Through classes, songs, activities and the discovery of Jewish traditions, children learn to read and write Hebrew in a lively, warm and inspiring setting.", "img": "img/act-talmud.jpg", "btns": [{"t": "Inscription", "u": "#"}, {"t": "Nous écrire sur WhatsApp", "u": "https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20le%20Talmud%20Torah%20du%20mercredi%20pour%20mon%20enfant."}]}, {"id": "femmes", "h": "Le cercle féminin", "he": "The women’s circle", "p": "Des activités pour les femmes de tous âges et à chaque étape de leur vie ! Jeunes mamans, femmes actives ou retraitées, retrouvez-vous autour de soirées féminines, cours de Torah, voyages organisés et accompagnement après une naissance.", "pe": "Activities for women of all ages and at every stage of life! Young mothers, working women or retirees, come together around women’s evenings, Torah classes, organised trips and support after a birth.", "img": "img/act-femmes.jpg", "btns": [{"t": "Se renseigner", "u": "https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20les%20activit%C3%A9s%20du%20cercle%20f%C3%A9minin."}]}, {"id": "bichvileh", "h": "Bichvile’h pour les jeunes mamans", "he": "Bichvileh for new mothers", "p": "Bichvile’h accompagne les mamans dans la période post-natale et leur offre une communauté d’entraide, avec un soutien pratique et émotionnel : repas chauds, club hebdomadaire, conférences et ateliers avec des spécialistes.\n\nVous venez d’accoucher, ou une amie vient d’avoir un bébé ? Bichvile’h lui fait livrer un brunch à domicile pour l’aider à récupérer en douceur.", "pe": "Bichvileh supports mothers after birth and offers a community of mutual help, with practical and emotional support: hot meals, weekly club, lectures and workshops with specialists.\n\nHave you just given birth, or do you know a friend who has? Bichvileh delivers a brunch to her home to help her recover gently.", "img": "img/act-social.jpg", "btns": [{"t": "Prévenir d’une naissance", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!"}]}, {"id": "cantine", "h": "Cantine cacher", "he": "Kosher canteen", "p": "Déjeuner entre amis, rencontrer de nouvelles personnes, faire une partie de baby-foot et profiter d’un moment de détente !\n\nMenu : sandwichs, sushi, plats du jour et autres…", "pe": "Lunch with friends, meet new people, play a game of table football and enjoy a relaxing break!\n\nMenu: sandwiches, sushi, dishes of the day and more…", "img": "img/ph-cantine.jpg", "btns": []}, {"id": "tefiline", "h": "Téfiline & Mézouzot", "he": "Tefillin & Mezuzot", "p": "Écrits à l’encre sur du parchemin, comme la loi le demande, les lettres des Téfiline et Mézouzot ont tendance à s’estomper avec le temps, en raison de l’humidité, de la chaleur ou du froid. Une paire de prêt est mise à disposition pendant la vérification. Nous vous accompagnons aussi dans l’achat de téfiline et de mézouzot conformes à la Halakha.", "pe": "Written in ink on parchment as the law requires, the letters of Tefillin and Mezuzot tend to fade over time due to humidity, heat or cold. A loan pair is available during the check. We also help you purchase Tefillin and Mezuzot that comply with Halakha.", "img": "img/ph-tefiline.jpg", "btns": [{"t": "Vérification & achat · prendre rendez-vous", "u": "https://wa.me/33142523041?text=Bonjour%2C%20je%20vous%20contacte%20concernant%20la%20v%C3%A9rification%20de%20mes%20T%C3%A9filines%20et%20M%C3%A9zouzot.%20J%E2%80%99aimerais%20prendre%20rendez-vous%20pour%20les%20d%C3%A9poser.%20Quand%20pourrais-je%20passer%20%3F%20Merci%20!"}]}, {"id": "cteen", "h": "Le mouvement CTeen", "he": "The", "p": "Garçons et filles ayant atteint l’âge de la Bar / Bat Mitsva sont invités à rejoindre le mouvement international CTeen, qui compte des branches dans le monde entier !", "pe": "Boys and girls who have reached Bar / Bat Mitzvah age are invited to join the international CTeen movement, with branches all over the world!", "img": "img/ph-cteen.jpg", "btns": [{"t": "Rejoindre le CTeen", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0A%C3%82ge%20%3A%0A%C3%89cole%20%3A%0A%0AJ'aimerais%20rejoindre%20le%20club%20CTeen%20pour%20les%20ados%20du%2011e%20arrondissement.%0A%0APourriez-vous%20m'ajouter%20au%20groupe%20WhatsApp%20d%C3%A9di%C3%A9%20%3F%0A%0AMerci%20beaucoup%20"}]}, {"id": "social", "h": "Ne jamais oublier personne", "he": "No one forgotten", "p": "Nous ne devons jamais oublier les personnes seules, isolées ou nécessiteuses.\n\nVisites, repas chauds, soutien physique et moral, pour rendre la dignité aux personnes fragiles et les inclure dans la vie communautaire.", "pe": "We must never forget people who are alone, isolated or in need.\n\nVisits, hot meals, physical and moral support, to restore dignity to vulnerable people and include them in community life.", "img": "img/ph-social.jpg", "btns": []}], "Agenda": [{"id": "s0", "h": "Agenda", "he": "Events", "p": "", "pe": "", "img": "img/ciel.jpg", "btns": []}, {"id": "s2", "h": "Programme régulier", "he": "Regular program", "p": "Les rendez-vous de chaque semaine, hors fêtes et vacances scolaires.", "pe": "Our weekly gatherings, except on holidays and school vacations.", "img": "", "btns": []}], "Cycles de la vie": [{"id": "s0", "h": "Cycles de la vie", "he": "Life cycle", "p": "", "pe": "", "img": "", "btns": []}, {"id": "naissance", "h": "Accueillir une nouvelle vie", "he": "Welcoming a new life", "p": "Brit Mila, Pidyon Haben ou première coupe de cheveux : nous vous accompagnons pour célébrer ces moments précieux dans le respect de la tradition, entourés de vos proches. Nous sommes également aux côtés des jeunes mamans après l’accouchement, en leur apportant soutien et réconfort avec des repas livrés à domicile.", "pe": "Brit Milah, Pidyon Haben or first haircut: we help you celebrate these precious moments in keeping with tradition, surrounded by your loved ones. We also stand by young mothers after the birth, bringing them support and comfort with meals delivered to their home.", "img": "img/cv-naissance.jpg", "btns": [{"t": "Réserver la salle", "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0"}, {"t": "Prévenir d’une naissance", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!"}]}, {"id": "bar-mitsva", "h": "Bar & Bat Mitsva", "he": "Bar & Bat Mitzvah", "p": "Initiation au mode de vie juif, permettant aux jeunes à cet âge charnière de prendre connaissance de leur puissant héritage. Préparation à la cérémonie, à la lecture de la Torah et au discours, dans un cadre chaleureux et motivant.", "pe": "An introduction to the Jewish way of life, allowing young people at this pivotal age to discover their powerful heritage. Preparation for the ceremony, the Torah reading and the speech, in a warm and motivating setting.", "img": "img/cv-barmitsva.jpg", "btns": [{"t": "S’inscrire au cours", "u": "https://wa.me/33665011820?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0AJ'ai%20re%C3%A7u%20vos%20coordonn%C3%A9es%20de%20la%20part%20de%20%3A%0A%0AMon%20fils%20%2F%20Ma%20fille%20c%C3%A9l%C3%A9brera%20sa%20Bar-Mitsva%20%2F%20Bat-Mitsva%20le%20%3A%0A%0ANous%20aimerions%20organiser%20des%20cours%20de%20pr%C3%A9paration%20%C3%A0%20la%20Bar-Mitsva%20%2F%20Bat-Mitsva.%0A%0APourriez-vous%20nous%20donner%20davantage%20d'informations%20sur%20les%20cours%20et%20leur%20organisation%20%3F%0A%0AMerci%20beaucoup%20et%20%C3%A0%20bient%C3%B4t%20!"}, {"t": "Réserver la salle", "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0"}]}, {"id": "mariage", "h": "Préparation au mariage", "he": "Preparing for marriage", "p": "Prenez le temps d’explorer la signification spirituelle du mariage et d’apprendre les lois de la pureté familiale et du Mikvé. Un cours en quatre leçons, rempli de conseils qui vous accompagneront bien au-delà du grand jour.", "pe": "Take the time to explore the spiritual meaning of marriage and learn the laws of family purity and the Mikveh. A four-lesson course, full of advice that will stay with you well beyond the big day.", "img": "img/cv-hero.jpg", "btns": [{"t": "S’inscrire aux cours", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0AJ'ai%20re%C3%A7u%20vos%20coordonn%C3%A9es%20de%20la%20part%20de%20%3A%0A%0AJe%20me%20marie%20le%20%3A%0ASynagogue%20ou%20salle%20du%20mariage%20%3A%0ARabbin%20qui%20c%C3%A9l%C3%A9brera%20le%20mariage%20%3A%0A%0AJ'aimerais%20suivre%20des%20cours%20de%20pr%C3%A9paration%20au%20mariage%20et%20de%20puret%C3%A9%20familiale%20avec%20vous.%0A%0ACours%20souhait%C3%A9s%20%3A%20Mari%C3%A9%20%2F%20Mari%C3%A9e%20%2F%20Les%20deux%0A%0AMes%20disponibilit%C3%A9s%20%3A%0A%0AMerci%20beaucoup%20et%20%C3%A0%20bient%C3%B4t%20!"}]}, {"id": "salle", "h": "Location de notre salle", "he": "Rent our hall", "p": "Tables, chaises et enceinte incluses · Traiteurs cacher avec Téouda uniquement", "pe": "Tables, chairs and speaker included · Kosher caterers with Teouda only", "img": "img/cv-salle.jpg", "btns": [{"t": "Réserver la salle", "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0"}]}, {"id": "kaddich", "h": "Récitation du Kaddich", "he": "Reciting the Kaddish", "p": "Durant les onze mois suivant le décès d’un proche, les endeuillés récitent le « Kaddich des endeuillés ». Celui-ci est également récité chaque année, à la date anniversaire hébraïque du décès (Yahrzeit / Azkara).\n\nQuand une âme quitte ce monde, ses enfants peuvent l’aider tout au long de son cheminement. Même si cette personne n’a pas laissé de fils, un autre Juif peut aider cette âme en récitant le Kaddich. Nous sommes tous connectés.", "pe": "During the eleven months following the passing of a loved one, mourners recite the “Mourner’s Kaddish”. It is also recited every year on the Hebrew anniversary of the passing (Yahrzeit / Azkara).\n\nWhen a soul leaves this world, its children can help it along its journey. Even if the person left no son, another Jew can help this soul by reciting the Kaddish. We are all connected.", "img": "img/bougie.webp", "btns": [{"t": "Prise en charge du Kaddich · 300 € / an", "u": "#"}, {"t": "Trouver la date hébraïque", "u": "#convertisseur"}]}, {"id": "yizkor", "h": "Prière du Yizkor", "he": "The Yizkor prayer", "p": "Quatre fois par an, nous évoquons la mémoire de nos proches disparus lors de la prière du Yizkor. Prochaines dates, calculées automatiquement :", "pe": "Four times a year, we remember our departed loved ones during the Yizkor prayer. Next dates, calculated automatically:", "img": "", "btns": [{"t": "Inscrire un nom pour le Yizkor", "u": "#"}]}], "Touristes": [{"id": "s0", "h": "Touristes à Paris", "he": "Visiting Paris", "p": "", "pe": "", "img": "img/paris-nuit.jpg", "btns": []}, {"id": "shabbat", "h": "Un Chabbat comme à la maison", "he": "A Shabbat just like home", "p": "Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et chaleureuse, autour de délicieux repas traiteur.", "pe": "Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, warm atmosphere, around delicious catered meals.", "img": "img/table-chabbat.jpg", "btns": [{"t": "Réserver un repas de Chabbat", "u": "https://bethloubavitchb.kehila.io/shabbat"}]}, {"id": "adresses", "h": "Adresses utiles autour du 11ᵉ", "he": "Useful addresses around the 11th", "p": "Boulangeries, restaurants, supermarchés, synagogues et mikvés cacher pour faciliter votre séjour.\n\nToutes les adresses cacher de Paris sur mangercacher.com", "pe": "Kosher bakeries, restaurants, supermarkets, synagogues and mikvaot to make your stay easier.\n\n", "img": "img/r-mendys.jpg", "btns": []}]};
+const PURL={'Accueil':'index.html','Qui sommes-nous':'qui-sommes-nous.html','Activités':'activites.html','Agenda':'agenda.html','Cycles de la vie':'cycles.html','Touristes':'touristes.html'};
+const txP=$('#txPage'),txS=$('#txSec'),txF=$('#txForm');
+txP.innerHTML=Object.keys(TX).map(k=>`<option>${k}</option>`).join('');
+function txFill(){txS.innerHTML=TX[txP.value].map((x,i)=>`<option value="${i}">${String(i+1).padStart(2,'0')} · ${x.h}</option>`).join('');txLoad();}
+function txLoad(){const x=TX[txP.value][+txS.value||0];if(!x)return;$('#txTitle').textContent=x.h;$('#txSub').textContent=txP.value+(x.id&&!/^s\d+$/.test(x.id)?' · #'+x.id:'');
+  txF.h.value=x.h;txF.he.value=x.he||'';txF.p.value=x.p||'';txF.pe.value=x.pe||'';
+  $('#txDrop').style.display=x.img?'':'none';$('#txPv').style.backgroundImage=x.img?`url(${x.img})`:'';
+  $('#txBtnsW').style.display=x.btns&&x.btns.length?'':'none';
+  $('#txBtns').innerHTML=(x.btns||[]).map(b=>`<div class="br"><input value="${b.t.replace(/"/g,'&quot;')}" aria-label="Texte du bouton"><input value="${(b.u||'').replace(/"/g,'&quot;')}" aria-label="Lien du bouton"></div>`).join('');
+  $('#txView').href=PURL[txP.value]+(x.id&&!/^s\d+$/.test(x.id)?'#'+x.id:'');}
+txP.onchange=txFill;txS.onchange=txLoad;
+['h','he','p','pe'].forEach(n=>txF[n].addEventListener('input',()=>{const x=TX[txP.value][+txS.value];x[n]=txF[n].value;if(n==='h'){$('#txTitle').textContent=x.h;txS.options[txS.selectedIndex].text=String(+txS.value+1).padStart(2,'0')+' · '+x.h;}}));
+txFill();
+
+/* ---- Page d’accueil : carreaux & avis ---- */
+const CELLS=[{"u": "activites.html#repas", "img": "img/ph-chabbat.jpg", "te": "Shabbat meals &amp; holidays", "t": "Repas de Chabbat &amp; fêtes", "de": "A moment of sharing, tradition and togetherness.", "d": "Un moment de partage, de tradition et de convivialité."}, {"u": "activites.html#cantine", "img": "img/ph-cantine.jpg", "te": "Kosher canteen", "t": "Cantine cacher", "de": "A lunchtime break of sharing and good spirits, around quality kosher meals.", "d": "Faire du midi un moment de pause, de partage et de bonne humeur autour de repas cacher de qualité."}, {"u": "activites.html#enfants", "img": "img/act-talmud.jpg", "te": "Talmud Torah", "t": "Talmud Torah", "de": "A precious link in the chain of generations.", "d": "Maillon précieux de la chaîne des générations."}, {"u": "activites.html#tefiline", "img": "img/ph-tefiline.jpg", "te": "Tefillin &amp; Mezuzot", "t": "Téfiline &amp; Mézouzot", "de": "A rigorous checking service to ensure they are valid and kosher.", "d": "Un service de contrôle rigoureux pour garantir leur conformité et leur validité."}, {"u": "activites.html#etude", "img": "img/act-cours.jpg", "te": "Torah study", "t": "Étude de Torah", "de": "Study for every level, a source of inspiration for everyone.", "d": "Une étude pour tous les niveaux, une source d’inspiration pour chacun/e."}, {"u": "touristes.html", "img": "img/menorah.jpg", "te": "Tourists in Paris", "t": "Touristes à Paris", "de": "Kosher restaurants, synagogues and mikvaot around the 11th arrondissement.", "d": "Restaurants cacher, synagogues et mikvés autour du 11ᵉ arrondissement."}];const AVIS=[{"t": "« Même en voyage, nous nous sommes sentis comme à la maison. C’était notre plus beau Chabbat. »", "n": "Léa & Benjamin"}, {"t": "« Je suis arrivé une première fois sans connaître personne, et tout de suite je me suis senti à l’aise. Aujourd’hui, le Beth Habad fait vraiment partie de ma vie. »", "n": "Jonathan"}, {"t": "« Entre les cours, les fêtes, les soirées et les actions pour la communauté, il y a toujours quelque chose de beau à vivre ensemble. On sent beaucoup de sincérité et de bienveillance. »", "n": "Myriam"}, {"t": "« Nos enfants adorent venir aux activités du Beth Habad ! Ils reviennent toujours heureux, ils apprennent plein de choses et se sont fait de vrais copains. »", "n": "David & Sophie"}, {"t": "« On a découvert le Beth Habad pendant nos vacances et on a adoré. Des gens du monde entier, une ambiance chaleureuse et un repas de Chabbat copieux comme à la maison. »", "n": "Kevin & Laura"}];
+let gCtx=null;const gF=$('#gForm');
+function gOpen(title,sub,fields,vals,onSave,onDel){gCtx={onSave,onDel};$('#gMT').textContent=title;$('#gMS').textContent=sub;
+  gF.innerHTML=fields.map(f=>f.type==='img'?`<label class="drop"><input type="file" accept="image/*" hidden data-gimg><span class="pv" id="gPv" style="background-image:url(${vals.img||''})"></span><div><b>Photo</b><span>Glissez une image ou cliquez pour remplacer</span></div></label>`:f.type==='ta'?`<label class="fd full"><span>${f.l}</span><textarea name="${f.n}">${vals[f.n]||''}</textarea></label>`:`<label class="fd ${f.full?'full':''}"><span>${f.l}</span><input name="${f.n}" value="${(vals[f.n]||'').replace(/"/g,'&quot;')}"></label>`).join('');
+  const gi=gF.querySelector('[data-gimg]');if(gi)gi.onchange=()=>{const fl=gi.files[0];if(fl)$('#gPv').style.backgroundImage=`url(${URL.createObjectURL(fl)})`;};
+  $('#gDel').style.visibility=onDel?'visible':'hidden';$('#gModal').hidden=false;}
+$$('[data-closeg]').forEach(b=>b.onclick=()=>$('#gModal').hidden=true);
+$('#gSave').onclick=()=>{const v={};gF.querySelectorAll('[name]').forEach(i=>v[i.name]=i.value);const pv=$('#gPv');if(pv)v.img=pv.style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,'');gCtx.onSave(v);$('#gModal').hidden=true;};
+$('#gDel').onclick=()=>{if(gCtx.onDel)gCtx.onDel();$('#gModal').hidden=true;};
+const dec=t=>{const e=document.createElement('textarea');e.innerHTML=t;return e.value;};
+CELLS.forEach(c=>{c.t=dec(c.t);c.te=dec(c.te);});
+function renderCells(){const l=$('#cellList');l.innerHTML='';CELLS.forEach((c,i)=>{const r=document.createElement('div');r.className='row';
+  r.innerHTML=`<span class="th" style="background-image:url(${c.img})"></span><div><div class="t">${String(i+1).padStart(2,'0')} · ${c.t}</div><div class="d">${c.d} · → ${c.u}</div></div><div class="ac"><button class="btn btn-ln btn-sm">Modifier</button></div>`;
+  r.querySelector('.btn').onclick=()=>gOpen('Modifier le carreau','Accueil · Nos activités',[{n:'t',l:'Titre FR'},{n:'te',l:'Titre EN'},{n:'d',l:'Sous-titre FR',full:1},{n:'de',l:'Sous-titre EN',full:1},{n:'u',l:'Lien',full:1},{type:'img'}],c,v=>{Object.assign(c,v);renderCells();toast('Carreau enregistré');});l.appendChild(r);});}
+function renderAvis(){const l=$('#avisList');l.innerHTML='';AVIS.forEach((a,i)=>{const r=document.createElement('div');r.className='row';r.style.gridTemplateColumns='minmax(0,1fr) auto';
+  r.innerHTML=`<div><div class="t">${a.n}</div><div class="d">${a.t}</div></div><div class="ac"><button class="btn btn-ln btn-sm">Modifier</button></div>`;
+  r.querySelector('.btn').onclick=()=>gOpen('Modifier l’avis','Accueil · Avis',[{n:'n',l:'Prénom(s)',full:1},{n:'t',l:'Témoignage',type:'ta'}],a,v=>{Object.assign(a,v);renderAvis();toast('Avis enregistré');},()=>{AVIS.splice(i,1);renderAvis();toast('Avis supprimé');});l.appendChild(r);});}
+$('#addAvis').onclick=()=>gOpen('Nouvel avis','Accueil · Avis',[{n:'n',l:'Prénom(s)',full:1},{n:'t',l:'Témoignage',type:'ta'}],{},v=>{if(!v.n&&!v.t)return;AVIS.push(v);renderAvis();toast('Avis ajouté');});
+renderCells();renderAvis();
+renderAll();renderProg();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();
+})();
+</script>
+</body>
+</html>
