@@ -226,7 +226,7 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
 @media (max-width:380px){.stats{grid-template-columns:minmax(0,1fr)}.st{border-left:0!important;border-top:1px solid var(--ligne)}.st:first-child{border-top:0}}
 </style>
 <script src="js/site-data.js"></script>
-<style>.rf form[hidden]{display:none!important}</style>
+<style>.rf form[hidden]{display:none!important}.top>div:first-child{min-width:0}@media (max-width:760px){#viewSite,.top .who{display:none}#logout{padding-inline:6px}}</style>
 </head>
 <body>
 
@@ -281,8 +281,8 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
 
   <div class="main">
     <header class="top">
-      <div style="display:flex;align-items:center;gap:14px"><button class="burger" id="burger" aria-label="Menu">☰</button><h1 id="ptitle">Tableau de bord</h1></div>
-      <div class="r"><span class="muted" id="saveSt" style="font-size:13px;font-weight:700;margin-right:14px"></span><div class="who"><span id="whoName">Admin</span><b id="whoIni">A</b></div><button class="btn btn-gh" id="logout" style="margin-left:8px">Déconnexion</button></div>
+      <div style="display:flex;align-items:center;gap:14px"><button class="burger" id="burger" aria-label="Menu">☰</button><div style="min-width:0"><h1 id="ptitle">Tableau de bord</h1><div class="muted" id="saveSt" style="font-size:12px;font-weight:700;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div></div></div>
+      <div class="r"><div class="who"><span id="whoName">Admin</span><b id="whoIni">A</b></div><a class="btn btn-ln btn-sm" id="viewSite" href="index.html" target="_blank" rel="noopener" style="margin-left:8px">Voir le site ↗</a><button class="btn btn-gh" id="logout" style="margin-left:8px">Déconnexion</button></div>
     </header>
 
     <div class="wrap">
