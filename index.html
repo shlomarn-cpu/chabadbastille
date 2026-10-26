@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="js/site-data.js"></script>
 <link rel="icon" type="image/svg+xml" href="img/mark-terre.svg">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -457,6 +458,7 @@ function renderEvents(){
   rail.innerHTML=EVENTS.map(e=>`<article class="card"><div class="ph"><img src="${e.img}" alt="" draggable="false"></div><h3>${lang==='en'?e.en_titre:e.titre}</h3><p>${lang==='en'?e.en_sous:e.sous}</p><a class="btn" href="${e.lien}" target="_blank" rel="noopener">${lang==='en'?e.en_btn:e.btn}</a></article>`).join('');
 }
 renderEvents();
+onSiteData(d=>{if(!d.ev)return;const L=SD.upcoming(d);EVENTS.length=0;L.forEach(e=>EVENTS.push(SD.evCard(e)));const sec=document.querySelector('section.events');if(sec)sec.style.display=L.length?'':'none';renderEvents();});
 const step=()=>{const c=rail.querySelector('.card');return c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(rail).gap):400};
 document.getElementById('next').onclick=()=>rail.scrollBy({left:step(),behavior:'smooth'});
 document.getElementById('prev').onclick=()=>rail.scrollBy({left:-step(),behavior:'smooth'});

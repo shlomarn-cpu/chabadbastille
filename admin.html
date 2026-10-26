@@ -225,6 +225,7 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
 }
 @media (max-width:380px){.stats{grid-template-columns:minmax(0,1fr)}.st{border-left:0!important;border-top:1px solid var(--ligne)}.st:first-child{border-top:0}}
 </style>
+<script src="js/site-data.js"></script>
 </head>
 <body>
 
@@ -235,10 +236,19 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
     <form id="lform">
       <img src="img/mark-terre.svg" alt="" style="height:40px;align-self:flex-start">
       <h1>Espace <b>admin</b></h1>
-      <label class="fd"><span>E-mail</span><input type="email" value="beila@bethloubavitch.fr" autocomplete="username"></label>
-      <label class="fd"><span>Mot de passe</span><input type="password" value="demo" autocomplete="current-password"></label>
-      <button class="btn btn-terre" type="submit">Se connecter</button>
-      <p class="muted" style="font-size:13px;margin:0">Maquette : cliquez simplement sur « Se connecter ».</p>
+      <label class="fd"><span>E-mail</span><input type="email" id="lEmail" required autocomplete="username"></label>
+      <label class="fd"><span>Mot de passe</span><input type="password" id="lPass" required autocomplete="current-password"></label>
+      <button class="btn btn-terre" type="submit" id="lBtn">Se connecter</button>
+      <p class="muted" id="lMsg" style="font-size:13px;margin:0;min-height:1.4em"></p>
+      <button type="button" class="btn btn-gh" id="lForgot" style="align-self:flex-start;padding-left:0">Mot de passe oublié ?</button>
+    </form>
+    <form id="pform" hidden>
+      <img src="img/mark-terre.svg" alt="" style="height:40px;align-self:flex-start">
+      <h1>Choisir <b>un mot de passe</b></h1>
+      <label class="fd"><span>Nouveau mot de passe</span><input type="password" id="pNew" required minlength="8" autocomplete="new-password"></label>
+      <label class="fd"><span>Confirmer</span><input type="password" id="pNew2" required minlength="8" autocomplete="new-password"></label>
+      <button class="btn btn-terre" type="submit">Enregistrer et entrer</button>
+      <p class="muted" id="pMsg" style="font-size:13px;margin:0;min-height:1.4em"></p>
     </form>
   </div>
 </section>
@@ -271,7 +281,7 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
   <div class="main">
     <header class="top">
       <div style="display:flex;align-items:center;gap:14px"><button class="burger" id="burger" aria-label="Menu">☰</button><h1 id="ptitle">Tableau de bord</h1></div>
-      <div class="r"><div class="who"><span>Beila Arnauve · Admin</span><b>BA</b></div></div>
+      <div class="r"><span class="muted" id="saveSt" style="font-size:13px;font-weight:700;margin-right:14px"></span><div class="who"><span id="whoName">Admin</span><b id="whoIni">A</b></div><button class="btn btn-gh" id="logout" style="margin-left:8px">Déconnexion</button></div>
     </header>
 
     <div class="wrap">
@@ -328,29 +338,29 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
             <label class="fd"><span>Texte du bouton</span><input id="pB" value="Je réserve ma place"></label>
             <label class="fd"><span>Lien du bouton</span><input id="pL" value="https://bethloubavitchb.kehila.io/"></label>
             <label class="drop"><input type="file" accept="image/*" hidden data-img id="pImg"><span class="pv" id="pPv" style="background-image:url(img/ph-chabbat.jpg)"></span><div><b>Image du pop-up</b><span>Glissez une image ou cliquez · facultative</span></div></label>
-            <label class="fd"><span>Afficher à partir du</span><input type="date" value="2027-03-01"></label>
-            <label class="fd"><span>Jusqu’au</span><input type="date" value="2027-04-21"></label>
-            <label class="fd"><span>Pages</span><select id="pPg"><option>Toutes les pages</option><option>Accueil uniquement</option><option>Activités</option><option>Agenda</option><option>Touristes</option></select></label>
-            <label class="fd"><span>Fréquence</span><select><option>Une fois par visiteur</option><option>Une fois par jour</option><option>À chaque visite</option></select></label>
-            <label class="fd"><span>Apparition</span><select><option>Après 3 secondes</option><option>Immédiatement</option><option>Après 10 secondes</option></select></label>
+            <label class="fd"><span>Afficher à partir du</span><input type="date" id="pFrom" value="2027-03-01"></label>
+            <label class="fd"><span>Jusqu’au</span><input type="date" id="pTo" value="2027-04-21"></label>
+            <label class="fd"><span>Pages</span><select id="pPg"><option>Toutes les pages</option><option>Accueil uniquement</option><option>Activités</option><option>Agenda</option><option>Touristes</option><option>Cycles de la vie</option><option>Qui sommes-nous</option></select></label>
+            <label class="fd"><span>Fréquence</span><select id="pFq"><option>Une fois par visiteur</option><option>Une fois par jour</option><option>À chaque visite</option></select></label>
+            <label class="fd"><span>Apparition</span><select id="pDl"><option>Après 3 secondes</option><option>Immédiatement</option><option>Après 10 secondes</option></select></label>
             <label class="fd"><span>Format</span><select id="pFm"><option value="c">Centré, avec image</option><option value="b">Petit, en bas à droite</option></select></label>
           </div>
           <div class="pvw"><div class="k">Aperçu</div><div class="pvs" id="pvs"><div class="pop" id="pop"><button class="px" aria-label="Fermer">✕</button><div class="pim" id="pim"></div><div class="pbd"><div class="pk">Beth Loubavitch Bastille</div><h3 id="vT"></h3><p id="vX"></p><a class="btn btn-terre" id="vB" href="#"></a></div></div></div>
           <button class="btn btn-ln btn-sm" id="pTest" style="margin-top:12px">Tester en plein écran</button></div>
         </div>
-        <div class="fa"><label class="tg"><input type="checkbox" id="pOn" checked><span class="sw"></span><span class="lb">Actif</span></label><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+        <div class="fa"><label class="tg"><input type="checkbox" id="pOn" checked><span class="sw"></span><span class="lb">Actif</span></label><button class="btn btn-terre" data-save id="popSave">Publier</button></div></div></div>
     </section>
 
     <!-- ===== ANNONCE ===== -->
     <section class="panel" data-panel="annonce" hidden>
-      <div class="card"><div class="ch"><div><h2>Bandeau d’annonce</h2><p>Message affiché tout en haut de toutes les pages.</p></div><label class="tg"><input type="checkbox" id="annOn" checked><span class="sw"></span><span class="lb" id="annLb">Affiché</span></label></div>
+      <div class="card"><div class="ch"><div><h2>Bandeau d’annonce</h2><p>Message affiché tout en haut de toutes les pages.</p></div><label class="tg"><input data-f="ann.on" type="checkbox" id="annOn" checked><span class="sw"></span><span class="lb" id="annLb">Affiché</span></label></div>
         <div class="cb"><div class="form">
-          <label class="fd"><span>Message <em>FR</em></span><input id="annFr" value="Inscriptions ouvertes pour le Séder de Pessa’h"></label>
-          <label class="fd"><span>Message <em>EN</em></span><input id="annEn" value="Registration open for the Passover Seder"></label>
-          <label class="fd"><span>Texte du lien</span><input id="annL" value="Je réserve"></label>
-          <label class="fd"><span>Lien</span><input value="https://bethloubavitchb.kehila.io/"></label>
-          <label class="fd"><span>Afficher à partir du</span><input type="date" value="2027-03-01"></label>
-          <label class="fd"><span>Jusqu’au</span><input type="date" value="2027-04-21"></label>
+          <label class="fd"><span>Message <em>FR</em></span><input data-f="ann.fr" id="annFr" value="Inscriptions ouvertes pour le Séder de Pessa’h"></label>
+          <label class="fd"><span>Message <em>EN</em></span><input data-f="ann.en" id="annEn" value="Registration open for the Passover Seder"></label>
+          <label class="fd"><span>Texte du lien</span><input data-f="ann.l" id="annL" value="Je réserve"></label>
+          <label class="fd"><span>Lien</span><input data-f="ann.u" value="https://bethloubavitchb.kehila.io/"></label>
+          <label class="fd"><span>Afficher à partir du</span><input data-f="ann.from" type="date" value="2027-03-01"></label>
+          <label class="fd"><span>Jusqu’au</span><input data-f="ann.to" type="date" value="2027-04-21"></label>
         </div>
         <div class="k" style="margin-top:24px">Aperçu</div>
         <div class="annp" id="annP"><span id="annPt"></span><a href="#" id="annPl"></a></div>
@@ -361,50 +371,50 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
     <section class="panel" data-panel="infos" hidden>
       <div class="tabs" role="tablist" id="infoTabs"><button aria-selected="true" data-t="i1">Coordonnées</button><button aria-selected="false" data-t="i2">Horaires</button><button aria-selected="false" data-t="i3">Dates</button><button aria-selected="false" data-t="i4">Tarifs</button><button aria-selected="false" data-t="i5">Liens</button><button aria-selected="false" data-t="i6">Chiffres</button></div>
       <div class="card" data-tp="i1"><div class="ch"><div><h2>Coordonnées</h2><p>Pied de page, page Touristes, FAQ</p></div></div><div class="cb"><div class="form">
-        <label class="fd full"><span>Adresse</span><input value="37 rue Popincourt, 75011 Paris"></label>
-        <label class="fd"><span>Métro 1</span><input value="Richard-Lenoir · ligne 5"></label>
-        <label class="fd"><span>Métro 2</span><input value="Saint-Ambroise · ligne 9"></label>
-        <label class="fd"><span>Téléphone</span><input value="+33 1 42 52 30 41"></label>
-        <label class="fd"><span>WhatsApp</span><input value="+33 1 42 52 30 41"></label>
-        <label class="fd"><span>E-mail</span><input value="levi.arnauve@loubavitch.fr"></label>
-        <label class="fd"><span>Instagram</span><input value="https://www.instagram.com/beth_loubavitch_bastille"></label>
+        <label class="fd full"><span>Adresse</span><input data-f="info.adresse" value="37 rue Popincourt, 75011 Paris"></label>
+        <label class="fd"><span>Métro 1</span><input data-f="info.metro1" value="Richard-Lenoir · ligne 5"></label>
+        <label class="fd"><span>Métro 2</span><input data-f="info.metro2" value="Saint-Ambroise · ligne 9"></label>
+        <label class="fd"><span>Téléphone</span><input data-f="info.tel" value="+33 1 42 52 30 41"></label>
+        <label class="fd"><span>WhatsApp</span><input data-f="info.wa" value="+33 1 42 52 30 41"></label>
+        <label class="fd"><span>E-mail</span><input data-f="info.mail" value="levi.arnauve@loubavitch.fr"></label>
+        <label class="fd"><span>Instagram</span><input data-f="info.insta" value="https://www.instagram.com/beth_loubavitch_bastille"></label>
       </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
       <div class="card" data-tp="i2" hidden><div class="ch"><div><h2>Horaires</h2><p>Les horaires de Chabbat sont calculés automatiquement</p></div></div><div class="cb"><div class="form">
-        <label class="fd"><span>Cha’harit · Chabbat matin</span><input value="10h00"></label>
-        <label class="fd"><span>Min’ha &amp; Arvit · vendredi</span><select><option>15 min avant l’allumage, arrondi à 5 min</option><option>À l’heure de l’allumage</option><option>10 min avant l’allumage</option></select></label>
-        <label class="fd"><span>Cantine · jours</span><input value="Lundi – Jeudi, hors vacances scolaires"></label>
-        <label class="fd"><span>Cantine · horaires</span><input value="11h30 – 14h00"></label>
-        <label class="fd"><span>Talmud Torah</span><input value="Mercredi 11h30 – 16h30"></label>
-        <label class="fd"><span>Réservation Chabbat · tarif réduit jusqu’au</span><input value="Mercredi matin"></label>
+        <label class="fd"><span>Cha’harit · Chabbat matin</span><input data-f="info.chaharit" value="10h00"></label>
+        <label class="fd"><span>Min’ha &amp; Arvit · vendredi</span><select data-f="info.minha"><option>15 min avant l’allumage, arrondi à 5 min</option><option>À l’heure de l’allumage</option><option>10 min avant l’allumage</option></select></label>
+        <label class="fd"><span>Cantine · jours</span><input data-f="info.cantJours" value="Lundi – Jeudi, hors vacances scolaires"></label>
+        <label class="fd"><span>Cantine · horaires</span><input data-f="info.cantH" value="11h30 – 14h00"></label>
+        <label class="fd"><span>Talmud Torah</span><input data-f="info.tt" value="Mercredi 11h30 – 16h30"></label>
+        <label class="fd"><span>Réservation Chabbat · tarif réduit jusqu’au</span><input data-f="info.resaJusqu" value="Mercredi matin"></label>
       </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
       <div class="card" data-tp="i3" hidden><div class="ch"><div><h2>Dates à mettre à jour</h2><p>Gan Israël et voyages</p></div></div><div class="cb"><div class="form">
-        <label class="fd"><span>Gan Israël hiver · début</span><input type="date" value="2026-12-21"></label>
-        <label class="fd"><span>Gan Israël hiver · fin</span><input type="date" value="2026-12-25"></label>
-        <label class="fd"><span>Gan Israël été · début</span><input type="date" value="2027-07-05"></label>
-        <label class="fd"><span>Gan Israël été · fin</span><input type="date" value="2027-07-23"></label>
-        <label class="fd full"><span>Voyage à New York</span><input placeholder="Dates et description…"></label>
+        <label class="fd"><span>Gan Israël hiver · début</span><input data-f="info.ganHd" type="date" value="2026-12-21"></label>
+        <label class="fd"><span>Gan Israël hiver · fin</span><input data-f="info.ganHf" type="date" value="2026-12-25"></label>
+        <label class="fd"><span>Gan Israël été · début</span><input data-f="info.ganEd" type="date" value="2027-07-05"></label>
+        <label class="fd"><span>Gan Israël été · fin</span><input data-f="info.ganEf" type="date" value="2027-07-23"></label>
+        <label class="fd full"><span>Voyage à New York</span><input data-f="info.ny" placeholder="Dates et description…"></label>
       </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
       <div class="card" data-tp="i4" hidden><div class="ch"><div><h2>Tarifs</h2></div></div><div class="cb"><div class="form">
-        <label class="fd"><span>Salle · surface</span><input value="200 m²"></label>
-        <label class="fd"><span>Salle · personnes</span><input value="100"></label>
-        <label class="fd"><span>Salle · tarif</span><input value="500 €"></label>
-        <label class="fd"><span>Prise en charge du Kaddich</span><input value="300 € / an"></label>
-        <label class="fd"><span>Vérification Mézouza</span><input value="7 €"></label>
-        <label class="fd"><span>Vérification Téfiline</span><input value="25 €"></label>
-        <label class="fd"><span>Préparation au mariage · don suggéré</span><input value="150 €"></label>
+        <label class="fd"><span>Salle · surface</span><input data-f="info.salleM2" value="200 m²"></label>
+        <label class="fd"><span>Salle · personnes</span><input data-f="info.sallePers" value="100"></label>
+        <label class="fd"><span>Salle · tarif</span><input data-f="info.salleTarif" value="500 €"></label>
+        <label class="fd"><span>Prise en charge du Kaddich</span><input data-f="info.kaddich" value="300 € / an"></label>
+        <label class="fd"><span>Vérification Mézouza</span><input data-f="info.mezouza" value="7 €"></label>
+        <label class="fd"><span>Vérification Téfiline</span><input data-f="info.tefiline" value="25 €"></label>
+        <label class="fd"><span>Préparation au mariage · don suggéré</span><input data-f="info.mariage" value="150 €"></label>
       </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
       <div class="card" data-tp="i5" hidden><div class="ch"><div><h2>Liens</h2><p>Boutons du site</p></div></div><div class="cb"><div class="form">
-        <label class="fd full"><span>Faire un don</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Inscription Talmud Torah</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Inscription Bar / Bat Mitsva</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Préparation au mariage</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Prise en charge du Kaddich</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Inscrire un nom pour le Yizkor</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Demander la salle</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Bichvile’h · prévenir d’une naissance</span><input placeholder="https://…"></label>
-        <label class="fd full"><span>Rejoindre le CTeen</span><input placeholder="https://…"></label>
+        <label class="fd full"><span>Faire un don</span><input data-f="link.don" placeholder="https://…"></label>
+        <label class="fd full"><span>Inscription Talmud Torah</span><input data-f="link.tt" placeholder="https://…"></label>
+        <label class="fd full"><span>Inscription Bar / Bat Mitsva</span><input data-f="link.bm" placeholder="https://…"></label>
+        <label class="fd full"><span>Préparation au mariage</span><input data-f="link.mariage" placeholder="https://…"></label>
+        <label class="fd full"><span>Prise en charge du Kaddich</span><input data-f="link.kaddich" placeholder="https://…"></label>
+        <label class="fd full"><span>Inscrire un nom pour le Yizkor</span><input data-f="link.yizkor" placeholder="https://…"></label>
+        <label class="fd full"><span>Demander la salle</span><input data-f="link.salle" placeholder="https://…"></label>
+        <label class="fd full"><span>Bichvile’h · prévenir d’une naissance</span><input data-f="link.naissance" placeholder="https://…"></label>
+        <label class="fd full"><span>Rejoindre le CTeen</span><input data-f="link.cteen" placeholder="https://…"></label>
       </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
-      <div class="card" data-tp="i6" hidden><div class="ch"><div><h2>Chiffres clés</h2><p>Bandeau « Un réseau mondial » · Qui sommes-nous</p></div></div><div class="cb"><div class="form"><label class="fd"><span>Délégués du Rabbi</span><input value="7 136+"></label><label class="fd"><span>Continents</span><input value="5"></label><label class="fd"><span>Pays</span><input value="100+"></label><label class="fd"><span>Villes</span><input value="1 000+"></label></div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
+      <div class="card" data-tp="i6" hidden><div class="ch"><div><h2>Chiffres clés</h2><p>Bandeau « Un réseau mondial » · Qui sommes-nous</p></div></div><div class="cb"><div class="form"><label class="fd"><span>Délégués du Rabbi</span><input data-f="chiffre.delegues" value="7 136+"></label><label class="fd"><span>Continents</span><input data-f="chiffre.continents" value="5"></label><label class="fd"><span>Pays</span><input data-f="chiffre.pays" value="100+"></label><label class="fd"><span>Villes</span><input data-f="chiffre.villes" value="1 000+"></label></div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
     </section>
 
     <!-- ===== ADRESSES ===== -->
@@ -440,13 +450,13 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
     <section class="panel" data-panel="home" hidden>
       <div class="card"><div class="ch"><div><h2>Bandeau principal</h2><p>Haut de la page d’accueil · les flammes de la hanoukia restent animées</p></div></div>
         <div class="cb"><div class="form">
-          <label class="fd"><span>Titre <em>FR</em></span><input value="Beth Loubavitch Bastille"></label>
-          <label class="fd"><span>Accroche <em>FR</em></span><input value="Rencontre • Partage • Transmission"></label>
-          <label class="fd"><span>Bouton 1</span><input value="Réserver un repas de Chabbat"></label>
-          <label class="fd"><span>Lien bouton 1</span><input value="https://bethloubavitchb.kehila.io/shabbat"></label>
-          <label class="fd"><span>Bouton 2</span><input value="Découvrir le Beth Habad"></label>
-          <label class="fd"><span>Lien bouton 2</span><input value="qui-sommes-nous.html"></label>
-          <label class="drop"><input type="file" accept="image/*" hidden data-img><span class="pv" style="background-image:url(img/hero.jpg)"></span><div><b>Photo du bandeau</b><span>Glissez une image ou cliquez pour remplacer</span></div></label>
+          <label class="fd"><span>Titre <em>FR</em></span><input data-f="home.titre" value="Beth Loubavitch Bastille"></label>
+          <label class="fd"><span>Accroche <em>FR</em></span><input data-f="home.accroche" value="Rencontre • Partage • Transmission"></label>
+          <label class="fd"><span>Bouton 1</span><input data-f="home.b1" value="Réserver un repas de Chabbat"></label>
+          <label class="fd"><span>Lien bouton 1</span><input data-f="home.u1" value="https://bethloubavitchb.kehila.io/shabbat"></label>
+          <label class="fd"><span>Bouton 2</span><input data-f="home.b2" value="Découvrir le Beth Habad"></label>
+          <label class="fd"><span>Lien bouton 2</span><input data-f="home.u2" value="qui-sommes-nous.html"></label>
+          <label class="drop"><input data-f="home.img" type="file" accept="image/*" hidden data-img><span class="pv" style="background-image:url(img/hero.jpg)"></span><div><b>Photo du bandeau</b><span>Glissez une image ou cliquez pour remplacer</span></div></label>
         </div><div class="fa"><span></span><button class="btn btn-terre" data-save>Publier</button></div></div></div>
       <div class="card"><div class="ch"><div><h2>Carreaux « Nos activités »</h2><p>Les 6 carreaux de l’accueil · photo affichée au survol</p></div></div><div class="rows" id="cellList"></div></div>
       <div class="card"><div class="ch"><div><h2>Avis</h2><p>Témoignages qui défilent sur l’accueil</p></div><button class="btn btn-terre btn-sm" id="addAvis">+ Ajouter</button></div><div class="rows" id="avisList"></div></div>
@@ -526,9 +536,48 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
 <script>
 (function(){
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const toast=(m='Modifications publiées')=>{const t=$('#toast');t.querySelector('span').textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2200);};
+const toast=(m='Modifications publiées')=>{try{schedule()}catch(e){}const t=$('#toast');t.querySelector('span').textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2200);};
 /* login */
-$('#lform').onsubmit=e=>{e.preventDefault();$('#login').hidden=true;$('#app').hidden=false;};
+/* ===== Supabase : connexion, lecture, enregistrement ===== */
+const SB=window.SUPA,SKEY='bl-admin-session';let SES=null,READY=false,saveT=null,saving=false,again=false;
+const sbH=(tok)=>({'apikey':SB.key,'Content-Type':'application/json',...(tok?{'Authorization':'Bearer '+tok}:{})});
+async function sbAuth(q,body){const r=await fetch(SB.url+'/auth/v1/'+q,{method:'POST',headers:sbH(),body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error_description||j.msg||j.message||('Erreur '+r.status));return j;}
+function setSes(j){SES={at:j.access_token,rt:j.refresh_token,exp:Date.now()+((j.expires_in||3600)-60)*1000,email:(j.user&&j.user.email)||(SES&&SES.email)||''};try{localStorage.setItem(SKEY,JSON.stringify(SES))}catch(e){}}
+async function token(){if(!SES)throw new Error('Non connecté');if(Date.now()>SES.exp){setSes(await sbAuth('token?grant_type=refresh_token',{refresh_token:SES.rt}));}return SES.at;}
+function showApp(){$('#login').hidden=true;$('#app').hidden=false;const em=SES.email||'';$('#whoName').textContent=em;$('#whoIni').textContent=(em[0]||'A').toUpperCase();loadData();}
+const lMsg=t=>$('#lMsg').textContent=t;
+$('#lform').onsubmit=async e=>{e.preventDefault();lMsg('Connexion…');$('#lBtn').disabled=true;
+  try{setSes(await sbAuth('token?grant_type=password',{email:$('#lEmail').value.trim(),password:$('#lPass').value}));lMsg('');showApp();}
+  catch(err){lMsg(/invalid/i.test(err.message)?'E-mail ou mot de passe incorrect.':err.message);}finally{$('#lBtn').disabled=false;}};
+$('#lForgot').onclick=async()=>{const em=$('#lEmail').value.trim();if(!em){lMsg('Entrez d’abord votre e-mail ci-dessus.');$('#lEmail').focus();return;}
+  try{await fetch(SB.url+'/auth/v1/recover?redirect_to='+encodeURIComponent(location.origin+location.pathname),{method:'POST',headers:sbH(),body:JSON.stringify({email:em})});lMsg('Si ce compte existe, un e-mail de réinitialisation vient d’être envoyé.');}catch(err){lMsg(err.message);}};
+$('#logout').onclick=()=>{try{localStorage.removeItem(SKEY)}catch(e){}SES=null;location.reload();};
+// lien d'invitation ou de réinitialisation reçu par e-mail
+(function(){const h=new URLSearchParams(location.hash.slice(1));
+  if(h.get('access_token')&&/invite|recovery|signup|magiclink/.test(h.get('type')||'')){
+    setSes({access_token:h.get('access_token'),refresh_token:h.get('refresh_token'),expires_in:+h.get('expires_in')||3600});
+    history.replaceState(null,'',location.pathname);$('#lform').hidden=true;$('#pform').hidden=false;
+    $('#pform').onsubmit=async e=>{e.preventDefault();const a=$('#pNew').value,b=$('#pNew2').value;if(a!==b){$('#pMsg').textContent='Les deux mots de passe ne sont pas identiques.';return;}
+      try{const r=await fetch(SB.url+'/auth/v1/user',{method:'PUT',headers:sbH(SES.at),body:JSON.stringify({password:a})});const j=await r.json();if(!r.ok)throw new Error(j.msg||j.message||'Erreur');SES.email=j.email||'';try{localStorage.setItem(SKEY,JSON.stringify(SES))}catch(e){}showApp();}
+      catch(err){$('#pMsg').textContent=err.message;}};
+    return;}
+  if(h.get('error_description')){lMsg(decodeURIComponent(h.get('error_description')).replace(/\+/g,' '));history.replaceState(null,'',location.pathname);}
+  try{const x=JSON.parse(localStorage.getItem(SKEY)||'null');if(x&&x.rt){SES=x;token().then(showApp).catch(()=>{SES=null;});}}catch(e){}
+})();
+const st=t=>{const e=$('#saveSt');if(e)e.textContent=t;};
+function schedule(){if(!READY)return;st('Modifications en attente…');clearTimeout(saveT);saveT=setTimeout(save,900);}
+async function save(){if(saving){again=true;return;}saving=true;st('Enregistrement…');
+  try{const tk=await token();const body={cle:'site',data:collect(),updated_at:new Date().toISOString()};
+    const r=await fetch(SB.url+'/rest/v1/contenu?on_conflict=cle',{method:'POST',headers:{...sbH(tk),'Prefer':'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(body)});
+    if(!r.ok)throw new Error('Erreur '+r.status+' '+(await r.text()).slice(0,120));
+    st('✓ Enregistré sur le site · '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}));}
+  catch(err){st('⚠ Non enregistré : '+err.message);console.error(err);}
+  finally{saving=false;if(again){again=false;save();}}}
+window.addEventListener('beforeunload',e=>{if(saveT&&/attente|Enregistrement/.test(($('#saveSt')||{}).textContent||'')){e.preventDefault();e.returnValue='';}});
+async function upload(file){const tk=await token();const name=Date.now()+'-'+file.name.toLowerCase().replace(/[^a-z0-9.]+/g,'-');
+  const r=await fetch(SB.url+'/storage/v1/object/photos/'+name,{method:'POST',headers:{'apikey':SB.key,'Authorization':'Bearer '+tk,'Content-Type':file.type||'image/jpeg','x-upsert':'true'},body:file});
+  if(!r.ok)throw new Error('Photo non envoyée ('+r.status+')');return SB.url+'/storage/v1/object/public/photos/'+name;}
+
 /* navigation */
 const titles={dash:'Tableau de bord',events:'Événements à venir',prog:'Programme régulier',repas:'Repas & fêtes',sections:'Sections du site',annonce:'Bandeau d’annonce',popup:'Pop-up',infos:'Infos importantes',adresses:'Adresses touristes',faq:'Questions fréquentes',home:'Page d’accueil',textes:'Textes & photos',users:'Utilisateurs'};
 function go(p){$$('#nav button').forEach(b=>b.toggleAttribute('aria-current',b.dataset.p===p));$$('#nav button[aria-current]').forEach(b=>b.setAttribute('aria-current','page'));$$('.panel').forEach(x=>x.hidden=x.dataset.panel!==p);$('#ptitle').textContent=titles[p];$('#sb').classList.remove('open');scrollTo(0,0);}
@@ -564,28 +613,33 @@ $('#evSave').onclick=()=>{const f=$('#evForm');if(!f.t.value||!f.d.value){f.repo
   const pv=f.querySelector('.pv').style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,'');
   const e={t:f.t.value,d:f.d.value,h:f.h.value,url:f.url.value,c:f.c.value,s:f.s.value,img:pv||'img/menorah.jpg'};
   if(editI<0)EV.push(e);else EV[editI]=e;EV.sort((a,b)=>a.d.localeCompare(b.d));$('#evModal').hidden=true;renderAll();toast(editI<0?'Événement ajouté':'Événement enregistré');};
-$$('[data-img]').forEach(inp=>inp.onchange=()=>{const f=inp.files[0];if(!f)return;const u=URL.createObjectURL(f);inp.parentElement.querySelector('.pv').style.backgroundImage=`url(${u})`;});
+$$('[data-img]').forEach(inp=>inp.onchange=async()=>{const f=inp.files[0];if(!f)return;const pvE=inp.parentElement.querySelector('.pv');pvE.style.backgroundImage=`url(${URL.createObjectURL(f)})`;
+  st('Envoi de la photo…');try{const u=await upload(f);pvE.style.backgroundImage=`url(${u})`;inp.dispatchEvent(new CustomEvent('uploaded',{detail:u}));toast('Photo enregistrée');}catch(err){st('⚠ '+err.message);}});
 
 /* ---- programme ---- */
 const JR=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi'];
 const DEST=['Cercle féminin','Bichvile’h','Cours & Étude','Enfants','Cantine','CTeen','Social'];
 let PR=[
- [1,'10:30','Sagesse féminine','Cercle féminin',1],[1,'19:00','Krav Maga (femmes)','Cercle féminin',1],[1,'20:30','Cours d’hébreu (femmes)','Cours & Étude',1],
- [2,'11:00','Club maman & moi','Bichvile’h',1],[2,'19:30','Cours de Paracha (hommes)','Cours & Étude',1],
- [3,'11:30','Talmud Torah','Enfants',1],[3,'20:15','Cours femmes','Cours & Étude',1],
- [4,'13:00','Cours de Paracha (hommes)','Cours & Étude',1],[1,'11:30','Cantine cacher (lun – jeu)','Cantine',1]];
+ [1,'10:30','Sagesse féminine','Cercle féminin',1,'Women’s wisdom club'],[1,'11:30','Cantine cacher','Cantine',1,'Kosher canteen'],[1,'19:00','Krav Maga (femmes)','Cercle féminin',1,'Krav Maga (women)'],[1,'20:30','Cours d’hébreu (femmes)','Cours & Étude',1,'Hebrew class (women)'],
+ [2,'11:00','Club maman & moi','Bichvile’h',1,'Mom & me club'],[2,'11:30','Cantine cacher','Cantine',1,'Kosher canteen'],[2,'19:30','Cours de Paracha (hommes)','Cours & Étude',1,'Parasha class (men)'],
+ [3,'11:30','Talmud Torah','Enfants',1,'Talmud Torah'],[3,'11:30','Cantine cacher','Cantine',1,'Kosher canteen'],[3,'20:15','Cours femmes','Cours & Étude',1,'Women’s class'],
+ [4,'11:30','Cantine cacher','Cantine',1,'Kosher canteen'],[4,'13:00','Cours de Paracha (hommes)','Cours & Étude',1,'Parasha class (men)']];
 function renderProg(){const tb=$('#progT');tb.innerHTML='';PR.forEach((r,i)=>{const tr=document.createElement('tr');
   tr.innerHTML=`<td><select>${JR.map((j,k)=>`<option ${k===r[0]?'selected':''}>${j}</option>`).join('')}</select></td><td><input class="t" value="${r[1].replace(':','h')}" inputmode="numeric" aria-label="Heure"></td><td><input value="${r[2]}"></td><td><select>${DEST.map(d=>`<option ${d===r[3]?'selected':''}>${d}</option>`).join('')}</select></td><td></td><td><button class="btn btn-gh" title="Supprimer">✕</button></td>`;
   tr.children[4].appendChild(tg(!!r[4],v=>{r[4]=v?1:0;toast(v?'Ligne affichée':'Ligne masquée');},'Oui','Non'));
+  const [sd,ti,tn,sdest]=[tr.querySelector('td:nth-child(1) select'),tr.querySelector('input.t'),tr.querySelector('td:nth-child(3) input'),tr.querySelector('td:nth-child(4) select')];
+  sd.onchange=()=>{r[0]=sd.selectedIndex;schedule();};sdest.onchange=()=>{r[3]=sdest.value;schedule();};
+  tn.oninput=()=>{r[2]=tn.value;schedule();};
+  ti.onchange=()=>{const m=ti.value.replace(/\s/g,'').match(/^(\d{1,2})(?:[h:.](\d{2}))?$/);if(!m){ti.value=r[1].replace(':','h');return;}r[1]=m[1].padStart(2,'0')+':'+(m[2]||'00');ti.value=r[1].replace(':','h');schedule();};
   tr.querySelector('.btn-gh').onclick=()=>{PR.splice(i,1);renderProg();toast('Ligne supprimée');};tb.appendChild(tr);});}
-$('#addProg').onclick=()=>{PR.push([1,'10:00','Nouvelle activité','Cours & Étude',1]);renderProg();};
+$('#addProg').onclick=()=>{PR.push([1,'10:00','Nouvelle activité','Cours & Étude',1]);renderProg();schedule();};
 $('#vac').onchange=e=>{$('#vacMsg').style.display=e.target.checked?'block':'none';toast(e.target.checked?'Programme suspendu':'Programme rétabli');};
 
 /* ---- repas ---- */
 let RP=[{n:'Repas de Chabbat',u:'https://bethloubavitchb.kehila.io/shabbat',o:1},{n:'Séder de Roch Hachana',u:'',o:0},{n:'Repas sous la Soucca',u:'',o:0},{n:'Michté de Pourim',u:'',o:0},{n:'Séder de Pessa’h',u:'',o:0}];
 function renderRepas(){const tb=$('#repasT');tb.innerHTML='';RP.forEach(r=>{const tr=document.createElement('tr');
   tr.innerHTML=`<td><b>${r.n}</b></td><td><input value="${r.u}" placeholder="Coller le lien Kehila…"></td><td></td>`;
-  tr.querySelector('input').oninput=e=>{r.u=e.target.value;renderStats();};
+  tr.querySelector('input').oninput=e=>{r.u=e.target.value;renderStats();schedule();};
   tr.children[2].appendChild(tg(!!r.o,v=>{if(v&&!r.u){toast('Ajoutez d’abord le lien Kehila');renderRepas();return;}r.o=v?1:0;renderStats();toast(v?r.n+' ouvert':r.n+' fermé');}));tb.appendChild(tr);});}
 
 /* ---- sections ---- */
@@ -596,6 +650,7 @@ const SEC=[
  ['Touristes',[['Repas de Chabbat','Bandeau noir',1],['Chabbat pour les groupes','Lien',1],['Adresses utiles','Restaurants, synagogues…',1]]]];
 function renderSec(){const box=$('#secList');box.innerHTML='';SEC.forEach(([pg,items])=>{const h=document.createElement('div');h.className='cb';h.style.paddingBottom='0';h.innerHTML=`<div class="pg">${pg}</div>`;box.appendChild(h);
   items.forEach(it=>{const d=document.createElement('div');d.className='sec'+(it[2]?'':' closed');d.innerHTML=`<div><div class="t">${it[0]}</div><div class="d">${it[1]}</div></div><div></div><div class="msg"><input placeholder="Message affiché à la place (facultatif) · ex. « Inscriptions bientôt ouvertes »"></div>`;
+    const mi=d.querySelector('.msg input');mi.value=it[3]||'';mi.oninput=()=>{it[3]=mi.value;schedule();};
     d.children[1].appendChild(tg(!!it[2],v=>{it[2]=v?1:0;d.classList.toggle('closed',!v);renderStats();toast(v?it[0]+' ouvert sur le site':it[0]+' fermé sur le site');}));box.appendChild(d);});});}
 
 /* ---- annonce ---- */
@@ -606,7 +661,7 @@ const ann=()=>{$('#annPt').textContent=$('#annFr').value;$('#annPl').textContent
 $$('#infoTabs button').forEach(b=>b.onclick=()=>{$$('#infoTabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('[data-tp]').forEach(c=>c.hidden=c.dataset.tp!==b.dataset.t);});
 
 /* ---- adresses ---- */
-const ADD={"boul": {"fr": "Boulangeries", "en": "Bakeries", "items": [{"n": "La Délicieuse", "t": "Boulangerie", "a": "234 bd Voltaire, 75011", "h": "Dim – jeu 7h – 20h · Ven jusqu’à 1h avant Chabbat", "p": "+33 1 40 24 26 26", "img": "img/r-delicieuse.jpg"}, {"n": "L’atelier Voltaire", "t": "Boulangerie", "a": "22 rue Voltaire, 75011", "h": "Lun – jeu 7h30 – 19h · Ven 7h30 – 16h", "p": "+33 9 52 82 65 41", "img": "img/r-atelier.jpg"}, {"n": "Charles Traiteur", "t": "Traiteur", "a": "244 bd Voltaire, 75011", "h": "Lun – jeu 8h – 20h · Ven 8h – 14h", "p": "+33 1 43 73 70 00", "img": "img/r-charles.jpg"}, {"n": "Murciano", "t": "Boulangerie", "a": "16 rue des Rosiers, 75004", "h": "Lun – jeu 8h30 – 19h · Ven 8h – 14h", "p": "+33 1 48 87 48 88", "img": "img/r-murciano.jpg"}]}, "brunch": {"fr": "Brunch", "en": "Brunch", "items": [{"n": "Bloomy Brunch", "t": "Brunch", "a": "189 rue de Charonne, 75011", "h": "", "p": "+33 6 12 61 01 30", "img": "img/r-bloomy.jpg"}, {"n": "Korcarz", "t": "Brunch · Pâtisserie", "a": "29 rue des Rosiers, 75004", "h": "Lun – jeu 7h30 – 20h · Ven 7h30 – 15h", "p": "+33 1 42 72 38 22"}]}, "resto": {"fr": "Restaurants", "en": "Restaurants", "subs": {"lait": {"fr": "Lait", "en": "Dairy"}, "viande": {"fr": "Viande", "en": "Meat"}, "sushi": {"fr": "Sushi", "en": "Sushi"}}, "items": [{"s": "lait", "n": "Mendy’s", "t": "Pizzeria", "a": "220 bd Voltaire, 75011", "h": "Dim – jeu 12h – 22h · Ven 12h – 16h", "p": "+33 7 69 10 20 77", "img": "img/r-mendys.jpg"}, {"s": "lait", "n": "La Kave du Fromager", "t": "Fromagerie · Sur RDV", "a": "221 bd Voltaire, 75011", "h": "Sur rendez-vous", "p": "+33 1 43 31 35 66", "img": "img/r-kave.jpg"}, {"s": "lait", "n": "Chez Giulia", "t": "Italien", "a": "256 bd Voltaire, 75011", "h": "Lun – jeu 12h – 15h, 19h – 23h · Ven midi · Dim", "p": "+33 1 40 24 21 17", "img": "img/r-giulia.jpg"}, {"s": "lait", "n": "Novela", "t": "Restaurant", "a": "8 bd Magenta, 75010", "h": "Lun – jeu 12h – 22h30 · Ven 12h – 14h30 · Dim", "p": "+33 1 42 38 20 55", "img": "img/r-pizza.jpg"}, {"s": "sushi", "n": "Bozen Voltaire", "t": "Sushi", "a": "201 bd Voltaire, 75011", "h": "Lun – jeu 11h30 – 15h30, 18h30 – 22h30 · Ven midi · Dim", "p": "+33 1 84 25 26 36", "img": "img/r-bozen.jpg"}, {"s": "sushi", "n": "Japan Eat", "t": "Sushi", "a": "231 bd Voltaire, 75011", "h": "Lun – jeu 9h – 2h · Ven 11h30 – 15h · Dim 17h – 2h", "p": "+33 1 43 73 02 02", "img": "img/r-japaneat.jpg"}, {"s": "viande", "n": "SoumSoum Voltaire", "t": "Viande", "a": "144 bd Voltaire, 75011", "h": "Lun – jeu 11h45 – 22h45 · Ven midi · Dim", "p": "+33 1 71 19 58 44", "img": "img/r-soumsoum.jpg"}, {"s": "viande", "n": "Chicken Délice", "t": "Viande", "a": "61 rue Léon Frot, 75011", "h": "Lun – jeu 11h – 20h · Ven 8h30 – 16h", "p": "+33 1 46 59 46 45", "img": "img/r-chicken.jpg"}, {"s": "viande", "n": "La Min Haaretz", "t": "Viande · Sur RDV", "a": "45 rue de Montreuil, 75011", "h": "Sur rendez-vous", "p": "+33 1 73 71 47 15", "img": "img/r-min.jpg"}, {"s": "viande", "n": "Chez René et Gabin", "t": "Viande", "a": "92 bd de Belleville, 75020", "h": "Lun – jeu 9h30 – 22h · Ven 9h – 15h45 · Dim", "p": "+33 7 63 43 06 34", "img": "img/r-rene.jpg"}, {"s": "viande", "n": "Le Manhattan", "t": "Viande", "a": "231 bd Voltaire, 75011", "h": "", "p": "+33 1 43 56 03 30", "img": "img/r-manhattan.jpg"}, {"s": "viande", "n": "Chez François", "t": "Viande", "a": "3 bis av. de Bouvines, 75011", "h": "Lun – jeu midi et soir · Ven midi · Dim", "p": "+33 1 43 72 13 45", "img": "img/r-francois.jpg"}, {"s": "viande", "n": "Les Garçons Bouchers", "t": "Viande", "a": "33 av. Philippe Auguste, 75011", "h": "Lun – jeu midi et soir · Ven midi · Dim", "p": "+33 1 43 67 01 23", "img": "img/r-garcons.jpg"}]}, "super": {"fr": "Supermarchés", "en": "Supermarkets", "items": [{"n": "Franprix Cacher", "t": "Supermarché", "a": "240 bd Voltaire, 75011", "h": "Lun – sam 7h – 21h30 · Dim 8h30 – 13h", "p": "", "img": "img/r-franprix.jpg"}, {"n": "Leader Cash", "t": "Supermarché", "a": "84 rue Petit, 75019", "h": "Lun – jeu 8h – 20h · Ven 8h – 14h · Dim 8h – 18h", "p": "", "img": "img/r-leader.jpg"}]}, "syn": {"fr": "Synagogues", "en": "Synagogues", "items": [{"n": "Beth Loubavitch Bastille", "t": "Loubavitch", "a": "37 rue Popincourt, 75011", "h": "Offices quotidiens", "p": "+33 1 42 52 30 41", "img": "img/s-bastille.jpg"}, {"n": "Adath Israël", "t": "Achkénaze", "a": "36 rue Basfroi, 75011", "h": "", "p": ""}, {"n": "Synagogue des Tournelles", "t": "Consistoire", "a": "21 bis rue des Tournelles, 75004", "h": "", "p": ""}, {"n": "Synagogue N.-D.-de-Nazareth", "t": "Consistoire", "a": "15 rue N.-D.-de-Nazareth, 75003", "h": "", "p": ""}, {"n": "Synagogue Don Isaac Abravanel", "t": "Séfarade · La Roquette", "a": "84-86 rue de la Roquette, 75011", "h": "", "p": ""}]}, "mikve": {"fr": "Mikvé", "en": "Mikveh", "items": [{"n": "Mikvé République", "t": "Mikvé · Sur RDV", "a": "176 rue du Temple, 75003", "h": "Sur rendez-vous uniquement", "p": "+33 1 42 71 89 28"}, {"n": "Mikvé Mira Moyal", "t": "Mikvé · Sur RDV", "a": "8 ter av. Robert-André Vivien, 94160 Saint-Mandé", "h": "Sur rendez-vous · réservation en ligne sur mikvemira.fr", "p": "+33 7 65 53 47 67", "img": "img/m-mira.jpg", "w": "https://www.mikvemira.fr/"}]}};
+const ADD={"boul":{"fr":"Boulangeries","en":"Bakeries","items":[{"n":"La Délicieuse","t":"Boulangerie","a":"234 bd Voltaire, 75011","h":"Dim – jeu 7h – 20h · Ven jusqu’à 1h avant Chabbat","p":"+33 1 40 24 26 26","img":"img/r-delicieuse.jpg","v":1},{"n":"L’atelier Voltaire","t":"Boulangerie","a":"22 rue Voltaire, 75011","h":"Lun – jeu 7h30 – 19h · Ven 7h30 – 16h","p":"+33 9 52 82 65 41","img":"img/r-atelier.jpg","v":1},{"n":"Charles Traiteur","t":"Traiteur","a":"244 bd Voltaire, 75011","h":"Lun – jeu 8h – 20h · Ven 8h – 14h","p":"+33 1 43 73 70 00","img":"img/r-charles.jpg","v":1},{"n":"Murciano","t":"Boulangerie","a":"16 rue des Rosiers, 75004","h":"Lun – jeu 8h30 – 19h · Ven 8h – 14h","p":"+33 1 48 87 48 88","img":"img/r-murciano.jpg","v":1}]},"brunch":{"fr":"Brunch","en":"Brunch","items":[{"n":"Bloomy Brunch","t":"Brunch","a":"189 rue de Charonne, 75011","h":"","p":"+33 6 12 61 01 30","img":"img/r-bloomy.jpg","v":1},{"n":"Korcarz","t":"Brunch · Pâtisserie","a":"29 rue des Rosiers, 75004","h":"Lun – jeu 7h30 – 20h · Ven 7h30 – 15h","p":"+33 1 42 72 38 22","v":1}]},"resto":{"fr":"Restaurants","en":"Restaurants","items":[{"s":"lait","n":"Mendy’s","t":"Pizzeria","a":"220 bd Voltaire, 75011","h":"Dim – jeu 12h – 22h · Ven 12h – 16h","p":"+33 7 69 10 20 77","img":"img/r-mendys.jpg","v":1},{"s":"lait","n":"La Kave du Fromager","t":"Fromagerie · Sur RDV","a":"221 bd Voltaire, 75011","h":"Sur rendez-vous","p":"+33 1 43 31 35 66","img":"img/r-kave.jpg","v":1},{"s":"lait","n":"Chez Giulia","t":"Italien","a":"256 bd Voltaire, 75011","h":"Lun – jeu 12h – 15h, 19h – 23h · Ven midi · Dim","p":"+33 1 40 24 21 17","img":"img/r-giulia.jpg","v":1},{"s":"lait","n":"Novela","t":"Restaurant","a":"8 bd Magenta, 75010","h":"Lun – jeu 12h – 22h30 · Ven 12h – 14h30 · Dim","p":"+33 1 42 38 20 55","img":"img/r-pizza.jpg","v":1},{"s":"sushi","n":"Bozen Voltaire","t":"Sushi","a":"201 bd Voltaire, 75011","h":"Lun – jeu 11h30 – 15h30, 18h30 – 22h30 · Ven midi · Dim","p":"+33 1 84 25 26 36","img":"img/r-bozen.jpg","v":1},{"s":"sushi","n":"Japan Eat","t":"Sushi","a":"231 bd Voltaire, 75011","h":"Lun – jeu 9h – 2h · Ven 11h30 – 15h · Dim 17h – 2h","p":"+33 1 43 73 02 02","img":"img/r-japaneat.jpg","v":1},{"s":"viande","n":"SoumSoum Voltaire","t":"Viande","a":"144 bd Voltaire, 75011","h":"Lun – jeu 11h45 – 22h45 · Ven midi · Dim","p":"+33 1 71 19 58 44","img":"img/r-soumsoum.jpg","v":1},{"s":"viande","n":"Chicken Délice","t":"Viande","a":"61 rue Léon Frot, 75011","h":"Lun – jeu 11h – 20h · Ven 8h30 – 16h","p":"+33 1 46 59 46 45","img":"img/r-chicken.jpg","v":1},{"s":"viande","n":"La Min Haaretz","t":"Viande · Sur RDV","a":"45 rue de Montreuil, 75011","h":"Sur rendez-vous","p":"+33 1 73 71 47 15","img":"img/r-min.jpg","v":1},{"s":"viande","n":"Chez René et Gabin","t":"Viande","a":"92 bd de Belleville, 75020","h":"Lun – jeu 9h30 – 22h · Ven 9h – 15h45 · Dim","p":"+33 7 63 43 06 34","img":"img/r-rene.jpg","v":1},{"s":"viande","n":"Le Manhattan","t":"Viande","a":"231 bd Voltaire, 75011","h":"","p":"+33 1 43 56 03 30","img":"img/r-manhattan.jpg","v":1},{"s":"viande","n":"Chez François","t":"Viande","a":"3 bis av. de Bouvines, 75011","h":"Lun – jeu midi et soir · Ven midi · Dim","p":"+33 1 43 72 13 45","img":"img/r-francois.jpg","v":1},{"s":"viande","n":"Les Garçons Bouchers","t":"Viande","a":"33 av. Philippe Auguste, 75011","h":"Lun – jeu midi et soir · Ven midi · Dim","p":"+33 1 43 67 01 23","img":"img/r-garcons.jpg","v":1}]},"super":{"fr":"Supermarchés","en":"Supermarkets","items":[{"n":"Franprix Cacher","t":"Supermarché","a":"240 bd Voltaire, 75011","h":"Lun – sam 7h – 21h30 · Dim 8h30 – 13h","p":"","img":"img/r-franprix.jpg","v":1},{"n":"Leader Cash","t":"Supermarché","a":"84 rue Petit, 75019","h":"Lun – jeu 8h – 20h · Ven 8h – 14h · Dim 8h – 18h","p":"","img":"img/r-leader.jpg","v":1}]},"syn":{"fr":"Synagogues","en":"Synagogues","items":[{"n":"Beth Loubavitch Bastille","t":"Loubavitch","a":"37 rue Popincourt, 75011","h":"Offices quotidiens","p":"+33 1 42 52 30 41","img":"img/s-bastille.jpg","v":1},{"n":"Adath Israël","t":"Achkénaze","a":"36 rue Basfroi, 75011","h":"","p":"","v":1},{"n":"Synagogue des Tournelles","t":"Consistoire","a":"21 bis rue des Tournelles, 75004","h":"","p":"","v":1},{"n":"Synagogue N.-D.-de-Nazareth","t":"Consistoire","a":"15 rue N.-D.-de-Nazareth, 75003","h":"","p":"","v":1},{"n":"Synagogue Don Isaac Abravanel","t":"Séfarade · La Roquette","a":"84-86 rue de la Roquette, 75011","h":"","p":"","v":1}]},"mikve":{"fr":"Mikvé","en":"Mikveh","items":[{"n":"Mikvé République","t":"Mikvé · Sur RDV","a":"176 rue du Temple, 75003","h":"Sur rendez-vous uniquement","p":"+33 1 42 71 89 28","v":1},{"n":"Mikvé Mira Moyal","t":"Mikvé · Sur RDV","a":"8 ter av. Robert-André Vivien, 94160 Saint-Mandé","h":"Sur rendez-vous · réservation en ligne sur mikvemira.fr","p":"+33 7 65 53 47 67","img":"img/m-mira.jpg","w":"https://www.mikvemira.fr/","v":1}]}};
 const KN={boul:'Boulangeries',brunch:'Brunch',resto:'Restaurants',super:'Supermarchés',syn:'Synagogues',mikve:'Mikvé'};
 const SUBN={lait:'Lait',viande:'Viande',sushi:'Sushi'};
 Object.values(ADD).forEach(c=>c.items.forEach(it=>{if(it.v===undefined)it.v=1;}));
@@ -669,17 +724,26 @@ function renderStats(){const pub=EV.filter(e=>e.s==='on');$('#sEv').textContent=
 function renderAll(){const l=$('#evList');l.innerHTML='';EV.forEach((e,i)=>l.appendChild(evRow(e,i)));const d=$('#dashEv');d.innerHTML='';EV.filter(e=>e.s==='on').slice(0,3).forEach((e,i)=>d.appendChild(evRow(e,i,true)));renderStats();}
 
 /* ---- pop-up ---- */
-let POP=[{t:'Séder de Pessa’h 5787',per:'1 mars → 21 avril 2027 · Toutes les pages',on:1},{t:'Hanoucca à la Bastille',per:'1 → 6 décembre 2026 · Accueil',on:0}];
-function renderPop(){const l=$('#popList');l.innerHTML='';POP.forEach((p,i)=>{const r=document.createElement('div');r.className='row';r.innerHTML=`<span class="th" style="background-image:url(${i?'img/hero.jpg':'img/ph-chabbat.jpg'})"></span><div><div class="t">${p.t}</div><div class="d">${p.per}</div></div><div class="ac"></div>`;
-  const ac=r.querySelector('.ac');ac.appendChild(tg(!!p.on,v=>{POP.forEach(x=>x.on=0);p.on=v?1:0;renderPop();toast(v?'Pop-up activé (les autres sont désactivés)':'Pop-up désactivé');},'Actif','Inactif'));
-  const e=document.createElement('button');e.className='btn btn-ln btn-sm';e.textContent='Modifier';e.onclick=()=>{$('#pT').value=p.t;pv();$('#popEdit').scrollIntoView({behavior:'smooth'});};ac.appendChild(e);
-  const d=document.createElement('button');d.className='btn btn-gh';d.textContent='Supprimer';d.onclick=()=>{POP.splice(i,1);renderPop();toast('Pop-up supprimé');};ac.appendChild(d);l.appendChild(r);});}
+let POP=[{id:'p1',t:'Séder de Pessa’h 5787',te:'Passover Seder 5787',x:'Vivez le Séder au Beth Loubavitch Bastille, dans une ambiance chaleureuse. Places limitées.',xe:'Celebrate the Seder at Beth Loubavitch Bastille in a warm atmosphere. Limited seats.',b:'Je réserve ma place',l:'https://bethloubavitchb.kehila.io/',img:'img/ph-chabbat.jpg',from:'2027-03-01',to:'2027-04-21',pages:'Toutes les pages',freq:'Une fois par visiteur',delay:'Après 3 secondes',fmt:'c',on:0},
+ {id:'p2',t:'Hanoucca à la Bastille',te:'Hanukkah at Bastille',x:'',xe:'',b:'En savoir plus',l:'',img:'img/hero.jpg',from:'2026-12-01',to:'2026-12-06',pages:'Accueil uniquement',freq:'Une fois par visiteur',delay:'Après 3 secondes',fmt:'c',on:0}];
+let popSel=0;
+const PF={t:'#pT',te:'#pTe',x:'#pX',xe:'#pXe',b:'#pB',l:'#pL',from:'#pFrom',to:'#pTo',pages:'#pPg',freq:'#pFq',delay:'#pDl',fmt:'#pFm'};
+const fdS=d=>d?new Date(d+'T12:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}):'…';
+function popLoad(i){popSel=i;const p=POP[i];if(!p){$('#popEdit').style.display='none';return;}$('#popEdit').style.display='';
+  Object.entries(PF).forEach(([k,sel])=>{$(sel).value=p[k]||'';});$('#pPv').style.backgroundImage=p.img?`url(${p.img})`:'';$('#pOn').checked=!!p.on;$('#popET').textContent='Modifier : '+(p.t||'pop-up');pv();}
+function renderPop(){const l=$('#popList');l.innerHTML='';POP.forEach((p,i)=>{const r=document.createElement('div');r.className='row';r.innerHTML=`<span class="th" style="background-image:url(${p.img||''})"></span><div><div class="t">${p.t||'Sans titre'}</div><div class="d">${fdS(p.from)} → ${fdS(p.to)} · ${p.pages||'Toutes les pages'}</div></div><div class="ac"></div>`;
+  const ac=r.querySelector('.ac');ac.appendChild(tg(!!p.on,v=>{POP.forEach(x=>x.on=0);p.on=v?1:0;renderPop();if(i===popSel)$('#pOn').checked=!!p.on;toast(v?'Pop-up activé (les autres sont désactivés)':'Pop-up désactivé');},'Actif','Inactif'));
+  const e=document.createElement('button');e.className='btn btn-ln btn-sm';e.textContent='Modifier';e.onclick=()=>{popLoad(i);$('#popEdit').scrollIntoView({behavior:'smooth'});};ac.appendChild(e);
+  const d=document.createElement('button');d.className='btn btn-gh';d.textContent='Supprimer';d.onclick=()=>{POP.splice(i,1);renderPop();popLoad(Math.min(popSel,POP.length-1));toast('Pop-up supprimé');};ac.appendChild(d);l.appendChild(r);});}
 function pv(){$('#vT').textContent=$('#pT').value;$('#vX').textContent=$('#pX').value;$('#vB').textContent=$('#pB').value||'En savoir plus';$('#pim').style.backgroundImage=$('#pPv').style.backgroundImage;$('#pvs').classList.toggle('b',$('#pFm').value==='b');$('#pop').style.opacity=$('#pOn').checked?1:.45;}
-['#pT','#pX','#pB','#pFm','#pOn','#pImg'].forEach(s=>{$(s).addEventListener('input',()=>setTimeout(pv,30));$(s).addEventListener('change',()=>setTimeout(pv,30));});
-$('#newPop').onclick=()=>{POP.unshift({t:'Nouveau pop-up',per:'Dates à définir · Toutes les pages',on:0});renderPop();$('#pT').value='Nouveau pop-up';$('#pX').value='';$('#pB').value='';$('#pL').value='';pv();$('#popEdit').scrollIntoView({behavior:'smooth'});};
-$('#popDel').onclick=()=>{POP.shift();renderPop();toast('Pop-up supprimé');};
+function popStore(){const p=POP[popSel];if(!p)return;Object.entries(PF).forEach(([k,sel])=>{p[k]=$(sel).value;});p.img=$('#pPv').style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,'');
+  if($('#pOn').checked&&!p.on){POP.forEach(x=>x.on=0);}p.on=$('#pOn').checked?1:0;renderPop();schedule();}
+[...Object.values(PF),'#pOn'].forEach(sel=>{$(sel).addEventListener('input',()=>{setTimeout(pv,30);popStore();});$(sel).addEventListener('change',()=>{setTimeout(pv,30);popStore();});});
+$('#pImg').addEventListener('uploaded',()=>{pv();popStore();});
+$('#newPop').onclick=()=>{POP.unshift({id:'p'+Date.now(),t:'Nouveau pop-up',te:'',x:'',xe:'',b:'En savoir plus',l:'',img:'',from:'',to:'',pages:'Toutes les pages',freq:'Une fois par visiteur',delay:'Après 3 secondes',fmt:'c',on:0});renderPop();popLoad(0);schedule();$('#popEdit').scrollIntoView({behavior:'smooth'});};
+$('#popDel').onclick=()=>{if(!POP.length)return;POP.splice(popSel,1);renderPop();popLoad(Math.min(popSel,POP.length-1));toast('Pop-up supprimé');};
 $('#pTest').onclick=()=>{const o=document.createElement('div');o.className='full-pop';o.innerHTML=$('#pop').outerHTML.replace('id="pop"','');o.querySelector('.pop').style.opacity=1;o.onclick=e=>{if(e.target===o||e.target.closest('.px'))o.remove();};document.body.appendChild(o);};
-renderPop();pv();
+renderPop();popLoad(0);
 
 /* ---- Textes & photos (toutes les pages) ---- */
 const TX={"Accueil": [{"id": "s0", "h": "Beth Loubavitch Bastille", "he": "", "p": "", "pe": "", "img": "img/hero.jpg", "btns": [{"t": "Réserver un repas de Chabbat", "u": "https://bethloubavitchb.kehila.io/shabbat"}, {"t": "Découvrir le Beth Habad", "u": "qui-sommes-nous.html"}]}, {"id": "s1", "h": "Événements à venir…", "he": "Upcoming events…", "p": "Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !\n\nUn programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !", "pe": "\n\n", "img": "img/enfant.jpg", "btns": [{"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}]}, {"id": "s3", "h": "Nos activités", "he": "Our activities", "p": "", "pe": "", "img": "img/ph-chabbat.jpg", "btns": [{"t": "Voir toutes nos activités", "u": "activites.html"}]}], "Qui sommes-nous": [{"id": "s0", "h": "Qui sommes-nous ?", "he": "About us?", "p": "", "pe": "", "img": "img/hero-qsn.jpg", "btns": []}, {"id": "s1", "h": "Une place pour chacun", "he": "A place for everyone", "p": "Situé dans le 11ᵉ arrondissement de Paris, au cœur du quartier de la Bastille, le Beth ‘Habad Loubavitch Bastille est un lieu de rencontre, d’étude et de partage ouvert à tous.\n\nHommes et femmes, enfants, étudiants, familles, professionnels ou visiteurs de passage y trouvent un cadre chaleureux et authentique pour découvrir, approfondir et vivre pleinement le judaïsme.", "pe": "Located in Paris’s 11th arrondissement, in the heart of the Bastille neighborhood, the Beth Chabad Loubavitch Bastille is a place of meeting, study and sharing, open to all.\n\nMen and women, children, students, families, professionals and visitors passing through find a warm and authentic setting to discover, deepen and fully live Judaism.", "img": "", "btns": []}, {"id": "s2", "h": "Rav Levi & Beila Arnauve Chlouhim du Rabbi de Loubavitch", "he": "Rabbi Levi & Beila Arnauve Shluchim of the Lubavitcher Rebbe", "p": "Fondé par le Rav Levi & Beila Arnauve, Chlouhim (émissaires) du Rabbi de Loubavitch, ce centre communautaire juif a pour vocation de transmettre les valeurs du judaïsme et de répondre aux besoins spirituels, culturels et sociaux de chacun, dans un esprit d’ouverture, de bienveillance et de transmission.", "pe": "Founded by Rabbi Levi & Beila Arnauve, Shluchim (emissaries) of the Lubavitcher Rebbe, this Jewish community center aims to pass on the values of Judaism and to meet everyone’s spiritual, cultural and social needs, in a spirit of openness, kindness and transmission.", "img": "img/fondateurs.jpg", "btns": []}, {"id": "s4", "h": "Tout au long de l’année", "he": "All year round", "p": "À travers ces activités culturelles, cultuelles et sociales, le judaïsme prend vie dans une atmosphère conviviale, accessible et inspirante.", "pe": "Through these cultural, religious and social activities, Judaism comes alive in a friendly, accessible and inspiring atmosphere.", "img": "img/ph-chabbat.jpg", "btns": []}, {"id": "engagement", "h": "Notre engagement", "he": "Our commitment", "p": "« Nous accueillons chacun avec bienveillance et sans jugement, afin de faire vivre un judaïsme authentique, vivant et accessible à tous. »\n\nLe Beth Habad s’inscrit dans l’élan initié par le Rabbi de Loubavitch, qui a placé l’amour de chaque Juif, l’attention portée à chacun et la responsabilité envers autrui au cœur de sa vision.", "pe": "", "img": "img/facade.jpg", "btns": [{"t": "Nous contacter", "u": "WhatsApp / e-mail"}]}, {"id": "s6", "h": "Une association à but non lucratif", "he": "A non-profit association", "p": "Le Beth ‘Habad n'est pas financé par le mouvement mondial de ‘Habad, mais par des dons de particuliers. Ce sont des personnes comme vous, à titre personnel ou à travers leur entreprise, qui nous permettent de développer et d’assurer nos activités et nos actions au quotidien.", "pe": "The Beth Chabad is not funded by the worldwide Chabad movement, but by donations from individuals. People like you, personally or through their company, allow us to develop and carry out our activities and actions every day.", "img": "", "btns": [{"t": "Faire un don", "u": "https://bethloubavitchb.kehila.io/don"}, {"t": "Découvrir nos activités", "u": "activites.html"}]}], "Activités": [{"id": "s0", "h": "Nos activités", "he": "Our activities", "p": "", "pe": "", "img": "", "btns": []}, {"id": "evenements", "h": "Événements à venir", "he": "Upcoming events", "p": "Un programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !\n\nUn programme riche en activités, sorties, jeux et découvertes, dans une ambiance chaleureuse et pleine de joie !", "pe": "\n\n", "img": "img/enfant.jpg", "btns": [{"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}, {"t": "Réserver", "u": "#"}]}, {"id": "repas", "h": "Chabbat & fêtes", "he": "Shabbat & holidays", "p": "Profitez de délicieux repas traiteur, en plein cœur de Paris ! Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et enrichissante.", "pe": "Enjoy delicious catered meals in the heart of Paris! Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, enriching atmosphere.", "img": "img/ph-chabbat2.jpg", "btns": []}, {"id": "etude", "h": "Cours de Torah hebdomadaires", "he": "Weekly Torah classes", "p": "De plus, des conférences et ateliers sur de nombreux sujets sont fréquemment organisés.", "pe": "Lectures and workshops on many topics are also held regularly.", "img": "img/act-cours.jpg", "btns": []}, {"id": "enfants", "h": "Talmud Torah & Gan Israël", "he": "Talmud Torah & Gan Israel", "p": "À travers des cours, chants, activités et découvertes des traditions juives, les enfants apprennent à lire et écrire l’hébreu, dans un cadre vivant, chaleureux et inspirant.", "pe": "Through classes, songs, activities and the discovery of Jewish traditions, children learn to read and write Hebrew in a lively, warm and inspiring setting.", "img": "img/act-talmud.jpg", "btns": [{"t": "Inscription", "u": "#"}, {"t": "Nous écrire sur WhatsApp", "u": "https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20le%20Talmud%20Torah%20du%20mercredi%20pour%20mon%20enfant."}]}, {"id": "femmes", "h": "Le cercle féminin", "he": "The women’s circle", "p": "Des activités pour les femmes de tous âges et à chaque étape de leur vie ! Jeunes mamans, femmes actives ou retraitées, retrouvez-vous autour de soirées féminines, cours de Torah, voyages organisés et accompagnement après une naissance.", "pe": "Activities for women of all ages and at every stage of life! Young mothers, working women or retirees, come together around women’s evenings, Torah classes, organised trips and support after a birth.", "img": "img/act-femmes.jpg", "btns": [{"t": "Se renseigner", "u": "https://wa.me/33142523041?text=Bonjour%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20les%20activit%C3%A9s%20du%20cercle%20f%C3%A9minin."}]}, {"id": "bichvileh", "h": "Bichvile’h pour les jeunes mamans", "he": "Bichvileh for new mothers", "p": "Bichvile’h accompagne les mamans dans la période post-natale et leur offre une communauté d’entraide, avec un soutien pratique et émotionnel : repas chauds, club hebdomadaire, conférences et ateliers avec des spécialistes.\n\nVous venez d’accoucher, ou une amie vient d’avoir un bébé ? Bichvile’h lui fait livrer un brunch à domicile pour l’aider à récupérer en douceur.", "pe": "Bichvileh supports mothers after birth and offers a community of mutual help, with practical and emotional support: hot meals, weekly club, lectures and workshops with specialists.\n\nHave you just given birth, or do you know a friend who has? Bichvileh delivers a brunch to her home to help her recover gently.", "img": "img/act-social.jpg", "btns": [{"t": "Prévenir d’une naissance", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!"}]}, {"id": "cantine", "h": "Cantine cacher", "he": "Kosher canteen", "p": "Déjeuner entre amis, rencontrer de nouvelles personnes, faire une partie de baby-foot et profiter d’un moment de détente !\n\nMenu : sandwichs, sushi, plats du jour et autres…", "pe": "Lunch with friends, meet new people, play a game of table football and enjoy a relaxing break!\n\nMenu: sandwiches, sushi, dishes of the day and more…", "img": "img/ph-cantine.jpg", "btns": []}, {"id": "tefiline", "h": "Téfiline & Mézouzot", "he": "Tefillin & Mezuzot", "p": "Écrits à l’encre sur du parchemin, comme la loi le demande, les lettres des Téfiline et Mézouzot ont tendance à s’estomper avec le temps, en raison de l’humidité, de la chaleur ou du froid. Une paire de prêt est mise à disposition pendant la vérification. Nous vous accompagnons aussi dans l’achat de téfiline et de mézouzot conformes à la Halakha.", "pe": "Written in ink on parchment as the law requires, the letters of Tefillin and Mezuzot tend to fade over time due to humidity, heat or cold. A loan pair is available during the check. We also help you purchase Tefillin and Mezuzot that comply with Halakha.", "img": "img/ph-tefiline.jpg", "btns": [{"t": "Vérification & achat · prendre rendez-vous", "u": "https://wa.me/33142523041?text=Bonjour%2C%20je%20vous%20contacte%20concernant%20la%20v%C3%A9rification%20de%20mes%20T%C3%A9filines%20et%20M%C3%A9zouzot.%20J%E2%80%99aimerais%20prendre%20rendez-vous%20pour%20les%20d%C3%A9poser.%20Quand%20pourrais-je%20passer%20%3F%20Merci%20!"}]}, {"id": "cteen", "h": "Le mouvement CTeen", "he": "The", "p": "Garçons et filles ayant atteint l’âge de la Bar / Bat Mitsva sont invités à rejoindre le mouvement international CTeen, qui compte des branches dans le monde entier !", "pe": "Boys and girls who have reached Bar / Bat Mitzvah age are invited to join the international CTeen movement, with branches all over the world!", "img": "img/ph-cteen.jpg", "btns": [{"t": "Rejoindre le CTeen", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0A%C3%82ge%20%3A%0A%C3%89cole%20%3A%0A%0AJ'aimerais%20rejoindre%20le%20club%20CTeen%20pour%20les%20ados%20du%2011e%20arrondissement.%0A%0APourriez-vous%20m'ajouter%20au%20groupe%20WhatsApp%20d%C3%A9di%C3%A9%20%3F%0A%0AMerci%20beaucoup%20"}]}, {"id": "social", "h": "Ne jamais oublier personne", "he": "No one forgotten", "p": "Nous ne devons jamais oublier les personnes seules, isolées ou nécessiteuses.\n\nVisites, repas chauds, soutien physique et moral, pour rendre la dignité aux personnes fragiles et les inclure dans la vie communautaire.", "pe": "We must never forget people who are alone, isolated or in need.\n\nVisits, hot meals, physical and moral support, to restore dignity to vulnerable people and include them in community life.", "img": "img/ph-social.jpg", "btns": []}], "Agenda": [{"id": "s0", "h": "Agenda", "he": "Events", "p": "", "pe": "", "img": "img/ciel.jpg", "btns": []}, {"id": "s2", "h": "Programme régulier", "he": "Regular program", "p": "Les rendez-vous de chaque semaine, hors fêtes et vacances scolaires.", "pe": "Our weekly gatherings, except on holidays and school vacations.", "img": "", "btns": []}], "Cycles de la vie": [{"id": "s0", "h": "Cycles de la vie", "he": "Life cycle", "p": "", "pe": "", "img": "", "btns": []}, {"id": "naissance", "h": "Accueillir une nouvelle vie", "he": "Welcoming a new life", "p": "Brit Mila, Pidyon Haben ou première coupe de cheveux : nous vous accompagnons pour célébrer ces moments précieux dans le respect de la tradition, entourés de vos proches. Nous sommes également aux côtés des jeunes mamans après l’accouchement, en leur apportant soutien et réconfort avec des repas livrés à domicile.", "pe": "Brit Milah, Pidyon Haben or first haircut: we help you celebrate these precious moments in keeping with tradition, surrounded by your loved ones. We also stand by young mothers after the birth, bringing them support and comfort with meals delivered to their home.", "img": "img/cv-naissance.jpg", "btns": [{"t": "Réserver la salle", "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0"}, {"t": "Prévenir d’une naissance", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJ'aimerais%20vous%20informer%20d'une%20naissance%2C%20afin%20que%20vous%20puissiez%20prendre%20contact%20avec%20la%20maman.%0A%0AVoici%20les%20informations%20%3A%0A%0ANom%20et%20pr%C3%A9nom%20de%20la%20maman%20%3A%0ADate%20de%20l'accouchement%20%3A%0AAdresse%20compl%C3%A8te%20%3A%0ANum%C3%A9ro%20de%20portable%20%3A%0AD%C3%A9tails%20d'acc%C3%A8s%20(digicode%2C%20%C3%A9tage%2C%20appartement%2C%20etc.)%20%3A%0A%0AMerci%20beaucoup%20!"}]}, {"id": "bar-mitsva", "h": "Bar & Bat Mitsva", "he": "Bar & Bat Mitzvah", "p": "Initiation au mode de vie juif, permettant aux jeunes à cet âge charnière de prendre connaissance de leur puissant héritage. Préparation à la cérémonie, à la lecture de la Torah et au discours, dans un cadre chaleureux et motivant.", "pe": "An introduction to the Jewish way of life, allowing young people at this pivotal age to discover their powerful heritage. Preparation for the ceremony, the Torah reading and the speech, in a warm and motivating setting.", "img": "img/cv-barmitsva.jpg", "btns": [{"t": "S’inscrire au cours", "u": "https://wa.me/33665011820?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0AJ'ai%20re%C3%A7u%20vos%20coordonn%C3%A9es%20de%20la%20part%20de%20%3A%0A%0AMon%20fils%20%2F%20Ma%20fille%20c%C3%A9l%C3%A9brera%20sa%20Bar-Mitsva%20%2F%20Bat-Mitsva%20le%20%3A%0A%0ANous%20aimerions%20organiser%20des%20cours%20de%20pr%C3%A9paration%20%C3%A0%20la%20Bar-Mitsva%20%2F%20Bat-Mitsva.%0A%0APourriez-vous%20nous%20donner%20davantage%20d'informations%20sur%20les%20cours%20et%20leur%20organisation%20%3F%0A%0AMerci%20beaucoup%20et%20%C3%A0%20bient%C3%B4t%20!"}, {"t": "Réserver la salle", "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0"}]}, {"id": "mariage", "h": "Préparation au mariage", "he": "Preparing for marriage", "p": "Prenez le temps d’explorer la signification spirituelle du mariage et d’apprendre les lois de la pureté familiale et du Mikvé. Un cours en quatre leçons, rempli de conseils qui vous accompagneront bien au-delà du grand jour.", "pe": "Take the time to explore the spiritual meaning of marriage and learn the laws of family purity and the Mikveh. A four-lesson course, full of advice that will stay with you well beyond the big day.", "img": "img/cv-hero.jpg", "btns": [{"t": "S’inscrire aux cours", "u": "https://wa.me/33142523041?text=Bonjour%2C%0A%0AJe%20m'appelle%20%3A%0AJ'ai%20re%C3%A7u%20vos%20coordonn%C3%A9es%20de%20la%20part%20de%20%3A%0A%0AJe%20me%20marie%20le%20%3A%0ASynagogue%20ou%20salle%20du%20mariage%20%3A%0ARabbin%20qui%20c%C3%A9l%C3%A9brera%20le%20mariage%20%3A%0A%0AJ'aimerais%20suivre%20des%20cours%20de%20pr%C3%A9paration%20au%20mariage%20et%20de%20puret%C3%A9%20familiale%20avec%20vous.%0A%0ACours%20souhait%C3%A9s%20%3A%20Mari%C3%A9%20%2F%20Mari%C3%A9e%20%2F%20Les%20deux%0A%0AMes%20disponibilit%C3%A9s%20%3A%0A%0AMerci%20beaucoup%20et%20%C3%A0%20bient%C3%B4t%20!"}]}, {"id": "salle", "h": "Location de notre salle", "he": "Rent our hall", "p": "Tables, chaises et enceinte incluses · Traiteurs cacher avec Téouda uniquement", "pe": "Tables, chairs and speaker included · Kosher caterers with Teouda only", "img": "img/cv-salle.jpg", "btns": [{"t": "Réserver la salle", "u": "https://bethloubavitchb.kehila.io/form/a22f392f-d6b9-4049-939f-e920379c34b0"}]}, {"id": "kaddich", "h": "Récitation du Kaddich", "he": "Reciting the Kaddish", "p": "Durant les onze mois suivant le décès d’un proche, les endeuillés récitent le « Kaddich des endeuillés ». Celui-ci est également récité chaque année, à la date anniversaire hébraïque du décès (Yahrzeit / Azkara).\n\nQuand une âme quitte ce monde, ses enfants peuvent l’aider tout au long de son cheminement. Même si cette personne n’a pas laissé de fils, un autre Juif peut aider cette âme en récitant le Kaddich. Nous sommes tous connectés.", "pe": "During the eleven months following the passing of a loved one, mourners recite the “Mourner’s Kaddish”. It is also recited every year on the Hebrew anniversary of the passing (Yahrzeit / Azkara).\n\nWhen a soul leaves this world, its children can help it along its journey. Even if the person left no son, another Jew can help this soul by reciting the Kaddish. We are all connected.", "img": "img/bougie.webp", "btns": [{"t": "Prise en charge du Kaddich · 300 € / an", "u": "#"}, {"t": "Trouver la date hébraïque", "u": "#convertisseur"}]}, {"id": "yizkor", "h": "Prière du Yizkor", "he": "The Yizkor prayer", "p": "Quatre fois par an, nous évoquons la mémoire de nos proches disparus lors de la prière du Yizkor. Prochaines dates, calculées automatiquement :", "pe": "Four times a year, we remember our departed loved ones during the Yizkor prayer. Next dates, calculated automatically:", "img": "", "btns": [{"t": "Inscrire un nom pour le Yizkor", "u": "#"}]}], "Touristes": [{"id": "s0", "h": "Touristes à Paris", "he": "Visiting Paris", "p": "", "pe": "", "img": "img/paris-nuit.jpg", "btns": []}, {"id": "shabbat", "h": "Un Chabbat comme à la maison", "he": "A Shabbat just like home", "p": "Rejoignez des Juifs du monde entier qui se réunissent pour célébrer le Chabbat et les fêtes dans une atmosphère festive et chaleureuse, autour de délicieux repas traiteur.", "pe": "Join Jews from all over the world who gather to celebrate Shabbat and the holidays in a festive, warm atmosphere, around delicious catered meals.", "img": "img/table-chabbat.jpg", "btns": [{"t": "Réserver un repas de Chabbat", "u": "https://bethloubavitchb.kehila.io/shabbat"}]}, {"id": "adresses", "h": "Adresses utiles autour du 11ᵉ", "he": "Useful addresses around the 11th", "p": "Boulangeries, restaurants, supermarchés, synagogues et mikvés cacher pour faciliter votre séjour.\n\nToutes les adresses cacher de Paris sur mangercacher.com", "pe": "Kosher bakeries, restaurants, supermarkets, synagogues and mikvaot to make your stay easier.\n\n", "img": "img/r-mendys.jpg", "btns": []}]};
@@ -692,9 +756,11 @@ function txLoad(){const x=TX[txP.value][+txS.value||0];if(!x)return;$('#txTitle'
   $('#txDrop').style.display=x.img?'':'none';$('#txPv').style.backgroundImage=x.img?`url(${x.img})`:'';
   $('#txBtnsW').style.display=x.btns&&x.btns.length?'':'none';
   $('#txBtns').innerHTML=(x.btns||[]).map(b=>`<div class="br"><input value="${b.t.replace(/"/g,'&quot;')}" aria-label="Texte du bouton"><input value="${(b.u||'').replace(/"/g,'&quot;')}" aria-label="Lien du bouton"></div>`).join('');
+  $$('#txBtns .br').forEach((br,bi)=>{const [a,b]=br.querySelectorAll('input');a.oninput=()=>{x.btns[bi].t=a.value;schedule();};b.oninput=()=>{x.btns[bi].u=b.value;schedule();};});
   $('#txView').href=PURL[txP.value]+(x.id&&!/^s\d+$/.test(x.id)?'#'+x.id:'');}
 txP.onchange=txFill;txS.onchange=txLoad;
-['h','he','p','pe'].forEach(n=>txF[n].addEventListener('input',()=>{const x=TX[txP.value][+txS.value];x[n]=txF[n].value;if(n==='h'){$('#txTitle').textContent=x.h;txS.options[txS.selectedIndex].text=String(+txS.value+1).padStart(2,'0')+' · '+x.h;}}));
+$('#txDrop input').addEventListener('uploaded',e=>{const x=TX[txP.value][+txS.value||0];if(x){x.img=e.detail;schedule();}});
+['h','he','p','pe'].forEach(n=>txF[n].addEventListener('input',()=>{const x=TX[txP.value][+txS.value];x[n]=txF[n].value;x._ed=1;schedule();if(n==='h'){$('#txTitle').textContent=x.h;txS.options[txS.selectedIndex].text=String(+txS.value+1).padStart(2,'0')+' · '+x.h;}}));
 txFill();
 
 /* ---- Page d’accueil : carreaux & avis ---- */
@@ -702,7 +768,7 @@ const CELLS=[{"u": "activites.html#repas", "img": "img/ph-chabbat.jpg", "te": "S
 let gCtx=null;const gF=$('#gForm');
 function gOpen(title,sub,fields,vals,onSave,onDel){gCtx={onSave,onDel};$('#gMT').textContent=title;$('#gMS').textContent=sub;
   gF.innerHTML=fields.map(f=>f.type==='img'?`<label class="drop"><input type="file" accept="image/*" hidden data-gimg><span class="pv" id="gPv" style="background-image:url(${vals.img||''})"></span><div><b>Photo</b><span>Glissez une image ou cliquez pour remplacer</span></div></label>`:f.type==='ta'?`<label class="fd full"><span>${f.l}</span><textarea name="${f.n}">${vals[f.n]||''}</textarea></label>`:`<label class="fd ${f.full?'full':''}"><span>${f.l}</span><input name="${f.n}" value="${(vals[f.n]||'').replace(/"/g,'&quot;')}"></label>`).join('');
-  const gi=gF.querySelector('[data-gimg]');if(gi)gi.onchange=()=>{const fl=gi.files[0];if(fl)$('#gPv').style.backgroundImage=`url(${URL.createObjectURL(fl)})`;};
+  const gi=gF.querySelector('[data-gimg]');if(gi)gi.onchange=async()=>{const fl=gi.files[0];if(!fl)return;$('#gPv').style.backgroundImage=`url(${URL.createObjectURL(fl)})`;st('Envoi de la photo…');try{const u=await upload(fl);$('#gPv').style.backgroundImage=`url(${u})`;st('Photo prête · cliquez sur Enregistrer');}catch(err){st('⚠ '+err.message);}};
   $('#gDel').style.visibility=onDel?'visible':'hidden';$('#gModal').hidden=false;}
 $$('[data-closeg]').forEach(b=>b.onclick=()=>$('#gModal').hidden=true);
 $('#gSave').onclick=()=>{const v={};gF.querySelectorAll('[name]').forEach(i=>v[i.name]=i.value);const pv=$('#gPv');if(pv)v.img=pv.style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,'');gCtx.onSave(v);$('#gModal').hidden=true;};
@@ -718,6 +784,37 @@ function renderAvis(){const l=$('#avisList');l.innerHTML='';AVIS.forEach((a,i)=>
 $('#addAvis').onclick=()=>gOpen('Nouvel avis','Accueil · Avis',[{n:'n',l:'Prénom(s)',full:1},{n:'t',l:'Témoignage',type:'ta'}],{},v=>{if(!v.n&&!v.t)return;AVIS.push(v);renderAvis();toast('Avis ajouté');});
 renderCells();renderAvis();
 renderAll();renderProg();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();
+
+/* ===== état complet <-> Supabase ===== */
+const FK=()=>$$('[data-f]');
+function formGet(){const o={};FK().forEach(el=>{const k=el.dataset.f;if(el.type==='file'){const pvE=el.parentElement.querySelector('.pv');o[k]=pvE?pvE.style.backgroundImage.replace(/^url\(["']?|["']?\)$/g,''):'';}else o[k]=el.type==='checkbox'?(el.checked?1:0):el.value;});return o;}
+function formSet(o){FK().forEach(el=>{const k=el.dataset.f;if(!(k in o))return;if(el.type==='file'){const pvE=el.parentElement.querySelector('.pv');if(pvE&&o[k])pvE.style.backgroundImage=`url(${o[k]})`;}else if(el.type==='checkbox')el.checked=!!o[k];else el.value=o[k];});}
+function collect(){const f=formGet();
+  const sec={};SEC.forEach(([pg,items])=>items.forEach(it=>{sec[pg+'|'+it[0]]={on:it[2]?1:0,msg:it[3]||''};}));
+  return {v:1,ev:EV,prog:PR,vac:$('#vac').checked?1:0,repas:RP,sec,pop:POP,
+    ann:{on:f['ann.on']?1:0,fr:f['ann.fr'],en:f['ann.en'],l:f['ann.l'],u:f['ann.u'],from:f['ann.from'],to:f['ann.to']},
+    add:ADD,faq:FQ,tx:TX,cells:CELLS,avis:AVIS,form:f};}
+function applyData(d){
+  if(d.ev)EV=d.ev;if(d.prog)PR=d.prog;if('vac' in d){$('#vac').checked=!!d.vac;$('#vacMsg').style.display=d.vac?'block':'none';}
+  if(d.repas)RP=d.repas;
+  if(d.sec)SEC.forEach(([pg,items])=>items.forEach(it=>{const x=d.sec[pg+'|'+it[0]];if(x){it[2]=x.on?1:0;it[3]=x.msg||'';}}));
+  if(d.pop)POP=d.pop;
+  if(d.add)Object.keys(d.add).forEach(k=>{ADD[k]=d.add[k];});
+  if(d.faq)FQ=d.faq;
+  if(d.tx)Object.keys(d.tx).forEach(k=>{TX[k]=d.tx[k];});
+  if(d.cells){CELLS.length=0;d.cells.forEach(c=>CELLS.push(c));}
+  if(d.avis){AVIS.length=0;d.avis.forEach(a=>AVIS.push(a));}
+  if(d.form)formSet(d.form);
+  renderAll();renderProg();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();renderPop();popLoad(0);renderCells();renderAvis();txFill();}
+async function loadData(){st('Chargement…');
+  try{const r=await fetch(SB.url+'/rest/v1/contenu?cle=eq.site&select=data,updated_at',{headers:sbH(await token())});const rows=await r.json();
+    if(rows&&rows[0]&&rows[0].data){applyData(rows[0].data);st('✓ À jour · dernière modification '+new Date(rows[0].updated_at).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}));}
+    else st('Prêt · la première modification sera enregistrée sur le site');}
+  catch(err){st('⚠ Chargement impossible : '+err.message);}
+  READY=true;}
+$('#app').addEventListener('input',e=>{if(e.target.closest('[data-f]'))schedule();});
+$('#app').addEventListener('change',e=>{if(e.target.closest('[data-f]'))schedule();});
+$$('[data-f][type=file]').forEach(el=>el.addEventListener('uploaded',schedule));
 })();
 </script>
 </body>

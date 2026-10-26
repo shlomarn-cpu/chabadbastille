@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="js/site-data.js"></script>
 <link rel="icon" type="image/svg+xml" href="img/mark-terre.svg">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1085,6 +1086,11 @@ const EVENTS=[
 const arail=document.getElementById('arail');
 function renderAEv(){arail.innerHTML=EVENTS.map(e=>`<article class="acard"><div class="ph3"><img src="${e.img}" alt="" draggable="false"></div><h3>${lang==='en'?e.en_titre:e.titre}</h3><p>${lang==='en'?e.en_sous:e.sous}</p><a class="btn" href="${e.lien}" target="_blank" rel="noopener">${lang==='en'?e.en_btn:e.btn}</a></article>`).join('');}
 renderAEv();
+onSiteData(d=>{if(!d.repas)return;const ml=document.querySelector('#repas .ml');if(!ml)return;
+  const EN={'Repas de Chabbat':'Shabbat meals','Séder de Roch Hachana':'Rosh Hashana Seder','Repas sous la Soucca':'Meals in the Sukkah','Michté de Pourim':'Purim Mishteh','Séder de Pessa’h':'Passover Seder'};
+  const draw=()=>{const en=SD.lang()==='en';ml.innerHTML=d.repas.map(r=>{const n=SD.esc(en?(r.ne||EN[r.n]||r.n):r.n);return r.o&&r.u?`<a href="${SD.esc(r.u)}" target="_blank" rel="noopener"><b>${n}</b><span>${en?'Book':'Réserver'}</span></a>`:`<div class="off2" aria-disabled="true"><b>${n}</b><span>${en?'Closed':'Fermé'}</span></div>`;}).join('');};
+  draw();SD.onLang(draw);});
+onSiteData(d=>{if(!d.ev)return;const L=SD.upcoming(d);EVENTS.length=0;L.forEach(e=>EVENTS.push(SD.evCard(e)));const sec=document.getElementById('evenements');if(sec)sec.style.display=L.length?'':'none';renderAEv();});
 const astep=()=>{const c=arail.querySelector('.acard');return c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(arail).gap):400};
 document.getElementById('anext').onclick=()=>arail.scrollBy({left:astep(),behavior:'smooth'});
 document.getElementById('aprev').onclick=()=>arail.scrollBy({left:-astep(),behavior:'smooth'});

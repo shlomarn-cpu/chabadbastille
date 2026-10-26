@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<script src="js/site-data.js"></script>
 <link rel="icon" type="image/svg+xml" href="img/mark-terre.svg">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -712,6 +713,10 @@ document.getElementById('wprev').onclick=()=>{wk.setDate(wk.getDate()-7);render(
 document.getElementById('wnext').onclick=()=>{wk.setDate(wk.getDate()+7);render(true);};
 document.getElementById('wnow').onclick=()=>{wk=new Date(thisWeek);render(true);};
 render(false);
+onSiteData(d=>{let ch=false;
+  if(d.prog){RECURRENT.length=0;if(!d.vac)d.prog.filter(r=>r[4]).forEach(r=>RECURRENT.push({d:+r[0],t:r[1],fr:r[2],en:r[5]||r[2],url:SD.DEST[r[3]]||'',week:true}));ch=true;}
+  if(d.ev){EVENTS.length=0;SD.upcoming(d).forEach(e=>EVENTS.push({date:e.d,t:e.h||'',fr:e.t,en:e.te||e.t,link:e.url||''}));ch=true;}
+  if(ch)render(false);});
 
 /* ---- FR / EN ---- */
 const nodes=[...document.querySelectorAll('[data-en]')];nodes.forEach(n=>n.dataset.fr=n.innerHTML);
