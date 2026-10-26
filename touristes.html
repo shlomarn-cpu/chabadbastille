@@ -781,7 +781,7 @@ tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)retur
 subs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;sub=b.dataset.s;render(true);});
 document.querySelectorAll('.rp a[data-go]').forEach(a=>a.addEventListener('click',()=>{tab=a.dataset.go;if(tab==='resto')sub='lait';render(true);}));
 render(false);
-onSiteData(d=>{if(!d.add)return;Object.keys(d.add).forEach(k=>{if(DATA[k]&&d.add[k]&&d.add[k].items)DATA[k].items=d.add[k].items.filter(i=>i.v!==0);});render(false);});
+onSiteData(d=>{if(!d.add)return;Object.keys(d.add).forEach(k=>{if(DATA[k]&&d.add[k]&&d.add[k].items)DATA[k].items=d.add[k].items.filter(i=>i.v!==0).map(i=>{const o={};Object.keys(i).forEach(x=>o[x]=typeof i[x]==='string'?SD.esc(i[x]):i[x]);if(o.w&&!/^https?:/i.test(i.w))o.w='';return o;});});render(false);});
 
 const HMAP={manger:'resto',synagogues:'syn',mikve:'mikve'};
 function fromHash(){const h=location.hash.slice(1);if(HMAP[h]){tab=HMAP[h];if(tab==='resto')sub='lait';render(false);const t=document.getElementById('adresses');setTimeout(()=>t.scrollIntoView({behavior:'smooth'}),30);}}

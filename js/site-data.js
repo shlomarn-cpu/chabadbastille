@@ -9,14 +9,15 @@ window.SITEPAGE=PAGE_NAME;
 var cbs=[];
 window.onSiteData=function(f){if(window.SITEDATA){try{f(window.SITEDATA)}catch(e){console.error(e)}}cbs.push(f);};
 function L(){return document.documentElement.lang||'fr';}
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function inRange(from,to){var t=today();return (!from||t>=from)&&(!to||t<=to);}
 window.SD={esc:esc,today:today,inRange:inRange,lang:L};
 /* événement (admin) -> carte du carrousel */
 SD.upcoming=function(d){var t=today();return (d.ev||[]).filter(function(e){return e.s==='on'&&(!e.d||e.d>=t);}).sort(function(a,b){return (a.d||'').localeCompare(b.d||'');});};
 SD.evCard=function(e){var dt='';if(e.d){var x=new Date(e.d+'T12:00');dt=x.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+(e.h?' · '+e.h.replace(':','h'):'');var dte=x.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+(e.h?' · '+e.h:'');}
-  return {img:e.img||'img/menorah.jpg',titre:e.t,en_titre:e.te||e.t,sous:e.x||dt,en_sous:e.xe||e.x||dte||dt,btn:e.b||(e.url?'Réserver':'En savoir plus'),en_btn:e.be||(e.url?'Book':'Learn more'),lien:e.url||'agenda.html'};};
+  var u=String(e.url||'agenda.html');if(!/^(https?:|mailto:|tel:|[a-z0-9-]+\.html)/i.test(u))u='agenda.html';
+  return {img:esc(e.img||'img/menorah.jpg'),titre:esc(e.t),en_titre:esc(e.te||e.t),sous:esc(e.x||dt),en_sous:esc(e.xe||e.x||dte||dt),btn:esc(e.b||(e.url?'Réserver':'En savoir plus')),en_btn:esc(e.be||(e.url?'Book':'Learn more')),lien:esc(u)};};
 SD.onLang=function(f){new MutationObserver(function(){f(L());}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});};
 SD.DEST={'Cercle féminin':'activites.html#femmes','Bichvile’h':'activites.html#bichvileh','Cours & Étude':'activites.html#etude','Enfants':'activites.html#enfants','Cantine':'activites.html#cantine','CTeen':'activites.html#cteen','Social':'activites.html#social','Aucun':''};
 
