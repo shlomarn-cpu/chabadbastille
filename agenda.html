@@ -676,7 +676,7 @@ function buildWeek(start){
   }
   days.forEach((day,i)=>{
     const ds=iso(day.date);
-    if(!day.yt)RECURRENT.filter(r=>r.week&&r.d===i).forEach(r=>day.items.push({t:r.t,txt:r.url?`<a class="rl" href="${r.url}">${r[lang]}</a>`:r[lang],cls:'act'}));
+    if(!day.yt)RECURRENT.filter(r=>r.week&&r.d===i&&!(/#cantine/.test(r.url||'')&&window.SD&&SD.isVac(ds))).forEach(r=>day.items.push({t:r.t,txt:r.url?`<a class="rl" href="${r.url}">${r[lang]}</a>`:r[lang],cls:'act'}));
     EVENTS.filter(e=>e.date===ds).forEach(e=>day.items.push({t:e.t,txt:e[lang],cls:'evt',link:e.link&&e.link!=='#'?e.link:null,lk:T[lang].info}));
     day.tags.forEach(tag=>day.items.unshift({t:'',txt:tag,cls:(day.yt||/Hanoucca|Hanukkah|Chanukah/.test(tag))?'fete':'cal'}));
     day.items.sort((a,b)=>(a.t||'00:00').localeCompare(b.t||'00:00'));
@@ -713,6 +713,7 @@ document.getElementById('wprev').onclick=()=>{wk.setDate(wk.getDate()-7);render(
 document.getElementById('wnext').onclick=()=>{wk.setDate(wk.getDate()+7);render(true);};
 document.getElementById('wnow').onclick=()=>{wk=new Date(thisWeek);render(true);};
 render(false);
+if(window.SD)SD.onVac(()=>render(false));
 onSiteData(d=>{let ch=false;
   if(d.prog){RECURRENT.length=0;if(!d.vac)d.prog.filter(r=>r[4]).forEach(r=>RECURRENT.push({d:+r[0],t:String(r[1]).replace(/[^0-9:]/g,''),fr:SD.esc(r[2]),en:SD.esc(r[5]||r[2]),url:SD.DEST[r[3]]||'',week:true}));ch=true;}
   if(d.ev){EVENTS.length=0;SD.upcoming(d).forEach(e=>EVENTS.push({date:e.d,t:e.h||'',fr:SD.esc(e.t),en:SD.esc(e.te||e.t),link:/^https?:/i.test(e.url||'')?SD.esc(e.url):''}));ch=true;}

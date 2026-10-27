@@ -18,6 +18,18 @@ SD.upcoming=function(d){var t=today();return (d.ev||[]).filter(function(e){retur
 SD.evCard=function(e){var dt='';if(e.d){var x=new Date(e.d+'T12:00');dt=x.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+(e.h?' · '+e.h.replace(':','h'):'');var dte=x.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+(e.h?' · '+e.h:'');}
   var u=String(e.url||'agenda.html');if(!/^(https?:|mailto:|tel:|[a-z0-9-]+\.html)/i.test(u))u='agenda.html';
   return {img:esc(e.img||'img/menorah.jpg'),titre:esc(e.t),en_titre:esc(e.te||e.t),sous:esc(e.x||dt),en_sous:esc(e.xe||e.x||dte||dt),btn:esc(e.b||(e.url?'Réserver':'En savoir plus')),en_btn:esc(e.be||(e.url?'Book':'Learn more')),lien:esc(u)};};
+/* ---- vacances scolaires (zone C · Paris), calendrier officiel de l'Éducation nationale ---- */
+var VAC_FALLBACK=[['2026-10-17','2026-11-02'],['2026-12-19','2027-01-04'],['2027-02-06','2027-02-22'],['2027-04-03','2027-04-19'],['2027-05-06','2027-05-10'],['2027-07-03','2027-09-02']];
+SD.VAC=VAC_FALLBACK;
+SD.isVac=function(ds){return SD.VAC.some(function(v){return ds>=v[0]&&ds<v[1];});};
+var vacCbs=[];SD.onVac=function(f){vacCbs.push(f);};
+(function(){var loc=function(iso){return new Date(iso).toLocaleDateString('sv-SE',{timeZone:'Europe/Paris'});};
+  var addD=function(ds,n){var d=new Date(ds+'T12:00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
+  try{var c=JSON.parse(localStorage.getItem('sd-vac')||'null');if(c&&Date.now()-c.t<6*864e5&&c.v&&c.v.length){SD.VAC=c.v;return;}}catch(e){}
+  var u='https://data.education.gouv.fr/api/explore/v2.1/catalog/datasets/fr-en-calendrier-scolaire/records?select=description,start_date,end_date&where='+encodeURIComponent('location="Paris" and end_date>="'+new Date(Date.now()-200*864e5).toISOString().slice(0,10)+'"')+'&order_by=start_date&limit=60';
+  fetch(u).then(function(r){return r.ok?r.json():null;}).then(function(j){if(!j||!j.results||!j.results.length)return;var seen={},v=[];
+    j.results.forEach(function(x){var a=loc(x.start_date),b=loc(x.end_date);if(a===b){b=/Ascension/i.test(x.description)?addD(a,4):/Été/i.test(x.description)?addD(a,60):addD(a,1);}var k=a+b;if(seen[k])return;seen[k]=1;v.push([a,b]);});
+    if(v.length){SD.VAC=v;try{localStorage.setItem('sd-vac',JSON.stringify({t:Date.now(),v:v}))}catch(e){}vacCbs.forEach(function(f){try{f()}catch(e){}});}}).catch(function(){});})();
 SD.onLang=function(f){new MutationObserver(function(){f(L());}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});};
 SD.DEST={'Cercle féminin':'activites.html#femmes','Bichvile’h':'activites.html#bichvileh','Cours & Étude':'activites.html#etude','Enfants':'activites.html#enfants','Cantine':'activites.html#cantine','CTeen':'activites.html#cteen','Social':'activites.html#social','Aucun':''};
 

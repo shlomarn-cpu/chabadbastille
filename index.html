@@ -293,7 +293,8 @@ nav.menu .ddm a:hover{background:var(--creme);color:var(--terre)}nav.menu .ddm a
       <div><div class="b1">BETH LOUBAVITCH</div><div class="b2">PARIS 11 · BASTILLE</div></div>
     </a>
     <style>nav.menu .ddm a.ev{color:var(--terre);font-weight:800;border-bottom:1px solid #ECE7DE;margin-bottom:6px;padding-bottom:15px;justify-content:flex-start;align-items:center}nav.menu .ddm a.ev::after{margin-left:auto}a.ev::before{content:"";width:7px;height:7px;flex:0 0 7px;background:var(--terre);margin-right:12px;animation:evp 1.8s ease-in-out infinite}@keyframes evp{50%{opacity:.25}}.mmenu nav .msub a.ev{color:var(--terre);font-weight:800;border-bottom:1px solid #ECE7DE;margin-bottom:4px;display:flex;align-items:center}.mmenu nav .msub a.ev::after{margin-left:auto}@media (prefers-reduced-motion:reduce){a.ev::before{animation:none}}</style>
-    <nav class="menu" aria-label="Menu principal">
+    <style>@media (max-width:360px){.hd .brand img{height:34px!important}.hd .b1{font-size:10px!important;letter-spacing:.1em!important}.hd .b2{font-size:8px!important;letter-spacing:.12em!important}.hd .lang{gap:3px!important;font-size:12px!important}.hd .brand{gap:8px!important}}@media (max-width:340px){.hd .b1{font-size:9.5px!important;letter-spacing:.06em!important}.hd .b2{letter-spacing:.08em!important}.hd .lang>span{display:none!important}.hd .lang{gap:7px!important}.hd .hd-r{gap:8px!important}}</style>
+<nav class="menu" aria-label="Menu principal">
       <a href="qui-sommes-nous.html" data-en="About us">Qui sommes-nous</a>
       <div class="ddw"><a href="activites.html" data-en="Activities">Activités</a><button type="button" class="ddt" aria-expanded="false" aria-label="Activités : sous-menu"><i></i></button><div class="ddm"><div><a class="ev" href="activites.html#evenements" data-en="Upcoming events">Événements à venir</a><a href="activites.html#repas" data-en="Shabbat &amp; holiday meals">Repas de Chabbat &amp; fêtes</a><a href="activites.html#etude" data-en="Classes &amp; Study">Cours &amp; Étude</a><a href="activites.html#enfants" data-en="Children">Enfants</a><a href="activites.html#femmes" data-en="Women’s circle">Cercle féminin</a><a href="activites.html#bichvileh" data-en="Bichvileh">Bichvile’h</a><a href="activites.html#cantine" data-en="Kosher canteen">Cantine cacher</a><a href="activites.html#tefiline" data-en="Tefillin &amp; Mezuzot">Téfiline &amp; Mézouzot</a><a href="activites.html#cteen" data-en="CTeen">CTeen</a><a href="activites.html#social" data-en="Social">Social</a></div></div></div>
       <a href="agenda.html" data-en="Events">Agenda</a>
@@ -303,7 +304,7 @@ nav.menu .ddm a:hover{background:var(--creme);color:var(--terre)}nav.menu .ddm a
     <div class="hd-r">
       <a class="btn btn-terre" href="https://bethloubavitchb.kehila.io/don" target="_blank" rel="noopener" data-en="Donate">Faire un don</a>
       <div class="lang" role="group" aria-label="Langue">
-        <button type="button" id="lang-fr" aria-pressed="true">FR</button><span>/</span><button type="button" id="lang-en" aria-pressed="false">EN</button>
+        <button type="button" id="lang-fr" aria-pressed="true">FR</button><span>/</span><button type="button" id="lang-en" aria-pressed="false">EN</button><span>/</span><a href="touristes.html?lang=he" id="lang-he" lang="he" hreflang="he" title="עברית · דף לתיירים" style="color:var(--ardoise);text-decoration:none;padding:4px 2px;line-height:1">עב</a>
       </div>
       <button class="burger" type="button" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
     </div>
