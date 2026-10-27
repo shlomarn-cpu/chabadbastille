@@ -34,8 +34,8 @@ SD.onLang=function(f){new MutationObserver(function(){f(L());}).observe(document
 SD.DEST={'Cercle féminin':'activites.html#femmes','Bichvile’h':'activites.html#bichvileh','Cours & Étude':'activites.html#etude','Enfants':'activites.html#enfants','Cantine':'activites.html#cantine','CTeen':'activites.html#cteen','Social':'activites.html#social','Aucun':''};
 
 /* ---- styles des composants ajoutés ---- */
-var css='.sd-ann{position:relative;z-index:60;background:#000;color:#fff;font:600 14px/1.4 "Nunito Sans",system-ui,sans-serif;text-align:center;padding:10px 48px 10px 16px}'+
-'.sd-ann a{color:#C8A05A;font-weight:800;margin-left:10px;text-decoration:none;white-space:nowrap}.sd-ann button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:18px;cursor:pointer;padding:6px}'+
+var css='.sd-ann{position:relative;z-index:60;background:#B4552F;color:#fff;font:600 14px/1.4 "Nunito Sans",system-ui,sans-serif;text-align:center;padding:10px 48px 10px 16px}'+
+'.sd-ann a{color:#fff;font-weight:800;margin-left:10px;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}.sd-ann button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:18px;cursor:pointer;padding:6px}'+
 '.sd-pop-o{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .35s}.sd-pop-o.on{opacity:1}'+
 '.sd-pop{position:relative;background:#fff;width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;font-family:"Nunito Sans",system-ui,sans-serif;box-shadow:0 30px 80px rgba(0,0,0,.3)}'+
 '.sd-pop .pim{aspect-ratio:16/9;background:#F7F3EC center/cover no-repeat}.sd-pop .pbd{padding:clamp(22px,4vw,34px)}.sd-pop .pk{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#B4552F;font-weight:800}'+
@@ -99,7 +99,7 @@ function applyAnnonce(d){
   var txt=L()==='en'&&a.en?a.en:a.fr;
   el.innerHTML='<span>'+esc(txt)+'</span>'+(a.u?'<a href="'+esc(a.u)+'" target="_blank" rel="noopener">'+esc(a.l||'En savoir plus')+' →</a>':'')+'<button type="button" aria-label="Fermer">✕</button>';
   el.querySelector('button').onclick=function(){el.remove();try{sessionStorage.setItem('sd-ann-x',(a.fr||'')+a.to)}catch(e){}};
-  document.body.insertBefore(el,document.body.firstChild);
+  var hd=document.querySelector('header');if(hd)hd.insertBefore(el,hd.firstChild);else document.body.insertBefore(el,document.body.firstChild);
 }
 
 /* ---- pop-up ---- */
