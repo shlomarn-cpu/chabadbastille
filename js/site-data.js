@@ -17,7 +17,7 @@ window.SD={esc:esc,today:today,inRange:inRange,lang:L};
 SD.upcoming=function(d){var t=today();return (d.ev||[]).filter(function(e){return e.s==='on'&&(!e.d||e.d>=t);}).sort(function(a,b){return (a.d||'').localeCompare(b.d||'');});};
 SD.evCard=function(e){var dt='';if(e.d){var x=new Date(e.d+'T12:00');dt=x.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+(e.h?' · '+e.h.replace(':','h'):'');var dte=x.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+(e.h?' · '+e.h:'');}
   var u=String(e.url||'agenda.html');if(!/^(https?:|mailto:|tel:|[a-z0-9-]+\.html)/i.test(u))u='agenda.html';
-  return {img:esc(e.img||'img/menorah.jpg'),titre:esc(e.t),en_titre:esc(e.te||e.t),sous:esc([dt,e.x].filter(Boolean).join('\n')),en_sous:esc([dte||dt,e.xe||e.x].filter(Boolean).join('\n')),btn:esc(e.b||(e.url?'Réserver':'En savoir plus')),en_btn:esc(e.be||(e.url?'Book':'Learn more')),lien:esc(u)};};
+  return {img:esc(e.img||'img/menorah.jpg'),titre:esc(e.t),en_titre:esc(e.te||e.t),sous:[dt?'<b style="font-weight:800;color:#000">'+esc(dt)+'</b>':'',esc(e.x||'')].filter(Boolean).join('<br>'),en_sous:[(dte||dt)?'<b style="font-weight:800;color:#000">'+esc(dte||dt)+'</b>':'',esc(e.xe||e.x||'')].filter(Boolean).join('<br>'),btn:esc(e.b||(e.url?'Réserver':'En savoir plus')),en_btn:esc(e.be||(e.url?'Book':'Learn more')),lien:esc(u)};};
 /* ---- vacances scolaires (zone C · Paris), calendrier officiel de l'Éducation nationale ---- */
 var VAC_FALLBACK=[['2026-10-17','2026-11-02'],['2026-12-19','2027-01-04'],['2027-02-06','2027-02-22'],['2027-04-03','2027-04-19'],['2027-05-06','2027-05-10'],['2027-07-03','2027-09-02']];
 SD.VAC=VAC_FALLBACK;
