@@ -236,3 +236,8 @@ var PREV=null;try{if(/[?&]apercu\b/.test(location.search))PREV=JSON.parse(localS
    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();})
  .catch(function(){});
 })();
+/* Liens Kehila : version anglaise / hébraïque selon la langue du site */
+(function(){function kh(){var l=(document.documentElement.lang||'fr').slice(0,2);document.querySelectorAll('a[href*="kehila.io"]').forEach(function(a){var h=a.getAttribute('href');if(!a.dataset.kh0)a.dataset.kh0=h.replace(/(kehila\.io)\/(?:fr|en|he)(\/|$)/,'$1$2');var u=a.dataset.kh0;if(l==='en'||l==='he')u=u.replace(/(kehila\.io)(\/|$)/,'$1/'+l+'$2');if(a.getAttribute('href')!==u)a.setAttribute('href',u);});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();
+function go(){kh();SD.onLang(kh);var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(kh,60);}).observe(document.body,{childList:true,subtree:true});}
+window.SDkh=kh;})();
