@@ -510,7 +510,7 @@ addEventListener('wheel',stop,{passive:true});addEventListener('touchstart',stop
 
   <div class="tabs" role="tablist">
     <button type="button" role="tab" aria-selected="true" data-t="v"><span data-en="Videos">Vidéos</span> <em id="nv"></em></button>
-    <button type="button" role="tab" aria-selected="false" data-t="p"><span data-en="Podcasts">Podcasts</span> <em>5</em></button>
+    <button type="button" role="tab" aria-selected="false" data-t="p"><span data-en="Podcasts">Podcasts</span> <em id="np">5</em></button>
   </div>
 
   <!-- VIDÉOS -->
@@ -635,7 +635,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 (function(){
 let lang=(document.documentElement.lang||'fr').slice(0,2)==='en'?'en':'fr';
 /* ---- Vidéos YouTube (chaîne @chabadbastille) — gérées depuis l’admin ---- */
-const VIDEOS=[
+let VIDEOS=[
  ['SGIzDoagAFE','La conception de Rabba','Tanya ch. 13 · Partie 3'],
  ['OEwOcna7ltE','Plusieurs niveaux de Beinoni','Tanya ch. 13 · Partie 2'],
  ['dRsyMjH5ft0','La force du Beinoni','Tanya fin ch. 12 · début ch. 13'],
@@ -657,7 +657,7 @@ const VIDEOS=[
  ['R6EHg26XD9Q','Le chemin long et court','Tanya ch. 1']
 ].map(([id,t,s])=>({id,t,s}));
 /* ---- Podcasts Spotify ---- */
-const EPS=[
+let EPS=[
  ['1UZW8kijoiKIrprbKt3WKY','Initiation à l’étude de la ’Hassidout','1er nov. 2025','32 min'],
  ['5SXLy88OXyDyeQ7Wfln6yU','Chaar HaYi’houd VehaÉmounah · 2','2 nov. 2025','40 min'],
  ['5gNEtmTg13EVaS7VRz2WGf','Chaar HaYi’houd VehaÉmounah · 3','3 nov. 2025','39 min'],
@@ -665,11 +665,11 @@ const EPS=[
  ['19D5IgWOGQLoovrNgymRhN','Chaar HaYi’houd VehaÉmounah · 5','5 nov. 2025','44 min']
 ];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const thumb=id=>`img/yt/${id}.jpg`;
+const LOCALT=new Set(VIDEOS.map(v=>v.id));const thumb=id=>LOCALT.has(id)?`img/yt/${id}.jpg`:`https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 const yurl=id=>`https://www.youtube.com/watch?v=${id}`;
 let cur=VIDEOS[0].id;
 const PREVIEW=/claude\.ai|claudeusercontent|anthropic/.test(location.hostname);
-function setPlayer(id,play){cur=id;const v=VIDEOS.find(x=>x.id===id);$('#pt').textContent=v.t;$('#po').href=yurl(id);
+function setPlayer(id,play){cur=id;const v=VIDEOS.find(x=>x.id===id);$('#pt').innerHTML=v.t;$('#po').href=yurl(id);
   const f=$('#frame');
   if(PREVIEW){f.innerHTML=`<a class="poster" href="${yurl(id)}" target="_blank" rel="noopener" aria-label="Regarder sur YouTube : ${v.t.replace(/"/g,'&quot;')}" style="background-image:url(${thumb(id)})"><i></i></a>`;}
   else if(play){f.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1" title="${v.t.replace(/"/g,'&quot;')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;}
@@ -689,6 +689,11 @@ const epHTML=([id,t,d,len],i)=>`<div class="ep"><div class="hdr"><div><div class
 $('#eps').innerHTML=EPS.map(epHTML).join('');
 /* tabs */
 $$('.bhm .tabs button').forEach(b=>b.onclick=()=>{$$('.bhm .tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));$$('.bhm .panel').forEach(p=>p.hidden=p.dataset.panel!==b.dataset.t);});
+/* contenu géré depuis l’admin */
+if(window.onSiteData)onSiteData(d=>{const bh=d&&d.bh;if(!bh)return;const E=window.SD?SD.esc:(x=>x);
+ if(Array.isArray(bh.v)&&bh.v.length){VIDEOS=bh.v.filter(v=>v&&/^[\w-]{11}$/.test(v.id)).map(v=>({id:v.id,t:E(v.t||''),s:E(v.s||'')}));cur=VIDEOS[0].id;$('#nv').textContent=VIDEOS.length;setPlayer(cur,false);renderGrid();}
+ if(Array.isArray(bh.p)){EPS=bh.p.filter(e=>e&&/^[A-Za-z0-9]{22}$/.test(e.id)).map(e=>[e.id,E(e.t||''),E(e.d||''),E(e.l||'')]);$('#np').textContent=EPS.length;renderEps();}
+});
 /* langue du site */
 function renderEps(){$('#eps').innerHTML=EPS.map(epHTML).join('');}
 if(window.SD&&SD.onLang)SD.onLang(l=>{lang=(l||'fr').slice(0,2)==='en'?'en':'fr';$('#q').placeholder=lang==='fr'?'Rechercher un cours…':'Search a class…';renderGrid();renderEps();});

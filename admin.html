@@ -269,6 +269,7 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
       <div class="g">Contenus</div>
       <button data-p="events"><i>◆</i>Événements à venir</button>
       <button data-p="prog"><i>◷</i>Programme régulier</button>
+      <button data-p="bh"><i>▶</i>Beth Hamidrach · cours</button>
       <button data-p="repas"><i>✦</i>Repas &amp; fêtes<span class="bd" id="bdRepas">4</span></button>
       <button data-p="sections"><i>◐</i>Sections du site</button>
       <button data-p="popup"><i>▣</i>Pop-up</button>
@@ -328,6 +329,13 @@ select{-webkit-appearance:none;appearance:none;padding-right:34px!important;back
     </section>
 
     <!-- ===== REPAS & FÊTES ===== -->
+    <section class="panel" data-panel="bh" hidden>
+      <div class="card"><div class="ch"><div><h2>Cours en vidéo (YouTube)</h2><p>Collez le lien YouTube du cours, un titre et une ligne (ex. « Tanya ch. 14 · Partie 1 »). Le premier de la liste s’affiche dans le grand lecteur. Les flèches changent l’ordre.</p></div><button class="btn btn-terre btn-sm" id="addBhv">+ Ajouter un cours</button></div>
+        <table class="tbl bhv"><colgroup><col style="width:30%"><col><col style="width:26%"><col style="width:110px"></colgroup><thead><tr><th>Lien YouTube</th><th>Titre</th><th>Ligne (série · chapitre)</th><th></th></tr></thead><tbody id="bhvT"></tbody></table></div>
+      <div class="card"><div class="ch"><div><h2>Podcasts (Spotify)</h2><p>Collez le lien de l’épisode Spotify (Partager › Copier le lien), son titre, la date et la durée.</p></div></div>
+        <table class="tbl bhp"><colgroup><col style="width:30%"><col><col style="width:15%"><col style="width:11%"><col style="width:110px"></colgroup><thead><tr><th>Lien Spotify</th><th>Titre</th><th>Date</th><th>Durée</th><th></th></tr></thead><tbody id="bhpT"></tbody></table>
+        <div class="cb"><button class="btn btn-ln btn-sm" id="addBhp">+ Ajouter un podcast</button></div></div>
+    </section>
     <section class="panel" data-panel="repas" hidden>
       <div class="card"><div class="ch"><div><h2>Repas &amp; fêtes</h2><p>Fermé = affiché en filigrane avec la mention « Fermé », non cliquable.</p></div></div>
         <table class="tbl rep"><colgroup><col class="c1"><col class="c2"><col class="c3"></colgroup><thead><tr><th>Repas</th><th>Lien d’inscription Kehila</th><th>État</th></tr></thead><tbody id="repasT"></tbody></table></div>
@@ -667,6 +675,24 @@ function renderAgx(){const tb=$('#agxT');tb.innerHTML='';AGX.forEach((e,i)=>{con
   tr.querySelector('.btn-gh').onclick=()=>{AGX.splice(i,1);renderAgx();schedule();toast('Rendez-vous supprimé');};tb.appendChild(tr);});}
 $('#addAgx').onclick=()=>{AGX.push({d:new Date().toISOString().slice(0,10),h:'',t:'',te:'',url:''});renderAgx();schedule();};
 renderExc();renderAgx();
+let BHV=[{"id": "SGIzDoagAFE", "t": "La conception de Rabba", "s": "Tanya ch. 13 · Partie 3"}, {"id": "OEwOcna7ltE", "t": "Plusieurs niveaux de Beinoni", "s": "Tanya ch. 13 · Partie 2"}, {"id": "dRsyMjH5ft0", "t": "La force du Beinoni", "s": "Tanya fin ch. 12 · début ch. 13"}, {"id": "EvEBZEkB4qo", "t": "L’impact de la prière du Beinoni", "s": "Tanya ch. 12 · Partie 3"}, {"id": "jIMu8_GywDQ", "t": "L’intellect domine le cœur", "s": "Tanya ch. 12 · Partie 2"}, {"id": "JlU5BHPovgY", "t": "Le Beinoni", "s": "Tanya ch. 12 · Partie 1"}, {"id": "FtLBF9gyfn0", "t": "Deux niveaux de Racha", "s": "Tanya ch. 11"}, {"id": "rHrZZKUpFcQ", "t": "Un service de D.ieu désintéressé", "s": "Tanya ch. 10 · Partie 2"}, {"id": "YNS0rTp_sK0", "t": "Le Tsadik", "s": "Tanya ch. 10 · Partie 1"}, {"id": "2eP1WLB03vQ", "t": "Intellect, plaisir et transformation", "s": "Tanya ch. 9 · Partie 2"}, {"id": "8ZVzTmdgnIU", "t": "La guerre des âmes", "s": "Tanya ch. 9 · Partie 1"}, {"id": "J0rSM7tNFPM", "t": "L’étude et les paroles futiles", "s": "Tanya ch. 8 · Partie 2"}, {"id": "vaSczRPXa0Q", "t": "L’impact de la nourriture", "s": "Tanya ch. 8 · Partie 1"}, {"id": "WP9Y5GvURB0", "t": "Tanya chapitre 7", "s": "Tanya ch. 7 · Partie 3"}, {"id": "hrxyBqvfA5s", "t": "Une faute peut-elle être bénéfique ?", "s": "Tanya ch. 7 · Partie 2"}, {"id": "SGWSrpqv_H4", "t": "Le plaisir au service de D.ieu", "s": "Tanya ch. 7 · Partie 1"}, {"id": "d5qNoTyEkxE", "t": "À la découverte de l’âme animale", "s": "Tanya ch. 1 · Partie 3"}, {"id": "pKAPq6kIm48", "t": "Questions sur le statut du Beinoni", "s": "Tanya"}, {"id": "R6EHg26XD9Q", "t": "Le chemin long et court", "s": "Tanya ch. 1"}],BHP=[{"id": "1UZW8kijoiKIrprbKt3WKY", "t": "Initiation à l’étude de la ’Hassidout", "d": "1er nov. 2025", "l": "32 min"}, {"id": "5SXLy88OXyDyeQ7Wfln6yU", "t": "Chaar HaYi’houd VehaÉmounah · 2", "d": "2 nov. 2025", "l": "40 min"}, {"id": "5gNEtmTg13EVaS7VRz2WGf", "t": "Chaar HaYi’houd VehaÉmounah · 3", "d": "3 nov. 2025", "l": "39 min"}, {"id": "60jdQFYvUWr6UCmfUwloAa", "t": "Chaar HaYi’houd VehaÉmounah · 4", "d": "4 nov. 2025", "l": "51 min"}, {"id": "19D5IgWOGQLoovrNgymRhN", "t": "Chaar HaYi’houd VehaÉmounah · 5", "d": "5 nov. 2025", "l": "44 min"}];
+const ytId=u=>{u=String(u||'').trim();if(/^[\w-]{11}$/.test(u))return u;const m=u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/|live\/)([\w-]{11})/);return m?m[1]:'';};
+const spId=u=>{u=String(u||'').trim();if(/^[A-Za-z0-9]{22}$/.test(u))return u;const m=u.match(/episode[\/:]([A-Za-z0-9]{22})/);return m?m[1]:'';};
+function mvBtns(arr,i,re){return `<button class="btn btn-gh" data-mv="-1" title="Monter" ${i?'':'disabled'}>↑</button><button class="btn btn-gh" data-mv="1" title="Descendre" ${i<arr.length-1?'':'disabled'}>↓</button><button class="btn btn-gh" data-rm title="Supprimer">✕</button>`;}
+function wireRow(tr,arr,i,re,what){tr.querySelectorAll('[data-mv]').forEach(b=>b.onclick=()=>{const j=i+ +b.dataset.mv;[arr[i],arr[j]]=[arr[j],arr[i]];re();schedule();});tr.querySelector('[data-rm]').onclick=()=>{arr.splice(i,1);re();schedule();toast(what+' supprimé');};}
+function renderBhv(){const tb=$('#bhvT');tb.innerHTML='';BHV.forEach((v,i)=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td><input value="${ea(v.id?'https://youtu.be/'+v.id:'')}" placeholder="https://youtu.be/…"><small class="bherr" style="color:#B4552F;display:none">Lien non reconnu</small></td><td><input value="${ea(v.t)}" placeholder="Titre du cours"></td><td><input value="${ea(v.s)}" placeholder="Tanya ch. 14 · Partie 1"></td><td style="white-space:nowrap">${mvBtns(BHV,i)}</td>`;
+  const [u,t,s]=tr.querySelectorAll('input'),er=tr.querySelector('.bherr');
+  u.onchange=()=>{const id=ytId(u.value);er.style.display=id||!u.value?'none':'block';if(id){v.id=id;u.value='https://youtu.be/'+id;schedule();}};
+  t.oninput=()=>{v.t=t.value;schedule();};s.oninput=()=>{v.s=s.value;schedule();};wireRow(tr,BHV,i,renderBhv,'Cours');tb.appendChild(tr);});}
+function renderBhp(){const tb=$('#bhpT');tb.innerHTML='';BHP.forEach((e,i)=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td><input value="${ea(e.id?'https://open.spotify.com/episode/'+e.id:'')}" placeholder="https://open.spotify.com/episode/…"><small class="bherr" style="color:#B4552F;display:none">Lien non reconnu</small></td><td><input value="${ea(e.t)}" placeholder="Titre de l’épisode"></td><td><input value="${ea(e.d)}" placeholder="12 nov. 2026"></td><td><input value="${ea(e.l)}" placeholder="40 min"></td><td style="white-space:nowrap">${mvBtns(BHP,i)}</td>`;
+  const [u,t,d,l]=tr.querySelectorAll('input'),er=tr.querySelector('.bherr');
+  u.onchange=()=>{const id=spId(u.value);er.style.display=id||!u.value?'none':'block';if(id){e.id=id;u.value='https://open.spotify.com/episode/'+id;schedule();}};
+  t.oninput=()=>{e.t=t.value;schedule();};d.oninput=()=>{e.d=d.value;schedule();};l.oninput=()=>{e.l=l.value;schedule();};wireRow(tr,BHP,i,renderBhp,'Podcast');tb.appendChild(tr);});}
+$('#addBhv').onclick=()=>{BHV.unshift({id:'',t:'',s:''});renderBhv();$('#bhvT input').focus();};
+$('#addBhp').onclick=()=>{BHP.push({id:'',t:'',d:'',l:''});renderBhp();};
+renderBhv();renderBhp();
 $('#vac').onchange=e=>{$('#vacMsg').style.display=e.target.checked?'block':'none';toast(e.target.checked?'Programme suspendu':'Programme rétabli');};
 
 /* ---- repas ---- */
@@ -812,7 +838,7 @@ function renderAvis(){const l=$('#avisList');l.innerHTML='';AVIS.forEach((a,i)=>
   r.querySelector('.btn').onclick=()=>gOpen('Modifier l’avis','Accueil · Avis',[{n:'n',l:'Prénom(s)',full:1},{n:'t',l:'Témoignage',type:'ta'}],a,v=>{if(v.t!==a.t)a.te='';Object.assign(a,v);renderAvis();toast('Avis enregistré');},()=>{AVIS.splice(i,1);renderAvis();toast('Avis supprimé');});l.appendChild(r);});}
 $('#addAvis').onclick=()=>gOpen('Nouvel avis','Accueil · Avis',[{n:'n',l:'Prénom(s)',full:1},{n:'t',l:'Témoignage',type:'ta'}],{},v=>{if(!v.n&&!v.t)return;AVIS.push(v);renderAvis();toast('Avis ajouté');});
 renderCells();renderAvis();
-renderAll();renderProg();renderExc();renderAgx();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();
+renderAll();renderProg();renderExc();renderAgx();renderBhv();renderBhp();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();
 
 /* ---- bandeau principal de l'accueil = Textes & photos · Accueil · 01 ---- */
 const HX=()=>TX['Accueil']&&TX['Accueil'][0];
@@ -831,11 +857,11 @@ function formGet(){const o={};FK().forEach(el=>{const k=el.dataset.f;if(el.type=
 function formSet(o){FK().forEach(el=>{const k=el.dataset.f;if(!(k in o))return;if(el.type==='file'){const pvE=el.parentElement.querySelector('.pv');if(pvE&&o[k])pvE.style.backgroundImage=`url(${o[k]})`;}else if(el.type==='checkbox')el.checked=!!o[k];else el.value=o[k];});}
 function collect(){const f=formGet();
   const sec={};SEC.forEach(([pg,items])=>items.forEach(it=>{sec[pg+'|'+it[0]]={on:it[2]?1:0,msg:it[3]||''};}));
-  return {v:1,ev:EV,prog:PR,exc:EXC,agx:AGX,vac:$('#vac').checked?1:0,repas:RP,sec,pop:POP,
+  return {v:1,ev:EV,prog:PR,exc:EXC,agx:AGX,bh:{v:BHV.filter(x=>x.id),p:BHP.filter(x=>x.id)},vac:$('#vac').checked?1:0,repas:RP,sec,pop:POP,
     ann:{on:f['ann.on']?1:0,fr:f['ann.fr'],en:f['ann.en'],l:f['ann.l'],u:f['ann.u'],from:f['ann.from'],to:f['ann.to']},
     add:ADD,faq:FQ,tx:TX,cells:CELLS,avis:AVIS,form:f};}
 function applyData(d){
-  if(d.ev)EV=d.ev;if(d.prog)PR=d.prog;if(d.exc)EXC=d.exc;if(d.agx)AGX=d.agx;if('vac' in d){$('#vac').checked=!!d.vac;$('#vacMsg').style.display=d.vac?'block':'none';}
+  if(d.ev)EV=d.ev;if(d.prog)PR=d.prog;if(d.exc)EXC=d.exc;if(d.agx)AGX=d.agx;if(d.bh){if(Array.isArray(d.bh.v)&&d.bh.v.length)BHV=d.bh.v;if(Array.isArray(d.bh.p))BHP=d.bh.p;}if('vac' in d){$('#vac').checked=!!d.vac;$('#vacMsg').style.display=d.vac?'block':'none';}
   if(d.repas)RP=d.repas;
   if(d.sec)SEC.forEach(([pg,items])=>items.forEach(it=>{const x=d.sec[pg+'|'+it[0]];if(x){it[2]=x.on?1:0;it[3]=x.msg||'';}}));
   if(d.pop)POP=d.pop;
@@ -845,7 +871,7 @@ function applyData(d){
   if(d.cells){CELLS.length=0;d.cells.forEach(c=>CELLS.push(c));}
   if(d.avis){AVIS.length=0;d.avis.forEach(a=>AVIS.push(a));}
   if(d.form)formSet(d.form);homeFromTx();
-  renderAll();renderProg();renderExc();renderAgx();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();renderPop();popLoad(0);renderCells();renderAvis();txFill();}
+  renderAll();renderProg();renderExc();renderAgx();renderBhv();renderBhp();renderRepas();renderSec();ann();renderAd();renderFaq();renderStats();renderPop();popLoad(0);renderCells();renderAvis();txFill();}
 async function loadData(){st('Chargement…');
   try{const r=await fetch(SB.url+'/rest/v1/contenu?cle=eq.site&select=data,updated_at',{headers:sbH(await token())});const rows=await r.json();
     if(rows&&rows[0]&&rows[0].data){applyData(rows[0].data);st('✓ À jour · dernière modification '+new Date(rows[0].updated_at).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}));}
