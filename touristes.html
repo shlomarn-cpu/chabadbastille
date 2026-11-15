@@ -837,9 +837,10 @@ const nodes=[...document.querySelectorAll('[data-en]')];nodes.forEach(n=>n.datas
 const KH=[...document.querySelectorAll('a[href*="kehila.io"]')];KH.forEach(a=>a.dataset.h0=a.getAttribute('href'));
 function khLang(l){KH.forEach(a=>{let u=a.dataset.h0;if(l==='he')u=u.replace(/kehila\.io\/(fr\/)?/,'kehila.io/he/');a.setAttribute('href',u);});}
 function setLang(l){lang=l;khLang(l);document.documentElement.lang=l;document.documentElement.dir=l==='he'?'rtl':'ltr';nodes.forEach(n=>n.innerHTML=l==='en'?n.dataset.en:l==='he'?(n.dataset.he||n.dataset.en):n.dataset.fr);
-  ['fr','en','he'].forEach(x=>document.getElementById('lang-'+x).setAttribute('aria-pressed',l===x));render(false);shab();try{localStorage.setItem('bl-lang-t',l)}catch(e){}}
+  ['fr','en','he'].forEach(x=>document.getElementById('lang-'+x).setAttribute('aria-pressed',l===x));render(false);shab();}
 document.getElementById('lang-fr').onclick=()=>setLang('fr');document.getElementById('lang-en').onclick=()=>setLang('en');document.getElementById('lang-he').onclick=()=>setLang('he');
-{let q=new URLSearchParams(location.search).get('lang');if(!q){try{q=localStorage.getItem('bl-lang-t')}catch(e){}}if(q==='he'||q==='en')setLang(q);}
+try{localStorage.removeItem('bl-lang-t')}catch(e){}
+{const q=new URLSearchParams(location.search).get('lang');if(q==='he'||q==='en')setLang(q);}
 })();
 </script>
 
